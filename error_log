@@ -1,0 +1,23 @@
+[01-Feb-2015 22:12:42 America/Bogota] PHP Parse error:  syntax error, unexpected '[' in /home/buscop/public_html/application/controllers/clase.php on line 51
+[01-Feb-2015 22:13:11 America/Bogota] PHP Parse error:  syntax error, unexpected '[' in /home/buscop/public_html/application/controllers/clase.php on line 51
+[01-Feb-2015 22:14:57 America/Bogota] PHP Parse error:  syntax error, unexpected '[' in /home/buscop/public_html/application/controllers/clase.php on line 106
+[02-Feb-2015 01:03:09 America/Bogota] PHP Fatal error:  Call to undefined method Login::load_crear_usuario() in /home/buscop/public_html/application/controllers/login.php on line 407
+[02-Feb-2015 08:01:54 America/Bogota] PHP Fatal error:  Call to undefined method Login::load_crear_usuario() in /home/buscop/public_html/application/controllers/login.php on line 407
+[02-Feb-2015 08:26:29 America/Bogota] PHP Fatal error:  Call to undefined method Login::load_crear_usuario() in /home/buscop/public_html/application/controllers/login.php on line 407
+[02-Feb-2015 08:26:30 America/Bogota] PHP Fatal error:  Call to undefined method Login::load_crear_usuario() in /home/buscop/public_html/application/controllers/login.php on line 407
+[02-Feb-2015 08:33:41 America/Bogota] PHP Fatal error:  Call to undefined method Login::load_crear_usuario() in /home/buscop/public_html/application/controllers/login.php on line 407
+[02-Feb-2015 08:33:41 America/Bogota] PHP Fatal error:  Call to undefined method Login::load_crear_usuario() in /home/buscop/public_html/application/controllers/login.php on line 407
+[02-Feb-2015 08:36:00 America/Bogota] PHP Fatal error:  Call to undefined method Login::load_crear_usuario() in /home/buscop/public_html/application/controllers/login.php on line 407
+[02-Feb-2015 08:36:00 America/Bogota] PHP Fatal error:  Call to undefined method Login::load_crear_usuario() in /home/buscop/public_html/application/controllers/login.php on line 407
+[02-Feb-2015 08:38:04 America/Bogota] PHP Fatal error:  Call to undefined method Login::load_crear_usuario() in /home/buscop/public_html/application/controllers/login.php on line 407
+[02-Feb-2015 08:55:16 America/Bogota] PHP Fatal error:  Call to undefined method Login::load_crear_usuario() in /home/buscop/public_html/application/controllers/login.php on line 407
+[02-Feb-2015 08:55:17 America/Bogota] PHP Fatal error:  Call to undefined method Login::load_crear_usuario() in /home/buscop/public_html/application/controllers/login.php on line 407
+[02-Feb-2015 08:58:24 America/Bogota] PHP Fatal error:  Call to undefined method Login::load_crear_usuario() in /home/buscop/public_html/application/controllers/login.php on line 407
+[02-Feb-2015 13:53:13 America/Bogota] PHP Fatal error:  Call to undefined method Login::load_crear_usuario() in /home/buscop/public_html/application/controllers/login.php on line 407
+[02-Feb-2015 19:46:43 America/Bogota] PHP Fatal error:  Call to undefined method Login::load_crear_usuario() in /home/buscop/public_html/application/controllers/login.php on line 407
+[03-Feb-2015 01:45:32 America/Bogota] PHP Fatal error:  Call to undefined method Login::load_crear_usuario() in /home/buscop/public_html/application/controllers/login.php on line 407
+[03-Feb-2015 14:48:20 America/Bogota] PHP Warning:  POST Content-Length of 11037026 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[07-Feb-2015 06:56:14 America/Bogota] PHP Fatal error:  Call to undefined method Login::load_crear_usuario() in /home/buscop/public_html/application/controllers/login.php on line 407
+[07-Feb-2015 13:43:23 America/Bogota] PHP Fatal error:  Call to undefined method Login::load_crear_usuario() in /home/buscop/public_html/application/controllers/login.php on line 407
+[10-Feb-2015 17:10:39 America/Bogota] PHP Fatal error:  Call to undefined method Login::load_crear_usuario() in /home/buscop/public_html/application/controllers/login.php on line 407
+[10-Feb-2015 23:48:27 America/Bogota] PHP Fatal error:  Call to undefined method Login::load_crear_usuario() in /home/buscop/public_html/application/controllers/login.php on line 407

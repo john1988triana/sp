@@ -1,0 +1,56 @@
+
+RewriteOptions inherit
+#<IfModule mod_rewrite.c>
+        RewriteEngine On
+
+        # Block out any script trying to base64_encode crap to send via URL
+        RewriteCond %{QUERY_STRING} base64_encode.\(.\) [OR]
+
+        # Block out any script that includes a <script> tag in URL
+        RewriteCond %{QUERY_STRING} (\<|%3C).script.(\>|%3E) [NC,OR]
+
+        # Block out any script trying to set a PHP GLOBALS variable via URL
+        RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+
+        # Block out any script trying to modify a _REQUEST variable via URL
+        RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+
+        # Send all blocked request to homepage with 403 Forbidden error!
+        RewriteRule ^(.*)$ index.php [F,L]
+
+        #RewriteCond %{HTTP_HOST} ^www\.(.*)$
+        #RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule ^(.*)$ index.php?/$1 [L]
+#</IfModule>
+
+RewriteCond %{HTTP_HOST} ^buscoprofe\.co$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.buscoprofe\.co$
+RewriteRule ^/?$ "http\:\/\/superprofe\.co\/" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^www\.superprofe\.co$
+RewriteRule ^/?$ "http\:\/\/superprofe\.co\/" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^.*$
+RewriteRule ^clases\-particulares\.html$ "http\:\/\/superprofe\.co\/clases_particulares" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^.*$
+RewriteRule ^bogota\/profesores\-refuerzo\.html$ "http\:\/\/superprofe\.co\/bogota\/refuerzoescolar" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^.*$
+RewriteRule ^bogota\/profesores\-ingles\.html$ "http\:\/\/superprofe\.co\/bogota\/ingles" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^.*$
+RewriteRule ^bogota\/profesores\-matematicas\.html$ "http\:\/\/superprofe\.co\/bogota\/matematicas" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^.*$
+RewriteRule ^bogota\/profesores\-fisica\.html$ "http\:\/\/superprofe\.co\/bogota\/fisica" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^.*$
+RewriteRule ^bogota\/profesores\-quimica\.html$ "http\:\/\/superprofe\.co\/bogota\/quimica" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^.*$
+RewriteRule ^colombia\/matematicas$ "http\:\/\/superprofe\.co\/bogota\/matematicas" [R=301,L]
+
