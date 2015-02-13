@@ -97,11 +97,17 @@
 								}else{
 									$end = date("Y",strtotime($studies[$i]["to"]));
 								}
+								if($studies[$i]["title"] != ""){
+									$study_title = $studies[$i]["title"];
+								}
+								else {
+									$study_title = "&nbsp;";
+								}
 								echo "<div class=\"form-group textarea estudios-estudiante\" >
 
 									<div class='estudios-grid'>Institución:</div><span><div class='estudios-grid'>".$studies[$i]["institution"]."</div></span><br>
 
-									<div class='estudios-grid'>Profesión:</div><span><div class='estudios-grid'>".$studies[$i]["title"]."</div></span><br>
+									<div class='estudios-grid'>Profesión:</div><span><div class='estudios-grid'>".$study_title."</div></span><br>
 									<div class='estudios-grid'>Año:</div><span><div class='estudios-grid'>".date("Y",strtotime($studies[$i]["from"]))." hasta ".$end."</div></span>
 									<div class=\"delete-group exp\" data-id=\"".$studies[$i]["id"]."\"></div>
 									<div class=\"amigas-separator\"></div>
