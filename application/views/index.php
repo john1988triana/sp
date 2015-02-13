@@ -1,5 +1,6 @@
 <div class="jumbotron home-banner" style="margin-top:81px;">
 	<div class="container">
+
 		<div class="row">
 			<div class="col-md-1"></div>
 			<h2 class="titulo-index texto-contactos">Encuentra el Profesor<br>que Necesitas</h2>
@@ -16,11 +17,13 @@
 			</div>
 			<div class="col-md-1"></div>
 			<div class="col-md-6 col-md-offset-2"></div>
-		</div>
-	</div>
+		</div><!-- Row-Jumbotron -->
 
-</div>
+	</div><!-- Container-Jumbotron -->
+</div><!-- Jumbotron -->
+
 <section>
+
 	<div class="row">
 		<hr id="separador-busqueda"></hr>
 		<div class="centrado">
@@ -93,7 +96,7 @@
 			</div>
 			<div class="col-md-6">
 				
-				<div class="col-md-10 col-md-offset-3">
+				<div class="col-md-10">
 					<a href="http://superprofe.co/registro/profesor" class="btn-registro-profe btn col-lg-12"><!--<span class="glyphicon glyphicon-user"></span><span>--> <div>¿Quieres convertirte <br>en <b style="color:#00B85C;">superprofe</b>?</div></a>
 				</div>
 				<div class="reg-texto col-md-9 col-md-offset-2 primero">
@@ -156,9 +159,11 @@
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
-</section>
+		</div>
+	</div><!-- Row-Asi funciona -->
+
+</section><!-- Asi funciona -->
+
 <section>
 <div class="fondo-bei">
 	

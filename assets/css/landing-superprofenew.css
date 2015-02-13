@@ -912,10 +912,9 @@ textarea{
 
 /*-------- Index ----------*/
 
-	a.navbar-brand {
+	.container {
 
-		padding-top: 7px;
-
+		width: 100% !important;
 	}
 
 	.row {
@@ -936,17 +935,13 @@ textarea{
 
 .estudiante-container {
 
-	padding-top: 80px;
+	padding-top: 100px;
 }
 
 .perfil-col {
 
 	border: 2px dashed #003333;
 	padding-bottom: 20px;
-
-	margin-top: 5px;
-	margin-bottom: 5px;
-
 
 }
 
@@ -1043,72 +1038,4 @@ input.datepicker {
 	text-align: center;
 	padding-left: 0;
 
-}
-
-div.estudios-grid  {
-	
-	display: inline-block;
-	padding: 12px;
-	line-height: 0;
-	margin: 2px;
-	width: 33%;
-	background-color: #009244;
-	color: white;
-	margin-left: 2.5px;
-	margin-right: 2.5px;
-}
-
-span div.estudios-grid  {
-	
-	background-color: #033031;
-	width: 62%;
-}
-
-.col-md-7.perfil-col {
-
-	padding-left: 5%;
-	padding-right: 5%;
-}
-
-.delete-group {
-	
-	
-	right: 10px;
-	top: 10px;
-	
-}
-
-.btn-estudios {
-
-	font-size: 14pt;
-	width: auto;
-	color: white !important;
-}
-
-.btn-estudios p {
-
-	width: 60%;
-	line-height: 1;
-	margin-right: 10px;
-	position: relative;
-	top: 6px;
-}
-
-.btn-estudios img {
-
-	position: relative;
-	right: 2px;
-	top: -10px;
-	height: 40px;
-}
-
-.form-control {
-
-	margin-bottom: 9px;
-}
-
-button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
-
-	font-size: 15pt;
-	
 }

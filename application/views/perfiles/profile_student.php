@@ -1,85 +1,89 @@
-﻿<div style="margin-top:120px;">
-	<div class="container" style="margin-top:120px;">
-		<div class="col-md-12 container borde-perfil-profe">			
-			<div class="col-md-5">		
+﻿<div class="grey-backgorund">
+	<div class="container" style="margin-top:80px;">
+		<div class="row container estudiante-container">			
+			<div class="col-md-4 perfil-col">		
 				<h3 style="color:#009966; text-align:center;"><?php echo $FirstName ?></h3>
 				<div>
 					<img src="<?php echo base_url($picture); ?>" class="img-profile">
 				</div>
 				<div>
-					<div class="btn-subir-foto btn" id="texto_foto" onclick="getFile()">Subir foto</div>
+					<div class="btn-subir-foto btn btn-radius" id="texto_foto" onclick="getFile()">
+						<p>Subir foto</p>
+						<img src="assets/img/upload-icon.png">
+					</div>
 					<div style='height: 0px;width: 0px; overflow:hidden;'><input id="upfile" name="userfile" type="file" value="upload" onchange="sub(this)"/></div>
 				</div>
-				<div class="row col-md-12 texto-1-profe" style="margin-top:2px;">
-					<div class="row col-md-4">
-						Ciudad:
+				<div class="texto-1-profe" style="margin-top:2px;">
+					<div>
+						<p class="label-form">Ciudad:</p>
 					</div>
-					<div class="row col-md-8">
-						Bogotá - Colombia
-					</div>
-				</div>
-				<div class="row col-md-12 texto-1-profe" style="margin-top:2px;">
-					<div class="row col-md-4">
-						Telefono:
-					</div>
-					<div class="row col-md-8">
-						<input style="border:none;outline:none;width:100%;" id="phone" value="<?php echo $Phone;?>"></input>
+					<div class="input-div">
+						<p>Bogotá - Colombia</p>
 					</div>
 				</div>
-				<div class="row col-md-12 texto-1-profe" style="margin-top:2px;">
-					<div class="row col-md-4">
-						Direcci&oacute;n:
+				<div class=" texto-1-profe">
+					<div>
+						<p class="label-form">Telefono:</p>
 					</div>
-					<div class="row col-md-8">
-						<input style="border:none;outline:none;width:100%" id="address" value="<?php echo $Address; ?>"></input>
-					</div>
-				</div>
-				<div class="row col-md-12 texto-1-profe" style="margin-top:2px;">
-					<div class="row col-md-4">
-						E-Mail:
-					</div>
-					<div class="row col-md-8">
-						<span> <?php echo $Email;?></span>
+					<div>
+						<input class="btn-radius" style="border:none;outline:none;width:100%;" id="phone" value="<?php echo $Phone;?>"></input>
 					</div>
 				</div>
-				<div class="row col-md-12 texto-1-profe" style="margin-top:2px;">
-					<div class="row col-md-4">
-						Fecha de Nacimiento:
+				<div class="texto-1-profe" style="margin-top:2px;">
+					<div>
+						<p class="label-form">Direcci&oacute;n:</p>
 					</div>
-					<div class="row col-md-8">
-						<input class="datepicker" style="border:none;outline:none;width:100%" name="birthday" id="birthday" value="<?php echo ($DayBorn) ? $DayBorn . '-' . $MonthBorn . '-' . $YearBorn : '';?>" data-date="12-02-2012" type="text"></input>
-					</div>
-				</div>
-				<div class="tutor-group" style="display:none;">
-					<div class="row col-md-12 texto-1-profe" style="margin-top:2px;">
-						<div class="row col-md-4">
-							Nombre del Acudiente:
-						</div>
-						<div class="row col-md-8">
-							<input style="border:none;outline:none;width:100%" id="tutorFName" value="<?php echo isset($tutorFirstName) ? $tutorFirstName:""; ?>"></input>
-						</div>
-					</div>
-					<div class="row col-md-12 texto-1-profe" style="margin-top:2px;">
-						<div class="row col-md-4">
-							Apellido del Acudiente:
-						</div>
-						<div class="row col-md-8">
-							<input style="border:none;outline:none;width:100%" id="tutorLName" value="<?php echo isset($tutorLastName) ? $tutorLastName:""; ?>"></input>
-						</div>
-					</div>
-					<div class="row col-md-12 texto-1-profe" style="margin-top:2px;">
-						<div class="row col-md-4">
-							Teléfono del Acudiente:
-						</div>
-						<div class="row col-md-8">
-							<input style="border:none;outline:none;width:100%" id="tutorPhone" value="<?php echo isset($tutorPhone) ? $tutorPhone:""; ?>"></input>
-						</div>
+					<div>
+						<input class="btn-radius" style="border:none;outline:none;width:100%" id="address" value="<?php echo $Address; ?>"></input>
 					</div>
 				</div>
-				<button type="button" class="btn btn-agregar btn-update" id="btn-save-schedule" style="margin:auto;display:block;">Actualizar</button>
+				<div class="texto-1-profe" style="margin-top:2px;">
+					<div>
+						<p class="label-form">E-Mail:</p>
+					</div>
+					<div class="input-div">
+						<span><p><?php echo $Email;?></P></span>
+					</div>
+				</div>
+				<div class="texto-1-profe">
+					<div>
+						<p class="label-form">Fecha de Nacimiento:</p>
+					</div>
+					<div>
+						<input class="datepicker" style="border:none;outline:none;width:40%" name="birthday" id="birthday" value="<?php echo ($DayBorn) ? $DayBorn . '-' . $MonthBorn . '-' . $YearBorn : '';?>" data-date="12-02-2012" type="text"></input>
+					</div>
+				</div>
+				<div class="tutor-group texto-1-profe" style="display:none;">
+					<div>
+						<div>
+							<p class="label-form">Nombre del Acudiente:</p>
+						</div>
+						<div>
+							<input class="btn-radius" style="border:none;outline:none;width:100%" id="tutorFName" value="<?php echo isset($tutorFirstName) ? $tutorFirstName:""; ?>"></input>
+						</div>
+					</div>
+					<div>
+						<div>
+							<p class="label-form">Apellido del Acudiente:</p>
+						</div>
+						<div>
+							<input class="btn-radius" style="border:none;outline:none;width:100%" id="tutorLName" value="<?php echo isset($tutorLastName) ? $tutorLastName:""; ?>"></input>
+						</div>
+					</div>
+					<div>
+						<div>
+							<p class="label-form">Teléfono del Acudiente:</p>
+						</div>
+						<div>
+							<input class="btn-radius" style="border:none;outline:none;width:100%" id="tutorPhone" value="<?php echo isset($tutorPhone) ? $tutorPhone:""; ?>"></input>
+						</div>
+					</div>
+				</div>
+				<button type="button" class="btn btn-agregar btn-update btn-radius btn-subir-foto  btn-act" id="btn-save-schedule" style="margin:auto;display:block;">Actualizar</button>
 			</div>
-			<div class="col-md-7">
-				<div class="col-md-12">
+			<div class="col-md-1"></div>
+			<div class="col-md-7 perfil-col">
+				<div>
 					<h3>Trayectoria acad&eacute;mica</h3>
 					<div class="amigas-separator"></div>
 
@@ -93,25 +97,31 @@
 								}else{
 									$end = date("Y",strtotime($studies[$i]["to"]));
 								}
-								echo "<div class=\"form-group textarea\" >
-									<h5>Institución: <b>".$studies[$i]["institution"]."</b></h5>
-									<h5>Profesión:<b>".$studies[$i]["title"]."</b></h5>
-									<h5>Año: <b>".date("Y",strtotime($studies[$i]["from"]))." hasta ".$end."</b></h5>
+								echo "<div class=\"form-group textarea estudios-estudiante\" >
+
+									<div class='estudios-grid'>Institución:</div><span><div class='estudios-grid'>".$studies[$i]["institution"]."</div></span><br>
+
+									<div class='estudios-grid'>Profesión:</div><span><div class='estudios-grid'>".$studies[$i]["title"]."</div></span><br>
+									<div class='estudios-grid'>Año:</div><span><div class='estudios-grid'>".date("Y",strtotime($studies[$i]["from"]))." hasta ".$end."</div></span>
 									<div class=\"delete-group exp\" data-id=\"".$studies[$i]["id"]."\"></div>
 									<div class=\"amigas-separator\"></div>
 								</div>";
 							}
 						?>
 						</div>
-					<button type="button" class="btn btn-link" id="show_estudios">Actualizar mi nivel académico</button>
+					<button type="button" class="btn btn-subir-foto btn-radius btn-estudios" id="show_estudios">
+						<p>Actualizar mi<br>
+						nivel académico</p>
+						<img src="assets/img/estudios-icon.png">
+					</button>
 					<div class="amigas-separator"></div>
 					<!--div oculto-->
 					<div class="form-group" id="hide_estudios" style="display:none">
 						<label for="add_empresa">Centro de estudios</label>
-						<input type="text" placeholder="" class="form-control" id="add_universidad" >
+						<input type="text" placeholder="" class="form-control btn-radius" id="add_universidad" >
 						
 						<label for="">Nivel</label>
-						<select id="level" class="form-control level" value="">
+						<select id="level" class="form-control level btn-radius" value="">
 							<?php 
 								foreach ($levels as $key => $value) {
 							?> 
@@ -127,7 +137,7 @@
 						<div class="row">
 							<div class="col-md-4">
 								<!--<input type="text" placeholder="Año inicio" class="form-control input-sm" id="add_anio_estu_desde" >-->
-								<select class="form-control input-sm" id="add_anio_estu_desde">
+								<select class="form-control input-sm btn-radius" id="add_anio_estu_desde">
 								<?php
 									$anio_actual = date("Y");
 									$opciones = "";
@@ -143,7 +153,7 @@
 							</div>
 							<div class="col-md-4">
 								<!--<input type="text" placeholder="Año inicio" class="form-control input-sm" id="add_anio_estu_hasta" >-->
-								<select class="form-control input-sm" id="add_anio_estu_hasta">
+								<select class="form-control input-sm btn-radius" id="add_anio_estu_hasta " >
 								<?php
 									$anio_actual = date("Y");
 									$opciones = "<option value=\"-\">Actualmente</option>";
@@ -156,9 +166,9 @@
 							</div>
 						</div>
 						<label for="cbo_fecha_inicio">Titulo</label>
-						<input type="text" placeholder="" class="form-control" id="add_titulo_obtenido" >
+						<input type="text" placeholder="" class="form-control btn-radius" id="add_titulo_obtenido" >
 						<div class="form-group">
-							<button type="button" class="btn btn-agregar btn_agregar_estudios" style="margin-top:1.5%">Agregar</button>
+							<button type="button" class="btn btn-agregar btn_agregar_estudios btn-radius btn-act" style="margin-top:1.5%">Agregar</button>
 						</div>
 					</div>  
 				</div>					
@@ -205,8 +215,8 @@ $(".btn_agregar_estudios").click(function(){
 				end = studies.to.split("-")[0];
 			}
 			var div = "<div class=\"form-group\" class=\"col-xs-3\">"+
-						"<h5>Institución: <b>"+studies.institution+"</b></h5>"+
-						"<h5>Titulo: <b>"+studies.title+"</b></h5>"+
+						"<h5>Institución:</h5> <h5><span>"+studies.institution+"</span></h5>"+
+						"<h5>Titulo:</h5> <h5><span>"+studies.title+"</span></h5>"+
 						"<h5>Año: <b>"+studies.from.split("-")[0]+" hasta "+end+"</b></h5>"+
 						"<div class=\"delete-group exp\" data-id=\""+rta+"\"></div>"+
 						"<div class=\"amigas-separator\"></div>"+
