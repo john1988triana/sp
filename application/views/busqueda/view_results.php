@@ -332,7 +332,7 @@
 
 			<div class="modal-header">
 
-				<h1>Processing...</h1>
+				<h1>Programando tu clase...</h1>
 
 			</div>
 
@@ -732,8 +732,20 @@ $(document).ready(function(){
 					},
 
 					eventResize: function(event, delta, revertFunc) {
-
-						if (isOverlapping(event)) {
+						
+						var start_time = moment(event.start.format("hh:mm:ss"), "hh:mm:ss");
+						var end_time = moment(event.end.format("hh:mm:ss"), "hh:mm:ss");
+						
+						if(end_time.subtract(start_time).hours() <= 1)
+						{
+							swal({
+								title: "Error!",
+								text: "La clase debe ser de mínimo dos (2) horas",
+								type: "error",
+								confirmButtonText: "Aceptar" });
+							revertFunc();
+						}
+						else if (isOverlapping(event)) {
 
                             revertFunc();
 

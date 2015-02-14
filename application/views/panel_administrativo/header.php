@@ -1,5 +1,4 @@
-<!-- Fixed navbar -->
-<head>
+<!-- Fixed navbar --><head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,11 +17,14 @@
 	<!-- Bootstrap core Less -->
 	<link href="<?php echo (base_url('assets/css/bootstrap.min.css')); ?>" rel="stylesheet" type="text/css">
 	<link href="<?php echo (base_url('assets/css/landing-superprofe.css')); ?>" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="<?php echo base_url("assets/css/sweet-alert.css")?>"/>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="<?php echo (base_url('assets/js/bootstrap.min.js')); ?>"></script>
 	<script src="<?php echo (base_url('assets/js/bootstrap-hover-dropdown.js')); ?>"></script>
+    <script src="<?php echo (base_url('assets/js/sweet-alert.min.js')); ?>"></script>
 	
 </head>
+
 
 
 
@@ -46,6 +48,7 @@
 						<li><a href="<?php echo base_url("administrador/clases/programadas")?>">Programadas</a></li>
 						<li><a href="<?php echo base_url("administrador/clases/finalizadas")?>">Finalizadas</a></li>
 						<li><a href="<?php echo base_url("administrador/clases/pagadas")?>">Pagadas</a></li>
+                        <li><a href="<?php echo base_url("administrador/clases/canceladas")?>">Canceladas</a></li>
 						<li><a href="<?php echo base_url("administrador/clases/seguimiento")?>">Seguimiento</a></li>
 					</ul>
 				</li>

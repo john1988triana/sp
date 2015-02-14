@@ -1,6 +1,7 @@
 ﻿<link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css")?>"/>
 <link rel="stylesheet" href="<?php echo base_url("assets/js/datepicker/css/datepicker.css")?>"/>
 <link rel="stylesheet" href="<?php echo base_url("assets/css/landing-superprofe.css")?>"/>
+
 <div class="container">
 	<div class="row panel_component">
 		<!--Formulario para enviar los datos de consulta-->
@@ -140,6 +141,7 @@
 <script src="<?php echo (base_url('assets/js/jquery-1.11.1.min.js')); ?>"></script>
 <script src="<?php echo (base_url('assets/js/datepicker/js/bootstrap-datepicker.js')); ?>"></script>
 <script src="<?php echo (base_url('assets/js/datepicker/js/locales/bootstrap-datepicker.es.js')); ?>"></script>
+
 <script>
 $('#date').datepicker({
 	format: 'dd-mm-yyyy',

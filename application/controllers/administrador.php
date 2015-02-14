@@ -223,6 +223,28 @@ class Administrador extends CI_Controller {
 				$this->load->view("panel_administrativo/header");
 				$this->load->view("panel_administrativo/requested_class",$data);
 			break;
+			case "canceladas":
+				$data["title"] = "Clases Canceladas";
+				$data["areas"] = json_decode($this->aulasamigas->getAreasByContent('768'));
+				$data["cities"] = json_decode(json_decode($this->aulasamigas->getCitiesByCountry('COL'))->cities);
+				$data["editable"] = true;
+				$data["editable_status"] = true;
+				$data["states"] = array(
+					array("id"=>"1","name"=>"En proceso de solicitud"),
+					array("id"=>"2","name"=>"Solicitada sin profe"),
+					array("id"=>"3","name"=>"Solicitada"),
+					array("id"=>"4","name"=>"Programada"),
+					array("id"=>"5","name"=>"Cancelada")
+				);
+				$data["class"]=$this->model_superprofe->getClassByStatus(array(5));
+				if(!empty($params)){
+					if($params == "profesor"){
+						uasort($data["class"],'classProffSort');
+					}
+				}
+				$this->load->view("panel_administrativo/header");
+				$this->load->view("panel_administrativo/requested_class",$data);
+			break;
 		}
 	}
 	public function profesores($subsection ="proceso",$sort="id"){

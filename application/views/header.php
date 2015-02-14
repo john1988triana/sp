@@ -17,8 +17,13 @@
 	<!-- Bootstrap core Less -->
 	<link href="<?php echo (base_url('assets/css/bootstrap.min.css')); ?>" rel="stylesheet" type="text/css">
 	<link href="<?php echo (base_url('assets/css/landing-superprofe.css')); ?>" rel="stylesheet" type="text/css">
+    
+    <link rel="stylesheet" href="<?php echo base_url("assets/css/sweet-alert.css")?>"/>
+    
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="<?php echo (base_url('assets/js/bootstrap.min.js')); ?>"></script>
+    
+    <script src="<?php echo (base_url('assets/js/sweet-alert.min.js')); ?>"></script>
 	
 <!--Start of Zopim Live Chat Script
 <script type="text/javascript">

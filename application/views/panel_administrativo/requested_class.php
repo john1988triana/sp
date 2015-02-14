@@ -29,6 +29,7 @@
             	<th>Valor clase</th>
             	<th>Comisión SP</th>
             	<th>Estado</th>
+                <th>Observaciones</th>
 				<?php if($editable): ?>
             	<th>Guardar</th>
 				<?php endif; ?>
@@ -147,6 +148,13 @@
 							<?php } ?>
 						<?php endif; ?>
 					</td>
+                    <td>
+                    <?php if($editable): ?>
+                    	<textarea class="notes" rows="3"><?php if($c["notes"] != ""):?><?php echo $c["notes"] ?><?php endif; ?></textarea>
+					<?php else: ?>
+						<?php echo $c["notes"]; ?>
+					<?php endif; ?>
+                    </td>
 					<?php if($editable): ?>
 					<td>
 					<button class="saveRow" type="button" >Guardar</button>
@@ -185,7 +193,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1>Processing...</h1>
+				<h1>Guardando información...</h1>
 			</div>
 			<div class="modal-body">
 				<div class="progress">
@@ -214,7 +222,7 @@ $(".datepicker").datepicker({format: 'dd-mm-yyyy',
 	}});
 $(".spinner").TouchSpin({verticalbuttons: true,max: 5,min:1});
 function updateClass(){
-$("#pleaseWaitDialog").modal();
+
 	var row = $(this).parents("tr");
 	var start = row.find(".start").val() +" "+ row.find(".start-time").val();
 	start = new moment(start,"DD-MM-YYYY HH:mm");
@@ -226,16 +234,72 @@ $("#pleaseWaitDialog").modal();
 			end : new moment(start).add(row.find(".duration").val(),'h').format("YYYY-MM-DD HH:mm:ss"),
 			price_public : row.find(".price-pub").val(),
 			price_sp : row.find(".price-sp").val(),
-			status : row.find(".state option:selected").val()
+			status : row.find(".state option:selected").val(),
+			notes : row.find(".notes").val()
 		}
 	}
 	
-	$.post(base_url+"administrador/actualizar/clase/",data,function(resp){
-		var rta = JSON.parse(resp);
-		if(rta){
-			$(".modal-header h1").html("Actualización Completa");
+	if(row.find(".state option:selected").val() == 5)
+	{
+		if(row.find(".notes").val() == "")
+		{
+			swal({
+				title: "Error!",
+				text: "Debe existir un registro de la causa de cancelación. Por favor registrala en el campo de observaciones.",
+				type: "error",
+				confirmButtonText: "Aceptar" },
+				function() {
+					window.location.reload();
+				}
+			);
 		}
-	});
+		else
+		{
+			swal({	title: "Estás seguro?",
+					text: "Se cancelará la clase seleccionada!",   
+					type: "warning",
+					showCancelButton: true,
+					cancelButtonText: "No",
+					confirmButtonColor: "#DD6B55",
+					confirmButtonText: "si, cancélala!",
+					closeOnConfirm: false },
+					function(isConfirm){
+						if (isConfirm) {
+							$.post(base_url+"administrador/actualizar/clase/",data,function(resp){
+								var rta = JSON.parse(resp);
+								if(rta){
+									//$(".modal-header h1").html("Actualización Completa");
+									swal({
+										title: "Cancelada!",
+										text: "La clase seleccionada fue cancelada.",
+										type: "success" },
+										function(){
+											window.location.reload();
+										}
+									);
+								}
+							});	
+						}
+						else {
+							window.location.reload();
+						}
+						 
+					}
+				);
+		}
+	}
+	else
+	{
+		$("#pleaseWaitDialog").modal();
+		
+		$.post(base_url+"administrador/actualizar/clase/",data,function(resp){
+			var rta = JSON.parse(resp);
+			if(rta){
+				$(".modal-header h1").html("Actualización Completa");
+			}
+		});
+	}
+
 }
 $(".class .saveRow").click(updateClass);
 $(".class input").change(updateClass);
