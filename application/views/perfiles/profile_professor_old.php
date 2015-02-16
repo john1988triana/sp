@@ -1,116 +1,41 @@
 ﻿<div class="modal fade in" id="legal_modal" tabindex="-1" role="dialog" aria-labelledby="legalModal" aria-hidden="false" style="display: none;">
-	<div class="modal-dialog">
-  		<div class="modal-content">
-   			<div class="modal-header">
-    			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-    				<h4 class="modal-title" id="myModalLabel">Información Legal</h4>
-   			</div>
-   			<div class="modal-body">
-    			<ul id="legalTab" class="nav nav-tabs" role="tablist">
-     				<li id="li_uso"><a onclick="uso(event)" role="tab" data-toggle="tab">Condiciones de Uso</a></li>
-     				<li id="li_politicas" class="active"><a onclick="politicas(event)" role="tab" data-toggle="tab">Política de Datos</a></li>
-    			</ul>
-    		<div class="tab-content">
-     			<div class="tab-pane" id="use">
-      				<iframe src="http://www.amigaslive.com/amigasStore/0021/acuerdos/acuerdoUso.html"></iframe>
-     			</div>
-     			<div class="tab-pane active" id="policy">
-      				<iframe src="http://www.amigaslive.com/amigasStore/0021/acuerdos/politicas.html"></iframe>
-     			</div>
-    		</div>
-   			</div>
-   			<div class="modal-footer">
-   			</div>
-  		</div>
- 	</div>
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+    <h4 class="modal-title" id="myModalLabel">Información Legal</h4>
+   </div>
+   <div class="modal-body">
+    <ul id="legalTab" class="nav nav-tabs" role="tablist">
+     <li id="li_uso"><a onclick="uso(event)" role="tab" data-toggle="tab">Condiciones de Uso</a></li>
+     <li id="li_politicas" class="active"><a onclick="politicas(event)" role="tab" data-toggle="tab">Política de Datos</a></li>
+    </ul>
+    <div class="tab-content">
+     <div class="tab-pane" id="use">
+      <iframe src="http://www.amigaslive.com/amigasStore/0021/acuerdos/acuerdoUso.html"></iframe>
+     </div>
+     <div class="tab-pane active" id="policy">
+      <iframe src="http://www.amigaslive.com/amigasStore/0021/acuerdos/politicas.html"></iframe>
+     </div>
+    </div>
+   </div>
+   <div class="modal-footer">
+   </div>
+  </div>
+ </div>
 </div>
-
-<!-- ROW PERFIL -->
 <div class="container" <?php if(isset($unique)){ echo 'style="margin-top:120px;"';}?>>
-	<div class="row">
-		<div class="col-md-6 perfil-profesor-iz">
-			<h3 style="color:#009966;">PERFIL</h3>
-			<div>
-				<img src="<?php echo base_url($picture); ?>" class="img-profile">
-			</div>
-			<div class="estrellas star-profesor">
-				<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span>
-				<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
-				<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
-				<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
-				<span class="glyphicon glyphicon-star" style="color: grey;"></span>    
-			</div>
-
-			<div class="medallas-profesor">
-				<img src="assets/img/medallas/1_color.png" alt="">
-				<img src="assets/img/medallas/2_color.png" alt="">
-				<img src="assets/img/medallas/3_color.png" alt="">
-				<img src="assets/img/medallas/4_color.png" alt="">
-				<img src="assets/img/medallas/5_bn.png" alt="" class="no-medalla">
-			</div>
-			<div class="btn-subir-foto btn" id="texto_foto" onclick="getFile()">Subir foto</div>
-			<div style='height: 0px;width: 0px; overflow:hidden;'><input id="upfile" name="userfile" type="file" value="upload" onchange="sub(this)"/></div>
-		</div>
-		<div class="col-md-6 perfil-profesor-der">
-			<div class="btn-subir-foto btn btn-radius ver-perfil-como">
-				<p>Ver perfil como</p>
-			</div>
-			<h3 style="color:#009966;"><?php echo $FirstName." ".$FamilyName?></h3>
-			<p>
-				Este es el perfil. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum viverra accumsan laoreet. Proin interdum massa nulla, et elementum neque semper sed. Suspendisse et justo ut velit ullamcorper mattis. Quisque imperdiet dolor eu imperdiet mattis. Nulla imperdiet iaculis diam. Cras elementum quis sem nec pellentesque. Curabitur sollicitudin vestibulum est, non ornare magna auctor ac. Ut euismod justo sagittis bibendum consequat. Pellentesque ut
-				massa ut nisl mollis pellentesque. Phasellus in sem mollis nunc cursus sollicitudin. Morbi a malesuada enim, eu aliquet nunc.	
-			</p>
-		</div>
-	</div>
-	<div class="row">
-		<h3>Experticia</h3>
-			<button type="button" class="btn btn-link" id="show_competencias">Agregar nueva competencia</button>
-			<div class="amigas-separator"></div>
-			<!--div oculto-->
-			<div class="form-group" id="hide_competencias" style="display:none">
-				<label for="">Competencia</label>
-					<select name="area" class="form-control competen" value="">
-						<option value="-">-</option>
-						<?php 
-							foreach ($areas as $key => $value_areas) {
-						?> 
-							<option value=<?php echo $value_areas->IdArea; ?>>
-								<?php echo $value_areas->Name; ?>
-							</option>
-						<?php
-							}
-						?>
-					</select>
-					<select name="level" class="form-control level" value="">
-						<option value="-">-</option>
-						<?php 
-							foreach ($levels as $key => $value) {
-						?> 
-							<option value=<?php echo $value["id"]; ?>>
-								<?php echo $value["name"]; ?>
-							</option>
-						<?php
-							}
-						?>
-					</select>
-				<button type="button" class="btn btn-agregar btn_agregar_experticia" style="margin-top:1.5%">Agregar</button>
-			</div>
-			<div id="areas-wrapper">
-				<?php 
-					for( $i = 0; $i < count($selected_areas) ; $i++){
-						echo "<div class=\"numero-competencia\">".($i+1)."</div><div class=\"valor-competencia\">".$selected_areas[$i]->Name." - ".$selected_areas[$i]->level."</div><div class=\"borrar-competencia\" data-id=\"".$selected_areas[$i]->id_area."\">X</div><br>";
-					}
-				?>
-			</div>
-	</div>
-			
-			
-
-				
-				
-				
-					
-				
+	<div class="col-md-12 container borde-perfil-profe">
+		<div class="row col-md-12">
+			<div class="col-md-5">		
+				<h3 style="color:#009966; text-align:center;"><?php echo $FirstName." ".$FamilyName?></h3>
+				<div>
+					<img src="<?php echo base_url($picture); ?>" class="img-profile">
+				</div>
+				<div>
+					<div class="btn-subir-foto btn" id="texto_foto" onclick="getFile()">Subir foto</div>
+					<div style='height: 0px;width: 0px; overflow:hidden;'><input id="upfile" name="userfile" type="file" value="upload" onchange="sub(this)"/></div>
+				</div>
 				<div class="row col-md-12 texto-1-profe" style="margin-top:2px;">
 					<div class="row col-md-4">
 						Ciudad:
@@ -184,7 +109,45 @@
 				</div>
 			</div>
 
-			
+			<h3>Experticia</h3>
+			<button type="button" class="btn btn-link" id="show_competencias">Agregar nueva competencia</button>
+			<div class="amigas-separator"></div>
+			<!--div oculto-->
+			<div class="form-group" id="hide_competencias" style="display:none">
+				<label for="">Competencia</label>
+					<select name="area" class="form-control competen" value="">
+						<option value="-">-</option>
+						<?php 
+							foreach ($areas as $key => $value_areas) {
+						?> 
+							<option value=<?php echo $value_areas->IdArea; ?>>
+								<?php echo $value_areas->Name; ?>
+							</option>
+						<?php
+							}
+						?>
+					</select>
+					<select name="level" class="form-control level" value="">
+						<option value="-">-</option>
+						<?php 
+							foreach ($levels as $key => $value) {
+						?> 
+							<option value=<?php echo $value["id"]; ?>>
+								<?php echo $value["name"]; ?>
+							</option>
+						<?php
+							}
+						?>
+					</select>
+				<button type="button" class="btn btn-agregar btn_agregar_experticia" style="margin-top:1.5%">Agregar</button>
+			</div>
+				<div id="areas-wrapper">
+				<?php 
+					for( $i = 0; $i < count($selected_areas) ; $i++){
+						echo "<div class=\"numero-competencia\">".($i+1)."</div><div class=\"valor-competencia\">".$selected_areas[$i]->Name." - ".$selected_areas[$i]->level."</div><div class=\"borrar-competencia\" data-id=\"".$selected_areas[$i]->id_area."\">X</div><br>";
+					}
+				?>
+				</div>
 			<input type="hidden" id="lanzar_area" value="<?php echo "";//$experticia["id_area"]?>">
 			<h3>Experiencia</h3>
 				<div id="exp-wrapper-pro">

@@ -1112,3 +1112,101 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 	font-size: 15pt;
 	
 }
+
+/*-------- Perfil-Profesor ----------*/
+
+.perfil-profesor-iz {
+
+	border-right: 2px dashed black;
+}
+
+.perfil-profesor-iz h3 {
+
+	text-align: left;
+	margin-bottom: 25px;
+	font-size: 24pt;
+}
+
+.img-profile {
+
+	border: 10px solid #ddd;
+	overflow: hidden;
+	height: 200px;
+	width: 200px;
+
+}
+
+.star-profesor {
+
+	text-align: center;
+}
+
+.star-profesor span {
+
+	margin-right: 7.5px;
+	margin-left: 7.5px;
+	font-size: 20pt;
+}
+
+.medallas-profesor  {
+
+	text-align: center;
+}
+
+.medallas-profesor img {
+
+	width: 75px;
+	height: auto;
+}
+.no-medalla {
+
+	opacity: 0.5;
+
+}
+
+.perfil-profesor-der  {
+
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.perfil-profesor-der h3 {
+
+	text-align: left;
+	font-size: 24pt;
+	margin-top: 100px;
+}
+
+.perfil-profesor-der p {
+
+	font-size: 14pt;
+	margin-top: 25px;
+}
+
+.ver-perfil-como {
+	
+	display: inline-block;
+	text-align: right;
+	width: auto;
+	float: right;
+	margin-top: 0;
+
+}
+
+
+/*-------- Busqueda de Profesor ----------*/
+
+
+.fondo_busqueda {
+	
+	background-position-x: 100%;
+}
+
+
+.panel_busqueda {
+	
+	margin-top: 65px;
+	width: 40%;
+	min-width: 350px;
+
+}
