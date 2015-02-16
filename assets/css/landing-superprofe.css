@@ -1193,13 +1193,29 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 
 }
 
+.borrar-competencia,.valor-competencia, .numero-competencia {
+
+	font-size: 30px;
+}
+
+.borrar-competencia {
+
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.numero-competencia {
+
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
 
 /*-------- Busqueda de Profesor ----------*/
 
 
 .fondo_busqueda {
 	
-	background-position-x: 100%;
+	background-position-x: right center;
 }
 
 

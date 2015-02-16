@@ -64,44 +64,45 @@
 	</div>
 	<div class="row">
 		<h3>Experticia</h3>
-			<button type="button" class="btn btn-link" id="show_competencias">Agregar nueva competencia</button>
-			<div class="amigas-separator"></div>
-			<!--div oculto-->
-			<div class="form-group" id="hide_competencias" style="display:none">
-				<label for="">Competencia</label>
-					<select name="area" class="form-control competen" value="">
-						<option value="-">-</option>
-						<?php 
-							foreach ($areas as $key => $value_areas) {
-						?> 
-							<option value=<?php echo $value_areas->IdArea; ?>>
-								<?php echo $value_areas->Name; ?>
-							</option>
-						<?php
-							}
-						?>
-					</select>
-					<select name="level" class="form-control level" value="">
-						<option value="-">-</option>
-						<?php 
-							foreach ($levels as $key => $value) {
-						?> 
-							<option value=<?php echo $value["id"]; ?>>
-								<?php echo $value["name"]; ?>
-							</option>
-						<?php
-							}
-						?>
-					</select>
-				<button type="button" class="btn btn-agregar btn_agregar_experticia" style="margin-top:1.5%">Agregar</button>
-			</div>
-			<div id="areas-wrapper">
-				<?php 
-					for( $i = 0; $i < count($selected_areas) ; $i++){
-						echo "<div class=\"numero-competencia\">".($i+1)."</div><div class=\"valor-competencia\">".$selected_areas[$i]->Name." - ".$selected_areas[$i]->level."</div><div class=\"borrar-competencia\" data-id=\"".$selected_areas[$i]->id_area."\">X</div><br>";
-					}
-				?>
-			</div>
+		<input type="text">
+		<button type="button" class="btn btn-link" id="show_competencias">Agregar nueva competencia</button>
+		<div class="amigas-separator"></div>
+		<!--div oculto-->
+		<div class="form-group" id="hide_competencias" style="display:none">
+			<label for="">Competencia</label>
+				<select name="area" class="form-control competen" value="">
+					<option value="-">-</option>
+					<?php 
+						foreach ($areas as $key => $value_areas) {
+					?> 
+						<option value=<?php echo $value_areas->IdArea; ?>>
+							<?php echo $value_areas->Name; ?>
+						</option>
+					<?php
+						}
+					?>
+				</select>
+				<select name="level" class="form-control level" value="">
+					<option value="-">-</option>
+					<?php 
+						foreach ($levels as $key => $value) {
+					?> 
+						<option value=<?php echo $value["id"]; ?>>
+							<?php echo $value["name"]; ?>
+						</option>
+					<?php
+						}
+					?>
+				</select>
+			<button type="button" class="btn btn-agregar btn_agregar_experticia" style="margin-top:1.5%">Agregar</button>
+		</div>
+		<div id="areas-wrapper">
+			<?php 
+				for( $i = 0; $i < count($selected_areas) ; $i++){
+					echo "<div class=\"numero-competencia\">"."&nbsp;" . ($i+1) . ".&nbsp;"."</div><div class=\"valor-competencia\">".$selected_areas[$i]->Name." - ".$selected_areas[$i]->level."</div><div class=\"borrar-competencia\" data-id=\"".$selected_areas[$i]->id_area."\">X</div><br>";
+				}
+			?>
+		</div>
 	</div>
 			
 			
