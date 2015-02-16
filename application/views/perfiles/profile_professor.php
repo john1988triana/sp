@@ -27,7 +27,7 @@
 
 <!-- ROW PERFIL -->
 <div class="container" <?php if(isset($unique)){ echo 'style="margin-top:120px;"';}?>>
-	<div class="row">
+	<div class="row perfil-profesor">
 		<div class="col-md-6 perfil-profesor-iz">
 			<h3 style="color:#009966;">PERFIL</h3>
 			<div>
@@ -62,16 +62,14 @@
 			</p>
 		</div>
 	</div>
-	<div class="row">
-		<h3>Experticia</h3>
-		<input type="text">
-		<button type="button" class="btn btn-link" id="show_competencias">Agregar nueva competencia</button>
+	<div class="row experticia perfil-profesor">
+		<h3>EXPERTICIA</h3>
+		<button type="button" class="btn  experticia-input" id="show_competencias">Agregar una nueva competencia</button>
 		<div class="amigas-separator"></div>
 		<!--div oculto-->
 		<div class="form-group" id="hide_competencias" style="display:none">
-			<label for="">Competencia</label>
 				<select name="area" class="form-control competen" value="">
-					<option value="-">-</option>
+					<option value="" disabled selected>Selecciona área</option>
 					<?php 
 						foreach ($areas as $key => $value_areas) {
 					?> 
@@ -83,7 +81,7 @@
 					?>
 				</select>
 				<select name="level" class="form-control level" value="">
-					<option value="-">-</option>
+					<option value="" disabled selected>Selecciona nivel</option>
 					<?php 
 						foreach ($levels as $key => $value) {
 					?> 
@@ -99,7 +97,7 @@
 		<div id="areas-wrapper">
 			<?php 
 				for( $i = 0; $i < count($selected_areas) ; $i++){
-					echo "<div class=\"numero-competencia\">"."&nbsp;" . ($i+1) . ".&nbsp;"."</div><div class=\"valor-competencia\">".$selected_areas[$i]->Name." - ".$selected_areas[$i]->level."</div><div class=\"borrar-competencia\" data-id=\"".$selected_areas[$i]->id_area."\">X</div><br>";
+					echo "<div class=\"numero-competencia\">"."&nbsp;" . ($i+1) . ".&nbsp;"."</div><div class=\"valor-competencia\">".$selected_areas[$i]->Name." - ".$selected_areas[$i]->level."</div><div class=\"borrar-competencia trasition-half\" data-id=\"".$selected_areas[$i]->id_area."\">X</div><br>";
 				}
 			?>
 		</div>

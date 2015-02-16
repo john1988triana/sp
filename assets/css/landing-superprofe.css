@@ -924,8 +924,14 @@ textarea{
 	}
 	
 	
+/*-------- Globales ----------*/
 
+.trasition-half {
 
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+}
 
 /*-------- Perfil-Estudiante ----------*/
 
@@ -946,7 +952,6 @@ textarea{
 
 	margin-top: 5px;
 	margin-bottom: 5px;
-
 
 }
 
@@ -1115,6 +1120,12 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 
 /*-------- Perfil-Profesor ----------*/
 
+.row.perfil-profesor {
+
+	padding-bottom: 25px;
+	padding-top: 25px;
+}
+
 .perfil-profesor-iz {
 
 	border-right: 2px dashed black;
@@ -1173,8 +1184,9 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 .perfil-profesor-der h3 {
 
 	text-align: left;
-	font-size: 24pt;
+	font-size: 28pt;
 	margin-top: 100px;
+	font-weight: 600;
 }
 
 .perfil-profesor-der p {
@@ -1195,7 +1207,7 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 
 .borrar-competencia,.valor-competencia, .numero-competencia {
 
-	font-size: 30px;
+	font-size: 25px;
 }
 
 .borrar-competencia {
@@ -1204,18 +1216,88 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 	border-bottom-right-radius: 10px;
 }
 
+.borrar-competencia:hover {
+
+	background-color: #EF4836;
+}
+
 .numero-competencia {
 
 	border-top-left-radius: 10px;
 	border-bottom-left-radius: 10px;
 }
 
+.row.experticia {
+
+	border-top: 2px dashed black;
+	border-bottom: 2px dashed black;
+}
+
+.experticia h3 {
+
+	font-size: 24pt;
+	margin-bottom: 50px;
+}
+
+.experticia-input {
+
+	width: 80%;
+	margin-right: 10%;
+	margin-left: 10%;
+	font-size: 18pt;
+	background-color: #F7F7F7;
+	border: none;
+	padding-left: 25px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: #9D9D9D;
+	text-align: left;
+	border: 2px transparent solid;
+	margin-bottom: 25px;
+
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+}
+
+.experticia-input:hover {
+
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+	
+	background-color: transparent;
+	border: 2px #F7F7F7 solid;
+	color:  #9D9D9D;
+	
+}
+
+#hide_competencias {
+
+	width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+#hide_competencias select {
+
+	border: none;
+	background-color: #F7F7F7;
+	height: auto;
+	font-size: 16pt;
+
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	
+}
+
+
 /*-------- Busqueda de Profesor ----------*/
 
 
 .fondo_busqueda {
 	
-	background-position-x: right center;
+	background-position: center center;
 }
 
 
@@ -1226,3 +1308,4 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 	min-width: 350px;
 
 }
+
