@@ -307,7 +307,7 @@ border-right: 2px dashed;
 	width: 330px;
 	height: 129px;
 	
-	  resize: both;
+	  
 	  overflow: auto;
 	-webkit-transition: 0.5s; /* For Safari 3.1 to 6.0 */
 	-moz-transition: 0.5s;
@@ -511,6 +511,7 @@ height: 480px;
 width:50px;
 height:40px;
 }
+
 .navbar-brand > SPAN
 {
     color: #317F52 !important;
@@ -711,6 +712,7 @@ textarea{
 .promo-section{
 	padding-top:50px;
 }
+
 .btn-schedule{
 	padding: 10px;
 	border: dashed 2px #fff;
@@ -723,6 +725,7 @@ textarea{
 	margin:20px auto;
 	display:block;
 }
+
 .numero-competencia{
     background: #009966;
     display: inline;
@@ -796,6 +799,7 @@ textarea{
 .centrado{
 	max-width: 1200px;
 	margin: auto;
+	text-align: center;
 }
 #programada, #finalizada{
 	text-align: center;
@@ -846,6 +850,28 @@ textarea{
 		margin: 0;
 	}
 	
+	.porqueusar-section div.col-md-4 {
+
+		margin-bottom: 25px;
+
+	}
+	
+	.col-md-6.columna-reg-1 {
+
+		height: auto;
+	}
+
+	.col-md-6.columna-reg-2 {
+
+		height: auto;
+		margin-top: 25px;
+	}
+
+	.reg-texto.col-md-7.col-md-offset-3 {
+
+		text-align: left;
+	}
+
 	
 /*-------- Globales ----------*/
 
@@ -873,6 +899,30 @@ textarea{
 
 }
 
+
+.panel-perfil img.img-profile {
+
+	width: 160px;
+	height: 160px;
+}
+
+.panel-perfil .medallas-profesor img{
+
+	width: 30px;
+	height: 30px;
+}
+
+.panel-body {
+
+	padding: 20px;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.panel-perfil {
+
+	width: 100%;
+}
 
 /*-------- Perfil-Estudiante ----------*/
 
@@ -1454,6 +1504,138 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 	min-width: 350px;
 
 }
+
+
+.registro-row {
+
+	text-align: center;
+}
+
+
+.registro-col {
+
+	text-align: center;
+	min-width: 370px;
+	display: inline-block;
+	padding: 20px;
+	padding-top: 23px;
+	padding-bottom: 32px;
+	border-radius: 10px;
+	margin-top: 15vh;
+}
+
+.registro-col div.col-md-6 {
+
+	
+	display: inline-block;
+	text-align: center; 
+
+}
+
+.btn-soy-profe.acudiente {
+
+	background-color: #446CB3;
+}
+
+
+
+
+
+
+/* ----- Media Queries -------- */
+
+
+@media screen and (max-width: 739px) {
+    
+    .registro-col {
+
+		width: 375px;
+
+	}
+}
+
+@media screen and (max-width: 400px) {
+    
+    .registro-col {
+
+		width: auto;
+
+	}
+}
+
+@media screen and (max-width: 992px) {
+    
+    .col-md-6.columna-reg-1 {
+
+		border: none;
+		border-bottom: 2px dashed black;
+		padding:0; 
+		
+	}
+
+	.col-md-6.columna-reg-2 {
+
+		padding:0; 
+		
+	}
+
+	.reg-texto.col-md-7.col-md-offset-3 {
+
+		width: 100%;
+		padding-left: 35%;
+		padding-right: 35%;
+		margin-bottom: 25px;
+		padding-bottom: 25px;
+		text-align: center;
+
+	}
+
+	.primero div.col-md-7 {
+
+		margin-top: 0px;
+	
+	}
+
+
+	.reg-texto.col-md-7.col-md-offset-3:nth-child(even) {
+
+		background-color: #ECECEC;
+
+	}
+
+	.col-md-6.columna-reg-1 img {
+
+		margin-bottom: 15px;
+		margin-top: 25px;
+		
+	}
+	
+	.col-md-6.columna-reg-2 img {
+
+		margin-bottom: 15px;
+		margin-top: 25px;
+		
+	}
+
+}
+
+
+@media screen and (max-width: 600px) {
+    
+    
+
+	.reg-texto.col-md-7.col-md-offset-3 {
+
+		width: 100%;
+		padding-left: 25%;
+		padding-right: 25%;
+		margin-bottom: 25px;
+		padding-bottom: 25px;
+
+	}
+
+}
+
 
 
 

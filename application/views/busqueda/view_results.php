@@ -18,7 +18,16 @@
 									<span class="glyphicon glyphicon-star"></span> 
 									<span class="glyphicon glyphicon-star"></span> 
 									<span class="glyphicon glyphicon-star"></span>    
-								</div> 
+								</div>
+								
+								<div class="medallas-profesor">
+									<img src="assets/img/medallas/1_color.png" alt="">
+									<img src="assets/img/medallas/2_color.png" alt="">
+									<img src="assets/img/medallas/3_color.png" alt="">
+									<img src="assets/img/medallas/4_color.png" alt="">
+									<img src="assets/img/medallas/5_bn.png" alt="" class="no-medalla">
+								</div>
+
 								<script type="text/javascript">
 										for(var i=0; i < 5; i++){						
 											$("div.estrellas.1 span:nth-child("+(i+1)+")").css("color","#FFCC00");
@@ -49,6 +58,13 @@
 									<span class="glyphicon glyphicon-star"></span> 
 									<span class="glyphicon glyphicon-star"></span>    
 								</div> 
+								<div class="medallas-profesor">
+									<img src="assets/img/medallas/1_color.png" alt="">
+									<img src="assets/img/medallas/2_color.png" alt="">
+									<img src="assets/img/medallas/3_color.png" alt="">
+									<img src="assets/img/medallas/4_color.png" alt="">
+									<img src="assets/img/medallas/5_bn.png" alt="" class="no-medalla">
+								</div>
 								<script type="text/javascript">
 										for(var i=0; i < Math.round(<?php echo $results[$i-1]->rate?>); i++){						
 											$("div.estrellas.<?php echo $results[$i-1]->id;?> span:nth-child("+(i+1)+")").css("color","#FFCC00");
@@ -102,6 +118,7 @@
 				<span class="glyphicon glyphicon-star"></span>    
 
 			</div>
+
 
 			<h4 class="par" id="detail-city">Ciudad:</h4>      
 

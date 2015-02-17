@@ -27,30 +27,33 @@
 	<div class="row">
 		<hr id="separador-busqueda"></hr>
 		<div class="centrado">
-		<div class="col-md-12"> 
+		<div class="row"> 
 			<h2 class="text-center asi-funciona"><span>Asi funciona</span> Superprofe</h2>
+
+<!--  Estudiante-Col  -->
+
 			<div class="col-md-6 columna-reg-1">
-				<div class="col-md-10 col-md-offset-3">
-					<a href="http://superprofe.co/registro/alumno" class="btn-registro-estu btn col-lg-12"><!--<span class="glyphicon glyphicon-user"></span><span>--> <div>¿Estas buscando <br>un <b style="color:#143D29;">superprofe</b>?</div></a>
-				</div>
+				<a href="http://superprofe.co/registro/alumno" class="btn-registro-estu btn"><!--<span class="glyphicon glyphicon-user"></span><span>--> <div>¿Estas buscando <br>un <b style="color:#143D29;">superprofe</b>?</div></a>
 				
-				<div class="reg-texto col-md-9 col-md-offset-2 primero">
-					<div class="col-md-2">
+				<div class="reg-texto col-md-7 col-md-offset-3 primero">
+					<div class="col-md-3">
 						<img src="<?php echo base_url('assets/img/1E.png'); ?>">
 					</div>
 					<div class="col-md-7">
 							<a href="http://superprofe.co/registro/alumno" style="color:#00B85C;text-decoration: none;"><b>Reg&iacute;strate</b></a>
 					</div>
 				</div>
-				<div class="reg-texto col-md-9 col-md-offset-2">
-					<div class="col-md-2">
+
+				<div class="reg-texto col-md-7 col-md-offset-3">
+					<div class="col-md-3">
 						<img src="<?php echo base_url('assets/img/2E.png'); ?>">
 					</div>
 					<div class="col-md-7"> Selecciona el <b style="color:#00B85C;">&aacute;rea</b> en la que
 					requieres ayuda.</div>
 				</div>
-				<div class="reg-texto col-md-9 col-md-offset-2">
-					<div class="col-md-2">
+
+				<div class="reg-texto col-md-7 col-md-offset-3">
+					<div class="col-md-3">
 						<img src="<?php echo base_url('assets/img/3E.png'); ?>"> 
 					</div>
 					<div class="col-md-7">
@@ -58,17 +61,19 @@
 						lugar quieres <b style="color:#00B85C;">tomar la clase</b>.
 					</div>
 				</div>
-				<div class="reg-texto col-md-9 col-md-offset-2">
-					<div class="col-md-2">
+
+				<div class="reg-texto col-md-7 col-md-offset-3">
+					<div class="col-md-3">
 						<img src="<?php echo base_url('assets/img/4E.png'); ?>"> 
 					</div>
 					<div class="col-md-7">
 						Selecciona la <b style="color:#00B85C;">fecha y hora</b> para
 					tomar la clase.
+					</div>
 				</div>
-				</div>
-				<div class="reg-texto col-md-9 col-md-offset-2">
-					<div class="col-md-2">
+
+				<div class="reg-texto col-md-7 col-md-offset-3">
+					<div class="col-md-3">
 						<img src="<?php echo base_url('assets/img/5E.png'); ?>"> 
 					</div>
 					<div class="col-md-7">
@@ -76,8 +81,9 @@
 					se ajuste a tus necesidades.
 					</div>
 				</div>
-				<div class="reg-texto col-md-9 col-md-offset-2">
-					<div class="col-md-2">
+
+				<div class="reg-texto col-md-7 col-md-offset-3">
+					<div class="col-md-3">
 						<img src="<?php echo base_url('assets/img/6E.png'); ?>"> 
 					</div>
 					<div class="col-md-7">
@@ -85,30 +91,35 @@
 					clase al profesor cuando esta finalice.
 					</div>
 				</div>
-				<div class="reg-texto col-md-9 col-md-offset-2">
-					<div class="col-md-2">
+
+				<div class="reg-texto col-md-7 col-md-offset-3">
+					<div class="col-md-3">
 						<img src="<?php echo base_url('assets/img/7E.png'); ?>"> 
 					</div>
 					<div class="col-md-7">
 						<b style="color:#00B85C;">Califica y retroalimenta al profesor</b> para que puedas ayudar a otros a tomar clases solo con los mejores!
 					</div>
-				</div>  
-			</div>
-			<div class="col-md-6">
-				
-				<div class="col-md-10">
-					<a href="http://superprofe.co/registro/profesor" class="btn-registro-profe btn col-lg-12"><!--<span class="glyphicon glyphicon-user"></span><span>--> <div>¿Quieres convertirte <br>en <b style="color:#00B85C;">superprofe</b>?</div></a>
 				</div>
-				<div class="reg-texto col-md-9 col-md-offset-2 primero">
-					<div class="col-md-2">
+
+			</div><!--  End-Col-Estudiante  -->
+
+<!--  Profesor-Col  -->
+
+			<div class="col-md-6 columna-reg-2">
+
+					<a href="http://superprofe.co/registro/profesor" class="btn-registro-profe btn"><!--<span class="glyphicon glyphicon-user"></span><span>--> <div>¿Quieres convertirte <br>en <b style="color:#00B85C;">superprofe</b>?</div></a>
+				
+				<div class="reg-texto col-md-7 col-md-offset-3 primero">
+					<div class="col-md-3">
 						<img src="<?php echo base_url('assets/img/1P.png'); ?>">
 					</div>
 					<div class="col-md-7">
 						<a href="http://superprofe.co/registro/profesor" style="color:#143D29;text-decoration: none;" ><b>Reg&iacute;strate</b></a>
 					</div>
 				</div>
-				<div class="reg-texto col-md-9 col-md-offset-2">
-					<div class="col-md-2">
+
+				<div class="reg-texto col-md-7 col-md-offset-3">
+					<div class="col-md-3">
 						<img src="<?php echo base_url('assets/img/2P.png'); ?>">
 					</div>
 					<div class="col-md-7">
@@ -117,8 +128,9 @@
 						que eres experto.
 					</div>
 				</div>
-				<div class="reg-texto col-md-9 col-md-offset-2">
-					<div class="col-md-2">
+
+				<div class="reg-texto col-md-7 col-md-offset-3">
+					<div class="col-md-3">
 						<img src="<?php echo base_url('assets/img/3P.png'); ?>">
 					</div>
 					<div class="col-md-7">
@@ -126,16 +138,18 @@
 						y serás llamado a una entrevista.
 					</div>
 				</div>
-				<div class="reg-texto col-md-9 col-md-offset-2">
-					<div class="col-md-2">
+
+				<div class="reg-texto col-md-7 col-md-offset-3">
+					<div class="col-md-3">
 						<img src="<?php echo base_url('assets/img/4P.png'); ?>">
 					</div>
 					<div class="col-md-7">
 						Ingresa tu <b style="color:#143D29;" >horario</b> disponible.
 					</div>
 				</div>
-				<div class="reg-texto col-md-9 col-md-offset-2">
-					<div class="col-md-2">
+
+				<div class="reg-texto col-md-7 col-md-offset-3">
+					<div class="col-md-3">
 						<img src="<?php echo base_url('assets/img/5P.png'); ?>">
 					</div>
 					<div class="col-md-7">
@@ -144,8 +158,9 @@
 						extra!</b>
 					</div>
 				</div>
-				<div class="reg-texto col-md-9 col-md-offset-2">
-					<div class="col-md-2">
+
+				<div class="reg-texto col-md-7 col-md-offset-3">
+					<div class="col-md-3">
 						<img src="<?php echo base_url('assets/img/6P.png'); ?>">
 					</div>
 					<div class="col-md-7">
@@ -154,6 +169,7 @@
 						<b style="color:#143D29;" >mejor S&uacute;perprofe!</b>
 					</div>
 				</div>
+
 				<div>
 					
 				</div>
@@ -164,13 +180,14 @@
 
 </section><!-- Asi funciona -->
 
-<section>
+<section class="porqueusar-section">
 <div class="fondo-bei">
 	
 		<hr id="separador-busqueda"></hr>
 		<div class="centrado">
 
 	<!--<h2 class="text-center asi-funciona"><span>¿Porqu&eacute; usar</span> Superprofe?</h2>-->
+
 	<h2 class="text-center asi-funciona"><span>¿Porque usar</span> Superprofe?</h2>
 	<div class="row col-md-offset-1">
 		<div class="col-md-4">
@@ -196,6 +213,7 @@
 		</div>
 
 	</div>
+
 	<div class="row col-md-offset-1">
 		<div class="col-md-4">
 			<div class="row">
@@ -219,6 +237,7 @@
 			<p class="text-center">Estamos convencidos que solo a través de la educación tendremos una mejor sociedad por esto nuestros profesores son súper héroes</p>
 		</div>
 	</div>
+
 </div>
 </div>
 </section>
@@ -305,6 +324,7 @@
 		<!--<div class="col-md-3"></div> -->           
 
 	</div>
+
 	<div class="row panel-areas-inicio">
 		<div class="col-md-4">
 			<div class="panel fondo_panel">
