@@ -116,14 +116,7 @@ iframe.google-form
 	
 	font-size: 20px;
 }
-.navbar:nth-child(1)
-{
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-top: 0;
-    margin-bottom: 0;
-    width:100%;
-}
+
 .jumbotron.home-banner
 {
 	background: url('../img/fondo-imagen4.png') no-repeat center center;
@@ -161,10 +154,7 @@ background-color:#FF6600;
 .perfil_profe_borde{
 border-right: 2px dashed;
 }
-.navbar:nth-child(1) + .jumbotron FORM
-{
-    margin-top: 1%;
-}
+
 #necesito-prof{
     display:none;
     background: #F6F6EC;
@@ -221,14 +211,7 @@ border-right: 2px dashed;
 	padding-left: 0px;
 	color:#fff;
 }
-.navbar:nth-child(1) + .jumbotron .btn-primary
-{
-    /*background-color: rgba(255, 255, 255, 0);
-    background-color: #143D29;*/
-    background-color: #33A373;
-    color: #FFFFFF;
-    margin-top: 13%;
-}
+
 #separador-busqueda{
 
     border-style: dashed;
@@ -484,19 +467,8 @@ height: 480px;
 .columna-reg-1,.columna-reg-3{
 	border-right: 2px dashed #003333;
 }
-.navbar:nth-child(1) + .jumbotron .btn-primary span{
 
-    border: 3px dashed #FFFFFF;
-    padding: 3px 75px 3px 75px;
 
-}
-.navbar:nth-child(1) + .jumbotron + SECTION + SECTION
-{
-    padding-top: 30px;
-    /*padding-bottom: 80px;*/
-    margin-bottom: 0;
-    margin-top: 0;
-}
 .jumbotron .phone-wrapper{
 	color:#143D29;
 	font-size: 22px;
@@ -515,70 +487,21 @@ height: 480px;
 	float:left;
 	width:50%;
 }
-.navbar:nth-child(1) + .jumbotron + SECTION + SECTION .glyphicon
-{
-    margin: 40px auto;
-    display: block;
-    text-align: center;
-}
-.navbar:nth-child(1) + .jumbotron + SECTION + SECTION + SECTION
-{
-    margin-top: 1px;
-    margin-bottom: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-}
-.navbar:nth-child(1) + .jumbotron + SECTION + SECTION + SECTION > .carousel
-{
-    margin-top: 0;
-    margin-bottom: 0;
-    border: 1px solid rgba(0, 0, 0, 0);
-    padding-top: 50px;
-    padding-bottom: 50px;
-    background-color: #34BFAD;
-    color: #FFFFFF;
-}
-.navbar:nth-child(1) + .jumbotron + SECTION + SECTION + SECTION > .carousel IMG
-{
-    border: 6px solid #FFFFFF;
-    margin: 0 auto;
-    display: block;
-}
-.navbar:nth-child(1) + .jumbotron + SECTION + SECTION + SECTION > .carousel > .carousel-inner > .item
-{
-    margin-top: 36px;
-}
-.navbar:nth-child(1) + .jumbotron + SECTION + SECTION + SECTION > .carousel > .carousel-inner > .item H4
-{
-    margin-top: 10px;
-    font-weight: 100;
-}
+
+
 .fondo-bei{
 	background: #F6F6EC;
 	padding-top:15px;
 }
-.navbar:nth-child(1) + .jumbotron + SECTION + SECTION + SECTION + SECTION
-{
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-top: 50px;
-    padding-bottom: 50px;
-}
-.navbar:nth-child(1) + .jumbotron + SECTION + SECTION + SECTION + SECTION .btn-primary
-{
-    background-color: rgba(0, 0, 0, 0);
-    border: 2px solid #34BFAD;
-    color: #34BFAD;
-    margin-top: 30px;
-}
+
 .navbar-brand
 {
     font-family:'KlinicSlabBold';
     color: #495462 !important;
     padding-top: 0.5em;
     padding-bottom: 0;
-font-size:40px;
-    margin-top:-15px;
+	font-size:40px;
+    margin-top:-1px;
 }
 .navbar-brand > IMG
 {
@@ -932,6 +855,24 @@ textarea{
 	-moz-transition: 0.5s;
 	-ms-transition: 0.5s;
 }
+
+.navbar {
+	border-radius: 0;
+	margin-bottom: 0;
+	padding-bottom: 20px;
+}
+
+.navbar-fixed-top {
+
+	padding-top: 21px;
+
+}
+.navbar-brand {
+	
+	margin-top: -12px;
+
+}
+
 
 /*-------- Perfil-Estudiante ----------*/
 
