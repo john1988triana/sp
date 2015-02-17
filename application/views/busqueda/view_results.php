@@ -662,8 +662,24 @@ $(document).ready(function(){
 
 				}
 
-				var e = {id:-2,	start:date,end:new moment(date).add(2,'h'),title:"clase",editable:true,color:"#009966"} // class event object
-
+				var e = {id:-2,	start:date,end:new moment(date).add(2,'h'),title:"clase",editable:true,color:"#009966"}; // class event object
+				
+				var overE = false;
+				
+				for(var i = 0 ; i< busyList.length ; i++){
+					if(!(busyList[i].start.format() >= e.end.format() || busyList[i].end.format() <= e.start.format() )){
+						overE = true;
+					}
+				}
+				
+				if(overE == false)
+				{
+					busyList.push(e);
+					request.start = date;
+					request.end = new moment(date).add(2,"h");
+				}
+				
+				/*
 				for(var i = 0 ; i< busyList.length ; i++){
 
 					if(!(busyList[i].start.format() >= e.end.format() || busyList[i].end.format() <= e.start.format())){
@@ -685,12 +701,8 @@ $(document).ready(function(){
 					}
 
 				}
+				*/
 
-				busyList.push(e);
-
-				request.start = date;
-
-				request.end = new moment(date).add(2,"h");
 
 				$('#calendar').fullCalendar("removeEvents");
 
@@ -727,37 +739,66 @@ $(document).ready(function(){
 					selectOverlap: false,
 
 					slotEventOverlap : false,
-
-					eventDrop: function(event, delta, revertFunc) {
-
-						if (isOverlapping(event)) {
-
-                            revertFunc();
-
-                        }else{
-
-							request.start = event.start;
-
-							if(event.end){
-
-								request.end = event.end;
-
-							}
-
+					
+					eventDrop: function( event, delta, revertFunc, jsEvent, ui, view ) {
+						
+						var today = moment();
+   						var tomorrow = today.add('days', 1);
+						tomorrow.startOf('day');
+						
+						var start_date = moment(event.start.format("DD:MM:YYYY"), "DD:MM:YYYY");
+						
+						var start_time = moment(event.start.format("HH:mm:ss"), "HH:mm:ss");
+						var end_time = moment(event.end.format("HH:mm:ss"), "HH:mm:ss");
+						
+						var min_time = moment("07:00:00", "HH:mm:ss");
+						var max_time = moment("21:00:00", "HH:mm:ss");
+						
+						if(start_date < tomorrow)
+						{
+							swal({
+								title: "Error!",
+								text: "El día de la clase no puede ser pasada, ni ser hoy.",
+								type: "error",
+								confirmButtonText: "Aceptar" });
+							revertFunc();
 						}
-
+						if((start_time < min_time) || (start_time > end_time)) {
+							swal({
+								title: "Error!",
+								text: "La clase debe iniciar mínimo a las 7:00 am.",
+								type: "error",
+								confirmButtonText: "Aceptar" });
+							revertFunc();
+						}
+						else if((end_time > max_time) || (start_time > end_time)) {
+							swal({
+								title: "Error!",
+								text: "La clase debe terminar máximo a las 9:00 pm.",
+								type: "error",
+								confirmButtonText: "Aceptar" });
+							revertFunc();
+						}
+						else if (isOverlapping(event)) {
+                            revertFunc();
+                        }else{
+							request.start = event.start;
+							if(event.end){
+								request.end = event.end;
+							}
+						}
 					},
-
+					
 					eventResize: function(event, delta, revertFunc) {
 						
-						var start_time = moment(event.start.format("hh:mm:ss"), "hh:mm:ss");
-						var end_time = moment(event.end.format("hh:mm:ss"), "hh:mm:ss");
+						var start_time = moment(event.start.format("HH:mm:ss"), "HH:mm:ss");
+						var end_time = moment(event.end.format("HH:mm:ss"), "HH:mm:ss");
 						
 						if(end_time.subtract(start_time).hours() <= 1)
 						{
 							swal({
 								title: "Error!",
-								text: "La clase debe ser de mínimo dos (2) horas",
+								text: "La clase debe ser de mínimo dos (2) horas.",
 								type: "error",
 								confirmButtonText: "Aceptar" });
 							revertFunc();

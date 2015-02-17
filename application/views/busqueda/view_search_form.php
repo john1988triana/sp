@@ -106,7 +106,6 @@
 					<label for="time">En que Horario?</label>
 					<select name="time" id="time" class="form-control">
 						<option value="">opción</option>
-						<option value="6" <?php if($time == 6){echo "selected";}?>>6:00 am</option>
 						<option value="7" <?php if($time == 7){echo "selected";}?>>7:00 am</option>
 						<option value="8" <?php if($time == 8){echo "selected";}?>>8:00 am</option>
 						<option value="9" <?php if($time == 9){echo "selected";}?>>9:00 am</option>
@@ -120,9 +119,6 @@
 						<option value="17"<?php if($time == 17){echo "selected";}?>>5:00 pm</option>
 						<option value="18"<?php if($time == 18){echo "selected";}?>>6:00 pm</option>
 						<option value="19"<?php if($time == 19){echo "selected";}?>>7:00 pm</option>
-						<option value="20"<?php if($time == 20){echo "selected";}?>>8:00 pm</option>
-						<option value="21"<?php if($time == 21){echo "selected";}?>>9:00 pm</option>
-						<option value="22"<?php if($time == 22){echo "selected";}?>>10:00 pm</option>
 					</select>
 				</div>
 			</div>
@@ -146,7 +142,7 @@
 $('#date').datepicker({
 	format: 'dd-mm-yyyy',
 	autoclose: true,
-	startDate: "+0d",
+	startDate: "+1d",
 	language: "es",
 })
 </script>
