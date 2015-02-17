@@ -1208,6 +1208,9 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 .borrar-competencia,.valor-competencia, .numero-competencia {
 
 	font-size: 25px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	line-height: 55px;
 }
 
 .borrar-competencia {
@@ -1291,6 +1294,208 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 	
 }
 
+.title-profesor {
+
+	font-family: "basictitlefont";
+	font-weight: 600 !important;
+	color: #003333 !important;
+	font-size: 28pt !important;
+}
+
+#areas-wrapper div {
+
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+
+.videos-profesor {
+	
+	border-bottom: 2px dashed black;
+
+}
+
+
+
+.suscribir-btn {
+
+	float: right;
+	margin-top: -45px;
+	font-size: 18pt;
+	
+}
+
+.container-videos {
+
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.grid-exp {
+
+	font-size: 16pt;
+	display: inline-block;
+	min-width: 145px;
+	color: #009966;
+
+}
+
+.exp-var {
+
+	color: grey;
+	
+}
+
+.exp-profesor  {
+
+	margin-top: 50px;
+	padding-left: 10%;
+	
+
+}
+
+#exp-wrapper-est, #exp-wrapper-pro {
+
+	position: relative;
+	
+}
+
+
+
+.delete-group.exp {
+
+	position: relative;
+	left: -40px;
+	top: -55px;
+	background-image: none;
+	font-size: 16pt;
+
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+}
+
+.delete-group.exp:hover{
+	
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+
+	color: #EF4836;
+
+}
+
+
+.agenda-profesor button {
+
+	text-align: center;
+	display: block;
+}
+
+.modal-dialog {
+
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin-top: 0;
+	margin-bottom: 0;
+	
+	
+}
+
+.modal-content {
+	position: absolute;
+	padding: 50px;
+	background-color: white;
+	border-radius: 10px;
+	color: #575757;
+	right: 30%;
+	left: 30%;
+	top: 25%;
+	bottom: 25%;
+	min-height: 300px;
+
+}
+
+.modal-content h1 {
+
+	color: #575757;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 600;
+	text-align: center;
+	font-size: 18pt;
+}
+
+.modal-body {
+
+	color: #575757;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 100;
+	text-align: center;
+	font-size: 11pt;
+}
+
+.modal-footer {
+
+	text-align: center;
+}
+
+.modal-content button {
+
+	margin-top: 20px;
+	font-size: 16pt;
+	border-radius: 5px;
+	background-color: rgb(174, 222, 244);
+	color: white !important;
+	border: none;
+	width: 100px;
+	margin-top: 25px;
+
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+
+}
+
+
+.modal-content button:hover {
+
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+	
+	border: none;
+	color: white;
+	background-color: rgb(196, 228, 242);
+
+	
+
+}
+
+.progress {
+
+	border-radius: 10px;
+	overflow: hidden;
+	margin-top: 20px;
+}
+
+.youtube-form form {
+
+	width: 90%;
+	margin-bottom: 50px;
+}
+
+.youtube-form input {
+
+	margin-bottom: 0;
+	width: 80%;
+	min-width: 300px;
+}
+.youtube-form button {
+
+	margin-top: 0;
+	width: 100px; 
+}
 
 /*-------- Busqueda de Profesor ----------*/
 
@@ -1308,4 +1513,6 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 	min-width: 350px;
 
 }
+
+
 

@@ -246,17 +246,18 @@ $(document).ready(function() {
 			type:0
 		}
 		$.post(base_url+"perfil/experiencia/"+id_user,experience,function(rta){
-			var div = "<div class=\"form-group\" class=\"col-xs-3\">"+
-						"<h5>Institución: <b>"+experience.institution+"</b></h5>"+
-						"<h5>Titulo: <b>"+experience.title+"</b></h5>"+
-						"<h5>Año: <b>"+experience.from.split("-")[0]+"-"+
+			var div = "<div class=\"form-group exp-profesor\">"+
+						"<div class='grid-exp'>Institución: </div><div class='grid-exp exp-var'>"+experience.institution+"</div><br>"+
+						"<div class='grid-exp'>Titulo: </div><div class='grid-exp exp-var'>"+experience.title+"</div><br>"+
+						"<div class='grid-exp'>Año: </div><div class='grid-exp exp-var'>"+experience.from.split("-")[0]+"-"+
 										experience.from.split("-")[1]+
 								" hasta "+experience.to.split("-")[0]+"-"+
 										experience.to.split("-")[1]+
-								"</b></h5>"+
-						"<div class=\"delete-group exp\" data-id=\""+rta+"\" onclick=\"deleteitem(this)\"></div>"+
+								"</div><br>"+
+						"<span class=\"glyphicon glyphicon-remove-circle delete-group exp\" aria-hidden='true' data-id=\""+rta+"\" onclick=\"deleteitem(this)\"></span>"+
 						"<div class=\"amigas-separator\"></div>"+
 				  "</div>";
+
 			$("#exp-wrapper-pro").append(div);
 			$('#hide_experiencias').toggle("fast");
 		});
@@ -330,7 +331,7 @@ $(document).ready(function() {
 	});
 	$(".btn_agregar_video").click(function() {
 		$(".modal-header h1").html("Actualizando perfil.");
-		$(".modal-body").html('<div class="progress"><div class="progress-bar progress-bar-striped active" style="width: 100%;"></div></div>');
+		$(".modal-body").html('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div></div>');
 		$("#pleaseWaitDialog").modal();
 		link = $(".link_youtube").val();
 		link = link.replace("watch?","");
