@@ -25,7 +25,10 @@
     
     <script src="<?php echo (base_url('assets/js/sweet-alert.min.js')); ?>"></script>
 	
-<!--Start of Zopim Live Chat Script
+    
+    
+    <!--Start of Zopim Live Chat Script
+    
 <script type="text/javascript">
 window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
 d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
