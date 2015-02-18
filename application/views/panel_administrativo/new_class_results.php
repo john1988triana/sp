@@ -69,7 +69,7 @@
 					</tr>
 					<tr>
 						<td>Fecha de Nacimiento</td>
-						<td><input id="birthday" class="form-control datepicker" value="<?php if(isset($DayBorn))echo $DayBorn."/".$MonthBorn."/".$YearBorn; ?>"></input></td>
+						<td><input id="birthday" class="form-control datepicker_birth" value="<?php if(isset($DayBorn))echo $DayBorn."-".$MonthBorn."-".$YearBorn; ?>"></input></td>
 					</tr>
 					<tr>
 						<td>Phone</td>
@@ -81,7 +81,14 @@
 					</tr>
 					<tr>
 						<td>Genero</td>
-						<td><input id="gender" class="form-control" value="<?php if(isset($Gender))echo $Gender; ?>"></input></td>
+						<td>
+                        <select name="gender" id="gender" class="form-control" >
+								<option value="0" <?php if($Gender == 0) echo "selected"?> >Masculino</option>
+                                <option value="1" <?php if($Gender == 1) echo "selected"?> >Femenino</option>
+                        </select>
+                        
+                        
+                        </td>
 					</tr>
 					<tr>
 						<td></td>
@@ -154,7 +161,6 @@
 							<label for="time">En que Horario Quieres Recibirla?</label>
 							<select name="time" id="time" class="form-control">
 								<option value="">opción</option>
-								<option value="6" >6:00 am</option>
 								<option value="7" >7:00 am</option>
 								<option value="8" >8:00 am</option>
 								<option value="9" >9:00 am</option>
@@ -168,9 +174,6 @@
 								<option value="17">5:00 pm</option>
 								<option value="18">6:00 pm</option>
 								<option value="19">7:00 pm</option>
-								<option value="20">8:00 pm</option>
-								<option value="21">9:00 pm</option>
-								<option value="22">10:00 pm</option>
 							</select>
 							<div class="error"><?php echo $errors["time"]; ?></div>
 						</div>
@@ -238,13 +241,17 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1></h1>
+				<h1 id="h1_wait">&nbsp;</h1>
 			</div>
 			<div class="modal-body">
-				
+				<div class="progress">
+
+					<div class="progress-bar progress-bar-striped active" style="width: 100%;"></div>
+
+				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 			</div>
 		</div>
 	</div>
@@ -270,6 +277,7 @@ function isOverlapping(event){
 	}
 var base_url = "<?php echo base_url("");?>";
 function saveClass(){
+	$("#h1_wait").text("Agendando clase");
 	$("#pleaseWaitDialog").modal();
 	var data = {
 		"address":request.address,
@@ -282,18 +290,31 @@ function saveClass(){
 		"student_email":$("#user-email").text(),
 		"price":request.price,
 		"topic":request.topic,
-		"phone":request.phone
+		"phone":$("#phone").val() + " " + $("#mobile").val()
 	};
 	$.post(base_url+"administrador/agendar",data,function(resp){
-		$(".modal-header h1").html("Clase Agendada");
-		
+		$("#pleaseWaitDialog").modal("hide");
+		swal({
+			title: "Listo!",
+			text: "La clase fue agendada exitosamente",
+			type: "success",
+			confirmButtonText: "Aceptar" },
+			function(){
+				window.location.href = "/administrador/clases/nueva";
+			});
 	});
 }
 $(".datepicker").datepicker({format: 'dd-mm-yyyy',
 	language: "es",
 	autoclose: true,
-	startDate: "+0d"
+	startDate: "+1d"
 	});
+
+$(".datepicker_birth").datepicker({format: 'dd-mm-yyyy',
+	language: "es",
+	autoclose: true
+	});
+	
 $("#classButton").click(function(){
 	$("#classTable").toggle();
 });
@@ -521,6 +542,8 @@ function refreshTeacherDetail(id,firstName,lastName,image,rate,price,city,area,a
 		}
 	}
 function updateStudent(){
+	$("#h1_wait").text("Actualizando datos...");
+	
 	$("#pleaseWaitDialog").modal();
 	var row = $(this).parents("tr");
 	var data = {
@@ -532,7 +555,7 @@ function updateStudent(){
 			birthday:$("#birthday").val(),
 			phone:$("#phone").val(),
 			mobile:$("#mobile").val(),
-			gender:$("#gender").val(),
+			gender:$("#gender option:selected").val(),
 			address:$("#address").val(),
 			doc:$("#doc").val(),
 			docType:$("#docType option:selected").val(),
@@ -540,10 +563,16 @@ function updateStudent(){
 			country:$("#country option:selected").val()
 		}
 	}
+	
 	$.post(base_url+"administrador/actualizar/estudiante/",data,function(resp){
 		var rta = JSON.parse(resp);
 		if(rta){
-			
+			$("#pleaseWaitDialog").modal("hide");
+			swal({
+				title: "Listo!",
+				text: "La actualización de datos se realizó exitosamente",
+				type: "success",
+				confirmButtonText: "Aceptar" });
 		}
 	});
 }

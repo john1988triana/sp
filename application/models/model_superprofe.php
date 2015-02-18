@@ -824,10 +824,24 @@ class Model_superprofe extends CI_Model
 		}else{
 			$data["id_user"] = $user[0]->IdUser;
 		}
+		
+		if($data["birthday"]) {
+			$dateBorn = explode("-", $data["birthday"]);
+			$dayBorn = $dateBorn[0];
+			$monthBorn = $dateBorn[1];
+			$yearBorn = $dateBorn[2];
+		}
+		else {
+			$dayBorn = "";
+			$monthBorn = "";
+			$yearBorn = "";
+		}
+		
 		$this->aulasamigas->updateContactUserInfo(array("Email"=>$data["email"],"FirstName"=>$data["firstName"],
 														"FamilyName"=>$data["lastName"],"City"=>$data["city"],
-														"Country"=>$data["country"],"Phone"=>$data["phone"],
-														"Address"=>$data["address"],"DocType"=>$data["docType"],
+														"Country"=>$data["country"],"Phone"=>$data["phone"], "Movil"=>$data["mobile"], 
+														"DayBorn"=>$dayBorn, "MonthBorn"=>$monthBorn, "YearBorn"=>$yearBorn,
+														"Address"=>$data["address"],"DocType"=>$data["docType"], "Gender"=>$data["gender"],
 														"DocNumber"=>$data["doc"]));
 		$this->db_super_pro->where('id_user', $data["id_user"]);
         $this->db_super_pro->update('student', array("firstName"=>$data["firstName"],"lastName"=>$data["lastName"]));

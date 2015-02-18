@@ -90,7 +90,9 @@ class Administrador extends CI_Controller {
 						$this->load->view("panel_administrativo/students_create");
 						
 					}else{
+						//echo "amigas: ". json_encode($data);
 						$data = $this->model_superprofe->loadUser($data[0]->IdUser);
+						//echo json_encode($data);
 						if($data["isTeacher"]){
 							echo "es profe";
 						
@@ -101,6 +103,7 @@ class Administrador extends CI_Controller {
 							$data["levels"] = $this->model_superprofe->getLevels();
 							$data['document_type'] = json_decode($this->aulasamigas->getDocumentTypes(), true);
 							$data["errors"] = array("area"=>"","city"=>"","topic"=>"","address"=>"","date"=>"","level"=>"","time"=>"","phone"=>"","error"=>false);
+							//echo json_encode($data);
 							$this->load->view("panel_administrativo/new_class_results",$data);
 						}
 					}					
