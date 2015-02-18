@@ -495,24 +495,79 @@ function refreshTeacherDetail(id,firstName,lastName,image,rate,price,city,area,a
 				request.end = new moment(date).add(2,"h");
 				$('#calendar').fullCalendar("removeEvents");
 				$('#calendar').fullCalendar({
+
 					header:{left:"",center:"",right:""},
+
 					firstDay:1,
+
 					lang:"es",
+
 					allDaySlot:false,
+
 					slotDuration:"01:00:00",
+
 					axisFormat:'h(:mm)a',
+
 					minTime:"07:00:00",
+
 					maxTime:"21:00:00",
+
 					height:"auto",
+
 					defaultView: 'agendaWeek',
+
 					defaultDate: week,
+
 					eventColor:"#003333",
+
 					selectable: true,
+
 					editable: true,
+
 					selectOverlap: false,
+
 					slotEventOverlap : false,
-					eventDrop: function(event, delta, revertFunc) {
-						if (isOverlapping(event)) {
+					
+					eventDrop: function( event, delta, revertFunc, jsEvent, ui, view ) {
+						
+						var today = moment();
+   						var tomorrow = today.add('days', 1);
+						tomorrow.startOf('day');
+						
+						var start_date = moment(event.start.format("DD:MM:YYYY"), "DD:MM:YYYY");
+						
+						var start_time = moment(event.start.format("HH:mm:ss"), "HH:mm:ss");
+						var end_time = moment(event.end.format("HH:mm:ss"), "HH:mm:ss");
+						
+						var min_time = moment("07:00:00", "HH:mm:ss");
+						var max_time = moment("21:00:00", "HH:mm:ss");
+						
+						if(start_date < tomorrow)
+						{
+							swal({
+								title: "Error!",
+								text: "El día de la clase no puede ser pasada, ni ser hoy.",
+								type: "error",
+								confirmButtonText: "Aceptar" });
+							revertFunc();
+						}
+						if((start_time < min_time) || (start_time > end_time)) {
+							swal({
+								title: "Error!",
+								text: "La clase debe iniciar mínimo a las 7:00 am.",
+								type: "error",
+								confirmButtonText: "Aceptar" });
+							revertFunc();
+						}
+						else if((end_time > max_time) || (start_time > end_time)) {
+							swal({
+								title: "Error!",
+								text: "La clase debe terminar máximo a las 9:00 pm.",
+								type: "error",
+								confirmButtonText: "Aceptar" });
+							revertFunc();
+						}
+						else if (isOverlapping(event)) {
                             revertFunc();
                         }else{
 							request.start = event.start;
@@ -521,19 +576,45 @@ function refreshTeacherDetail(id,firstName,lastName,image,rate,price,city,area,a
 							}
 						}
 					},
+					
 					eventResize: function(event, delta, revertFunc) {
-						if (isOverlapping(event)) {
-                            revertFunc();
-                        }else{
-							request.start = event.start;
-							if(event.end){
-								request.end = event.end;
-							}
+						
+						var start_time = moment(event.start.format("HH:mm:ss"), "HH:mm:ss");
+						var end_time = moment(event.end.format("HH:mm:ss"), "HH:mm:ss");
+						
+						if(end_time.subtract(start_time).hours() <= 1)
+						{
+							swal({
+								title: "Error!",
+								text: "La clase debe ser de mínimo dos (2) horas.",
+								type: "error",
+								confirmButtonText: "Aceptar" });
+							revertFunc();
 						}
+						else if (isOverlapping(event)) {
+
+                            revertFunc();
+
+                        }else{
+
+							request.start = event.start;
+
+							if(event.end){
+
+								request.end = event.end;
+
+							}
+
+						}
+
 					}
+
 				});
+
 				for(var i in busyList){
+
 					$('#calendar').fullCalendar("renderEvent",busyList[i]);
+
 				}
 			});
 		});
