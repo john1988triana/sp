@@ -353,35 +353,35 @@
 
 				
 				
-				
-					
+	<div class="row experticia perfil-profesor">
+		<div class="col-md-4 datos-porfesor">
 				
 				<div class="row col-md-12 texto-1-profe" style="margin-top:2px;">
-					<div class="row col-md-4">
+					<div class=" col-md-4 col-xs-4">
 						Ciudad:
 					</div>
-					<div class="row col-md-8">
+					<div class=" col-md-8 col-xs-8">
 						Bogotá - Colombia
 					</div>
 				</div>
 				<div class="row col-md-12 texto-1-profe" style="margin-top:2px;">
-					<div class="row col-md-4">
+					<div class=" col-md-4">
 						Telefono:
 					</div>
-					<div class="row col-md-8">
+					<div class=" col-md-8">
 						<input style="border:none;outline:none;width:100%;" id="phone" value="<?php echo $Phone;?>"></input>
 					</div>
 				</div>
 				<div class="row col-md-12 texto-1-profe" style="margin-top:2px;">
-					<div class="row col-md-4">
+					<div class=" col-md-4">
 						Direcci&oacute;n:
 					</div>
-					<div class="row col-md-8">
+					<div class=" col-md-8">
 						<input style="border:none;outline:none;width:100%" id="address" value="<?php echo $Address; ?>"></input>
 					</div>
 				</div>
 				<div class="row col-md-12 texto-1-profe" style="margin-top:2px;">
-					<div class="row col-md-4">
+					<div class=" col-md-4">
 						E-Mail:
 					</div>
 					<div class="row col-md-8">
@@ -389,16 +389,33 @@
 					</div>
 				</div>
 				<div class="row col-md-12 texto-1-profe" style="margin-top:2px;">
-					<div class="row col-md-4">
+					<div class=" col-md-4">
 						Fecha de Nacimiento:
 					</div>
-					<div class="row col-md-8">
+					<div class=" col-md-8">
 						<input class="datepicker" style="border:none;outline:none;width:100%" name="birthday" id="birthday" value="<?php echo ($DayBorn) ? $DayBorn . '-' . $MonthBorn . '-' . $YearBorn : '';?>" data-date="12-02-2012" type="text"></input>
 					</div>
 				</div>
-				<button type="button" class="btn btn-agregar btn-update" style="margin:auto;display:block;">Actualizar</button>
-			</div>
-			
+				<div class="row col-md-12">
+					<button type="button" class="btn btn-agregar btn-update" style="margin:auto;display:block;">Actualizar</button>
+				</div>
+		</div>
+		<div class="col-md-2"></div>
+		<div class="col-md-6">
+			<div class="container col-md-12">
+  				<hr id="separador-busqueda2"></hr>
+   				<form action="<?php echo base_url('registro/validatePage'); ?>" method="post" role="form" enctype="multipart/form-data" id="mainform">
+    				<p id="terminos"><input type="checkbox" name="terms" required <?php if($terms=="1") echo"checked";?>> Autorizo a Superprofe.co a publicar los datos suministrados en este documento con el fin de que los estudiantes que requieren profesores particulares tengan acceso a mi información, los siguientes datos NO serán publicados: teléfono, celular, dirección, correo electrónico y referencias. </p>
+    				<span id="terminos"> <a>Acepto los t&eacute;rminos y condiciones.</a> </span>
+    				<div class="row">
+     					<div class="container col-md-3 col-md-offset-2">
+      					<button type="submit" class="btn-siguiente-registro btn" id="btnlogin"><div>Continuar</div></button>
+     					</div>
+    				</div>
+   				</form>
+  			</div>
+		</div>	
+	</div>		
 		
 
 	
@@ -408,18 +425,7 @@
 		
 		
 
-		<div class="container col-md-12">
-  <hr id="separador-busqueda2"></hr>
-   <form action="<?php echo base_url('registro/validatePage'); ?>" method="post" role="form" enctype="multipart/form-data" id="mainform">
-    <p id="terminos"><input type="checkbox" name="terms" required <?php if($terms=="1") echo"checked";?>> Autorizo a Superprofe.co a publicar los datos suministrados en este documento con el fin de que los estudiantes que requieren profesores particulares tengan acceso a mi información, los siguientes datos NO serán publicados: teléfono, celular, dirección, correo electrónico y referencias. </p>
-    <span id="terminos"> <a>Acepto los t&eacute;rminos y condiciones.</a> </span>
-    <div class="row">
-     <div class="container col-md-3 col-md-offset-4">
-      <button type="submit" class="btn-siguiente-registro btn" id="btnlogin"><div>Continuar</div></button>
-     </div>
-    </div>
-   </form>
-  </div>
+	
 
 
 	

@@ -27,6 +27,8 @@
 									<img src="assets/img/medallas/4_color.png" alt="">
 									<img src="assets/img/medallas/5_bn.png" alt="" class="no-medalla">
 								</div>
+								
+								<h3 class="medalla-tag">Experto</h3>
 
 								<script type="text/javascript">
 										for(var i=0; i < 5; i++){						
@@ -65,6 +67,9 @@
 									<img src="assets/img/medallas/4_color.png" alt="">
 									<img src="assets/img/medallas/5_bn.png" alt="" class="no-medalla">
 								</div>
+								
+								<h3 class="medalla-tag">Experto</h3>
+
 								<script type="text/javascript">
 										for(var i=0; i < Math.round(<?php echo $results[$i-1]->rate?>); i++){						
 											$("div.estrellas.<?php echo $results[$i-1]->id;?> span:nth-child("+(i+1)+")").css("color","#FFCC00");

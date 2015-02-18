@@ -373,8 +373,6 @@ border-right: 2px dashed;
 	font-size:18px;
 	width: 100%;
 	height: 34px;
-	
-
 }
 .datepicker{
 cursor: pointer;
@@ -795,6 +793,8 @@ textarea{
 {
 	font-size:20px;
 	font-weight: bold;
+	height: 44px;
+	overflow: hidden;
 }
 .centrado{
 	max-width: 1200px;
@@ -835,7 +835,10 @@ textarea{
 
 
 
-/*-------- Nuevos ----------*/
+/*------------------------------- Nuevos ---------------------------------*/
+
+
+
 
 /*-------- Index ----------*/
 
@@ -899,6 +902,19 @@ textarea{
 
 }
 
+.panel-perfil .estrellas {
+
+	margin-bottom: 10px;
+}
+
+.panel-perfil h3.medalla-tag {
+
+	margin-top: 10px;
+	margin-bottom: 20px;
+	color: rgb(253, 147, 27);
+	font-size: 20pt;
+	font-weight: 600;
+}
 
 .panel-perfil img.img-profile {
 
@@ -906,17 +922,30 @@ textarea{
 	height: 160px;
 }
 
+.panel-perfil .medallas-profesor{
+
+	width: 95%;
+	margin-left: 2.5%;
+	margin-right: 2.5%;
+}
+
 .panel-perfil .medallas-profesor img{
 
-	width: 30px;
-	height: 30px;
+	width: 18%;
+	height: auto;
+}
+
+.container#results-section {
+    padding: 0;
+    margin: 0;
+    width: 100%;
 }
 
 .panel-body {
 
 	padding: 20px;
-	padding-left: 5%;
-	padding-right: 5%;
+	padding-left: 2.5%;
+	padding-right: 2.5%;
 }
 
 .panel-perfil {
@@ -1488,6 +1517,13 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 	width: 100px; 
 }
 
+.datos-porfesor input {
+
+	font-size: 14px;
+	text-align: left;
+	padding-left: 0;
+}
+
 /*-------- Busqueda de Profesor ----------*/
 
 
@@ -1617,7 +1653,23 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 		
 	}
 
+	.panel-perfil .medallas-profesor{
+
+	width: 50%;
+	margin-left: 25%;
+	margin-right: 25%;
+	
+	}
+
+	.panel-perfil .medallas-profesor img{
+
+		width: 18%;
+		height: auto;
+	}
+
 }
+
+
 
 
 @media screen and (max-width: 600px) {
