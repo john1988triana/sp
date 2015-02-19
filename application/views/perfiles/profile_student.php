@@ -159,7 +159,7 @@
 							</div>
 							<div class="col-md-4">
 								<!--<input type="text" placeholder="Año inicio" class="form-control input-sm" id="add_anio_estu_hasta" >-->
-								<select class="form-control input-sm btn-radius" id="add_anio_estu_hasta " >
+								<select class="form-control input-sm btn-radius" id="add_anio_estu_hasta" >
 								<?php
 									$anio_actual = date("Y");
 									$opciones = "<option value=\"-\">Actualmente</option>";
@@ -262,8 +262,10 @@ $(".btn_agregar_estudios").click(function(){
 			id_level:$("#level option:selected").val(),
 			from:$("#add_anio_estu_desde").val()+"-01-01",
 			to:$("#add_anio_estu_hasta").val()+"-01-01",
+			address:"",
 		}
-		console.debug(studies);
+		$("#pleaseWaitDialog").modal();
+		//console.debug(studies);
 		$.post("<?php echo base_url("perfil/estudios"); ?>",studies,function(rta){
 			var end = "";
 			if(studies.to == "--01-01"){
@@ -280,6 +282,16 @@ $(".btn_agregar_estudios").click(function(){
 				  "</div>";
 			$("#exp-wrapper-est").append(div);
 			$('#hide_estudios').toggle("fast");
+			
+			$("#pleaseWaitDialog").modal("hide");
+			swal({
+				title: "Listo!",
+				text: "Adición exitosa",
+				type: "success",
+				confirmButtonText: "Aceptar" },
+				function(){
+					
+				});
 		});
 });
 $("#show_estudios").click(function(){
@@ -323,10 +335,69 @@ function getFile(){
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', "<?php echo base_url("perfil/savePicture"); ?>", true);
 	xhr.onload = function() {
-		if (this.status == 200) {
-			$(".img-profile").attr("src",this.response);
-			
-		};
+		document.getElementById("texto_foto").innerHTML = "Subir foto";
+		
+		response = JSON.parse(this.response);
+		if(response.success)
+		{
+			$(".img-profile").attr("src",response.success);
+		}
+		else if(response.error)
+		{
+			switch(response.error){
+				case "<p>The filetype you are attempting to upload is not allowed.</p><p>The filetype you are attempting to upload is not allowed.</p>":
+						swal({
+							title: "Error!",
+							text: "El tipo de archivo que intentas cargar no es permitido. Las extensiones permitidas son gif, jpg y png.",
+							type: "error",
+							confirmButtonText: "Aceptar" },
+							function(){
+								
+						});
+						break;
+				case "<p>The image you are attempting to upload exceedes the maximum height or width.</p><p>The image you are attempting to upload exceedes the maximum height or width.</p>":
+						swal({
+							title: "Error!",
+							text: "Las dimensiones de la imagen supera los límites permitidos, Las dimensiones máximas son 1024 x 768 px.",
+							type: "error",
+							confirmButtonText: "Aceptar" },
+							function(){
+								
+						});
+						break;
+				case "<p>The file you are attempting to upload is larger than the permitted size.</p><p>The file you are attempting to upload is larger than the permitted size.</p>":
+						swal({
+							title: "Error!",
+							text: "El tamaño del archivo que intentas cargar supera los límites permitidos. El tamaño máximo son 20 MB.",
+							type: "error",
+							confirmButtonText: "Aceptar" },
+							function(){
+								
+						});
+						break;
+				default:
+						swal({
+							title: "Error!",
+							text: response.error,
+							type: "error",
+							confirmButtonText: "Aceptar" },
+							function(){
+								
+						});
+						break;
+			}
+		}
+		else
+		{
+			swal({
+				title: "Error!",
+				text: this.response,
+				type: "error",
+				confirmButtonText: "Aceptar" },
+				function(){
+					
+			});
+		}
 	};
 	xhr.send(fd);
 	event.preventDefault();

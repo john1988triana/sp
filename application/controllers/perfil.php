@@ -178,6 +178,7 @@ class Perfil extends CI_Controller {
 		echo true;
 	}
 	public function estudios($id_st = NULL){
+		$id = $id_st;
 		$user = $this->session->userdata('sIdUser');
 		if($id!=NULL){
 			if($id != $user){
@@ -252,6 +253,8 @@ class Perfil extends CI_Controller {
 		if ( ! $this->upload->do_upload())
 		{
 			$error = array('error' => $this->upload->display_errors());
+			echo json_encode($error);
+			return;
 		}
 		else
 		{
@@ -271,10 +274,14 @@ class Perfil extends CI_Controller {
 					$this->session->set_userdata('sImageUrl', $user["picture"]);
 				}
 			}
+			else
+			{
+				$id = $d;
+			}
 			$amigas = json_decode($this->aulasamigas->getUsersInfo(array($id)), true);
 			$amigas = $amigas[0];
 			$this->model_superprofe->update($d,$user,$amigas["isTeacher"]);
-			echo base_url($user["picture"]);
+			echo '{"success": "' . base_url($user["picture"]) . '"}';
 		}
 		
 	}
