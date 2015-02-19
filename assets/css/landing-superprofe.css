@@ -1575,10 +1575,70 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 
 
 
+/*-------- Codigo promocional ----------*/
+
+.row.code-gen-container {
+
+	margin-top: 200px;
+
+}
+
+.code-gen-container .col-md-4 {
+
+	text-align: center;
+
+}
 
 
 
-/* ----- Media Queries -------- */
+
+.btn.btn-gen-code {
+	
+	width: 160px;
+	margin-top: 0;
+	
+}
+
+.col-md-6.col-xs-6.div-area div:not(.btn-gen-code) {
+	
+	margin-top: 10px;
+
+}
+
+#codigo-promocional {
+
+	font-size: 25px;
+	color: #009966;
+	width: 300px;
+	text-align: center;
+	
+}
+.background-code {
+
+	background: rgb(236, 236, 236);
+	min-height: 35px;
+	background-color: whitesmoke;
+	text-align: center;
+
+}
+
+.code-gen-container .div-area {
+
+	padding: 20px;
+	padding-top: 15px;
+}
+
+.code-gen-container h3 {
+
+	margin-top: 0px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+
+
+
+/* ---------------------------- Media Queries ------------------------- */
 
 
 @media screen and (max-width: 739px) {
