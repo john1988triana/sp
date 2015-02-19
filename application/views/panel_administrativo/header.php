@@ -91,8 +91,8 @@
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Promociones<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="<?php echo base_url('login/logout'); ?>">Generar Codigo</a></li>
-						<li><a href="<?php echo base_url('login/logout'); ?>">Ver Codigos</a></li>
+						<li><a href="<?php echo base_url('administrador/promociones/nueva'); ?>">Generar Codigo</a></li>
+						<li><a href="<?php echo base_url('administrador/promociones/lista'); ?>">Ver Codigos</a></li>
 					</ul>
 				</li>
 				

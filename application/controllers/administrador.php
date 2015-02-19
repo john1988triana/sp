@@ -480,6 +480,19 @@ class Administrador extends CI_Controller {
 			}
 		}
 	}
+	
+	public function promociones($subsection = "nueva",$params=""){
+		$this->checkPermission();
+		switch($subsection){
+			case "nueva":	$this->load->view("panel_administrativo/header");
+							$this->load->view("panel_administrativo/promotional_code_new");
+							break;
+			case "lista":	$this->load->view("panel_administrativo/header");
+							$this->load->view("panel_administrativo/promotional_code_list");
+							break;
+		}
+	}
+	
 	public function actualizar($subsection){
 		$this->checkPermission();
 		switch($subsection){

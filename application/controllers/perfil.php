@@ -105,7 +105,8 @@ class Perfil extends CI_Controller {
 		}
 	}
 
-	public function actualizar($id){
+	//public function actualizar($id){
+	public function actualizar($id = null){
 		$user = $this->session->userdata('sIdUser');
 		$amigas = array();
 		if(isset($_POST["dayBorn"])){
@@ -238,6 +239,8 @@ class Perfil extends CI_Controller {
 			$config['upload_path'] = '/home/buscop/public_html/sp/application/uploads/';
 		else if($_SERVER['HTTP_HOST']=='amigaslive.net')
 			$config['upload_path'] = '/home/amigas/public_html/superprofe/application/uploads/';
+		else
+			$config['upload_path'] = "application/uploads/";
 
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['max_size']	= '20000';
@@ -245,6 +248,7 @@ class Perfil extends CI_Controller {
 		$config['max_height'] = '768';
 		$this->load->library('upload', $config);
 		$this->upload->do_upload();
+		//echo $this->upload->do_upload();
 		if ( ! $this->upload->do_upload())
 		{
 			$error = array('error' => $this->upload->display_errors());

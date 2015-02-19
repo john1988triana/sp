@@ -182,6 +182,44 @@
 		</div>
 	</div>
 </div> 
+
+
+<div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
+
+	<div class="modal-dialog">
+
+		<div class="modal-content">
+
+			<div class="modal-header">
+
+				<h1>Actualizando...</h1>
+
+			</div>
+
+			<div class="modal-body">
+
+				<div class="progress">
+
+					<div class="progress-bar progress-bar-striped active" style="width: 100%;"></div>
+
+				</div>
+
+			</div>
+
+			<div class="modal-footer">
+
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+
+
 <link rel='stylesheet' href="<?php echo base_url("assets/js/datepicker/css/datepicker.css"); ?>"></link>
 <script src="<?php echo base_url("assets/js/datepicker/js/bootstrap-datepicker.js"); ?>"></script>
 <script>
@@ -202,7 +240,20 @@ $(".btn-update").click(function(){
 	if($("#tutorFName").val()!=""){
 		data.tutorFirstName = $("#tutorFName").val();
 	}
-	$.post("<?php echo base_url("perfil/actualizar"); ?>",data);
+	
+	$("#pleaseWaitDialog").modal();
+	$.post("<?php echo base_url("perfil/actualizar"); ?>", data)
+	  .done(function( data ) {
+		$("#pleaseWaitDialog").modal("hide");
+		swal({
+			title: "Listo!",
+			text: "Actualización exitosa",
+			type: "success",
+			confirmButtonText: "Aceptar" },
+			function(){
+				
+			});
+	  });
 });
 $(".btn_agregar_estudios").click(function(){
 	var studies = {
@@ -270,7 +321,7 @@ function getFile(){
 	var fd = new FormData();
 	fd.append("userfile", obj.files[0]);
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', "<?php echo base_url("registro/savePicture"); ?>", true);
+	xhr.open('POST', "<?php echo base_url("perfil/savePicture"); ?>", true);
 	xhr.onload = function() {
 		if (this.status == 200) {
 			$(".img-profile").attr("src",this.response);
