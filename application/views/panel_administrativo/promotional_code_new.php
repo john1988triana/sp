@@ -3,7 +3,7 @@
 	<div class="col-md-6 col-xs-6 div-area">
 		<h3>Click para generar Codigo promocional</h3>
 		<div class="row date-picker-gen">
-			<div class=" col-md-6">
+			<div class=" col-md-6" id="datepicker">
 				<h5>Desde:</h5>
 				<input class="datepicker from" style="border:none;outline:none;" name="from" id="from" type="text"></input>
 			</div>
@@ -36,17 +36,16 @@
 <script>
 
 	$(function() {
-	    $( "#from" ).datepicker({
-	      onChange: function( selectedDate ) {
-	      	alert("cerrando");
-	        $( "#to" ).datepicker( "option", "minDate", selectedDate );
-	      }
+	    $( "#from" ).datepicker()
+	    .on('changeDate', function (ev) {
+	    	var _fromdate = $('#from').val();
+         	alert("cambio! " + _fromdate + "")
+	    	$( "#to" ).val(_fromdate);
+	    	$("#to").datepicker({
+			    startDate: _fromdate ,
+			});
 	    });
-	    $( "#to" ).datepicker({
-	      onChange: function( selectedDate ) {
-	        $( "#from" ).datepicker( "option", "maxDate", selectedDate );
-	      }
-	    });
+	   	
   	});
 
 </script>

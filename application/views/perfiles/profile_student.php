@@ -109,7 +109,7 @@
 
 									<div class='estudios-grid'>Profesión:</div><span><div class='estudios-grid'>".$study_title."</div></span><br>
 									<div class='estudios-grid'>Año:</div><span><div class='estudios-grid'>".date("Y",strtotime($studies[$i]["from"]))." hasta ".$end."</div></span>
-									<div class=\"delete-group exp\" data-id=\"".$studies[$i]["id"]."\"></div>
+									<span class=\"glyphicon glyphicon-remove-circle delete-group exp\" aria-hidden='true' data-id=\"".$studies[$i]["id"]."\"></span>
 									<div class=\"amigas-separator\"></div>
 								</div>";
 							}
@@ -218,6 +218,12 @@
 
 </div>
 
+<?php echo "<script>
+		base_url = '".base_url()."';
+		id_user = '".$id_user."';
+		</script>";
+?>
+
 
 
 <link rel='stylesheet' href="<?php echo base_url("assets/js/datepicker/css/datepicker.css"); ?>"></link>
@@ -273,6 +279,7 @@ $(".btn_agregar_estudios").click(function(){
 			}else{
 				end = studies.to.split("-")[0];
 			}
+			/*
 			var div = "<div class=\"form-group\" class=\"col-xs-3\">"+
 						"<h5>Institución:</h5> <h5><span>"+studies.institution+"</span></h5>"+
 						"<h5>Titulo:</h5> <h5><span>"+studies.title+"</span></h5>"+
@@ -280,6 +287,18 @@ $(".btn_agregar_estudios").click(function(){
 						"<div class=\"delete-group exp\" data-id=\""+rta+"\"></div>"+
 						"<div class=\"amigas-separator\"></div>"+
 				  "</div>";
+			*/
+
+			var div = "<div class=\"form-group textarea estudios-estudiante\">"+
+
+						"<div class='estudios-grid'>Institución:</div><span><div class='estudios-grid'>"+studies.institution+"</div></span><br>"+
+
+						"<div class='estudios-grid'>Profesión:</div><span><div class='estudios-grid'>"+studies.title+"</div></span><br>"+
+						"<div class='estudios-grid'>Año:</div><span><div class='estudios-grid'>"+studies.from.split("-")[0]+" hasta "+end+"</div></span>"+
+						"<span class=\"glyphicon glyphicon-remove-circle delete-group exp\" aria-hidden='true' data-id=\""+rta+"\"></span>"+
+						"<div class=\"amigas-separator\"></div>"+
+						"</div>";
+
 			$("#exp-wrapper-est").append(div);
 			$('#hide_estudios').toggle("fast");
 			
@@ -402,4 +421,16 @@ function getFile(){
 	xhr.send(fd);
 	event.preventDefault();
 }
+
+$(".delete-group").click(function(){
+		if($(this).hasClass("exp")){
+			if(confirm("Estás seguro que deseas borrar esta experiencia")){
+				$.ajax({
+				url:base_url+"perfil/estudios/"+id_user+"/"+$(this).attr("data-id"),
+				type:"DELETE"});
+				$(this).parent().remove();
+			}
+		}
+	});
+
 </script>
