@@ -953,6 +953,11 @@ textarea{
 	width: 100%;
 }
 
+.text-center.tt-txt-panel-perfil , .capital-name {
+	
+    text-transform: capitalize;
+}
+
 /*-------- Perfil-Estudiante ----------*/
 
 .grey-backgorund {
