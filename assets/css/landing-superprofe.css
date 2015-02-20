@@ -1589,7 +1589,17 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 
 }
 
+.code-gen-container h5 {
 
+	display: inline-block;
+
+}
+
+.code-gen-container .datepicker{
+
+	width: 100px;
+
+}
 
 
 .btn.btn-gen-code {
@@ -1635,7 +1645,10 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 	text-align: center;
 }
 
+.date-picker-gen .col-md-6 {
 
+	text-align: center;
+}
 
 
 /* ---------------------------- Media Queries ------------------------- */
