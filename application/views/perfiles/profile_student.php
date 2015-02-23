@@ -424,12 +424,30 @@ function getFile(){
 
 $(".delete-group").click(function(){
 		if($(this).hasClass("exp")){
-			if(confirm("Estás seguro que deseas borrar esta experiencia")){
-				$.ajax({
-				url:base_url+"perfil/estudios/"+id_user+"/"+$(this).attr("data-id"),
-				type:"DELETE"});
-				$(this).parent().remove();
-			}
+			
+			var element = $(this);
+			
+			swal({
+				title: "¿Está seguro?",
+				text: "Se eliminará el historial académico seleccionado",
+				type: "warning",
+				showCancelButton: true,
+				cancelButtonText: "No",
+				confirmButtonText: "Si. eliminalo!" ,
+				closeOnConfirm: false,   
+				closeOnCancel: true
+				},
+				function(isConfirm){
+					if (isConfirm) {
+						$.ajax({
+						url:base_url+"perfil/estudios?id_user="+id_user+"&exp_id="+ element.attr("data-id"),
+						type:"DELETE"});
+						element.parent().remove();
+				
+						swal("Eliminado!", "Su historial académico fue eliminado.", "success");
+					}
+			});
+			
 		}
 	});
 

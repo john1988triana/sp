@@ -196,7 +196,8 @@ class Perfil extends CI_Controller {
 			echo $this->model_superprofe->addStudies($user,$_POST);
 			return;
 		}else if($method == 'DELETE'){
-			$this->model_superprofe->removeStudies($user,$id_st);
+			//echo $user . ", post: " . json_encode($_GET);
+			$this->model_superprofe->removeStudies($_GET["id_user"],$_GET["exp_id"]);
 		}else if($method == 'GET'){
 			echo $this->model_superprofe->getStudies($id_st);
 			return;
