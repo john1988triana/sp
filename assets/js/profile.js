@@ -397,7 +397,7 @@ $(document).ready(function() {
 		$("#valor_hora").val(valor)
 	})
 	
-	$(".datepicker").datepicker();
+	$(".datepicker").datepicker({format:"dd-mm-yyyy",viewMode:"years"});
 });
 function getFile(){
 	document.getElementById("upfile").click();

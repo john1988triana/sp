@@ -395,7 +395,7 @@
 						Fecha de Nacimiento:
 					</div>
 					<div class=" col-md-8">
-						<input class="datepicker" style="border:none;outline:none;width:100%" name="birthday" id="birthday" value="<?php echo ($DayBorn) ? $DayBorn . '-' . $MonthBorn . '-' . $YearBorn : '';?>" data-date="12-02-2012" type="text"></input>
+						<input class="datepicker" style="border:none;outline:none;width:100%" name="birthday" id="birthday" value="<?php echo ($DayBorn) ? $DayBorn . '-' . $MonthBorn . '-' . $YearBorn : '';?>" type="text"></input>
 					</div>
 				</div>
 				<div class="row col-md-12">
