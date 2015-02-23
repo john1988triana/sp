@@ -48,7 +48,10 @@
 				<img src="assets/img/medallas/4_color.png" alt="">
 				<img src="assets/img/medallas/5_bn.png" alt="" class="no-medalla">
 			</div>
-			<div class="btn-subir-foto btn" id="texto_foto" onclick="getFile()">Subir foto</div>
+			<div class="btn-subir-foto btn" id="texto_foto" onclick="getFile()">
+				<p>Subir foto</p>
+				<img src="assets/img/upload-icon.png">
+			</div>
 			<div style='height: 0px;width: 0px; overflow:hidden;'><input id="upfile" name="userfile" type="file" value="upload" onchange="sub(this)"/></div>
 		</div>
 		<div class="col-md-6 perfil-profesor-der">
@@ -56,10 +59,9 @@
 				<p>Ver perfil como</p>
 			</div>
 			<h3 style="color:#009966;" class="title-profesor"><?php echo $FirstName." ".$FamilyName?></h3>
-			<p>
-				Este es el perfil. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum viverra accumsan laoreet. Proin interdum massa nulla, et elementum neque semper sed. Suspendisse et justo ut velit ullamcorper mattis. Quisque imperdiet dolor eu imperdiet mattis. Nulla imperdiet iaculis diam. Cras elementum quis sem nec pellentesque. Curabitur sollicitudin vestibulum est, non ornare magna auctor ac. Ut euismod justo sagittis bibendum consequat. Pellentesque ut
-				massa ut nisl mollis pellentesque. Phasellus in sem mollis nunc cursus sollicitudin. Morbi a malesuada enim, eu aliquet nunc.	
-			</p>
+			<textarea id="bio-profesor">Este es el perfil. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum viverra accumsan laoreet. Proin interdum massa nulla, et elementum neque semper sed. Suspendisse et justo ut velit ullamcorper mattis. Quisque imperdiet dolor eu imperdiet mattis. Nulla imperdiet iaculis diam. Cras elementum quis sem nec pellentesque. Curabitur sollicitudin vestibulum est, non ornare magna auctor ac. Ut euismod justo sagittis bibendum consequat. Pellentesque ut massa ut nisl mollis pellentesque. Phasellus in sem mollis nunc cursus sollicitudin. Morbi a malesuada enim, eu aliquet nunc.	
+			</textarea>
+			<div class="btn-subir-foto btn bio-btn" onclick="_getBio()">Actualizar</div>
 		</div>
 	</div>
 

@@ -1529,6 +1529,22 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 	padding-left: 0;
 }
 
+.col-md-6.perfil-profesor-der textarea {
+
+	font-size: 12pt;
+	width: 95%;
+	height: 300px;
+	margin-right: 2.5%;
+	border: none;
+	text-align: justify;
+
+} 
+
+.btn-subir-foto.btn.bio-btn {
+
+	text-align: center;
+}
+
 /*-------- Busqueda de Profesor ----------*/
 
 
