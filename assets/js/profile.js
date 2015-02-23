@@ -320,11 +320,11 @@ $(document).ready(function() {
 			type:1
 		}
 		$.post(base_url+"perfil/experiencia/"+id_user,experience,function(rta){
-			var div = "<div class=\"form-group\" class=\"col-xs-3\">"+
-						"<h5>Institución: <b>"+experience.institution+"</b></h5>"+
-						"<h5>Titulo: <b>"+experience.title+"</b></h5>"+
-						"<h5>Año: <b>"+experience.from.split("-")[0]+" hasta "+experience.to.split("-")[0]+"</b></h5>"+
-						"<div class=\"delete-group exp\" data-id=\""+rta+"\" onclick=\"deleteitem(this)\"></div>"+
+			var div = "<div class=\"form-group textarea exp-profesor\">"+
+						"<div class='grid-exp'>Institución: </div><div class='grid-exp exp-var'>"+experience.institution+"</div><br>"+
+						"<div class='grid-exp'>Titulo: </div><div class='grid-exp exp-var'>"+experience.title+"</div><br>"+
+						"<div class='grid-exp'>Año: </div><div class='grid-exp exp-var'>"+experience.from.split("-")[0]+" hasta "+experience.to.split("-")[0]+"</div><br>"+
+						"<span class=\" glyphicon glyphicon-remove-circle delete-group exp\" data-id=\""+rta+"\" onclick=\"deleteitem(this)\"></span>"+
 						"<div class=\"amigas-separator\"></div>"+
 				  "</div>";
 			$("#exp-wrapper-est").append(div);
