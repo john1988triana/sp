@@ -24,7 +24,7 @@ class Registro extends CI_Controller {
 	}
 	//Registro Alumnos
 	public function alumno(){
-		 $sUrlGoogle = $this->aulasamigas->urlGoogle(base_url() . 'login/login_google', FALSE, $this->input->ip_address(), FALSE);
+		$sUrlGoogle = $this->aulasamigas->urlGoogle(base_url() . 'login/login_google', FALSE, $this->input->ip_address(), FALSE);
 		$urlFacebook = $this->login_fb();
 		$arr_send_data = array('sLoginGoogle' => json_decode($sUrlGoogle),
        						'sLoginFacebook' => $urlFacebook,
@@ -269,6 +269,9 @@ class Registro extends CI_Controller {
 				$this->session->userdata('isTeacher'), 0, '768'));
 			
 			$this->load->model('model_superprofe');
+			
+			//echo json_encode($result->mySQL);
+			
 			if($result->mySQL == 1){
 				$aInfoUser = $this->aulasamigas->whoAmI($result->id_user);
 				$user = $this->model_superprofe->checkUser($this->input->post('txtName'),
