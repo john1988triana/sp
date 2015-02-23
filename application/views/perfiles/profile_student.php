@@ -344,7 +344,8 @@ $(document).ready(function(){
 function getFile(){
 	document.getElementById("upfile").click();
 }
- function sub(obj){
+
+function sub(obj){
 	var file = obj.value;
 	var fileName = file.split("\\");
 	document.getElementById("texto_foto").innerHTML = fileName[fileName.length-1];

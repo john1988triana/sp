@@ -59,9 +59,9 @@
 				<p>Ver perfil como</p>
 			</div>
 			<h3 style="color:#009966;" class="title-profesor"><?php echo $FirstName." ".$FamilyName?></h3>
-			<textarea id="bio-profesor">Este es el perfil. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum viverra accumsan laoreet. Proin interdum massa nulla, et elementum neque semper sed. Suspendisse et justo ut velit ullamcorper mattis. Quisque imperdiet dolor eu imperdiet mattis. Nulla imperdiet iaculis diam. Cras elementum quis sem nec pellentesque. Curabitur sollicitudin vestibulum est, non ornare magna auctor ac. Ut euismod justo sagittis bibendum consequat. Pellentesque ut massa ut nisl mollis pellentesque. Phasellus in sem mollis nunc cursus sollicitudin. Morbi a malesuada enim, eu aliquet nunc.	
+			<textarea id="bio-profesor"><?php echo $profile;?>	
 			</textarea>
-			<div class="btn-subir-foto btn bio-btn" onclick="_getBio()">Actualizar</div>
+			<div class="btn-subir-foto btn bio-btn btn-update">Actualizar</div>
 		</div>
 	</div>
 
@@ -76,7 +76,7 @@
 		<!--div oculto-->
 		<div class="form-group" id="hide_competencias" style="display:none">
 				<select name="area" class="form-control competen" value="">
-					<option value="" disabled selected>Selecciona área</option>
+					<option value="0" disabled selected>Selecciona área</option>
 					<?php 
 						foreach ($areas as $key => $value_areas) {
 					?> 
@@ -88,7 +88,7 @@
 					?>
 				</select>
 				<select name="level" class="form-control level" value="">
-					<option value="" disabled selected>Selecciona nivel</option>
+					<option value="0" disabled selected>Selecciona nivel</option>
 					<?php 
 						foreach ($levels as $key => $value) {
 					?> 
@@ -104,7 +104,7 @@
 		<div id="areas-wrapper">
 			<?php 
 				for( $i = 0; $i < count($selected_areas) ; $i++){
-					echo "<div class=\"numero-competencia\">"."&nbsp;" . ($i+1) . ".&nbsp;"."</div><div class=\"valor-competencia\">".$selected_areas[$i]->Name." - ".$selected_areas[$i]->level."</div><div class=\"borrar-competencia trasition-half\" data-id=\"".$selected_areas[$i]->id_area."\">X</div><br>";
+					echo "<div class=\"numero-competencia\">"."&nbsp;" . ($i+1) . ".&nbsp;"."</div><div class=\"valor-competencia\">".$selected_areas[$i]->Name." - ".$selected_areas[$i]->level."</div><div class=\"borrar-competencia trasition-half\" data-id=\"".$selected_areas[$i]->id_area."\" data-level=\"" . $selected_areas[$i]->id_level . "\">X</div><br>";
 				}
 			?>
 		</div>
@@ -418,19 +418,6 @@
   			</div>
 		</div>	
 	</div>		
-		
-
-	
-		
-
-
-		
-		
-
-	
-
-
-	
 
 <div class="amigas-separator"></div>
 <div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">

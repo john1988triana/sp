@@ -134,8 +134,16 @@ class Perfil extends CI_Controller {
 			$this->aulasamigas->updateContactUserInfo($amigas);
 		}
 		
+		echo json_encode($this->input->post("dayBorn"));
+		
 		if(count($_POST)){
+			
+			
+			
 			if($id!=NULL){
+				
+				
+				
 				if($id != $user){
 					$role = $this->model_superprofe->adminRole($this->session->userdata("sIdUser"));
 					if($role!=1){
@@ -286,7 +294,7 @@ class Perfil extends CI_Controller {
 		}
 		
 	}
-	public function competencia($id,$id_comp,$level){
+	public function competencia($id,$id_comp,$level = NULL){
 		$user = $this->session->userdata('sIdUser');
 		if($id!=NULL){
 			if($id != $user){
@@ -310,7 +318,7 @@ class Perfil extends CI_Controller {
 				$this->model_superprofe->addCompentence($user,$id_comp,$level);
 			}
 		}else if($method == 'DELETE'){
-			$this->model_superprofe->removeCompentence($user,$id_comp);
+			$this->model_superprofe->removeCompentence($user,$id_comp,$level);
 		}
 		echo true;
 	}

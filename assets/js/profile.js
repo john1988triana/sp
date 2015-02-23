@@ -1,6 +1,6 @@
 var eventList = []
 function deleteitem(obj){
-
+	alert("entró...!!!");
 	if($(obj).hasClass("exp")){
 		if(confirm("Estás seguro que deseas borrar esta experiencia")){
 			$.ajax({
@@ -17,6 +17,43 @@ function deleteitem(obj){
 		}
 	}
 }
+
+function deleteCompetition(element){
+	
+	var element = $(element);
+	
+	swal({
+			title: "¿Está seguro?",
+			text: "Se eliminará la experticia seleccionada",
+			type: "warning",
+			showCancelButton: true,
+			cancelButtonText: "No",
+			confirmButtonText: "Si. eliminala!" ,
+			closeOnConfirm: false,   
+			closeOnCancel: true
+			},
+			function(isConfirm){
+				if (isConfirm) {
+					$.ajax({url:base_url+"perfil/competencia/"+id_user+"/"+element.attr("data-id")+"-"+element.attr("data-level"),
+							type:"DELETE"});
+					element.prev().remove(); //number
+					element.prev().remove(); //text
+					element.next().remove(); //br
+					element.remove();//this
+					
+					var ids = $("#areas-wrapper .numero-competencia");
+					
+					for(var i = 0; i< ids.length ; i++){
+						
+						$(ids[i]).html("&nbsp;" + (i+1) + ".&nbsp;");
+						
+					}
+			
+					swal("Eliminada!", "La experticia seleccionada fue eliminada.", "success");
+				}
+		});
+}
+
 $(document).ready(function() {
 	$.get(base_url+"perfil/disponibilidad/"+id_user,function(resp){
 		eventList = JSON.parse(resp);
@@ -139,19 +176,26 @@ $(document).ready(function() {
 			address:$("#address").val(),
 			dayBorn:birthday[0],
 			monthBorn:birthday[1],
-			yearBorn:birthday[2]};
+			yearBorn:birthday[2],
+			profile:$("#bio-profesor").val()};
 		$.post(base_url+"perfil/actualizar/"+id_user,data,function(){
-			$(".modal-header h1").html("Actualización Completa");
-			$(".modal-body").html("La actualización se ha realizado con exito");
+			//$(".modal-header h1").html("Actualización Completa");
+			//$(".modal-body").html("La actualización se ha realizado con exito");
+			$("#pleaseWaitDialog").modal("hide");
+			swal({
+				title: "Listo!",
+				text: "Actualización exitosa",
+				type: "success",
+				confirmButtonText: "Aceptar" },
+				function(){
+					
+			});
 		});
 	});
+	
 	$(".borrar-competencia").click(function(){
-		$.ajax({url:base_url+"perfil/competencia/"+id_user+"/"+$(this).attr("data-id"),
-				type:"DELETE"});
-		$(this).prev().remove(); //number
-		$(this).prev().remove(); //text
-		$(this).next().remove(); //br
-		$(this).remove();//this
+		var element = $(this);
+		deleteCompetition(element);
 	});
 	
     $("#show_competencias").click(function(){
@@ -209,7 +253,7 @@ $(document).ready(function() {
 			var level = $(".level option:selected").val();
 			var levelname = $(".level option:selected").text();
 			for(var i = 0; i< ids.length ; i++){
-				if($(ids[i]).attr("data-id") == valor_elemento+"-"+level){
+				if($(ids[i]).attr("data-id") == valor_elemento && $(ids[i]).attr("data-level") == level){
 					valor_elemento="-";
 					valor_texto = "";
 					texto_error = "Area ya existente"
@@ -217,6 +261,7 @@ $(document).ready(function() {
 			}
 			if(valor_elemento!="-" && level !="-"){
 				$.post(base_url+"perfil/competencia/"+id_user+"/"+valor_elemento+"/"+level,function(){
+					$('#hide_competencias').toggle("fast");
 					text = $(".competen option:selected").text();
 					if(level == -1){
 						var div = "<div class=\"numero-competencia\">"+ids.length+"</div><div class=\"valor-competencia\">"+text+" - Primaria</div><div class=\"borrar-competencia\" data-id=\""+valor_elemento+"-2\" onclick=\"deleteitem(this)\">X</div><br>";
@@ -225,12 +270,12 @@ $(document).ready(function() {
 						var div = "<div class=\"numero-competencia\">"+(ids.length+3)+"</div><div class=\"valor-competencia\">"+text+" - Otro</div><div class=\"borrar-competencia\" data-id=\""+valor_elemento+"-5\" onclick=\"deleteitem(this)\">X</div><br>";
 
 					}else{
-						var div = "<div class=\"numero-competencia\">"+ids.length+"</div><div class=\"valor-competencia\">"+text+" - "+levelname+"</div><div class=\"borrar-competencia\" data-id=\""+valor_elemento+"-"+level+"\" onclick=\"deleteitem(this)\">X</div><br>";
+						var div = "<div class=\"numero-competencia\">&nbsp;"+(ids.length + 1)+".&nbsp;</div><div class=\"valor-competencia\">"+text+" - "+levelname+"</div><div class=\"borrar-competencia\" data-id=\""+valor_elemento+"\" data-level=\""+level+"\" onclick=\"deleteCompetition(this)\">X</div><br>";
 					}
 					$("#areas-wrapper").append(div);
 				});
 			}else
-				alert(texto_error)
+				swal("Error!", texto_error, "error");
 		}
 	})
 	
@@ -357,7 +402,8 @@ $(document).ready(function() {
 function getFile(){
 	document.getElementById("upfile").click();
 }
- function sub(obj){
+
+function sub(obj){
 	var file = obj.value;
 	var fileName = file.split("\\");
 	document.getElementById("texto_foto").innerHTML = fileName[fileName.length-1];
@@ -365,20 +411,72 @@ function getFile(){
 	var fd = new FormData();
 	fd.append("userfile", obj.files[0]);
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', base_url+"perfil/savePicture/"+id_user, true);
+	xhr.open('POST', base_url + "perfil/savePicture", true);
 	xhr.onload = function() {
-		if (this.status == 200) {
-			$(".img-profile").attr("src",this.response);
-			
-		};
+		document.getElementById("texto_foto").innerHTML = "Subir foto";
+		
+		response = JSON.parse(this.response);
+		if(response.success)
+		{
+			$(".img-profile").attr("src",response.success);
+		}
+		else if(response.error)
+		{
+			switch(response.error){
+				case "<p>The filetype you are attempting to upload is not allowed.</p><p>The filetype you are attempting to upload is not allowed.</p>":
+						swal({
+							title: "Error!",
+							text: "El tipo de archivo que intentas cargar no es permitido. Las extensiones permitidas son gif, jpg y png.",
+							type: "error",
+							confirmButtonText: "Aceptar" },
+							function(){
+								
+						});
+						break;
+				case "<p>The image you are attempting to upload exceedes the maximum height or width.</p><p>The image you are attempting to upload exceedes the maximum height or width.</p>":
+						swal({
+							title: "Error!",
+							text: "Las dimensiones de la imagen supera los límites permitidos, Las dimensiones máximas son 1024 x 768 px.",
+							type: "error",
+							confirmButtonText: "Aceptar" },
+							function(){
+								
+						});
+						break;
+				case "<p>The file you are attempting to upload is larger than the permitted size.</p><p>The file you are attempting to upload is larger than the permitted size.</p>":
+						swal({
+							title: "Error!",
+							text: "El tamaño del archivo que intentas cargar supera los límites permitidos. El tamaño máximo son 20 MB.",
+							type: "error",
+							confirmButtonText: "Aceptar" },
+							function(){
+								
+						});
+						break;
+				default:
+						swal({
+							title: "Error!",
+							text: response.error,
+							type: "error",
+							confirmButtonText: "Aceptar" },
+							function(){
+								
+						});
+						break;
+			}
+		}
+		else
+		{
+			swal({
+				title: "Error!",
+				text: this.response,
+				type: "error",
+				confirmButtonText: "Aceptar" },
+				function(){
+					
+			});
+		}
 	};
 	xhr.send(fd);
 	event.preventDefault();
-}
-
-function _getBio(){
-
-	var text_bio = $("#bio-profesor").val();
-	$("#bio-profesor").text(text_bio);
-
 }
