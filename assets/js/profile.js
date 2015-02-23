@@ -287,6 +287,7 @@ $(document).ready(function() {
 		});
 	});
 
+
 	$(".btn_agregar_referencias_pro").click(function() {
 		var reference = {
 			name:$("#add_nombre_ref_pro").val(),
@@ -373,4 +374,11 @@ function getFile(){
 	};
 	xhr.send(fd);
 	event.preventDefault();
+}
+
+function _getBio(){
+
+	var text_bio = $("#bio-profesor").val();
+	$("#bio-profesor").text(text_bio);
+
 }
