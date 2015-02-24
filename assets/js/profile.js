@@ -1,20 +1,52 @@
 var eventList = []
 function deleteitem(obj){
-	alert("entró...!!!");
+	
 	if($(obj).hasClass("exp")){
-		if(confirm("Estás seguro que deseas borrar esta experiencia")){
-			$.ajax({
-			url:base_url+"perfil/experiencia/"+id_user+"/"+$(obj).attr("data-id"),
-			type:"DELETE"});
-			$(obj).parent().remove();
-		}
+		
+		swal({
+			title: "¿Está seguro?",
+			text: "Se eliminará la experiencia seleccionada",
+			type: "warning",
+			showCancelButton: true,
+			cancelButtonText: "No",
+			confirmButtonText: "Si. eliminala!" ,
+			closeOnConfirm: false,   
+			closeOnCancel: true
+			},
+			function(isConfirm){
+				if (isConfirm) {
+					$.ajax({
+					url:base_url+"perfil/experiencia/"+id_user+"/"+$(obj).attr("data-id"),
+					type:"DELETE"});
+					$(obj).parent().remove();
+			
+					swal("Eliminada!", "La experiencia seleccionada fue eliminada.", "success");
+				}
+		});
+		
 	}else if($(obj).hasClass("ref")){
-		if(confirm("Estás seguro que deseas borrar esta referencia")){
-			$.ajax({
-			url:base_url+"perfil/referencia/"+id_user+"/"+$(obj).attr("data-id"),
-			type:"DELETE"});
-			$(obj).parent().remove();
-		}
+		
+		swal({
+			title: "¿Está seguro?",
+			text: "Se eliminará la referencia seleccionada",
+			type: "warning",
+			showCancelButton: true,
+			cancelButtonText: "No",
+			confirmButtonText: "Si. eliminala!" ,
+			closeOnConfirm: false,   
+			closeOnCancel: true
+			},
+			function(isConfirm){
+				if (isConfirm) {
+					$.ajax({
+					url:base_url+"perfil/referencia/"+id_user+"/"+$(obj).attr("data-id"),
+					type:"DELETE"});
+					$(obj).parent().remove();
+			
+					swal("Eliminada!", "La referencia seleccionada fue eliminada.", "success");
+				}
+		});
+		
 	}
 }
 
@@ -111,14 +143,30 @@ $(document).ready(function() {
 				}
 			},
 			eventClick: function(calEvent, jsEvent, view) {
-				if(confirm("Desea borrar este espacio?")){
-					for(var i in eventList){
-						if(eventList[i].id == calEvent.id){
-							eventList.splice(i,1);
+				
+				swal({
+					title: "¿Está seguro?",
+					text: "Se borrará este espacio",
+					type: "warning",
+					showCancelButton: true,
+					cancelButtonText: "No",
+					confirmButtonText: "Si. eliminalo!" ,
+					closeOnConfirm: false,   
+					closeOnCancel: true
+					},
+					function(isConfirm){
+						if (isConfirm) {
+							for(var i in eventList){
+								if(eventList[i].id == calEvent.id){
+									eventList.splice(i,1);
+								}
+							}
+							$('#calendar').fullCalendar('removeEvents', calEvent.id); // stick? = true
+							swal("Eliminado!", "El espacio seleccionado fue eliminado.", "success");
 						}
-					}
-					$('#calendar').fullCalendar('removeEvents', calEvent.id); // stick? = true
-				}
+				});
+				
+				
 			},
 		});
 	});
@@ -230,19 +278,53 @@ $(document).ready(function() {
 	})
 	$(".delete-group").click(function(){
 		if($(this).hasClass("exp")){
-			if(confirm("Estás seguro que deseas borrar esta experiencia")){
-				$.ajax({
-				url:base_url+"perfil/experiencia/"+id_user+"/"+$(this).attr("data-id"),
-				type:"DELETE"});
-				$(this).parent().remove();
-			}
+			
+			
+			
+			swal({
+				title: "¿Está seguro?",
+				text: "Se eliminará la experiencia seleccionada",
+				type: "warning",
+				showCancelButton: true,
+				cancelButtonText: "No",
+				confirmButtonText: "Si. eliminala!" ,
+				closeOnConfirm: false,   
+				closeOnCancel: true
+				},
+				function(isConfirm){
+					if (isConfirm) {
+						$.ajax({
+						url:base_url+"perfil/experiencia/"+id_user+"/"+$(this).attr("data-id"),
+						type:"DELETE"});
+						$(this).parent().remove();
+				
+						swal("Eliminada!", "La experiencia seleccionada fue eliminada.", "success");
+					}
+			});
+			
 		}else if($(this).hasClass("ref")){
-			if(confirm("Estás seguro que deseas borrar esta referencia")){
-				$.ajax({
-				url:base_url+"perfil/referencia/"+id_user+"/"+$(this).attr("data-id"),
-				type:"DELETE"});
-				$(this).parent().remove();
-			}
+			
+			swal({
+				title: "¿Está seguro?",
+				text: "Se eliminará la referencia seleccionada",
+				type: "warning",
+				showCancelButton: true,
+				cancelButtonText: "No",
+				confirmButtonText: "Si. eliminala!" ,
+				closeOnConfirm: false,   
+				closeOnCancel: true
+				},
+				function(isConfirm){
+					if (isConfirm) {
+						$.ajax({
+							url:base_url+"perfil/referencia/"+id_user+"/"+$(this).attr("data-id"),
+							type:"DELETE"});
+							$(this).parent().remove();
+				
+						swal("Eliminada!", "La referencia seleccionada fue eliminada.", "success");
+					}
+			});
+			
 		}
 	});
 	$(".btn_agregar_experticia").click(function(e) {
