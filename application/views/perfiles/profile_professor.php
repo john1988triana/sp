@@ -134,21 +134,24 @@
 			</div>
 		
 		<div class="row container-videos">
-			<div class="col-md-4">
-				<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe id="video_profe"></iframe></div>
-			</div>
-			<div class="col-md-4">
-				<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='http://www.youtube.com/embed/x97biL1lKBE' frameborder='0' allowfullscreen></iframe></div>
-			</div>
-			<div class="col-md-4">
-				<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='http://www.youtube.com/embed/x97biL1lKBE' frameborder='0' allowfullscreen></iframe></div>
-			</div>
+        
+        	<?php
+			
+			if(count($videos) > 0) {
+				foreach ($videos as &$video) {
+					?>
+					<div class="col-md-4">
+						<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe data-id='<?php echo $video["id"]?>' src='<?php echo $video["video_url"]?>' frameborder='0' allowfullscreen></iframe></div>
+                    </div>
+			<?php		
+				}	
+			}
+			?>
+			
 		</div>
 	</div>
 
-
 	<!-- Estudios -->
-
 
 	<div class="row perfil-profesor">
 		<h3 class="title-profesor">FORMACIÓN ACADEMICA</h3>
@@ -437,11 +440,13 @@
 		</div>
 	</div>
 </div>
+
+
 <?php echo "<script>
 		base_url = '".base_url()."';
 		id_user = '".$id_user."';
 		$(document).ready(function(){
-			$(\"iframe#video_profe\").attr('src','".$youtube."')
+			//$(\"iframe#video_profe\").attr('src','".$youtube."')
 		})</script>";
 ?>
 <link rel='stylesheet' href="<?php echo base_url("assets/js/datepicker/css/datepicker.css"); ?>"></link>

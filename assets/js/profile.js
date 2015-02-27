@@ -458,20 +458,27 @@ $(document).ready(function() {
 		});
 	});
 	$(".btn_agregar_video").click(function() {
-		$(".modal-header h1").html("Actualizando perfil.");
+		$(".modal-header h1").html("Cargando video.");
 		$(".modal-body").html('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div></div>');
 		$("#pleaseWaitDialog").modal();
 		link = $(".link_youtube").val();
+		$(".link_youtube").val("");
 		link = link.replace("watch?","");
 		link = link.replace("=","/");
-		$("#video").val(link);
+		//$("#video").val(link);
 	   
 	   link = link.replace("?", "/");
 	   link = link.replace("=", "/");
+	   
 		$("iframe#video_profe").attr("src",link);
-		$.post(base_url+"perfil/actualizar/"+id_user,{youtube:link},function(){
-			$(".modal-header h1").html("Actualización Completa");
-			$(".modal-body").html("La actualización se ha realizado con exito");
+		$.post(base_url+"perfil/insertarVideo/"+id_user,{youtube:link},function(msg){
+			
+			$("#pleaseWaitDialog").modal("hide");
+			
+			swal("Listo!", "Tu video fue añadido con éxito.", "success");
+			
+			$(".container-videos").append('<div class="col-md-4"><style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class="embed-container"><iframe data-id=' + msg + ' src=' + link + ' frameborder="0" allowfullscreen></iframe></div></div>');
+			
 		})
 	})
 	$(".btn_agregar_precio_hora").mousedown(function() {

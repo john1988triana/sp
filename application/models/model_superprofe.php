@@ -242,6 +242,48 @@ class Model_superprofe extends CI_Model
 			$this->db_super_pro->update('student', $data);
 		}
 	}
+	
+	/**
+	* Insert User video
+	*/
+	public function insertvideo($id_user,$data){
+		
+		$this->db_super_pro->select("id");
+		$this->db_super_pro->from("professor");
+		$this->db_super_pro->where("id_user = ",$id_user);
+		$query = $this->db_super_pro->get();
+		$professors = $query->row_array();
+		//$professors["id"]
+		
+		$data_insert = array(
+					   'professor_id' => $professors["id"],
+					   'video_url' => $data["youtube"]
+					   );
+		
+		$this->db_super_pro->insert("videos_by_professor",$data_insert);
+		$id = $this->db_super_pro->insert_id();
+		
+		return $id;
+	}
+	
+	/**
+	* Get user videos 
+	*/
+	public function getVideosByUser($id_user) {
+		$this->db_super_pro->select("id");
+		$this->db_super_pro->from("professor");
+		$this->db_super_pro->where("id_user = ",$id_user);
+		$query = $this->db_super_pro->get();
+		$professors = $query->row_array();
+		//$professors["id"]
+		
+		$this->db_super_pro->select("*");
+		$this->db_super_pro->from("videos_by_professor");
+		$this->db_super_pro->where("professor_id = ", $professors["id"]);
+		$query = $this->db_super_pro->get();
+		return $query->result_array();	
+	}
+	
 	/**
 	* Adds a experience to a professor
 	*/

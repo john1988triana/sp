@@ -18,6 +18,7 @@ class Perfil extends CI_Controller {
 		$data["levels"] = $this->model_superprofe->getLevels();
 		$this->load->view("header");
 		if($data["isTeacher"]==1){
+			$data["videos"] = $this->model_superprofe->getVideosByUser($this->session->userdata('sIdUser'));
 			$datos["levels"][] = array("id"=>"-1","name"=>"Todos (Primaria,Bachillerato,Universidad,Otros)");
 			$data["unique"]="";
 			$this->load->view("perfiles/profile_professor",$data);
@@ -104,7 +105,16 @@ class Perfil extends CI_Controller {
 			}
 		}
 	}
-
+	
+	public function insertarVideo($id=NULL) {
+		$user = $this->session->userdata('sIdUser');
+		echo $this->model_superprofe->insertvideo($id,$_POST);
+	}
+	
+	public function obtenerVideosPorId($id=NULL) {
+		echo $this->model_superprofe->getVideosByUser($id); //id superprofe database
+	}
+	
 	//public function actualizar($id){
 	public function actualizar($id = null){
 		$user = $this->session->userdata('sIdUser');

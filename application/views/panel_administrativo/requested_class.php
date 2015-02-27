@@ -124,12 +124,15 @@
             		<td>
 					<?php if($editable): ?>
 						<input class="form-control price-pub" style="width:100px;" value="<?php echo $c["price_public"] ?>"> </input>
+                      	<script type="application/javascript"> $(".price-pub").autoNumeric('init', {mDec:'0', aSep: '.', aDec: ',', aSign: '$ '});</script>
+                      
 					<?php else: ?>
 						<?php echo $c["price_public"]; ?>
 					<?php endif; ?>
             		<td>
 					<?php if($editable): ?>
 						<input class="form-control price-sp" style="width:100px;" value="<?php echo $c["price_sp"] ?>"> </input>
+                        <script type="application/javascript"> $(".price-sp").autoNumeric('init', {mDec:'0', aSep: '.', aDec: ',', aSign: '$ '});</script>
 					<?php else: ?>
 						<?php echo $c["price_sp"]; ?>
 					<?php endif; ?>

@@ -623,39 +623,51 @@ function refreshTeacherDetail(id,firstName,lastName,image,rate,price,city,area,a
 		}
 	}
 function updateStudent(){
-	$("#h1_wait").text("Actualizando datos...");
 	
-	$("#pleaseWaitDialog").modal();
-	var row = $(this).parents("tr");
-	var data = {
-		std:{
-			firstName:$("#firstName").val(),
-			lastName:$("#lastName").val(),
-			firstName:$("#firstName").val(),
-			email:$("#user-email").text(),
-			birthday:$("#birthday").val(),
-			phone:$("#phone").val(),
-			mobile:$("#mobile").val(),
-			gender:$("#gender option:selected").val(),
-			address:$("#address").val(),
-			doc:$("#doc").val(),
-			docType:$("#docType option:selected").val(),
-			city:$("#city option:selected").val(),
-			country:$("#country option:selected").val()
+	if($("#phone").val() != "" && $("#phone").val().length >= 7)
+	{
+		$("#h1_wait").text("Actualizando datos...");
+	
+		$("#pleaseWaitDialog").modal();
+		var row = $(this).parents("tr");
+		var data = {
+			std:{
+				firstName:$("#firstName").val(),
+				lastName:$("#lastName").val(),
+				firstName:$("#firstName").val(),
+				email:$("#user-email").text(),
+				birthday:$("#birthday").val(),
+				phone:$("#phone").val(),
+				mobile:$("#mobile").val(),
+				gender:$("#gender option:selected").val(),
+				address:$("#address").val(),
+				doc:$("#doc").val(),
+				docType:$("#docType option:selected").val(),
+				city:$("#city option:selected").val(),
+				country:$("#country option:selected").val()
+			}
 		}
+		
+		$.post(base_url+"administrador/actualizar/estudiante/",data,function(resp){
+			var rta = JSON.parse(resp);
+			if(rta){
+				$("#pleaseWaitDialog").modal("hide");
+				swal({
+					title: "Listo!",
+					text: "La actualización de datos se realizó exitosamente",
+					type: "success",
+					confirmButtonText: "Aceptar" });
+			}
+		});
 	}
-	
-	$.post(base_url+"administrador/actualizar/estudiante/",data,function(resp){
-		var rta = JSON.parse(resp);
-		if(rta){
-			$("#pleaseWaitDialog").modal("hide");
-			swal({
-				title: "Listo!",
-				text: "La actualización de datos se realizó exitosamente",
-				type: "success",
+	else
+	{
+		swal({
+				title: "Error!",
+				text: "El número de teléfono es obligatorio y debe contener al menos 7 dígitos",
+				type: "error",
 				confirmButtonText: "Aceptar" });
-		}
-	});
+	}
 }
 $("#country").change(function(){
 	var cod = {Code:$(this).find("option:selected").attr("code")};

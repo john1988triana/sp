@@ -22,6 +22,7 @@
 	<script src="<?php echo (base_url('assets/js/bootstrap.min.js')); ?>"></script>
 	<script src="<?php echo (base_url('assets/js/bootstrap-hover-dropdown.js')); ?>"></script>
     <script src="<?php echo (base_url('assets/js/sweet-alert.min.js')); ?>"></script>
+    <script src="<?php echo (base_url('assets/js/autoNumeric.js')); ?>"></script>
 	
 </head>
 

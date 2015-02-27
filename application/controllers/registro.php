@@ -270,7 +270,7 @@ class Registro extends CI_Controller {
 			
 			$this->load->model('model_superprofe');
 			
-			//echo json_encode($result->mySQL);
+			//echo json_encode($result);
 			
 			if($result->mySQL == 1){
 				$aInfoUser = $this->aulasamigas->whoAmI($result->id_user);
