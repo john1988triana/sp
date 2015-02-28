@@ -141,6 +141,7 @@
 				foreach ($videos as &$video) {
 					?>
 					<div class="col-md-4">
+						<span class='glyphicon glyphicon-remove-circle delete-group exp' aria-hidden='true'></span>
 						<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe data-id='<?php echo $video["id"]?>' src='<?php echo $video["video_url"]?>' frameborder='0' allowfullscreen></iframe></div>
                     </div>
 			<?php		

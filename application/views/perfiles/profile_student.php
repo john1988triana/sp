@@ -141,6 +141,9 @@
 						
 						<label for="cbo_fecha_inicial">Fechas de estudio</label>
 						<div class="row">
+							<div class="col-md-2 col-md-offset-1">
+								<b>desde</b>
+							</div>
 							<div class="col-md-4">
 								<!--<input type="text" placeholder="Año inicio" class="form-control input-sm" id="add_anio_estu_desde" >-->
 								<select class="form-control input-sm btn-radius" id="add_anio_estu_desde">
@@ -154,7 +157,7 @@
 								?>
 								</select>
 							</div>
-							<div class="col-md-3 col-md-offset-1">
+							<div class="col-md-2 col-md-offset-1">
 								<b>hasta</b>
 							</div>
 							<div class="col-md-4">

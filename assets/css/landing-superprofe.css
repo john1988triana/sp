@@ -1674,6 +1674,57 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 }
 
 
+.row.container-videos .col-md-4 {
+
+	margin-bottom: 30px;
+}
+
+.row.container-videos .col-md-4 .delete-group.exp {
+	position: absolute;
+	right: 25px;
+	left: initial;
+	top: 5px;
+	background-image: none;
+	font-size: 16pt;
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+	color: white;
+	z-index: 99;
+}
+
+.row.container-videos .col-md-4 .delete-group.exp:hover{
+	
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+
+	color: #EF4836;
+
+}
+
+.date-picker-gen .datepicker {
+
+	background-color: whitesmoke;
+}
+
+.date-picker-gen input.datepicker {
+
+	margin-bottom: 5px;
+}
+
+.input-value * {
+
+	display: inline-block;
+
+}
+
+.input-value  {
+
+	margin-top:0;
+
+}
+
 /* ---------------------------- Media Queries ------------------------- */
 
 
@@ -1705,6 +1756,8 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 		width: auto;
 
 	}
+
+	
 }
 
 @media screen and (max-width: 992px) {
@@ -1790,6 +1843,11 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 	
 	}
 
+	.row.container-videos .col-md-4 .delete-group.exp {
+		left: 93%;
+		top: -108px;
+	}
+
 }
 
 
@@ -1808,6 +1866,7 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 		padding-bottom: 25px;
 
 	}
+
 
 }
 

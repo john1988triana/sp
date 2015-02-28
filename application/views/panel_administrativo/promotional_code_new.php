@@ -12,6 +12,15 @@
 				<input class="datepicker to" style="border:none;outline:none;" name="to" id="to" type="text"></input>
 			</div>
 		</div>
+
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6 input-value">
+				<h4>Valor</h4>
+				<input name="valor" id="value-code">
+			</div>
+			<div class="col-md-3"></div>
+		</div>	
 		
 		<div class="col-md-4">
 			<a onClick="random_code();"><div class="btn btn-profe btn-gen-code">Generar Codigo</div></a>
