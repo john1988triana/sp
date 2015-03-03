@@ -1,36 +1,49 @@
-<section class="container" style="margin-top:120px">
-	<h1 class="text-center asi-funciona">Profesores Particulares de algebra</h1>
-	<div class="col-md-12 div-area">
 
+<div class="jumbotron jumbo-landing">
+	<div class="img-land">
+		<div class="container">
+		  	<h1>Profesores Particulares<br>
+			<span>de Matematicas</span></h1>
+	  	</div>
+  	</div>
+</div>
+
+<section class="container-fluid landing-check">
 	
+	<div class="col-md-12 check-title">
+		<h2>En Super<wbr>Profe encuentras el Profesor
+que necesitas para...</h2>
+	</div>
+	<div class="col-md-12">
+		<div class="col-md-7">
+			<h3>
+				<ul>
+					<li><img src="../assets/img/checkicon.png">Clases Particulares de <span>Matematicas</span></li>
+					<li><img src="../assets/img/checkicon.png">Refuerzo Académico </li>
+					<li><img src="../assets/img/checkicon.png">Apoyo Escolar</li>
+					<li><img src="../assets/img/checkicon.png">Preparar un Examen o un Parcial</li>
+					<li><img src="../assets/img/checkicon.png">Tomar tu clase ya sea a domicilio o virtual</li>
+				</ul>
+				El costo de la hora de los profesores oscila entre <span>$25.000</span> y <span>$35.000</span> pesos.
+			</h3>
 
-	<div class="col-md-6">
-		<img class="img-area" style="margin-top:20px;margin-bottom:50px;"src="<?php echo base_url("assets/img/algebra.jpg");?>">
-		<div style="padding-left:40px">
-			<p>Necesitas <b style="color:#00B85C;">Clases Particulares de Algebra?.</b><br>
-			Estas buscando un <b style="color:#00B85C;">Refuerzo Académico?.</b> <br>
-			Quieres un <b style="color:#00B85C;">Profesor</b> que te brinde <b style="color:#00B85C;">Apoyo Escolar?.</b><br>
-			Necesitas <b style="color:#00B85C;">Preparar un Examen </b> o un Parcial?. <br>
-			En <b style="color:#00B85C;">SuperProfe </b> encuentras el Profesor que necesitas para tomar tu clase ya sea a domicilio o virtual de manera <b style="color:#00B85C;">  rápida, fácil y segura</b>. </p>
-			<p class="letra-div-area">Todos nuestros profesores han pasado por un proceso riguroso de selección, en donde se validan sus antecedentes judiciales, profesionales y personales, asisten a una entrevista y presentan un test que los clasifica como Súper Profes.<br>
-			Tenemos SuperProfes para dictar clases particulares a domicilio o virtuales en Bogotá, Medellín, Cali y el resto del país.
-			</p>
+		</div>
+		<div class="col-md-3">
+			<div class="circle-mask">
+				<img class="img-area" src="<?php echo base_url("assets/img/algebra.jpg");?>">
+			</div>
 		</div>	
 	</div>
-
-	<div class="col-md-6">
-	<iframe src="<?php echo base_url("buscador?area=33")?>" style="width:100%;height:700px;border:none;"></iframe>	
-	</div>	
-
-
-</div>
 </section>
+<hr id="separador-busqueda-landing">
 <section class="container" id="results-section">
-    <hr id="separador-busqueda" >
+    
 <h2 class="text-center letra-profes">ALGUNOS DE NUESTROS SUPERPROFES DE ALGEBRA</h2>
-		<div class="col-md-12">
+	<div class="container">
+		<div class="row">
+
 			<div class="col-md-3">
-				<div class="panel-default panel-perfil">                                            
+				<div class="panel-default panel-perfil panel-perfil center-block">                                            
 				<h3 class="text-center tt-txt-panel-perfil" style="color:#009966;">Miller E. Hernández</h3>
 					<div class="panel-body text-center">
 						<img class="img-profile" style="margin: 0px auto;" src="<?php echo base_url("assets/img/profesor-miller-matematicas.png");?>">
@@ -42,11 +55,11 @@
 							<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span>    
 						</div>
 						<div class="medallas-profesor">
-							<img src="<?php echo base_url("assets/img/medallas/1_color.png");?>" alt="">
-							<img src="<?php echo base_url("assets/img/medallas/2_color.png");?>" alt="">
-							<img src="<?php echo base_url("assets/img/medallas/3_color.png");?>" alt="">
-							<img src="<?php echo base_url("assets/img/medallas/4_color.png");?>" alt="">
-							<img src="<?php echo base_url("assets/img/medallas/5_bn.png");?>" alt="" class="no-medalla">
+							<img src="<?php echo base_url("assets/img/medallas/1.svg");?>" alt="">
+							<img src="<?php echo base_url("assets/img/medallas/2.svg");?>" alt="">
+							<img src="<?php echo base_url("assets/img/medallas/3.svg");?>" alt="">
+							<img src="<?php echo base_url("assets/img/medallas/4.svg");?>" alt="">
+							<img src="<?php echo base_url("assets/img/medallas/5b.svg");?>" alt="" class="no-medalla">
 						</div>
 						<h3 class="medalla-tag">Experto</h3>
 
@@ -55,12 +68,14 @@
 						<h4 class="par txt-panel-perfil">Algebra</h4>
 						<h4 class="par txt-panel-perfil">precio: <span style="color: rgb(0, 184, 92);"> $ 35.000 </span></h4>
 					</div>
+					<div class="cta-perfil-profesor"><h3>ver perfil</h3></div>
 				</div>
 			</div>
 
+
 			<div class="col-md-3">
-				<div class="panel-default panel-perfil">                                            
-					<h3 class="text-center tt-txt-panel-perfil" style="color:#009966;">Carolina Suárez</h3>
+				<div class="panel-default panel-perfil panel-perfil center-block">                                            
+				<h3 class="text-center tt-txt-panel-perfil" style="color:#009966;">Carolina Suárez</h3>
 					<div class="panel-body text-center">
 						<img class="img-profile" style="margin: 0px auto;" src="<?php echo base_url("assets/img/profesora-carolina-matematicas.png");?>">
 						<div class="estrellas">
@@ -68,19 +83,30 @@
 							<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
 							<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
 							<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
-							<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span>    
-						</div>								
-						<h4 class="par">Bogotá</h4>  
-						<h4 class="par">Estadísta</h4>     
-						<h4 class="par">Algebra</h4>
-						<h4 class="par">precio: <span style="color: rgb(0, 184, 92);"> $ 35.000 </span></h4>
+							<span class="glyphicon glyphicon-star" style="color: grey;"></span>    
+						</div>
+						<div class="medallas-profesor">
+							<img src="<?php echo base_url("assets/img/medallas/1.svg");?>" alt="">
+							<img src="<?php echo base_url("assets/img/medallas/2.svg");?>" alt="">
+							<img src="<?php echo base_url("assets/img/medallas/3.svg");?>" alt="">
+							<img src="<?php echo base_url("assets/img/medallas/4b.svg");?>" alt="" class="no-medalla">
+							<img src="<?php echo base_url("assets/img/medallas/5b.svg");?>" alt="" class="no-medalla">
+						</div>
+						<h3 class="medalla-tag" style="color: #FE544B;">Master</h3>
+
+						<h4 class="par txt-panel-perfil">Bogotá</h4>  
+						<h4 class="par txt-panel-perfil">Estadísta</h4>    
+						<h4 class="par txt-panel-perfil">Algebra</h4>
+						<h4 class="par txt-panel-perfil">precio: <span style="color: rgb(0, 184, 92);"> $ 35.000 </span></h4>
 					</div>
+					<div class="cta-perfil-profesor"><h3>ver perfil</h3></div>
 				</div>
-			</div> 
+			</div>
+
 
 			<div class="col-md-3">
-				<div class="panel-default panel-perfil">                                            
-					<h3 class="text-center" style="color:#009966;">Daniel Sandoval</h3>
+				<div class="panel-default panel-perfil panel-perfil center-block">                                            
+				<h3 class="text-center tt-txt-panel-perfil" style="color:#009966;">Daniel Sandoval</h3>
 					<div class="panel-body text-center">
 						<img class="img-profile" style="margin: 0px auto;" src="<?php echo base_url("assets/img/profesor-daniel-matematicas.png");?>">
 						<div class="estrellas">
@@ -88,19 +114,29 @@
 							<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
 							<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
 							<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
-							<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span>    
-						</div> 
-						<h4 class="par">Bogotá</h4>  
-						<h4 class="par">Estudiante de Economía</h4>    
-						<h4 class="par">Matemáticas</h4>
-						<h4 class="par">Algebra: <span style="color: rgb(0, 184, 92);"> $ 30.000 </span></h4>
-					</div> 
-				</div>  
+							<span class="glyphicon glyphicon-star" style="color: grey;"></span>    
+						</div>
+						<div class="medallas-profesor">
+							<img src="<?php echo base_url("assets/img/medallas/1.svg");?>" alt="">
+							<img src="<?php echo base_url("assets/img/medallas/2.svg");?>" alt="">
+							<img src="<?php echo base_url("assets/img/medallas/3b.svg");?>" alt=""  class="no-medalla">
+							<img src="<?php echo base_url("assets/img/medallas/4b.svg");?>" alt="" class="no-medalla">
+							<img src="<?php echo base_url("assets/img/medallas/5b.svg");?>" alt="" class="no-medalla">
+						</div>
+						<h3 class="medalla-tag" style="color: #38A5CE;">Profesional</h3>
+
+						<h4 class="par txt-panel-perfil">Bogotá</h4>  
+						<h4 class="par txt-panel-perfil">Estudiante de Economía</h4>    
+						<h4 class="par txt-panel-perfil">Algebra</h4>
+						<h4 class="par txt-panel-perfil">precio: <span style="color: rgb(0, 184, 92);"> $ 30.000 </span></h4>
+					</div>
+					<div class="cta-perfil-profesor"><h3>ver perfil</h3></div>
+				</div>
 			</div>
-			
+
 			<div class="col-md-3">
-				<div class="panel-default panel-perfil">                                            
-					<h3 class="text-center" style="color:#009966;">Daniel Sandoval</h3>
+				<div class="panel-default panel-perfil panel-perfil center-block">                                            
+				<h3 class="text-center tt-txt-panel-perfil" style="color:#009966;">Daniel Sandoval</h3>
 					<div class="panel-body text-center">
 						<img class="img-profile" style="margin: 0px auto;" src="<?php echo base_url("assets/img/profesor-daniel-matematicas.png");?>">
 						<div class="estrellas">
@@ -108,15 +144,26 @@
 							<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
 							<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
 							<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
-							<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span>    
-						</div> 
-						<h4 class="par">Bogotá</h4>  
-						<h4 class="par">Estudiante de Economía</h4>    
-						<h4 class="par">Matemáticas</h4>
-						<h4 class="par">Algebra: <span style="color: rgb(0, 184, 92);"> $ 30.000 </span></h4>
-					</div> 
-				</div>  
-			</div>
+							<span class="glyphicon glyphicon-star" style="color: grey;"></span>    
+						</div>
+						<div class="medallas-profesor">
+							<img src="<?php echo base_url("assets/img/medallas/1.svg");?>" alt="">
+							<img src="<?php echo base_url("assets/img/medallas/2.svg");?>" alt="">
+							<img src="<?php echo base_url("assets/img/medallas/3b.svg");?>" alt=""  class="no-medalla">
+							<img src="<?php echo base_url("assets/img/medallas/4b.svg");?>" alt="" class="no-medalla">
+							<img src="<?php echo base_url("assets/img/medallas/5b.svg");?>" alt="" class="no-medalla">
+						</div>
+						<h3 class="medalla-tag" style="color: #38A5CE;">Profesional</h3>
 
-		</div>  
+						<h4 class="par txt-panel-perfil">Bogotá</h4>  
+						<h4 class="par txt-panel-perfil">Estudiante de Economía</h4>    
+						<h4 class="par txt-panel-perfil">Algebra</h4>
+						<h4 class="par txt-panel-perfil">precio: <span style="color: rgb(0, 184, 92);"> $ 30.000 </span></h4>
+					</div>
+					<div class="cta-perfil-profesor"><h3>ver perfil</h3></div>
+				</div>
+			</div>			
+
+		</div>
+	</div> 
 </section>

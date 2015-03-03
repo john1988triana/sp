@@ -42,11 +42,11 @@
 			</div>
 
 			<div class="medallas-profesor">
-				<img src="assets/img/medallas/1_color.png" alt="">
-				<img src="assets/img/medallas/2_color.png" alt="">
-				<img src="assets/img/medallas/3_color.png" alt="">
-				<img src="assets/img/medallas/4_color.png" alt="">
-				<img src="assets/img/medallas/5_bn.png" alt="" class="no-medalla">
+				<img src="assets/img/medallas_old/1_color.png" alt="">
+				<img src="assets/img/medallas_old/2_color.png" alt="">
+				<img src="assets/img/medallas_old/3_color.png" alt="">
+				<img src="assets/img/medallas_old/4_color.png" alt="">
+				<img src="assets/img/medallas_old/5_bn.png" alt="" class="no-medalla">
 			</div>
 			<div class="btn-subir-foto btn" id="texto_foto" onclick="getFile()">
 				<p>Subir foto</p>
