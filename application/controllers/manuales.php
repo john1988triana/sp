@@ -6,7 +6,7 @@
  */
 if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
-class Reconocimientos extends CI_Controller {
+class Manuales extends CI_Controller {
 	/* function: __construct
      * 
 	 */    
