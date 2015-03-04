@@ -640,10 +640,11 @@ textarea{
 }
 .estrellas span{
     cursor: pointer;
-    margin-left: 5%;
-/*    margin-top: 35%;*/
+    margin-left: 2.5%;
+    margin-right: 2.5%;
     font-size: 145%;
 }
+
 .left-arrow{
 	width: 100px;
 	height: 100px;
@@ -778,13 +779,15 @@ textarea{
 	font-size: 18px;
 	color: #033333;
 }
+
 .panel-perfil{
 	border: 0px;
 	background-color:#F6F6EC;
 	padding-top:10px;
-	border-radius: 7px;
+	border-radius: 15px;
 	width: 95%;
 }
+
 .txt-panel-perfil
 {
 	font-size:15px;
@@ -931,7 +934,7 @@ textarea{
 
 .panel-perfil .medallas-profesor img{
 
-	width: 18%;
+	width: 30px;
 	height: auto;
 }
 
@@ -946,11 +949,15 @@ textarea{
 	padding: 20px;
 	padding-left: 2.5%;
 	padding-right: 2.5%;
+	padding-bottom: 60px;
 }
 
 .panel-perfil {
 
-	width: 100%;
+	max-width: 300px;
+	width: initial;
+	position: relative;
+	min-width: 225px;
 }
 
 .text-center.tt-txt-panel-perfil , .capital-name {
@@ -1165,7 +1172,7 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 
 .img-profile {
 
-	border: 10px solid #ddd;
+	border: 5px solid #ddd;
 	overflow: hidden;
 	height: 200px;
 	width: 200px;
@@ -1674,6 +1681,227 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 }
 
 
+.row.container-videos .col-md-4 {
+
+	margin-bottom: 30px;
+}
+
+.row.container-videos .col-md-4 .delete-group.exp {
+	position: absolute;
+	right: 25px;
+	left: initial;
+	top: 5px;
+	background-image: none;
+	font-size: 16pt;
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+	color: white;
+	z-index: 99;
+}
+
+.row.container-videos .col-md-4 .delete-group.exp:hover{
+	
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+
+	color: #EF4836;
+
+}
+
+.date-picker-gen .datepicker {
+
+	background-color: whitesmoke;
+}
+
+.date-picker-gen input.datepicker {
+
+	margin-bottom: 5px;
+}
+
+.input-value * {
+
+	display: inline-block;
+
+}
+
+.input-value  {
+
+	margin-top:0;
+
+}
+
+/* ---------------------------- Landing ------------------------- */
+
+
+.jumbo-landing {
+
+	margin-top: 80px;
+	padding: 0;
+	
+
+}
+
+.jumbo-landing h1 {
+
+	font-family: 'basictitlefont', sans-serif;
+	color: white;
+}
+
+.jumbo-landing span {
+
+	color: #00B579;
+}
+
+
+.jumbo-landing {
+    position:relative;
+    width:100%;
+    height:auto;
+    background-color: black;
+    background-image:url(../img/back-landing.jpg);
+    background-size: cover;
+	background-attachment: fixed;
+}
+
+.jumbo-landing:before, .jumbo-landing:after {
+    content:'';
+    position:absolute;
+    height:0;
+    border-bottom:20px solid rgb(0, 181, 121);
+    bottom:0;
+}
+
+.jumbo-landing:before {
+    left:0;
+    width:50%;
+    border-right:30px solid transparent;
+}
+.jumbo-landing:after {
+    left: 50%;
+    right:0;
+    border-left:30px solid transparent;
+}
+
+
+.img-land {
+
+	padding: 100px;
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-top: 120px;
+
+}
+
+.landing-check {
+
+	background-color:  rgb(0, 181, 121);
+	padding: 10%;
+	padding-top: 70px;
+	padding-bottom: 70px;
+	color: white;
+
+}
+
+.landing-check li {
+
+	list-style: none;
+	margin-bottom: 30px;
+}
+
+.landing-check ul {
+
+	padding-left: 0;
+}
+
+.landing-check li img {
+
+	width: 45px;
+	margin-right: 10px; 
+	
+}
+
+.circle-mask {
+
+	width: 300px;
+	height: 300px;
+	overflow: hidden;
+	border-radius: 50%;
+	border: 10px solid #E6E6E6 ;
+}
+
+.circle-mask img {
+
+	width: 100%;
+	height: auto;
+}
+
+
+.check-title {
+
+	margin-bottom: 50px;
+}
+
+h3 span {
+
+	color: #003333;
+
+}
+
+#separador-busqueda-landing {
+	
+	border-style: dashed;
+	border-width: 2px;
+	margin: 0;
+	position: relative;
+	top: -32px;
+	border-top: #00B579;
+	color: white;
+	margin-bottom: 70px;
+
+}
+
+.letra-profes {
+
+	color: #003333;
+}
+
+.cta-perfil-profesor {
+
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	background-color: #009966;
+	text-align: center;
+	color: white;
+	cursor: pointer;
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+}
+
+.cta-perfil-profesor:hover {
+
+	background-color: #143D29;
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+
+}
+
+.cta-perfil-profesor h3 {
+
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-weight: 100;
+}
+
+
+
+
 /* ---------------------------- Media Queries ------------------------- */
 
 
@@ -1705,6 +1933,65 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 		width: auto;
 
 	}
+
+
+
+	
+
+	
+}
+
+
+@media screen and (max-width: 480px) {
+    
+   
+
+	.landing-check {
+
+	padding: 5%;
+	padding-top: 70px;
+	color: white;
+	padding-bottom: 70px;
+
+	}
+
+	.img-land {
+
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	.img-land h1 {
+
+		font-size: 28pt;
+		text-align: center;
+	}
+
+	.landing-check h2 {
+
+		font-size: 24px;
+		text-align: center;
+
+	}
+
+	.landing-check h3 {
+
+		font-size: 18px;
+
+	}
+	.landing-check h3 img {
+
+		width: 25px;
+
+	}
+
+	.circle-mask  {
+
+		width:  200px;
+		height: auto;	
+	}
+
+	
 }
 
 @media screen and (max-width: 992px) {
@@ -1761,19 +2048,6 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 		
 	}
 
-	.panel-perfil .medallas-profesor{
-
-	width: 50%;
-	margin-left: 25%;
-	margin-right: 25%;
-	
-	}
-
-	.panel-perfil .medallas-profesor img{
-
-		width: 18%;
-		height: auto;
-	}
 
 	.panel_busqueda {
 
@@ -1788,6 +2062,11 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 	top: -108px;
 	
 	
+	}
+
+	.row.container-videos .col-md-4 .delete-group.exp {
+		left: 93%;
+		top: -108px;
 	}
 
 }
@@ -1808,6 +2087,7 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 		padding-bottom: 25px;
 
 	}
+
 
 }
 
