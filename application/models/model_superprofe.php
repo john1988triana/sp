@@ -904,4 +904,23 @@ class Model_superprofe extends CI_Model
 		$query = $this->db_super_pro->get();
 		return $query->result_array();
 	}
+	
+	/**
+	* promo codes
+	*/
+	
+	function getAllPromoCodes(){
+		$this->db_super_pro->select("*");
+		$this->db_super_pro->from("promo_codes");
+		$this->db_super_pro->order_by("id","desc");
+		$query = $this->db_super_pro->get();
+		return $query->result_array();
+	}
+	
+	function deletePromoCodeById($id){
+		
+		$this->db_super_pro->delete("promo_codes",array("id"=>$id));
+		
+	}
+	
 }

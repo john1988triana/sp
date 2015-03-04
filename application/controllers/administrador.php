@@ -487,11 +487,22 @@ class Administrador extends CI_Controller {
 			case "nueva":	$this->load->view("panel_administrativo/header");
 							$this->load->view("panel_administrativo/promotional_code_new");
 							break;
-			case "lista":	$this->load->view("panel_administrativo/header");
-							$this->load->view("panel_administrativo/promotional_code_list");
+			case "lista":	$query = $this->model_superprofe->getAllPromoCodes();
+							$data["promo_list"] = $query;
+							
+							$this->load->view("panel_administrativo/header");
+							$this->load->view("panel_administrativo/promotional_code_list", $data);
 							break;
 		}
 	}
+	
+	public function eliminarPromoPorId($id){
+		$this->checkPermission();
+		if($id) {
+			
+		}
+	}
+	
 	
 	public function actualizar($subsection){
 		$this->checkPermission();

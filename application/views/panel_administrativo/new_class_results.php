@@ -307,7 +307,7 @@ function saveClass(){
 $(".datepicker").datepicker({format: 'dd-mm-yyyy',
 	language: "es",
 	autoclose: true,
-	startDate: "+1d"
+	startDate: "0d"
 	});
 
 $(".datepicker_birth").datepicker({format: 'dd-mm-yyyy',

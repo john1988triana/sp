@@ -255,12 +255,16 @@ class Perfil extends CI_Controller {
 		}
 	}
 	public function savePicture($id = NULL){
-		if($_SERVER['HTTP_HOST'] == 'superprofe.co' || $_SERVER['HTTP_HOST'] == 'www.superprofe.co')        
-			$config['upload_path'] = '/home/buscop/public_html/sp/application/uploads/';
-		else if($_SERVER['HTTP_HOST']=='amigaslive.net')
+		
+		if($_SERVER['HTTP_HOST'] == 'superprofe.co' || $_SERVER['HTTP_HOST'] == 'www.superprofe.co')  {
+			$config['upload_path'] = '/home/buscop/public_html/application/uploads/';  
+		}
+		else if($_SERVER['HTTP_HOST']=='amigaslive.net'){
 			$config['upload_path'] = '/home/amigas/public_html/superprofe/application/uploads/';
-		else
+		}
+		else {
 			$config['upload_path'] = "application/uploads/";
+		}
 
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['max_size']	= '20000';

@@ -1,147 +1,55 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>superprofe</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<style type="text/css">
-		a {
-
-			color: inherit;
-		}
-	</style>
-</head>
- 
-<body style="margin: 0; padding: 0;">
-	<table bgcolor="#F8F8F8" align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
-	  	<tbody>
+﻿<body>
+	<table width=500 border=0 cellpadding=0 cellspacing=0 bgcolor=#fff>
+	  <tbody>
+		<tr>
+		  <td colspan=2 align=right><img src="{{HOST}}assets/img/logo.png" width=250 height=47 alt=logo Superprofe/></td>
+		</tr>
+		<tr>
+		  <td colspan=2 width=500><img src="{{HOST}}assets/img/niÒos.png" width=500 height=146 alt=NiÒos Superprofe/></td>
+		</tr>
+		<table width=500 border=0 cellspacing=0 cellpadding=30>
+		<tr>
+		  <td colspan=2 bgcolor=#033 width=500>
+		  <font color=#FFF size=+3 face=Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif>Hola {{STUDENT NAME}}</font><font color=#30A173 size=+1 face=Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif><br> Recibe un cordial saludo del equipo de Superprofe.co</font></td>
+		</tr>
+		</table>
+		<table width=500 border=0 cellspacing=0 cellpadding=0>
 			<tr>
-			  <td colspan=2 align=left><img src="../../../assets/img/logo.png" width=250 height=47 alt=logo Superprofe/></td>
-			</tr>
-			<tr>
-			  <td colspan=2 width=600><img src="../../../assets/img/niños.png" width=600 height=180 alt=Niños Superprofe/></td>
-			</tr>
-			<tr>
-			  <td colspan=2 bgcolor=#033 width=600 style="padding: 20px 20px 20px 20px;">
-			  <font color=#FFF size=+3 face= sans-serif>Hola Profesor {{TEACHER NAME}}</font><font color=#30A173 size=+1 face= sans-serif><br> Recibe un cordial saludo del equipo de Superprofe.co</font></td>
-			</tr>
-			<tr>
-				<td colspan=2 style="padding: 20px 20px 0px 20px;">
-					<font color=#30A173 size=+1  face= sans-serif valing>
-					Se ha solicitado una clase con las siguientes características:
-					</font>
-				</td>
-			</tr>
-			
-			<tr>
-				<td colspan=2 style="padding: 20px 40px 10px 40px;">
-					<font color=#30A173 size=+1 face= sans-serif valing>
-					Área: <font color=#4D4D4D>{{MATERIA}}</font></font>
+				<td>
+					<p>
+					El profesor {{TEACHER NAME}} acaba de confirmar tu clase el prÛximo {{DATE}} a las {{TIME}}, en la direcciÛn {{ADDRESS}}.
+					El correo del Profesor es {{TEACHER EMAIL}} y su celular es: {{TEACHER PHONE}}
+					</p>
 				</td>
 			</tr>
 			<tr>
-				<td colspan=2 style="padding: 0px 40px 30px 40px;">
-					<font color=#30A173 size=+1  face= sans-serif valing>
-					Temática: <font color=#4D4D4D>{{TEMA}}</font></font>
+				<td>
+					<p>Recuerda que el valor de la hora de tu clases es de $ {{PRICE}} pesos y debes pagarle al profesor al iniciar la clase.</p>
 				</td>
 			</tr>
-
-			<tr>
-				<td colspan=2 style="padding: 20px 20px 0px 20px;border-top: 2px dashed #4D4D4D;"></td>
-			</tr>
-
-			<tr>
-				<td colspan=2 style="padding: 0px 40px 10px 40px;">
-					<font color=#30A173 size=+1 face= sans-serif valing>
-					Adjuntos: <font color=#4D4D4D>{{token}}</font></font>
-				</td>
-			</tr>
-			<tr>
-				<td colspan=2 style="padding: 0px 40px 10px 40px;">
-					<font color=#30A173 size=+1  face= sans-serif valing>
-					Nivel: <font color=#4D4D4D>{{token}}</font></font>
-				</td>
-			</tr>
-			<tr>
-				<td colspan=2 style="padding: 0px 40px 10px 40px;">
-					<font color=#30A173 size=+1  face= sans-serif valing>
-					Fecha: <font color=#4D4D4D>{{DATE}}</font></font>
-				</td>
-			</tr>
-			<tr>
-				<td colspan=2 style="padding: 0px 40px 10px 40px;">
-					<font color=#30A173 size=+1 face= sans-serif valing>
-					Hora: <font color=#4D4D4D>{{TIME}}</font></font>
-				</td>
-			</tr>
-			<tr>
-				<td colspan=2 style="padding: 0px 40px 10px 40px;">
-					<font color=#30A173 size=+1  face= sans-serif valing>
-					Nombre del estudiante: <font color=#4D4D4D>{{NAME}}</font></font>
-				</td>
-			</tr>
-			<tr>
-				<td colspan=2 style="padding: 0px 40px 10px 40px;">
-					<font color=#30A173 size=+1 face= sans-serif valing>
-					Dirección: <font color=#4D4D4D>{{ADRESS}}</font></font>
-				</td>
-			</tr>
-			<tr>
-				<td colspan=2 style="padding: 0px 40px 10px 40px;">
-					<font color=#30A173 size=+1  face= sans-serif valing>
-					Correo electrónico del estudiante: <font color=#4D4D4D>{{EMAIL}}</font></font>
-				</td>
-			</tr>
-			<tr>
-				<td colspan=2 style="padding: 0px 40px 30px 40px;">
-					<font color=#30A173 size=+1  face= sans-serif valing>
-					Telefóno del estudiante: <font color=#4D4D4D>{{TEL}}</font></font>
-				</td>
-			</tr>
-
-			<tr>
-				<td align=center width=270 bgcolor="#30A173" style="padding: 20px 10px 20px 20px;">
-					<font color=#FFFFFF size=+1  face= sans-serif valing>
-						Confirmo la clase
-					</font>
-				</td>
-				<td align=center width=270 bgcolor="#B7575A" style="padding: 20px 20px 20px 10px;">
-					<font color=#FFFFFF size=+1  face= sans-serif valing>
-						No puedo atender la clase
-					</font>
-				</td>
-			</tr>
-			<tr>
-				<td style="padding: 10px 20px 10px 20px;"></td>
-			</tr>
-
-
-
-
-			<tr>
-			  <td colspan=2 style="padding: 20px 20px 20px 20px;border-top: 2px dashed #4D4D4D;border-bottom: 2px dashed #4D4D4D;">
-				<font color=#4D4D4D size=+1 face='sans-serif'>
-			  	Si tienes alguna inquietud puedes escribirnos a hola@superprofe.co<br>
-				o llamarnos al 301 470 546.<br>
-				Seguimos en contacto, Equipo SuperProfe.co
-				</font>
-			  </td>
-			</tr>
-			
-			<tr>
-				<td align=right style="padding: 10px 10px 10px 10px;">
-				</td>
-			</tr>
-			<tr>   
-			  	<td colspan=2 align=center  bgcolor="#30A173" style="padding: 20px 20px 20px 10px;line-height:1.5;">
-				  <font color=#FFFFFF size=-2 face='sans-serif'>
-				  	¡Nuestros profesores son súper héroes del conocimiento!<br>
-					Tel.:+57 (1)3105513   Cel.  (+57) 301 470 5463 Dir.: Calle 69 11 A - 33 Bogotá , Colombia.<br>E-mail:  hola@superprofe.co Visite nuestra web:<a href="http://superprofe.co/">www.superprofe.co</a><br>
-					Skype: super-profe Twitter: @superprofecol
-				</font>
-				</td>
-			</tr>
-		</tbody>	
-	</table>
+		</table>
+		
+		<table width=500 border=0 cellspacing=0 cellpadding=20>
+		<tr>
+		  <td bgcolor=#30A173><font color=#fff size=-1 face='Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif'>Queremos que no te preocupes nunca m·s por conseguir Profesor Particular, asÌ que si necesitas otro Profesor o conoces a alg˙n que lo pueda necesitar no dudes en contactarnos.</font></td>
+		</tr>
+		</table>
+	   <table width=500 border=0 cellspacing=0 cellpadding=10>
+		<tr>
+		<td width=230></td>
+		  <td><font color=#033 face=Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif>Que tengas un excelente dÌa!<br>
+	Seguimos en contacto,
+	<br><strong>Nadezda Vera</strong></font></td>
+		</tr>
+		</table>   
+	  </tbody>
+	  <img src="{{HOST}}assets/img/logo.png" width=250 height=47 alt=logo Superprofe/><br>
+	  <font color=#000 size=-1 face='Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif'>°Nuestros profesores son s˙per hÈroes del conocimiento!<br>
+		Tel.:+57 (1)3105513   Cel.  (+57) 301 470 5463 <br>
+		Dir.: Calle 69 11 A - 33 Bogot· , Colombia.<br>
+		E-mail:  hola@superprofe.co <br>
+		Visite nuestra web: www.superprofe.co<br>
+		Skype: super-profe<br>
+		Twitter: @superprofecol</font>
+</table>
 </body>
-</html>

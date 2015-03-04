@@ -279,7 +279,7 @@ $(document).ready(function() {
 	$(".delete-group").click(function(){
 		if($(this).hasClass("exp")){
 			
-			
+			var element = $(this);
 			
 			swal({
 				title: "¿Está seguro?",
@@ -294,15 +294,17 @@ $(document).ready(function() {
 				function(isConfirm){
 					if (isConfirm) {
 						$.ajax({
-						url:base_url+"perfil/experiencia/"+id_user+"/"+$(this).attr("data-id"),
+						url:base_url+"perfil/experiencia/"+id_user+"/"+element.attr("data-id"),
 						type:"DELETE"});
-						$(this).parent().remove();
+						element.parent().remove();
 				
 						swal("Eliminada!", "La experiencia seleccionada fue eliminada.", "success");
 					}
 			});
 			
 		}else if($(this).hasClass("ref")){
+			
+			var element = $(this);
 			
 			swal({
 				title: "¿Está seguro?",
@@ -317,9 +319,9 @@ $(document).ready(function() {
 				function(isConfirm){
 					if (isConfirm) {
 						$.ajax({
-							url:base_url+"perfil/referencia/"+id_user+"/"+$(this).attr("data-id"),
+							url:base_url+"perfil/referencia/"+id_user+"/"+element.attr("data-id"),
 							type:"DELETE"});
-							$(this).parent().remove();
+							element.parent().remove();
 				
 						swal("Eliminada!", "La referencia seleccionada fue eliminada.", "success");
 					}
