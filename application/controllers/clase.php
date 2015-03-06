@@ -49,6 +49,13 @@ class Clase extends CI_Controller {
 		$this->load->view("clase/calificar",$data);
 		$this->load->view("footer");
 	}
+	
+	public function calificar_estudiante() {
+		$this->load->view("header");
+		$this->load->view("clase/calificar_estudiante");
+		$this->load->view("footer");
+	}
+	
 	public function confirmar($reqid){	
 	if (isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/bot|crawl|slurp|spider/i', $_SERVER['HTTP_USER_AGENT'])) {
 		    return;

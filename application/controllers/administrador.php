@@ -75,6 +75,13 @@ class Administrador extends CI_Controller {
 			redirect(base_url("administrador/ingreso"));
 		}
 	}
+	
+	public function test(){
+		$email = "diego.castellanos@jci.com";
+		$data = json_decode($this->aulasamigas->getUserByEmail($email));
+		echo json_encode($data);
+	}
+	
 	public function clases($subsection = "nueva",$params=""){
 		$this->checkPermission();
 		switch($subsection){
