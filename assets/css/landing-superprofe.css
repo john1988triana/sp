@@ -881,6 +881,11 @@ textarea{
 	
 /*-------- Globales ----------*/
 
+.margin-top {
+
+	margin-top: 200px;
+}
+
 .trasition-half {
 
 	-webkit-transition: 0.5s;
@@ -1899,7 +1904,56 @@ h3 span {
 	font-weight: 100;
 }
 
+.form-landing {
 
+	width: 100%;
+	min-height: 600px;
+	background: url('../img/land-form-back.jpg') no-repeat center center;
+  	background-size: cover;
+  	background-attachment: fixed;
+}
+  
+
+/* ---------------------------- Ranking ------------------------- */
+
+
+
+
+.circle-number {
+
+	margin: auto;
+	width: 60px;
+	height: 60px;
+	text-align: center;
+	border-radius: 50%;
+	margin-bottom: 10px;
+	line-height: 42pt;
+	font-size: 36pt;
+	font-weight: 600;
+
+}
+
+
+
+
+/* ---------------------------- Ranking ------------------------- */
+
+	
+	.jumbo-testimonial h1 {
+	    
+	    margin-top: 50px;
+	}	
+	
+
+
+	
+
+	.jumbo-testimonial:before, .jumbo-testimonial:after {
+	    content:none;
+	    position:absolute;
+	    display: none;
+	}	
+	
 
 
 /* ---------------------------- Media Queries ------------------------- */
@@ -2069,6 +2123,13 @@ h3 span {
 		top: -108px;
 	}
 
+	.test-pack  {
+
+	text-align: center;
+
+	}
+
+
 }
 
 
@@ -2093,4 +2154,145 @@ h3 span {
 
 
 
+.form-landing {
 
+	padding-top: 70px;
+}
+
+
+.form-landing  {
+
+	font-size: 18pt;
+	color: white;
+	padding-bottom: 70px;
+}
+.form-landing span  {
+
+	color: #00B579;
+}
+
+.form-landing input  {
+
+	border-radius: 5px;
+	font-size: 12pt;
+}
+
+.landing-btn-form {
+
+	width: 100%;
+	background-color: #00B579;
+	margin-top: 25px;
+
+}
+
+.form-landing p {
+
+	margin-bottom: 25px;
+}
+
+.form-landing img {
+
+	width: 50px;
+	height: auto;
+	margin-right: 10px;
+}
+
+.form-landing a img {
+
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+	opacity: 1;
+
+}
+
+.form-landing a img:hover {
+
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+	opacity: 0.5;
+
+}
+
+.container-testimonials-img {
+
+	width: 70px;
+	height: 70px;
+	overflow: hidden;
+	border-radius: 50%;
+
+}
+
+.testimonials-ctrl .row img {
+
+	width: 100%;
+	height: auto;
+} 
+
+
+.test-pack {
+
+	margin-bottom: 50px;
+}
+
+.test-pack h5 {
+
+	font-size: 11xpt;
+}
+
+
+.test-pack .col-md-12 {
+
+	margin-top: 20px;
+}
+
+.heroes-thks h2 {
+
+	margin-top: 50px;
+
+}
+
+.heroes-thks {
+
+	min-height: 300px;
+
+}
+
+.heroes-ctrl h4 {
+
+	margin-top: 22px;
+
+}
+
+img#icon-price {
+
+	width: 25%;
+	margin-left: 27.5;
+	margin-right: 37.5;
+}
+
+.back-price {
+
+	background-color: #009966;
+	border-radius: 10px;
+	text-align: center;
+	color: white;
+	padding: 20px;
+}
+
+.back-price h4 {
+
+	font-size: 20pt;
+	margin-top: -10px;
+}
+
+.back-price h5 {
+
+	font-size: 14pt;
+}
+
+.back-price h6 {
+
+	font-size: 11pt;
+}
