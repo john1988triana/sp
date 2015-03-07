@@ -2258,7 +2258,6 @@ h3 span {
 	min-height: 300px;
 
 }
-
 .heroes-ctrl h4 {
 
 	margin-top: 22px;
@@ -2295,4 +2294,26 @@ img#icon-price {
 .back-price h6 {
 
 	font-size: 11pt;
+}
+
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  font-size: 36pt;
+  color: #EAEAEA;
+  padding-top: 5.5px;
+  text-align: center;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+   color: #ffcc00;
+   font-size: 36pt;
 }
