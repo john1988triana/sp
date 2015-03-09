@@ -234,7 +234,7 @@
 
   <div class="modal-dialog">
 
-    <div class="modal-content">
+    <div class="modal-content popup-iniciar">
 
       <div class="modal-header">
 
@@ -280,7 +280,7 @@
 
 					<div class="col-lg-12">
 
-						<button type="submit"  class="btn-profe btn-login btn col-lg-12">Ingresar</a>
+						<button type="submit"  class="btn-profe btn-login btn col-lg-12 popup-ingresar">Ingresar</a>
 
 					</div>
 
