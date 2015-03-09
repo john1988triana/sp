@@ -11,26 +11,11 @@
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
 				<div class="login-panel panel-registro panel panel-default">
-                
-                <form action="<?php echo base_url('registro/register'); ?>" role="form" class="form-horizontal" id="formRegUser" method="post">
-                
 					<h3 class="text-center asi-funciona" style="color:#003333">¿Es tu primera vez en la plataforma?</h3>
-                    <div class="text-center" style="height:80px; padding-top:30px;">
-                      <p>
-                      
-                        <label>
-                          <input name="tipo_usuario" type="radio" id="tipo_usuario_0" value="acudiente" <?php if($user_type == "acudiente"){ echo "checked='checked'";}?>>
-                          soy Acudiente</label>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <label>
-                          <input type="radio" name="tipo_usuario" value="estudiante" id="tipo_usuario_1" <?php if($user_type == "estudiante"){ echo "checked='checked'";}?>>
-                        soy Estudiante</label>
-                        <br>
-                      </p>
-                    </div>
+                    
                     
 				  <div class="panel-body" id="form_content">
-						
+						<form action="<?php echo base_url('registro/register'); ?>" role="form" class="form-horizontal" id="formRegUser" method="post">
 						<?php
 							$attributes = array(
 							'id' => 'formRegUser',
@@ -54,30 +39,7 @@
 								</div>
 							</div>
                             
-                            <div class="form-group" id="phoneDiv">
-								<div class="col-md-10 col-md-offset-1">
-									<label for="phoneTutor">Número de teléfono</label>
-									<input id="phoneTutor" name="txtPhoneTutor" type="text" class="form-control" value="<?php echo (!empty($phone_tutor)?$phone_tutor:''); ?>" placeholder="Número de teléfono" required>
-								</div>
-							</div>
                             
-                            
-                            <div class="form-group" id="nameStudent">
-								<div class="col-md-10 col-md-offset-1">
-									<label for="fname_student">Nombre del alumno</label>
-									<input id="fname_student" name="txtNameStudent" type="text" class="form-control" value="<?php echo (!empty($fname_student)?$fname_student:''); ?>" placeholder="Nombre del alumno" required>
-								</div>
-							</div>
-                            
-                            <div class="form-group" id="lastStudent">
-								<div class="col-md-10 col-md-offset-1">
-									<label for="lname_student">Apellido del alumno</label>
-									<input id="lname_student" name="txtLastStudent" type="text" class="form-control" value="<?php echo (!empty($lname_student)?$lname_student:''); ?>" placeholder="Apellido del alumno" required>
-								</div>
-							</div>
-                            
-                            
-
 							<div class="form-group">
 								<div class="col-md-10 col-md-offset-1">
 									<label for="email">Correo electrónico</label>
@@ -141,11 +103,8 @@
 						}
 						?>
 						<?php echo form_close(); ?>
-						
+						</form>
 					</div>
-                    
-                    </form>
-                    
 				</div>
 			</div>
 			<div class="col-md-3"></div>
@@ -162,42 +121,6 @@
 
 <div class="amigas-separator"></div>
 <script>var base_url = '<?php echo base_url(); ?>';
-
-$(function() {
-	
-	var val = $('input:radio[name=tipo_usuario]:checked').val();
-	
-	if(val == "estudiante"){
-		$("#form_content").show();
-		$("#nameStudent").hide();
-		$("#lastStudent").hide();
-		$("#phoneDiv").hide();
-	}
-	else if(val == "acudiente") {
-		$("#form_content").show();
-		$("#nameStudent").show();
-		$("#lastStudent").show();
-		$("#phoneDiv").show();
-	}
-	else {
-		$("#form_content").hide();
-	}
-	
-    $('input[type=radio]').change(function(e) {
-        if (this.id == 'tipo_usuario_0') {
-            $("#form_content").show("200");
-			$("#nameStudent").show("100");
-			$("#lastStudent").show("100");
-			$("#phoneDiv").show("100");
-        } else if(this.id == 'tipo_usuario_1') {
-            $("#form_content").show("200");
-			$("#nameStudent").hide("100");
-			$("#lastStudent").hide("100");
-			$("#phoneDiv").hide("100");
-        }
-      });
-});
-
 
 </script>
 </section>

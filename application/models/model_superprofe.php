@@ -35,9 +35,9 @@ class Model_superprofe extends CI_Model
 	/**
 	* Add a new user to the platform to Add a User to the DataBase it should be checked first
 	*/
-	private function addUser($firstName,$lastName,$id_user,$type){
+	private function addUser($firstName,$lastName,$id_user,$type, $tutorFName = "", $tutorLName = "", $tutorPhone = "", $isTutor = 0){
 		if($type == 0){ //student
-			$this->db_super_pro->insert('student',array("firstName"=>$firstName,"lastName"=>$lastName,"id_user"=>$id_user));
+			$this->db_super_pro->insert('student',array("firstName"=>$firstName,"lastName"=>$lastName,"id_user"=>$id_user, "tutorFirstName"=>$tutorFName, "tutorLastName"=>$tutorLName, "tutorPhone"=>$tutorPhone, "registerAsTutor"=>$isTutor));
 		}else{ //teacher
 			$this->db_super_pro->insert('professor',array("firstName"=>$firstName,"lastName"=>$lastName,"id_user"=>$id_user));
 		}
@@ -45,32 +45,66 @@ class Model_superprofe extends CI_Model
 	/**
 	* Checks for the existence of an user if the user doesnt exist on DB then create it
 	*/
-	public function checkUser($firstName,$lastName,$id_user,$type){
-		if($type==0){ //student
-			$this->db_super_pro->select("*");
-			$this->db_super_pro->from("student");
-			$this->db_super_pro->where("id_user = ",$id_user);
-			$query = $this->db_super_pro->get();
-			$results = $query->result_array();
-			if(count($results) == 0){
-				$this->addUser($firstName,$lastName,$id_user,$type);
-				return $this->checkUser($firstName,$lastName,$id_user,$type);
-			}else{
-				return $results[0];
-			}
-		}else{ //teacher
-			$this->db_super_pro->select("*");
-			$this->db_super_pro->from("professor");
-			$this->db_super_pro->where("id_user = ",$id_user);
-			$query = $this->db_super_pro->get();
-			$results = $query->result_array();
-			if(count($results) == 0){
-				$this->addUser($firstName,$lastName,$id_user,$type);
-				return $this->checkUser($firstName,$lastName,$id_user,$type);
-			}else{
-				return $results[0];
+	public function checkUser($firstName,$lastName,$id_user,$type, $tutorFName = "", $tutorLName = "", $tutorPhone = "", $isTutor = 0){
+		
+		if($isTutor == 1){
+			if($type==0){ //student
+				$this->db_super_pro->select("*");
+				$this->db_super_pro->from("student");
+				$this->db_super_pro->where("id_user = ",$id_user);
+				$query = $this->db_super_pro->get();
+				$results = $query->result_array();
+				if(count($results) == 0){
+					$this->addUser($firstName,$lastName,$id_user,$type, $tutorFName, $tutorLName, $tutorPhone, $isTutor);
+					return $this->checkUser($firstName,$lastName,$id_user,$type, $tutorFName, $tutorLName, $tutorPhone, $isTutor);
+				}else{
+					return $results[0];
+				}
+			}else{ //teacher
+				$this->db_super_pro->select("*");
+				$this->db_super_pro->from("professor");
+				$this->db_super_pro->where("id_user = ",$id_user);
+				$query = $this->db_super_pro->get();
+				$results = $query->result_array();
+				if(count($results) == 0){
+					$this->addUser($firstName,$lastName,$id_user,$type);
+					return $this->checkUser($firstName,$lastName,$id_user,$type);
+				}else{
+					return $results[0];
+				}
 			}
 		}
+		else {
+			if($type==0){ //student
+				$this->db_super_pro->select("*");
+				$this->db_super_pro->from("student");
+				$this->db_super_pro->where("id_user = ",$id_user);
+				$query = $this->db_super_pro->get();
+				$results = $query->result_array();
+				if(count($results) == 0){
+					$this->addUser($firstName,$lastName,$id_user,$type);
+					return $this->checkUser($firstName,$lastName,$id_user,$type);
+				}else{
+					return $results[0];
+				}
+			}else{ //teacher
+				$this->db_super_pro->select("*");
+				$this->db_super_pro->from("professor");
+				$this->db_super_pro->where("id_user = ",$id_user);
+				$query = $this->db_super_pro->get();
+				$results = $query->result_array();
+				if(count($results) == 0){
+					$this->addUser($firstName,$lastName,$id_user,$type);
+					return $this->checkUser($firstName,$lastName,$id_user,$type);
+				}else{
+					return $results[0];
+				}
+			}
+		}
+		
+		
+		
+		
 	}
 	/**
 	* Find matches on database

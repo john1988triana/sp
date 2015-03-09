@@ -29,7 +29,8 @@ class Registro extends CI_Controller {
 		$arr_send_data = array('sLoginGoogle' => json_decode($sUrlGoogle),
        						'sLoginFacebook' => $urlFacebook,
        						'circles' => $this->circles,
-       						'message' => $this->message);    
+       						'message' => $this->message,
+							'user_type'=> '');    
 		$this->load->view('header');   											            				
 		$this->load->view('registro/register', $arr_send_data);
 		$this->load->view('footer');
@@ -109,7 +110,7 @@ class Registro extends CI_Controller {
 			);    
         
 		$this->load->view('header');	
-		$this->load->view('registro/register', $arr_send_data);
+		$this->load->view('registro/register_teacher', $arr_send_data);
 		$this->load->view('footer');
 	}
 	public function datos_personales(){
@@ -244,6 +245,10 @@ class Registro extends CI_Controller {
 		if ($this->session->userdata('bLoginIn')) {
 			redirect("index");
 		}
+		
+		//echo "test..... " . json_encode($this->input->post());
+		//return;
+		
 		$this->load->library('aulasamigas');
 		//Verifica si los datos llegan por Get llamada token
 		if ($this->input->get_post('code')) {$this->_loginGoogle();redirect('login');}
@@ -251,108 +256,235 @@ class Registro extends CI_Controller {
 		$sUrlGoogle = $this->aulasamigas->urlGoogle(base_url(), FALSE, $this->input->ip_address(), FALSE);
 		///Peticion de la url para uniciar con facebook
 		$urlFacebook = $this->login_fb();
-
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('txtName', 'Nombre', 'required|max_length[45]');
-		$this->form_validation->set_rules('txtLast', 'Apellido', 'required|max_length[45]');
-		$this->form_validation->set_rules('txtEmailNew', 'Correo', 'trim|required|valid_email|max_length[45]');
-		$this->form_validation->set_rules('txtPassword', 'Contraseña', 'required|matches[txtPasswordConfirm]|min_length[6]');
-		$this->form_validation->set_rules('txtPasswordConfirm', 'Confirmar contraseña', 'required|min_length[6]');
-		$contents['sLoginGoogle'] = json_decode($sUrlGoogle);
-		$contents['sLoginFacebook'] = $urlFacebook;
-		if ($this->form_validation->run() ) {
-			$this->load->library('aulasamigas');
-			//Agregar el nuevo usuario al sistema de AulasAmigas
-			$result = json_decode($this->aulasamigas->addUser(
-				$this->input->post('txtName'), $this->input->post('txtLast'), $this->input->post('txtEmailNew'), 
-				$_SERVER['REMOTE_ADDR'], $this->input->post('txtPassword'), 'h', 
-				$this->session->userdata('isTeacher'), 0, '768'));
-			
-			$this->load->model('model_superprofe');
-			
-			//echo json_encode($result);
-			
-			if($result->mySQL == 1){
-				$aInfoUser = $this->aulasamigas->whoAmI($result->id_user);
-				$user = $this->model_superprofe->checkUser($this->input->post('txtName'),
-												$this->input->post('txtLast'),
-												$result->id_user,
-												$aInfoUser[0]["isTeacher"]);
-				if($this->input->post('txtEmail')){
-					$email_temp = $this->input->post('txtEmail');
-				}else if($this->input->post('txtEmailNew')){
-					$email_temp = $this->input->post('txtEmailNew');
-				}
-				//INICIO DE SESSION DEL USUARIO
-				$aSessionUser = array(
-					'bLoginIn' => TRUE,
-					'sIdUser' => $result->id_user,
-					'sFirstName' => $this->input->post('txtName'),
-					'sLastName'	=> $this->input->post('txtLast'),
-					'sEmail' => $email_temp,
-					'isTeacher' => $aInfoUser[0]["isTeacher"],
-					 'id_content' => '768',
-					'sImageUrl' => $user["picture"]
-				);
-				$this->session->set_userdata($aSessionUser);
-				$this->_setConnectionHistory();
+		
+		if( $this->input->post('tipo_usuario') == "acudiente"){
+			$this->load->library('form_validation');
+			$this->form_validation->set_rules('txtName', 'Nombre Acudiente', 'required|max_length[45]');
+			$this->form_validation->set_rules('txtLast', 'Apellido Acudiente', 'required|max_length[45]');
+			$this->form_validation->set_rules('txtEmailNew', 'Correo', 'trim|required|valid_email|max_length[45]');
+			$this->form_validation->set_rules('txtPassword', 'Contraseña', 'required|matches[txtPasswordConfirm]|min_length[6]');
+			$this->form_validation->set_rules('txtPasswordConfirm', 'Confirmar contraseña', 'required|min_length[6]');
+			$this->form_validation->set_rules('txtNameStudent', 'Nombre Estudiante', 'required|max_length[45]');
+			$this->form_validation->set_rules('txtLastStudent', 'Apellido Estudiante', 'required|max_length[45]');
+			$this->form_validation->set_rules('txtPhoneTutor', 'Teléfono acudiente', 'required|min_length[7]');
+			$contents['sLoginGoogle'] = json_decode($sUrlGoogle);
+			$contents['sLoginFacebook'] = $urlFacebook;
+			if ($this->form_validation->run() ) {
+				$this->load->library('aulasamigas');
+				//Agregar el nuevo usuario al sistema de AulasAmigas
 				
-				if($ajax){
-					echo json_decode(true);
-					return;
-				}
-				if($aInfoUser[0]["isTeacher"] == 0){
-					$reqid = $this->session->userdata("req_id");
-					if(!empty($reqid)){
-						$data = array("id_student"=>$aSessionUser["sIdUser"]);
-						$this->model_superprofe->updateRequest($reqid,$data);
-						redirect(base_url("clase/solicitar/".$reqid));
+				$result = json_decode($this->aulasamigas->addUser(
+					$this->input->post('txtName'), $this->input->post('txtLast'), $this->input->post('txtEmailNew'), 
+					$_SERVER['REMOTE_ADDR'], $this->input->post('txtPassword'), 'h', 
+					$this->session->userdata('isTeacher'), 0, '768'));
+				
+				$this->load->model('model_superprofe');
+				
+				//echo json_encode($result);
+				
+				if($result->mySQL == 1){
+					$aInfoUser = $this->aulasamigas->whoAmI($result->id_user);
+					$user = $this->model_superprofe->checkUser($this->input->post('txtNameStudent'),
+													$this->input->post('txtLastStudent'),
+													$result->id_user,
+													$aInfoUser[0]["isTeacher"],
+													$this->input->post('txtName'),
+													$this->input->post('txtLast'),
+													$this->input->post('txtPhoneTutor'),
+													1);
+					if($this->input->post('txtEmail')){
+						$email_temp = $this->input->post('txtEmail');
+					}else if($this->input->post('txtEmailNew')){
+						$email_temp = $this->input->post('txtEmailNew');
+					}
+					//INICIO DE SESSION DEL USUARIO
+					$aSessionUser = array(
+						'bLoginIn' => TRUE,
+						'sIdUser' => $result->id_user,
+						'sFirstName' => $this->input->post('txtNameStudent'),
+						'sLastName'	=> $this->input->post('txtLastStudent'),
+						'sEmail' => $email_temp,
+						'isTeacher' => $aInfoUser[0]["isTeacher"],
+						'id_content' => '768',
+						'sImageUrl' => $user["picture"]
+					);
+					$this->session->set_userdata($aSessionUser);
+					$this->_setConnectionHistory();
+					
+					if($ajax){
+						echo json_decode(true);
+						return;
+					}
+					if($aInfoUser[0]["isTeacher"] == 0){
+						$reqid = $this->session->userdata("req_id");
+						if(!empty($reqid)){
+							$data = array("id_student"=>$aSessionUser["sIdUser"]);
+							$this->model_superprofe->updateRequest($reqid,$data);
+							redirect(base_url("clase/solicitar/".$reqid));
+						}else{
+							redirect('login/validate_view');
+						}
 					}else{
 						redirect('login/validate_view');
 					}
-				}else{
-					redirect('login/validate_view');
+				}else if($result->mySQL == 5){
+					if($ajax){
+						echo json_decode(false);
+						return;
+					}
+					$arr_send_data = array(
+					'sLoginGoogle' => json_decode($sUrlGoogle),
+					'sLoginFacebook' => $urlFacebook,
+					'circles' => $this->circles,
+					'message' => '<div class="col-md-12">
+							<div class="alert alert-danger" role="alert">
+								<p>El usuario ya existe.</p>
+							</div>
+						</div>',
+					'name' => $this->input->post('txtName'),
+					'firstname' => $this->input->post('txtLast'),
+					'reg_email' => $this->input->post('txtEmailNew'),
+					'user_type' => $this->input->post('tipo_usuario'),
+					'fname_student' => $this->input->post('txtNameStudent'),
+					'lname_student' => $this->input->post('txtLastStudent'),
+					'phone_tutor' => $this->input->post('txtPhoneTutor'),
+					);
+					
 				}
-			}else if($result->mySQL == 5){
+			}else {
 				if($ajax){
 					echo json_decode(false);
 					return;
 				}
 				$arr_send_data = array(
-				'sLoginGoogle' => json_decode($sUrlGoogle),
-				'sLoginFacebook' => $urlFacebook,
-				'circles' => $this->circles,
-				'message' => '<div class="col-md-12">
-						<div class="alert alert-danger" role="alert">
-							<p>El usuario ya existe.</p>
-						</div>
-					</div>',
-				'name' => $this->input->post('txtName'),
-				'firstname' => $this->input->post('txtLast'),
-				'reg_email' => $this->input->post('txtEmailNew'),
-				);
-				
+					'sLoginGoogle' => json_decode($sUrlGoogle),
+					'sLoginFacebook' => $urlFacebook,
+					'circles' => $this->circles,
+					'message' => '<div class="col-md-12">
+							<div class="alert alert-danger" role="alert">
+								<p>Todos los datos son obligatorios.</p>
+								<p>La contraseña debe contener mínimo 6 caracteres.</p>
+								<p>El número de teléfono debe contener mínimo 7 dígitos.</p>
+							</div>
+						</div>',
+					'name' => $this->input->post('txtName'),
+					'firstname' => $this->input->post('txtLast'),
+					'reg_email' => $this->input->post('txtEmailNew'),
+					'user_type' => $this->input->post('tipo_usuario'),
+					'fname_student' => $this->input->post('txtNameStudent'),
+					'lname_student' => $this->input->post('txtLastStudent'),
+					'phone_tutor' => $this->input->post('txtPhoneTutor'),
+					);
 			}
-		}else {
-			if($ajax){
-				echo json_decode(false);
-				return;
-			}
-			$arr_send_data = array(
-				'sLoginGoogle' => json_decode($sUrlGoogle),
-				'sLoginFacebook' => $urlFacebook,
-				'circles' => $this->circles,
-				'message' => '<div class="col-md-12">
-						<div class="alert alert-danger" role="alert">
-							<p>Todos los datos son obligatorios.</p>
-							<p>La contraseña debe contener mínimo 6 caracteres.</p>
-						</div>
-					</div>',
-				'name' => $this->input->post('txtName'),
-				'firstname' => $this->input->post('txtLast'),
-				'reg_email' => $this->input->post('txtEmailNew'),
-				);
 		}
+		else {
+			$this->load->library('form_validation');
+			$this->form_validation->set_rules('txtName', 'Nombre', 'required|max_length[45]');
+			$this->form_validation->set_rules('txtLast', 'Apellido', 'required|max_length[45]');
+			$this->form_validation->set_rules('txtEmailNew', 'Correo', 'trim|required|valid_email|max_length[45]');
+			$this->form_validation->set_rules('txtPassword', 'Contraseña', 'required|matches[txtPasswordConfirm]|min_length[6]');
+			$this->form_validation->set_rules('txtPasswordConfirm', 'Confirmar contraseña', 'required|min_length[6]');
+			$contents['sLoginGoogle'] = json_decode($sUrlGoogle);
+			$contents['sLoginFacebook'] = $urlFacebook;
+			if ($this->form_validation->run() ) {
+				$this->load->library('aulasamigas');
+				//Agregar el nuevo usuario al sistema de AulasAmigas
+				
+				$result = json_decode($this->aulasamigas->addUser(
+					$this->input->post('txtName'), $this->input->post('txtLast'), $this->input->post('txtEmailNew'), 
+					$_SERVER['REMOTE_ADDR'], $this->input->post('txtPassword'), 'h', 
+					$this->session->userdata('isTeacher'), 0, '768'));
+				
+				$this->load->model('model_superprofe');
+				
+				//echo json_encode($result);
+				
+				if($result->mySQL == 1){
+					$aInfoUser = $this->aulasamigas->whoAmI($result->id_user);
+					$user = $this->model_superprofe->checkUser($this->input->post('txtName'),
+													$this->input->post('txtLast'),
+													$result->id_user,
+													$aInfoUser[0]["isTeacher"]);
+					if($this->input->post('txtEmail')){
+						$email_temp = $this->input->post('txtEmail');
+					}else if($this->input->post('txtEmailNew')){
+						$email_temp = $this->input->post('txtEmailNew');
+					}
+					//INICIO DE SESSION DEL USUARIO
+					$aSessionUser = array(
+						'bLoginIn' => TRUE,
+						'sIdUser' => $result->id_user,
+						'sFirstName' => $this->input->post('txtName'),
+						'sLastName'	=> $this->input->post('txtLast'),
+						'sEmail' => $email_temp,
+						'isTeacher' => $aInfoUser[0]["isTeacher"],
+						 'id_content' => '768',
+						'sImageUrl' => $user["picture"]
+					);
+					$this->session->set_userdata($aSessionUser);
+					$this->_setConnectionHistory();
+					
+					if($ajax){
+						echo json_decode(true);
+						return;
+					}
+					if($aInfoUser[0]["isTeacher"] == 0){
+						$reqid = $this->session->userdata("req_id");
+						if(!empty($reqid)){
+							$data = array("id_student"=>$aSessionUser["sIdUser"]);
+							$this->model_superprofe->updateRequest($reqid,$data);
+							redirect(base_url("clase/solicitar/".$reqid));
+						}else{
+							redirect('login/validate_view');
+						}
+					}else{
+						redirect('login/validate_view');
+					}
+				}else if($result->mySQL == 5){
+					if($ajax){
+						echo json_decode(false);
+						return;
+					}
+					$arr_send_data = array(
+					'sLoginGoogle' => json_decode($sUrlGoogle),
+					'sLoginFacebook' => $urlFacebook,
+					'circles' => $this->circles,
+					'message' => '<div class="col-md-12">
+							<div class="alert alert-danger" role="alert">
+								<p>El usuario ya existe.</p>
+							</div>
+						</div>',
+					'name' => $this->input->post('txtName'),
+					'firstname' => $this->input->post('txtLast'),
+					'reg_email' => $this->input->post('txtEmailNew'),
+					'user_type' => $this->input->post('tipo_usuario')
+					);
+					
+				}
+			}else {
+				if($ajax){
+					echo json_decode(false);
+					return;
+				}
+				$arr_send_data = array(
+					'sLoginGoogle' => json_decode($sUrlGoogle),
+					'sLoginFacebook' => $urlFacebook,
+					'circles' => $this->circles,
+					'message' => '<div class="col-md-12">
+							<div class="alert alert-danger" role="alert">
+								<p>Todos los datos son obligatorios.</p>
+								<p>La contraseña debe contener mínimo 6 caracteres.</p>
+							</div>
+						</div>',
+					'name' => $this->input->post('txtName'),
+					'firstname' => $this->input->post('txtLast'),
+					'reg_email' => $this->input->post('txtEmailNew'),
+					'user_type' => $this->input->post('tipo_usuario'),
+					);
+			}
+		}
+		
+		
 		$this->load->view('header');
 		$this->load->view('registro/register', $arr_send_data);
 		$this->load->view('footer');
