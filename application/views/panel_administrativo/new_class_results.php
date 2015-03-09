@@ -16,7 +16,7 @@
 						<td><input id="lastName" class="form-control" value="<?php if(isset($FamilyName))echo $FamilyName; ?>"></input></td>
 					</tr>
 					<tr>
-						<td>País de Residecia</td>
+						<td>País de Residencia</td>
 						<td>
 							<select id="country" class="form-control">    		   
 							<?php 
