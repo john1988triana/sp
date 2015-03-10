@@ -421,7 +421,72 @@
    				</form>
   			</div>
 		</div>	
-	</div>		
+	</div>
+
+	<div class="container testimonials-ctrl heroes-ctrl">
+		
+
+		<div class="row" style="margin-top:30px;">
+
+			<h3 class="title-profesor" style="margin-bottom:80px;">COMENTARIOS</h3>
+			<div class="col-md-6 col-md-offset-3">
+
+					<div class="col-md-12 test-pack comment-pack">
+						<div class="col-md-3">
+							<div class="container-testimonials-img center-block">
+								<img src="<?php echo base_url("application/uploads/test_1.jpg");?>">
+							</div>
+						</div>
+						<div class="col-md-9">
+							<h4>
+								Hernán Rivera
+							</h4>
+						</div>
+						<div class="col-md-12">
+							<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+						</div>
+					</div>
+
+
+					<div class="col-md-12 test-pack comment-pack">
+						<div class="col-md-3">
+							<div class="container-testimonials-img center-block">
+								<img src="<?php echo base_url("application/uploads/test_1.jpg");?>">
+							</div>
+						</div>
+						<div class="col-md-9">
+							<h4>
+								Hernán Rivera
+							</h4>
+						</div>
+						<div class="col-md-12">
+							<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+						</div>
+					</div>
+
+
+					<div class="col-md-12 test-pack comment-pack">
+						<div class="col-md-3">
+							<div class="container-testimonials-img center-block">
+								<img src="<?php echo base_url("application/uploads/test_1.jpg");?>">
+							</div>
+						</div>
+						<div class="col-md-9">
+							<h4>
+								Hernán Rivera
+							</h4>
+						</div>
+						<div class="col-md-12">
+							<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+						</div>
+					</div>
+
+					<button type="button" class="btn btn-agregar" style="margin:auto;display:block;width:100%;">Ver mas</button>
+
+			</div>
+		</div>
+
+	</div>	
 
 <div class="amigas-separator"></div>
 <div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">

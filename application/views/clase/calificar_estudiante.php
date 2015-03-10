@@ -17,6 +17,7 @@
 			</div>
 			<div class="col-md-6 col-md-offset-3" style="margin-top:40px;">
 					<textarea class="form-control" rows="2" placeholder="Escribe una reseña corta de tu experiencia"></textarea>
+					<input type="submit" class="btn-busqueda-profe btn-profe btn col-lg-12 busqueda_b" value="Calificar">
 			</div>
 		</div>
 
