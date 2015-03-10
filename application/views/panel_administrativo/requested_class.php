@@ -298,7 +298,16 @@ function updateClass(){
 		$.post(base_url+"administrador/actualizar/clase/",data,function(resp){
 			var rta = JSON.parse(resp);
 			if(rta){
-				$(".modal-header h1").html("Actualización Completa");
+				$("#pleaseWaitDialog").modal("hide");
+				//$(".modal-header h1").html("Actualización Completa");
+				swal({
+					title: "Listo!",
+					text: "Actualización exitosa.",
+					type: "success" },
+					function(){
+						//window.location.reload();
+					}
+				);
 			}
 		});
 	}
@@ -323,7 +332,16 @@ $(".class .saveComment").click(function(){
 	$.post(base_url+"administrador/actualizar/clase/",data,function(resp){
 		var rta = JSON.parse(resp);
 		if(rta){
-			$(".modal-header h1").html("Actualización Completa");
+			$("#pleaseWaitDialog").modal("hide");
+			//$(".modal-header h1").html("Actualización Completa");
+			swal({
+					title: "Listo!",
+					text: "Actualización exitosa.",
+					type: "success" },
+					function(){
+						//window.location.reload();
+					}
+				);
 		}
 	});
 });

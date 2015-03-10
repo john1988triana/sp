@@ -1,4 +1,5 @@
 <div style="margin-top:100px">
+
 <div id="calendar" style="width:80%; margin:auto;"></div>
 </div>
 <link rel='stylesheet' href="<?php echo base_url("assets/css/fullcalendar.min.css"); ?>" />
@@ -27,9 +28,15 @@ var base_url = "<?php echo base_url();?>";
 			eventColor:"#003333",
 			events: classList,
 			selectable: false,
-			editable: false,
+			editable: true,
 			selectOverlap: false,
-			slotEventOverlap : false
+			slotEventOverlap : false,
+			defaultView: "month",
+			header: {
+					left:   'title',
+					center: '',
+					right:  'month,agendaWeek today prev,next'
+				}
 		});
 	});
 });

@@ -68,15 +68,15 @@
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Clases<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="<?php echo base_url("bogota/matematicas");?>" target="_blank">Matemáticas</a></li>
-                        <li><a href="<?php echo base_url("bogota/fisica");?>" target="_blank">Física</a></li>
-                        <li><a href="<?php echo base_url("bogota/quimica");?>" target="_blank">Química</a></li>
-                        <li><a href="<?php echo base_url("bogota/ingles");?>" target="_blank">Inglés</a></li>
-                        <li><a href="<?php echo base_url("bogota/refuerzoescolar");?>" target="_blank">Apoyo Escolar</a></li>
-                        <li><a href="<?php echo base_url("bogota/algebra");?>" target="_blank">Algebra</a></li>
-                        <li><a href="<?php echo base_url("bogota/calculo");?>" target="_blank">Cálculo</a></li>
-                        <li><a href="<?php echo base_url("bogota/estadistica");?>" target="_blank">Estadística</a></li>
-                        <li><a href="<?php echo base_url("bogota/contabilidad");?>" target="_blank">Contabilidad</a></li>
+						<li><a href="<?php echo base_url("bogota/matematicas");?>" target="_self">Matemáticas</a></li>
+                        <li><a href="<?php echo base_url("bogota/fisica");?>" target="_self">Física</a></li>
+                        <li><a href="<?php echo base_url("bogota/quimica");?>" target="_self">Química</a></li>
+                        <li><a href="<?php echo base_url("bogota/ingles");?>" target="_self">Inglés</a></li>
+                        <li><a href="<?php echo base_url("bogota/refuerzoescolar");?>" target="_self">Apoyo Escolar</a></li>
+                        <li><a href="<?php echo base_url("bogota/algebra");?>" target="_self">Algebra</a></li>
+                        <li><a href="<?php echo base_url("bogota/calculo");?>" target="_self">Cálculo</a></li>
+                        <li><a href="<?php echo base_url("bogota/estadistica");?>" target="_self">Estadística</a></li>
+                        <li><a href="<?php echo base_url("bogota/contabilidad");?>" target="_self">Contabilidad</a></li>
          
 					</ul>
 				</li>

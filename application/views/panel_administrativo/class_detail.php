@@ -107,7 +107,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1>Processing...</h1>
+				<h1>Guardando...</h1>
 			</div>
 			<div class="modal-body">
 				<div class="progress">

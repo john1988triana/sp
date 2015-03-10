@@ -957,4 +957,34 @@ class Model_superprofe extends CI_Model
 		
 	}
 	
+	/**
+	* Get Teachers
+	*/
+	
+	function getTeachers($id_area = 0,$id_level = 0,$order = "", $order_direction = "asc"){
+		
+		$this->db_super_pro->select("pro.*, pr_a.*, ex.title");
+		$this->db_super_pro->from("professor pro");
+		$this->db_super_pro->join("professor_area pr_a","pro.id = pr_a.id_professor");
+		$this->db_super_pro->join("experience ex","pro.id = ex.id_professor");
+		$this->db_super_pro->where("ex.type",1);
+		$this->db_super_pro->where("pro.active",1);
+		$this->db_super_pro->where('pr_a.id_level = ( select max(area.id_level) from professor_area area where pro.id = area.id_professor group by area.id_professor)', NULL, FALSE);
+		$this->db_super_pro->where('ex.id = ( select max(est.id) from experience est where pro.id = est.id_professor group by est.id_professor)', NULL, FALSE);
+		if(intval($id_area) > 0) {
+			$this->db_super_pro->where('pr_a.id_area', $id_area);
+			
+			if(intval($id_level) > 0) {
+				$this->db_super_pro->where('pr_a.id_level', $id_level);
+			}
+		}
+		
+		if($order != "") {
+			$this->db_super_pro->order_by($order, $order_direction);
+		}
+		
+		$query = $this->db_super_pro->get();
+		return $query->result_array();
+	}
+	
 }

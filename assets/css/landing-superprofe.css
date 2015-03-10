@@ -390,8 +390,8 @@ background: #F6F6EC
 	padding-bottom: 30px;
 }
 .form-regis{
-	background: url('../img/superprofe-clases-particulares.jpg') no-repeat;
-height: 480px;
+	background: url('../img/superprofe-clases-particulares.jpg') no-repeat center;
+	height: 480px;
 }
 .btn-ingresa-aqui{
 	background-color: #009966;
@@ -2316,4 +2316,26 @@ img#icon-price {
    position: absolute;
    color: #ffcc00;
    font-size: 36pt;
+}
+
+.perfil-titulo {
+	height:30px;
+}
+
+.ver_mas_bt {
+	border-radius: 15px;
+	width: 100%;
+	background-color: #009966;
+	text-align: center;
+	color: white;
+	cursor: pointer;
+	height: 40px;
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+	margin-bottom:20px;
+}
+
+.ver_mas_bt h3 {
+	margin-top:6px;
 }
