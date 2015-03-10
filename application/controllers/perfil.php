@@ -336,4 +336,8 @@ class Perfil extends CI_Controller {
 		}
 		echo true;
 	}
+	
+	public function createbatchUserNames() {
+		
+	}
 }

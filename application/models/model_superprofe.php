@@ -175,6 +175,86 @@ class Model_superprofe extends CI_Model
 	/**
 	* Queries the aulas amigas database and fetches for a complete user
 	*/
+	
+	public function loadUserbyUserProfile($userprofile){
+		$this->db_super_pro->select("id_user");
+		$this->db_super_pro->from("professor");
+		$this->db_super_pro->where("userprofile = ",$userprofile);
+		$query = $this->db_super_pro->get();
+		$user_id = $query->result_array();
+		
+		if($query->num_rows() > 0) {
+			$amigas = json_decode($this->aulasamigas->getUsersInfo(array($user_id[0]["id_user"])), true);
+			$amigas = $amigas[0];
+			if($amigas["isTeacher"] == 1){
+				$this->setAreas(json_decode($this->aulasamigas->getAreasByContent('768')));
+				//user info
+				$this->db_super_pro->select("*");
+				$this->db_super_pro->from("professor");
+				$this->db_super_pro->where("id_user = ",$amigas["IdUser"]);
+				$query = $this->db_super_pro->get();
+				$user = array_merge($amigas,$query->row_array());
+				//experience
+				$this->db_super_pro->select("e.* , i.name institution, i.phone phone, i.address address");
+				$this->db_super_pro->from("experience e");
+				$this->db_super_pro->where("id_professor = ",$user["id"]);
+				$this->db_super_pro->join("institution i","e.id_institution = i.id");
+				$query = $this->db_super_pro->get();
+				$user["experience"] = $query->result_array();
+				//areas
+				$this->db_super_pro->select("pa.*,l.name level");
+				$this->db_super_pro->from("professor_area pa");
+				$this->db_super_pro->join("level l ","l.id = pa.id_level");
+				$this->db_super_pro->where("pa.id_professor = ",$user["id"]);
+				$query = $this->db_super_pro->get();
+				$ids = $query->result_object();
+				
+				foreach($ids as &$id){
+					foreach($this->areas as $areaAmigas){
+						if($id->id_area == $areaAmigas->IdArea){
+							$id->Name = $areaAmigas->Name;
+						}
+					}
+				}
+				$user["selected_areas"] = $ids;
+				$user["areas"] = $this->areas;
+				//references
+				$this->db_super_pro->select("*");
+				$this->db_super_pro->from("reference");
+				$this->db_super_pro->where("id_professor = ",$user["id"]);
+				$query = $this->db_super_pro->get();
+				$user["reference"] = $query->result_array();
+				
+				return $user;
+			}
+			else{
+				$this->db_super_pro->select("*");
+				$this->db_super_pro->from("student");
+				$this->db_super_pro->where("id_user = ",$amigas["IdUser"]);
+				$query = $this->db_super_pro->get();
+				$user = array_merge($amigas,$query->row_array());
+				
+				//experience
+				$this->db_super_pro->select("e.* , i.name institution, i.phone phone, i.address address");
+				$this->db_super_pro->from("studies e");
+				$this->db_super_pro->where("id_student = ",$user["id"]);
+				$this->db_super_pro->join("institution i","e.id_institution = i.id");
+				$query = $this->db_super_pro->get();
+				$user["studies"] = $query->result_array();
+				
+				return $user;
+			}
+		}
+		else
+		{
+			return array();
+		}
+		
+		
+	}
+	
+	
+	
 	public function loadUser($user_id){
 		$amigas = json_decode($this->aulasamigas->getUsersInfo(array($user_id)), true);
 		$amigas = $amigas[0];

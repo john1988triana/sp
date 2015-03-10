@@ -39,8 +39,8 @@
 */
 
 $route['default_controller'] = "Index";
-$route['404_override'] = '';
+$route['404_override'] = 'profile';
 
-
+//$route['(:any)'] = "Index/$1";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
