@@ -134,20 +134,13 @@
             
             
 			</div>
-			<div class="btn-subir-foto btn" id="texto_foto" onclick="getFile()">
-				<p>Subir foto</p>
-				<img src="assets/img/upload-icon.png">
-			</div>
+			
 			<div style='height: 0px;width: 0px; overflow:hidden;'><input id="upfile" name="userfile" type="file" value="upload" onchange="sub(this)"/></div>
 		</div>
 		<div class="col-md-6 perfil-profesor-der">
-			<div class="btn-subir-foto btn btn-radius ver-perfil-como">
-				<p>Ver perfil como</p>
-			</div>
 			<h3 style="color:#009966;" class="title-profesor"><?php echo $FirstName." ".$FamilyName?></h3>
-			<textarea id="bio-profesor"><?php echo $profile;?>	
-			</textarea>
-			<div class="btn-subir-foto btn bio-btn btn-update">Actualizar</div>
+			<div id="bio-profesor"><?php echo $profile;?>	
+			</div>
 		</div>
 	</div>
 
@@ -157,40 +150,11 @@
 
 	<div class="row experticia perfil-profesor">
 		<h3 class="title-profesor">EXPERTICIA</h3>
-		<button type="button" class="btn  experticia-input" id="show_competencias">Agregar una nueva competencia</button>
 		<div class="amigas-separator"></div>
-		<!--div oculto-->
-		<div class="form-group" id="hide_competencias" style="display:none">
-				<select name="area" class="form-control competen" value="">
-					<option value="0" disabled selected>Selecciona área</option>
-					<?php 
-						foreach ($areas as $key => $value_areas) {
-					?> 
-						<option value=<?php echo $value_areas->IdArea; ?>>
-							<?php echo $value_areas->Name; ?>
-						</option>
-					<?php
-						}
-					?>
-				</select>
-				<select name="level" class="form-control level" value="">
-					<option value="0" disabled selected>Selecciona nivel</option>
-					<?php 
-						foreach ($levels as $key => $value) {
-					?> 
-						<option value=<?php echo $value["id"]; ?>>
-							<?php echo $value["name"]; ?>
-						</option>
-					<?php
-						}
-					?>
-				</select>
-			<button type="button" class="btn btn-agregar btn_agregar_experticia" style="margin-top:1.5%">Agregar</button>
-		</div>
 		<div id="areas-wrapper">
 			<?php 
 				for( $i = 0; $i < count($selected_areas) ; $i++){
-					echo "<div class=\"numero-competencia\">"."&nbsp;" . ($i+1) . ".&nbsp;"."</div><div class=\"valor-competencia\">".$selected_areas[$i]->Name." - ".$selected_areas[$i]->level."</div><div class=\"borrar-competencia trasition-half\" data-id=\"".$selected_areas[$i]->id_area."\" data-level=\"" . $selected_areas[$i]->id_level . "\">X</div><br>";
+					echo "<div class=\"numero-competencia\">"."&nbsp;" . ($i+1) . ".&nbsp;"."</div><div class=\"valor-competencia\">".$selected_areas[$i]->Name." - ".$selected_areas[$i]->level."</div><div class=\"public-competencia numero-competencia\"'>&nbsp;&nbsp;</div><br>";
 				}
 			?>
 		</div>
@@ -202,22 +166,7 @@
 
 	<div class="row videos-profesor perfil-profesor">
 		<h3 class="title-profesor">VIDEOS</h3>
-		<button type="button" class="btn suscribir-btn">Suscribirse</button>
-		<div class="col-md-12">	
-			<div class="col-md-offset-1">
-				<div class="row col-md-12 youtube-form">
-					<form class="navbar-form navbar-left" role="search"><h3>Ingrese el link del video de Youtube</h3>
-					  <div class="form-group">
-						<input type="text" class="form-control link_youtube" placeholder="Link">
-						<button type="button" class="btn btn-agregar btn_agregar_video">Agregar</button>
-					  </div>
-				
-					  <!--<button type="button" class="btn btn-default video_you">Colgar</button>-->
-					</form>
-				</div>
-					
-				</div>
-			</div>
+		<a href="https://www.youtube.com/channel/UCPtXapQsvzIgyYa6Rc50Ikg" target="_blank"><button type="button" class="btn suscribir-btn">Suscribirse</button></a>
 		
 		<div class="row container-videos">
         
@@ -242,7 +191,6 @@
 
 	<div class="row perfil-profesor">
 		<h3 class="title-profesor">FORMACIÓN ACADEMICA</h3>
-		<button type="button" class="btn suscribir-btn" id="show_estudios">+ añadir</button>
 
 				<div id="exp-wrapper-est">
 				<?php 
@@ -254,74 +202,20 @@
 								<div class='grid-exp'>Institución: </div> <div class='grid-exp exp-var'>".$experience[$i]["institution"]."</div><br>
 								<div class='grid-exp'>Profesión: </div> <div class='grid-exp exp-var'>".$experience[$i]["title"]."</div><br>
 								<div class='grid-exp'>Año: </div> <div class='grid-exp exp-var'>".date("Y",strtotime($experience[$i]["from"]))." hasta ".date("Y",strtotime($experience[$i]["to"]))."</div><br>
-								<span class='glyphicon glyphicon-remove-circle delete-group exp' aria-hidden='true' data-id=\"".$experience[$i]["id"]."\"></span>
 								<div class=\"amigas-separator\"></div>
 							</div>";
 					}
 				?>
 				</div>
 			<div class="amigas-separator"></div>
-			<!--div oculto-->
-			<div class="form-group" id="hide_estudios" style="display:none">
-				<label for="add_empresa">Centro de estudios</label>
-				<input type="text" placeholder="" class="form-control" id="add_universidad" >
-
-				<label for="cbo_fecha_inicial">Fechas de estudio</label>
-				<div class="row">
-					<div class="col-md-4">
-						<!--<input type="text" placeholder="Año inicio" class="form-control input-sm" id="add_anio_estu_desde" >-->
-						<select class="form-control input-sm" id="add_anio_estu_desde">
-						<?php
-							$anio_actual = date("Y");
-							$opciones = "";
-							for ($anio=$anio_actual; $anio >= 1950; $anio--)
-								$opciones .= "<option value=\"".$anio."\">".$anio."</option>";
-							
-							echo $opciones;
-						?>
-						</select>
-					</div>
-					<div class="col-md-3 col-md-offset-1">
-						<b>hasta</b>
-					</div>
-					<div class="col-md-4">
-						<!--<input type="text" placeholder="Año inicio" class="form-control input-sm" id="add_anio_estu_hasta" >-->
-						<select class="form-control input-sm" id="add_anio_estu_hasta">
-						<?php
-							$anio_actual = date("Y");
-							$opciones = "";
-							for ($anio=$anio_actual; $anio >= 1950; $anio--)
-								$opciones .= "<option value=\"".$anio."\">".$anio."</option>";
-							
-							echo $opciones;
-						?>
-						</select>
-					</div>
-				</div>
-				<label for="cbo_fecha_inicio">Disciplina acad&eacute;mica</label>
-				<input type="text" placeholder="" class="form-control" id="add_titulo_obtenido" >
-				
-				<label for="">Actividades y grupos</label>
-				<textarea class="form-control" rows="2" placeholder="" id="add_actividades_estu"></textarea>
-				<label for="">Descripción</label>
-				<textarea class="form-control" rows="3" placeholder="" id="add_descripcion_estu"></textarea>
-				
-
-				
-				<div class="form-group">
-					<button type="button" class="btn btn-agregar btn_agregar_estudios" style="margin-top:1.5%">Agregar</button>
-					<!--<a href="" class="btn btn-info form-control"><span class="glyphicon glyphicon-refresh"></span>Actualizar información</a>-->
-				</div>
-			</div> 
 	</div>
 
 
 	<!-- Experiencia -->
 
 
-	<div class="row experticia perfil-profesor ">
+	<div class="row experticia perfil-profesor" style="border-bottom:none;">
 		<h3 class="title-profesor">EXPERIENCIA LABORAL</h3>
-		<button type="button" class="btn suscribir-btn" id="show_experiencias">+ añadir</button> 
 				<div id="exp-wrapper-pro">
 				<?php 
 					for( $i = 0; $i < count($experience) ; $i++){
@@ -332,7 +226,6 @@
 								<div class='grid-exp'>Institución: </div><div class='grid-exp exp-var'>".$experience[$i]["institution"]."</div><br>
 								<div class='grid-exp'>Titulo: </div><div class='grid-exp exp-var'>".$experience[$i]["title"]."</div><br>
 								<div class='grid-exp'>Año: </div><div class='grid-exp exp-var'>".date("Y-m",strtotime($experience[$i]["from"]))." hasta ".date("Y-m",strtotime($experience[$i]["to"]))."</div><br>
-								<span class=\"glyphicon glyphicon-remove-circle delete-group exp\" aria-hidden='true' data-id=\"".$experience[$i]["id"]."\"></span>
 								<div class=\"amigas-separator\"></div>
 						  	</div>";
 					}
@@ -340,176 +233,21 @@
 				</div>
 			
 			<div class="amigas-separator"></div>
-			<!--div oculto-->
-			<div class="form-group" id="hide_experiencias" style="display:none">
-				<label for="add_empresa">Nombre de la empresa</label>
-				<input type="text" name="institution" class="form-control" id="add_empresa" >
-
-				<label for="cbo_fecha_inicio">Titulo</label>
-				<input type="text" name="title" class="form-control" id="add_titulo" >
-
-				<label for="cbo_fecha_inicio">Ubicaci&oacute;n</label>
-				<input type="text" name="address" class="form-control" id="add_ubicacion" >
-
-					<label for="cbo_fecha_inicio">Periodo</label>
-				<div class="row">
-					<div class="col-xs-3">
-						<select class="form-control input-sm" id="add_mes_desde">    
-							<option value="-" selected="selected">Desde</option>
-							<option value="1">Enero</option>
-							<option value="2">Febrero</option>
-							<option value="3">Marzo</option>
-							<option value="4">Abril</option>
-							<option value="5">Mayo</option>
-							<option value="6">Junio</option>
-							<option value="7">Julio</option>
-							<option value="8">Agosto</option>
-							<option value="9">Septiembre</option>
-							<option value="10">Octubre</option>
-							<option value="11">Noviembre</option>
-							<option value="12">Diciembre</option>
-
-						</select>
-					</div>
-					<div class="col-xs-3">
-						<!--<input type="text" placeholder="Año" class="form-control input-sm" id="add_anio_desde" >-->
-						<select class="form-control input-sm" id="add_anio_desde">
-						<?php
-							$anio_actual = date("Y");
-							$opciones = "";
-							for ($anio=$anio_actual; $anio >= 1950; $anio--)
-								$opciones .= "<option value=\"".$anio."\">".$anio."</option>";
-							echo $opciones;
-						?>
-						</select>
-					</div>
-					
-					<div class="col-xs-3">
-						<select class="form-control input-sm" id="add_mes_hasta">    
-							<option value="-" selected="selected">Hasta</option>
-							<option value="1">Enero</option>
-							<option value="2">Febrero</option>
-							<option value="3">Marzo</option>
-							<option value="4">Abril</option>
-							<option value="5">Mayo</option>
-							<option value="6">Junio</option>
-							<option value="7">Julio</option>
-							<option value="8">Agosto</option>
-							<option value="9">Septiembre</option>
-							<option value="10">Octubre</option>
-							<option value="11">Noviembre</option>
-							<option value="12">Diciembre</option>
-						</select>
-					</div>
-					<div class="col-xs-3">
-						<!--<input type="text" placeholder="Año" class="form-control input-sm" id="add_anio_hasta" >-->
-						<select class="form-control input-sm" id="add_anio_hasta">
-						<?php
-							$anio_actual = date("Y");
-							$opciones = "";
-							for ($anio=$anio_actual; $anio >= 1950; $anio--)
-								$opciones .= "<option value=\"".$anio."\">".$anio."</option>";
-							
-							echo $opciones;
-						?>
-						</select>
-					</div>
-				</div>
-				<label for="">Descripción de actividades</label>
-				<textarea class="form-control" rows="3" placeholder="Instructor de natación con enfasis en tal" id="actividad_exper"></textarea>
-
-				<div class="form-group">
-					<button type="button" class="btn btn-agregar btn_agregar_experiencia" style="margin-top:1.5%">Agregar</button>
-				</div>
-			</div>
 	</div>
-	<div class="row perfil-profesor">
+	<div class="row perfil-profesor experticia">
 		<h3 class="title-profesor">AGENDA</h3>
 		<div class="col-md-12 agenda-profesor">
-			<div class="col-md-offset-1" style="margin-top:30px">
-				<span class="glyphicon glyphicon-question-sign prf" data-toggle="tooltip" data-placement="right" title="Si no tienes codigo de Aulas Amigas deja este espacio en blanco"></span>
-				<h4>Ingresa tu código de Activación de Aulas Amigas:</h4>
-				<input type="text" class="form-control" placeholder="">
-			</div>
-			<div class="clearfix"></div>
-			<h4 class="col-md-offset-1">Ingresa tu disponibilidad:</h4>
-			<div>*Tu disponibilidad deber ser de mínimo 3(tres) horas.</div>
 			<div class="col-md-offset-1" id="calendar"></div>
-			<button type="button" class="btn btn-agregar" id="btn-save-schedule" style="margin-top:1.5%">Actualizar disponibilidad</button>
+			<button type="submit" class="btn-schedule btn" onclick="" style="margin-top: 45px;">Programar mi clase</button>
 		</div>
 	</div>
 
 
 			
-			
+									
 
-				
-				
-	<div class="row experticia perfil-profesor">
-		<div class="col-md-4 datos-porfesor">
-				
-				<div class="row col-md-12 texto-1-profe" style="margin-top:2px;">
-					<div class=" col-md-4 col-xs-4">
-						Ciudad:
-					</div>
-					<div class=" col-md-8 col-xs-8">
-						Bogotá - Colombia
-					</div>
-				</div>
-				<div class="row col-md-12 texto-1-profe" style="margin-top:2px;">
-					<div class=" col-md-4">
-						Telefono:
-					</div>
-					<div class=" col-md-8">
-						<input style="border:none;outline:none;width:100%;" id="phone" value="<?php echo $Phone;?>"></input>
-					</div>
-				</div>
-				<div class="row col-md-12 texto-1-profe" style="margin-top:2px;">
-					<div class=" col-md-4">
-						Direcci&oacute;n:
-					</div>
-					<div class=" col-md-8">
-						<input style="border:none;outline:none;width:100%" id="address" value="<?php echo $Address; ?>"></input>
-					</div>
-				</div>
-				<div class="row col-md-12 texto-1-profe" style="margin-top:2px;">
-					<div class=" col-md-4">
-						E-Mail:
-					</div>
-					<div class="row col-md-8">
-						<span> <?php echo $Email;?></span>
-					</div>
-				</div>
-				<div class="row col-md-12 texto-1-profe" style="margin-top:2px;">
-					<div class=" col-md-4">
-						Fecha de Nacimiento:
-					</div>
-					<div class=" col-md-8">
-						<input class="datepicker" style="border:none;outline:none;width:100%" name="birthday" id="birthday" value="<?php echo ($DayBorn) ? $DayBorn . '-' . $MonthBorn . '-' . $YearBorn : '';?>" type="text"></input>
-					</div>
-				</div>
-				<div class="row col-md-12">
-					<button type="button" class="btn btn-agregar btn-update" style="margin:auto;display:block;">Actualizar</button>
-				</div>
-		</div>
-		<div class="col-md-2"></div>
-		<div class="col-md-6">
-			<div class="container col-md-12">
-  				<hr id="separador-busqueda2"></hr>
-   				<form action="<?php echo base_url('registro/validatePage'); ?>" method="post" role="form" enctype="multipart/form-data" id="mainform">
-    				<p id="terminos"><input type="checkbox" name="terms" required <?php if($terms=="1") echo"checked";?>> Autorizo a Superprofe.co a publicar los datos suministrados en este documento con el fin de que los estudiantes que requieren profesores particulares tengan acceso a mi información, los siguientes datos NO serán publicados: teléfono, celular, dirección, correo electrónico y referencias. </p>
-    				<span id="terminos"> <a>Acepto los t&eacute;rminos y condiciones.</a> </span>
-    				<div class="row">
-     					<div class="container col-md-3 col-md-offset-2">
-      					<button type="submit" class="btn-siguiente-registro btn" id="btnlogin"><div>Continuar</div></button>
-     					</div>
-    				</div>
-   				</form>
-  			</div>
-		</div>	
-	</div>
 
-	<div class="container testimonials-ctrl heroes-ctrl">
+	<div class="container testimonials-ctrl heroes-ctrl ">
 		
 
 		<div class="row" style="margin-top:30px;">
@@ -607,7 +345,7 @@
 <script src="<?php echo base_url("assets/js/calendar/lib/moment.min.js");?>"></script>
 <script src="<?php echo base_url("assets/js/calendar/fullcalendar.min.js");?>"></script>
 <script src="<?php echo base_url("assets/js/calendar/lang/es.js");?>"></script>
-<script src="<?php echo base_url("assets/js/profile.js");?>"></script>
+<script src="<?php echo base_url("assets/js/profile_public.js");?>"></script>
 <script>
 $(".redondo").css("border-radius","10px")
 $("span#terminos a").css("cursor","pointer");

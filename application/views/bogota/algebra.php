@@ -242,6 +242,8 @@ Ordena por:   <select name="order_select" id="order_select">
 
 <script>
 $(document).ready(function(){
+
+	alert("funciona");
 	
 	$("#container_teachers").hide();
 	

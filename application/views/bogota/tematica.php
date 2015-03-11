@@ -216,7 +216,7 @@ Ordena por:   <select name="order_select" id="order_select">
                 
                 <div class="form-group">
 				  <label for="pass">Contraseña</label>
-				  <input type="password" class="form-control" id="pass" name="txtPassword" placeholder="Escribe tu apellido">
+				  <input type="password" class="form-control" id="pass" name="txtPassword" placeholder="Escribe tu contraseña">
 				</div>
                 
                 <div class="form-group">
@@ -242,6 +242,88 @@ Ordena por:   <select name="order_select" id="order_select">
 
 <script>
 $(document).ready(function(){
+
+
+	function test_fcn() {
+		alert("hehehehe");
+	}
+
+	$("input").bind("change paste keyup", function(){
+		//alert("funciona");
+		var val_input = $(this).val();
+		if ( val_input.length < 4 ) {
+
+
+    		$(this).removeClass("alert-success");
+    		$(this).parent().removeClass("has-succes");
+
+        	$(this).addClass("alert-danger");
+        	$(this).parent().addClass("has-error");
+    	}
+
+    	else {
+
+    		$(this).removeClass("alert-danger");
+    		$(this).parent().removeClass("has-error");
+
+    		$(this).addClass("alert-success");
+        	$(this).parent().addClass("has-succes");
+    	}
+
+	});
+	
+
+	$("input[type='email']").bind("change paste keyup", function(){
+		var val_input = $(this).val();
+		var filter=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
+		
+		if (filter.test(val_input)) {
+
+			$(this).removeClass("alert-danger");
+    		$(this).parent().removeClass("has-error");
+
+    		$(this).addClass("alert-success");
+        	$(this).parent().addClass("has-succes");
+    		
+    	}
+
+    	else {
+
+        	$(this).removeClass("alert-success");
+    		$(this).parent().removeClass("has-succes");
+
+        	$(this).addClass("alert-danger");
+        	$(this).parent().addClass("has-error");
+    	}
+
+	});
+
+
+	$("input[type='password']").bind("change paste keyup", function(){
+		var val_input = $(this).val();
+
+		if ( val_input.length > 6 ) {
+
+			$(this).removeClass("alert-danger");
+    		$(this).parent().removeClass("has-error");
+
+    		$(this).addClass("alert-success");
+        	$(this).parent().addClass("has-succes");
+    		
+    	}
+
+    	else {
+
+        	$(this).removeClass("alert-success");
+    		$(this).parent().removeClass("has-succes");
+
+        	$(this).addClass("alert-danger");
+        	$(this).parent().addClass("has-error");
+    	}
+
+	});
+
+
 	
 	$("#container_teachers").hide();
 	

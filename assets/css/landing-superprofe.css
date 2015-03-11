@@ -1266,6 +1266,15 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 	border-bottom-left-radius: 10px;
 }
 
+.numero-competencia.public-competencia {
+
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	border-top-right-radius:10px;
+	border-bottom-right-radius:10px;
+	cursor: default !important;
+}
+
 .row.experticia {
 
 	border-top: 2px dashed black;
