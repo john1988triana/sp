@@ -142,10 +142,10 @@
 		</div>
 		<div class="col-md-6 perfil-profesor-der">
 			<div class="btn-subir-foto btn btn-radius ver-perfil-como">
-				<p>Ver perfil como</p>
+				<p>Ver perfil público</p>
 			</div>
 			<h3 style="color:#009966;" class="title-profesor"><?php echo $FirstName." ".$FamilyName?></h3>
-			<textarea id="bio-profesor"><?php echo $profile;?>	
+			<textarea id="bio-profesor" style="background-color:whitesmoke; padding:20px; border: groove 2px grey;"><?php echo $profile;?>	
 			</textarea>
 			<div class="btn-subir-foto btn bio-btn btn-update">Actualizar</div>
 		</div>
@@ -202,7 +202,6 @@
 
 	<div class="row videos-profesor perfil-profesor">
 		<h3 class="title-profesor">VIDEOS</h3>
-		<button type="button" class="btn suscribir-btn">Suscribirse</button>
 		<div class="col-md-12">	
 			<div class="col-md-offset-1">
 				<div class="row col-md-12 youtube-form">
