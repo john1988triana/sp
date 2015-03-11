@@ -57,7 +57,7 @@
                             <div class="form-group" id="phoneDiv">
 								<div class="col-md-10 col-md-offset-1">
 									<label for="phoneTutor">Número de teléfono</label>
-									<input id="phoneTutor" name="txtPhoneTutor" type="text" class="form-control" value="<?php echo (!empty($phone_tutor)?$phone_tutor:''); ?>" placeholder="Número de teléfono" required>
+									<input id="phoneTutor" name="txtPhoneTutor" type="text" class="form-control" value="<?php echo (!empty($phone_tutor)?$phone_tutor:''); ?>" placeholder="Número de teléfono">
 								</div>
 							</div>
                             
@@ -65,14 +65,14 @@
                             <div class="form-group" id="nameStudent">
 								<div class="col-md-10 col-md-offset-1">
 									<label for="fname_student">Nombre del alumno</label>
-									<input id="fname_student" name="txtNameStudent" type="text" class="form-control" value="<?php echo (!empty($fname_student)?$fname_student:''); ?>" placeholder="Nombre del alumno" required>
+									<input id="fname_student" name="txtNameStudent" type="text" class="form-control" value="<?php echo (!empty($fname_student)?$fname_student:''); ?>" placeholder="Nombre del alumno">
 								</div>
 							</div>
                             
                             <div class="form-group" id="lastStudent">
 								<div class="col-md-10 col-md-offset-1">
 									<label for="lname_student">Apellido del alumno</label>
-									<input id="lname_student" name="txtLastStudent" type="text" class="form-control" value="<?php echo (!empty($lname_student)?$lname_student:''); ?>" placeholder="Apellido del alumno" required>
+									<input id="lname_student" name="txtLastStudent" type="text" class="form-control" value="<?php echo (!empty($lname_student)?$lname_student:''); ?>" placeholder="Apellido del alumno">
 								</div>
 							</div>
                             

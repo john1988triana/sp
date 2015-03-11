@@ -1,96 +1,120 @@
-﻿<section class="container" style="margin-top:120px;">
-	<br><br><h1 class="text-center asi-funciona"><span style="color: rgb(0, 184, 92);">¿CÓMO ESTUVO TU CLASE?</span></h1>
-	<div class="col-md-12 div-area">
-		<div class="col-md-3"></div>
-		<div class="col-md-6">
-			<h4 class="text-center">
-			<?php if($type == 1){
-				echo "Hola ".$sFName ." ".$sLName;
+﻿<section class="container text-center" style="margin-top:120px;">
+	
+	<h1>Califica a tu <span><?php if($type == 1){
+				echo "Profesor";
 			}else{
-				echo "Hola ".$pFName ." ".$pLName;
-			}?>
-			</h4>
-			<p>
-			<?php if($type == 1){
-					if($rate!=0){
-						echo "Gracias por calificar tu clase de ".$topic. " con el profesor ".$pFName;
-					}else{
-						echo "Esperamos que te haya ido muy bien en tu clase de ". $topic .", que hayas aprendido mucho.";
-					}
-				}else{
-					if($student_rate!=0){
-						echo "Gracias por calificar tu clase de ".$topic. " con el estudiante ".$sFName;
-					}else{
-						echo "Esperamos que te haya ido muy bien en tu clase de ". $topic .", que hayas aprendido mucho.";
-					}
-				}
-			?>
-			</p>
+				echo "Estudiante";
+			}?></span></h1>
+	<div class="row">
+		<div class="div-area col-md-12 text-center" style="margin-top:20px;">
+			<div class="col-md-6 text-center">
+			<h3><span><?php if($type == 1){
+				echo "Profesor";
+			}else{
+				echo "Estudiante";
+			}?></span> <?php if($type == 1){
+				echo $pFName ." ".$pLName;
+			}else{
+				echo $sFName ." ".$sLName;
+			}?></h3>
+			</div>
+            
+            <?php
 			
-			<?php if($type == 1){
-				if($rate==0){
-				echo "<p>Califica de 1 a 5 a tu profesor ".$pFName ." ".$pLName ."</p>";
-				echo "<form id='form' method='POST'>";
-				echo '<div class="estrellas">
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span> 
-										<span class="glyphicon glyphicon-star"></span> 
-										<span class="glyphicon glyphicon-star"></span> 
-										<span class="glyphicon glyphicon-star"></span>    
-									</div>';
-				echo "<div id='error' style='display:none;color:#f00;'>Debes elegir una estrella</div>";
-				echo "<p> Y deja una felicitación o recomendación para el profesor</p>";
-				echo "<input name='rate' type='hidden'></input>";
-				echo "<textarea name='comment' ></textarea>";
-				echo "<button type='button'>Calificar</butotn>";
-				echo "</form>";
-				}
-			}else{
-				if($student_rate==0){
-				echo "<p>Califica de 1 a 5 a tu estudiante ".$sFName ." ".$sLName ."</p>";
-				echo "<form id='form' method='POST'>";
-				echo '<div class="estrellas">
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span> 
-										<span class="glyphicon glyphicon-star"></span> 
-										<span class="glyphicon glyphicon-star"></span> 
-										<span class="glyphicon glyphicon-star"></span>    
-									</div>';
-				echo "<div id='error' style='display:none;color:#f00;'>Debes elegir una estrella</div>";
-				echo "<p>Y deja un comentario o recomendación sobres clase para que ".$sFName." pueda mejorar su proceso de aprendizaje</p>";
-				echo "<input name='student_rate' type='hidden'></input>";
-				echo "<textarea name='student_comment' ></textarea>";
-				echo "<button type='button'>Calificar</butotn>";
-				echo "</form>";
-				}
-			}?>
-		</div>
+			if(($type == 1) && ($rate > 0))
+			{
+				?>
+                <div class="col-md-6">
+					<h3>Ya se evaluó el profesor. Muchas gracias.</h3>
+				</div>
+                
+            <?php
+			}
+			else if(($type == 2) && ($student_rate > 0)){
+				?>
+                <div class="col-md-6">
+					<h3>Ya se evaluó el estudiante. Muchas gracias.</h3>
+				</div>
+                
+            <?php
+			}
+			else {
+			?>
+			
+          <div class="col-md-6">
+				<div class="rating">
+					<span id="star_5">★</span>
+					<span id="star_4">★</span>
+					<span id="star_3">★</span>
+					<span id="star_2">★</span>
+					<span id="star_1">★</span>
+				</div>
+			</div>
+            
+            <script>
+				
+            $("#star_1").click(function(){
+				$("#star_1").addClass("rating_up");
+				$("#star_2").removeClass("rating_up");
+				$("#star_3").removeClass("rating_up");
+				$("#star_4").removeClass("rating_up");
+				$("#star_5").removeClass("rating_up");
+				$("#rate").val("1");
+			});
+			$("#star_2").click(function(){
+				$("#star_1").addClass("rating_up");
+				$("#star_2").addClass("rating_up");
+				$("#star_3").removeClass("rating_up");
+				$("#star_4").removeClass("rating_up");
+				$("#star_5").removeClass("rating_up");
+				$("#rate").val("2");
+			});
+			$("#star_3").click(function(){
+				$("#star_1").addClass("rating_up");
+				$("#star_2").addClass("rating_up");
+				$("#star_3").addClass("rating_up");
+				$("#star_4").removeClass("rating_up");
+				$("#star_5").removeClass("rating_up");
+				$("#rate").val("3");
+			});
+			$("#star_4").click(function(){
+				$("#star_1").addClass("rating_up");
+				$("#star_2").addClass("rating_up");
+				$("#star_3").addClass("rating_up");
+				$("#star_4").addClass("rating_up");
+				$("#star_5").removeClass("rating_up");
+				$("#rate").val("4");
+			});
+			$("#star_5").click(function(){
+				$("#star_1").addClass("rating_up");
+				$("#star_2").addClass("rating_up");
+				$("#star_3").addClass("rating_up");
+				$("#star_4").addClass("rating_up");
+				$("#star_5").addClass("rating_up");
+				$("#rate").val("5");
+			});
+            
+            </script>
+            <form id='form' method='POST'>
+            
+            <input name="rate" type="hidden" id="rate" value="0">
+            
+			<div class="col-md-6 col-md-offset-3" style="margin-top:40px;">
+					<textarea name="comment" rows="2" class="form-control" id="comment" placeholder="Escribe una reseña corta de tu experiencia"></textarea>
+					<input type="submit" class="btn-busqueda-profe btn-profe btn col-lg-12 busqueda_b" value="Calificar">
+			</div>
+            
+          </form>
+            
+			<?php
+			}
+			?>
+            
+			
+	  </div>
+
+		
+
 	</div>
-	<script>
-		var rate= 0;
-		$("button").click(function(){
-			if(rate==0){
-				$("#error").show();
-			}else{
-				$("#error").hide();
-				$("form").submit();
-			}
-		});
-		$(".glyphicon-star").click(function(){
-			rate = $(".glyphicon-star").index(this);
-			$("#form input").val(rate+1);
-		});
-		$(".glyphicon-star").mouseover(function(){
-			var index = $(".glyphicon-star").index(this);
-			for(var i = 0 ; i <=index ; i++){
-				$($(".glyphicon-star")[i]).css("color","#FFCC00");
-			}
-		});
-		$(".estrellas").mouseout(function(){
-			$(".glyphicon-star").css("color","");
-			for(var i = 0 ; i <=rate ; i++){
-				$($(".glyphicon-star")[i]).css("color","#FFCC00");
-			}
-		});
-	</script>
+
 </section>

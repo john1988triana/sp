@@ -35,8 +35,8 @@ class Clase extends CI_Controller {
 				$data["type"] = $type;
 			}
 		}else{
-			$d = array("student_rate"=>$this->input->post("student_rate"),
-						"student_comment"=>$this->input->post("student_comment"));
+			$d = array("student_rate"=>$this->input->post("rate"),
+						"student_comment"=>$this->input->post("comment"));
 			if(!empty($d["student_rate"])){
 				$this->model_superprofe->updateRequest($reqid,$d);
 				$data = $this->model_superprofe->getRequest($reqid);
@@ -131,8 +131,50 @@ class Clase extends CI_Controller {
 				$data["area"] = $area->Name;
 			}
 		}
+		
+		$cities = json_decode(json_decode($this->aulasamigas->getCitiesByCountry('COL'))->cities);
+		$levels = $this->model_superprofe->getLevels();
+		foreach($cities as $city){
+			if($city->ID== $data["city"]){
+				$data["city"] = utf8_decode($city->Name);
+			}
+		}
+		foreach($levels as $level){
+			if($level["id"]== $data["id_level"]){
+				$data["level"] = $level["name"];
+			}
+		}
+		
+		
 		$d["teacher"] = $teacher;
 		$d["request"] = $data;
+		
+		$template = file_get_contents(base_url("application/views/mail/cancel_info.html"));
+		$template = str_replace("{{HOST}}",base_url(),$template);
+		$template = str_replace("{{AREA}}",$data["area"],$template);
+		$template = str_replace("{{STUDENT NAME}}",$data["sFName"]." ".$data["sLName"],$template);
+		$template = str_replace("{{TEACHER NAME}}",$data["pFName"]." ".$data["pLName"],$template);
+		$template = str_replace("{{LEVEL}}",$data["level"],$template);
+		$template = str_replace("{{ADDRESS}}",$data["address"].", ".$data["city"],$template);
+		$template = str_replace("{{TOPIC}}",$data["topic"],$template);
+		$template = str_replace("{{DATE}}",date("l,d F Y",strtotime($data["start"])),$template);
+		$template = str_replace("{{TIME}}",date("h:i a",strtotime($data["start"])),$template);
+		$template = str_replace("{{ID_CLASS}}",$reqid,$template);
+		$template = str_replace("{{TEL}}",$data["phone"],$template);
+		$template = str_replace("{{ID}}",$data["id"],$template);
+		
+		$config['mailtype'] = "html";
+		$this->load->library('email');
+		$this->email->initialize($config);
+		
+		$this->email->from('hola@superprofe.co', 'Superprofe');
+		$this->email->to('hola@superprofe.co'); 
+		$this->email->subject('Superprofe.co - Solicitud cancelada. Por asignar profe '.$data["id"]);
+		$this->email->message($template);  
+
+		$this->email->send();
+		
+		
 		
 		$this->load->view("header");
 		$this->load->view("clase/cancelada",$d);
