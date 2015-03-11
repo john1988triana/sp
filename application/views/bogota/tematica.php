@@ -345,25 +345,21 @@ $(document).ready(function(){
 		switch(type) {
 			case "Matematicas": area = 4;
 					break;
-			case "Fisica": area = 15;
+			case "Fisica": area = 12;
 					break;
-			case "Quimica": area = 14
+			case "Quimica": area = 13;
 					break;
-			case "Ingles": area = 5
+			case "Ingles": area = 14;
 					break;
-			case "Refuerzo y Apoyo Escolar": area = 17
+			case "Refuerzo y Apoyo Escolar": area = 18;
 					break;
-			case "Algebra": area = 4;
-							level = 3
+			case "Algebra": area = 33;
 					break;
-			case "Calculo": area = 4;
-							level = 3;
+			case "Calculo": area = 34;
 					break;
-			case "Estadistica": area = 4;
-								level = 4;
+			case "Estadistica": area = 30;
 					break;
-			case "Contabilidad": area = 4;
-								 level = 4;
+			case "Contabilidad": area = 20;
 					break;
 		}
 		

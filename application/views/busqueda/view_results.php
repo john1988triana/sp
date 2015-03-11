@@ -7,82 +7,176 @@
 		 <!--Resultados de la búsqueda que se recibe por medio de los parametros area, tema y ciudad-->
 			<?php for ($i = 0 ; $i <=count($results); $i++) { ?>			
 				<?php if($i == 0) :?>
-					<div class="col-md-3">
-						<div class="panel-default panel-perfil txt-panel-perfil">                                            
-								<h3 class="text-center tt-txt-panel-perfil" style="color:#009966;">Quieres que </br>escojamos por Ti?</h3>
-							<div class="panel-body text-center">
-								<img class="img-profile" style="margin: 0px auto;" src="<?php echo base_url("assets/img/Superprofe.jpg"); ?>">
-								<div class="estrellas 1">
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span> 
-									<span class="glyphicon glyphicon-star"></span> 
-									<span class="glyphicon glyphicon-star"></span> 
-									<span class="glyphicon glyphicon-star"></span>    
-								</div>
-								
-								<div class="medallas-profesor">
-									<img src="assets/img/medallas/1_color.png" alt="">
-									<img src="assets/img/medallas/2_color.png" alt="">
-									<img src="assets/img/medallas/3_color.png" alt="">
-									<img src="assets/img/medallas/4_color.png" alt="">
-									<img src="assets/img/medallas/5_bn.png" alt="" class="no-medalla">
-								</div>
-								
-								<h3 class="medalla-tag">Experto</h3>
-
-								<script type="text/javascript">
-										for(var i=0; i < 5; i++){						
-											$("div.estrellas.1 span:nth-child("+(i+1)+")").css("color","#FFCC00");
-										}
-								</script>
-								<h4 class="par txt-panel-perfil">Seleccionaremos el mejor</h4>
-								<h4 class="par txt-panel-perfil">SuperProfe para ti.</h4>
-								<h4 class="par txt-panel-perfil">Precio: <span style="color:#00B85C;"> Desde $ 25.000</span></h4>
-								<div class="btn-estu btn col-lg-12 ver_perfil txt-panel-perfil" id="ver_perfil" 
-								onclick="requestClass();" >Escojan por Mi</div>
-							</div>
-						</div>
-					</div>
+                
+                	<div class="col-md-3">
+                        <div class="panel-default panel-perfil panel-perfil center-block">                                            
+                        <h3 class="text-center tt-txt-panel-perfil" style="color:#009966;">Quieres que </br>escojamos por Ti?</h3>
+                            <div class="panel-body text-center">
+                                <img class="img-profile" style="margin: 0px auto;" src="<?php echo base_url("assets/img/Superprofe.jpg"); ?>">
+                                <div class="estrellas">
+                                    <span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span>
+                                    <span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
+                                    <span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
+                                    <span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
+                                    <span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span>    
+                                </div>
+                                <div class="medallas-profesor">
+                                    <img src="<?php echo base_url("assets/img/medallas/1.svg");?>" alt="">
+                                    <img src="<?php echo base_url("assets/img/medallas/2.svg");?>" alt="">
+                                    <img src="<?php echo base_url("assets/img/medallas/3.svg");?>" alt="">
+                                    <img src="<?php echo base_url("assets/img/medallas/4.svg");?>" alt="">
+                                    <img src="<?php echo base_url("assets/img/medallas/5b.svg");?>" alt="" class="no-medalla">
+                                </div>
+                                <h3 class="medalla-tag">Experto</h3>
+        
+                                <h4 class="par txt-panel-perfil">Seleccionaremos el mejor</h4>  
+                                <h4 class="par txt-panel-perfil">SuperProfe para ti.</h4>    
+                                <h4 class="par txt-panel-perfil"></h4>
+                                <h4 class="par txt-panel-perfil">Precio: <span style="color: rgb(0, 184, 92);">  Desde $ 25.000 </span></h4>
+                            </div>
+                            <div onclick="requestClass();" class="cta-perfil-profesor"><h3>Escojan por Mi</h3></div>
+                        </div>
+                    </div>
+                
+                
 				<?php else: ?>
 					<?php if($i == 4): ?>
 						<div><div class="btn-estu btn col-lg-12 ver_perfil txt-panel-perfil" onclick="$('#more').show();$(this).hide();">Ver más</div></div>
 						<div id="more" style="display:none;">
 					<?php endif; ?>
-					<div class="col-md-3">
-						<div class="panel-default panel-perfil txt-panel-perfil">                                            
-								<h3 class="text-center tt-txt-panel-perfil" style="color:#009966;"><?php echo $results[$i-1]->firstName; ?>  <?php echo $results[$i-1]->lastName; ?></h3>
-							<div class="panel-body text-center">
-								<img class="img-profile" style="margin: 0px auto;" src="<?php echo base_url($results[$i-1]->picture); ?>">
-								<div class="estrellas <?php echo $results[$i-1]->id;?>">
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span> 
-									<span class="glyphicon glyphicon-star"></span> 
-									<span class="glyphicon glyphicon-star"></span> 
-									<span class="glyphicon glyphicon-star"></span>    
-								</div> 
-								<div class="medallas-profesor">
-									<img src="assets/img/medallas/1_color.png" alt="">
-									<img src="assets/img/medallas/2_color.png" alt="">
-									<img src="assets/img/medallas/3_color.png" alt="">
-									<img src="assets/img/medallas/4_color.png" alt="">
-									<img src="assets/img/medallas/5_bn.png" alt="" class="no-medalla">
-								</div>
-								
-								<h3 class="medalla-tag">Experto</h3>
-
-								<script type="text/javascript">
-										for(var i=0; i < Math.round(<?php echo $results[$i-1]->rate?>); i++){						
-											$("div.estrellas.<?php echo $results[$i-1]->id;?> span:nth-child("+(i+1)+")").css("color","#FFCC00");
+                    
+                    
+                    <div class="col-md-3">
+                        <div class="panel-default panel-perfil panel-perfil center-block">                                            
+                        <h3 class="text-center tt-txt-panel-perfil" style="color:#009966;"><?php echo $results[$i-1]->firstName; ?>  <?php echo $results[$i-1]->lastName; ?></h3>
+                            <div class="panel-body text-center">
+                            	<?php
+									switch($results[$i-1]->level){
+										case 1:	$color = "#4164B3";
+												break;
+										case 2:	$color = "#38A5CE";
+												break;
+										case 3:	$color = "#FE544B";
+												break;
+										case 4:	$color = "#FD931B";
+												break;
+										case 5:	$color = "#FFC136";
+												break;
+											
+									}
+								?>
+                            
+                                <img class="img-profile" style="margin: 0px auto; border-color:<?php echo $color;?>" src="<?php echo base_url($results[$i-1]->picture); ?>">
+                                <div class="estrellas <?php echo $results[$i-1]->id;?>">
+                                	<?php
+										switch($results[$i-1]->rate){
+											case "0":	echo '<span class="glyphicon glyphicon-star" style="color: grey;"></span>
+															<span class="glyphicon glyphicon-star" style="color: grey;"></span> 
+															<span class="glyphicon glyphicon-star" style="color: grey;"></span> 
+															<span class="glyphicon glyphicon-star" style="color: grey;"></span> 
+															<span class="glyphicon glyphicon-star" style="color: grey;"></span>';
+														break;
+											case "1":	echo '<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span>
+															<span class="glyphicon glyphicon-star" style="color: grey;"></span> 
+															<span class="glyphicon glyphicon-star" style="color: grey;"></span> 
+															<span class="glyphicon glyphicon-star" style="color: grey;"></span> 
+															<span class="glyphicon glyphicon-star" style="color: grey;"></span>';
+														break;
+											case "2":	echo '<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span>
+															<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
+															<span class="glyphicon glyphicon-star" style="color: grey;"></span> 
+															<span class="glyphicon glyphicon-star" style="color: grey;"></span> 
+															<span class="glyphicon glyphicon-star" style="color: grey;"></span>';
+														break;
+											case "3":	echo '<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span>
+															<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
+															<span class="glyphicon glyphicon-star" style="color: #ffcc00"></span> 
+															<span class="glyphicon glyphicon-star" style="color: grey;"></span> 
+															<span class="glyphicon glyphicon-star" style="color: grey;"></span>';
+														break;
+											case "4":	echo '<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span>
+															<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
+															<span class="glyphicon glyphicon-star" style="color: #ffcc00"></span> 
+															<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
+															<span class="glyphicon glyphicon-star" style="color: grey;"></span>';
+														break;
+											case "5":	echo '<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span>
+																<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
+																<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
+																<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span> 
+																<span class="glyphicon glyphicon-star" style="color: #ffcc00;"></span>';
+														break;
 										}
-								</script>
-								<h4 class="par txt-panel-perfil">Ciudad: <?php foreach($cities as $city){if($city->ID == $this->input->get("city"))echo utf8_decode($city->Name);break;}?></h4>      
-								<h4 class="par txt-panel-perfil">Area: <?php foreach($areas as $a)if($a->IdArea == $this->input->get("area")){echo $a->Name;break;}  ?></h4>
-								<h4 class="par txt-panel-perfil">Precio: <span style="color:#00B85C;"><?php echo "$".($results[$i-1]->fee_sp + $results[$i-1]->price)?></span></h4>
-								<div class="btn-estu btn col-lg-12 ver_perfil txt-panel-perfil" id="ver_perfil" 
-								onclick="<?php echo "refreshTeacherDetail('".($results[$i-1]->id_user)."','".$results[$i-1]->firstName."','".$results[$i-1]->lastName."','".$results[$i-1]->picture."',".$results[$i-1]->rate.",'".($results[$i-1]->price+$results[$i-1]->fee_sp)."','".$results[$i-1]->City."')" ?>" >Ver perfil</div>
-							</div>
-						</div>
-					</div>			
+									
+									?>
+                                
+                                
+                                    
+                                </div>
+                                <div class="medallas-profesor">
+                                	<?php
+										switch($results[$i-1]->level){
+											case 1:	echo '<img src="assets/img/medallas/1.svg" alt="" >
+															<img src="assets/img/medallas/2b.svg" alt="" class="no-medalla">
+															<img src="assets/img/medallas/3b.svg" alt="" class="no-medalla">
+															<img src="assets/img/medallas/4b.svg" alt="" class="no-medalla">
+															<img src="assets/img/medallas/5b.svg" alt="" class="no-medalla">';
+													break;
+											case 2:	echo '<img src="assets/img/medallas/1.svg" alt="" >
+															<img src="assets/img/medallas/2.svg" alt="">
+															<img src="assets/img/medallas/3b.svg" alt="" class="no-medalla">
+															<img src="assets/img/medallas/4b.svg" alt="" class="no-medalla">
+															<img src="assets/img/medallas/5b.svg" alt="" class="no-medalla">';
+													break;
+											case 3: echo '<img src="assets/img/medallas/1.svg" alt="" >
+															<img src="assets/img/medallas/2.svg" alt="">
+															<img src="assets/img/medallas/3.svg" alt="">
+															<img src="assets/img/medallas/4b.svg" alt="" class="no-medalla">
+															<img src="assets/img/medallas/5b.svg" alt="" class="no-medalla">';
+													break;
+											case 4:	'<img src="assets/img/medallas/1.svg" alt="" >
+															<img src="assets/img/medallas/2.svg" alt="">
+															<img src="assets/img/medallas/3.svg" alt="">
+															<img src="assets/img/medallas/4.svg" alt="">
+															<img src="assets/img/medallas/5b.svg" alt="" class="no-medalla">';
+													break;
+											case 5:	'<img src="assets/img/medallas/1.svg" alt="" >
+															<img src="assets/img/medallas/2.svg" alt="">
+															<img src="assets/img/medallas/3.svg" alt="">
+															<img src="assets/img/medallas/4.svg" alt="">
+															<img src="assets/img/medallas/5.svg" alt="">';
+													break;
+												
+										}
+									?>
+
+                                </div>
+                                <h3 class="medalla-tag"><?php
+														switch($results[$i-1]->level){
+															case 1:	echo "Junior";
+																	break;
+															case 2:	echo "Profesional";
+																	break;
+															case 3:	echo "Master";
+																	break;
+															case 4:	echo "Experto";
+																	break;
+															case 5:	echo "Elite";
+																	break;
+																
+														}
+													?></h3>
+        
+                                <h4 class="par txt-panel-perfil">Ciudad: <?php foreach($cities as $city){if($city->ID == $this->input->get("city"))echo utf8_decode($city->Name);break;}?></h4>  
+                                <h4 class="par txt-panel-perfil">Area: <?php foreach($areas as $a)if($a->IdArea == $this->input->get("area")){echo $a->Name;break;}  ?></h4>    
+                                <h4 class="par txt-panel-perfil">Precio: <span style="color:#00B85C;"><?php echo "$".($results[$i-1]->fee_sp + $results[$i-1]->price)?></span></h4>
+                            </div>
+                            <div onclick="<?php echo "refreshTeacherDetail('".($results[$i-1]->id_user)."','".$results[$i-1]->firstName."','".$results[$i-1]->lastName."','".$results[$i-1]->picture."',".$results[$i-1]->rate.",'".($results[$i-1]->price+$results[$i-1]->fee_sp)."','".$results[$i-1]->City."')" ?>" class="cta-perfil-profesor"><h3>Ver perfil</h3></div>
+                        </div>
+                    </div>
+                   
+                    
+                    		
 					<?php if($i >= 3 && $i == count($results)): ?>
 						</div>
 					<?php endif; ?>

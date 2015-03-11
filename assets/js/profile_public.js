@@ -87,41 +87,179 @@ function deleteCompetition(element){
 }
 
 $(document).ready(function() {
+	
+	var request ={};
+	
 	$.get(base_url+"perfil/disponibilidad/"+id_user,function(resp){
-		eventList = JSON.parse(resp);
-		for(var i = 0 ; i < eventList.length ;i++){
-			var sday = eventList[i].start_day == 0 ? 7: eventList[i].start_day;
-			var eday = eventList[i].end_day == 0 ? 7: eventList[i].end_day;
-			eventList[i].id = i;
-			eventList[i].title = "Disponible";
-			eventList[i].start = new moment({years:2014,months:11,day:sday,hours:eventList[i].start_time});
-			eventList[i].end = new moment({years:2014,months:11,day:eday,hours:eventList[i].end_time});
-		}
-		$('#calendar').fullCalendar({
-			header:{
-				left:"",
-				center:"",
-				right:""
-			},
-			firstDay:1,
-			lang:"es",
-			slotDuration:"01:00:00",
-			axisFormat:'h(:mm)a',
-			minTime:"07:00:00",
-			maxTime:"21:00:00",
-			height:"auto",
-			columnFormat:{week: 'ddd'},
-			defaultView: 'agendaWeek',
-			defaultDate: '2014-12-01',
-			allDayText: "Todo el día",
-			allDaySlot: false,
-			eventColor:"#003333",
-			selectable: false,
-			selectHelper: true,
-			editable: false,
-			events:eventList,
-			
+		
+		var freeList = JSON.parse(resp);
+		
+		var date = new moment();
+
+		var week = new moment().startOf('week');
+		
+		
+		$.get(base_url+"perfil/ajaxClases/"+id_user+"/"+date.unix(),function(resp){
+			var classList = JSON.parse(resp);
+
+				var busyList = [];
+
+				for(var i = 0 ; i < 7 ;i++){
+
+					busyList.push({id:i-1,title:"No disponible",color:"#000",editable:false,
+
+					start: (new moment(week)).hour(7).add(i,'d'),end: (new moment(week)).hour(21).add(i,'d')})
+
+				}
+
+				/** This function inverts the free to busy lapses it initially it suposes the full 
+
+				*	week is busy then removes the lapses of "free" time
+
+				*/
+
+				function splitBusy(day,start,end){
+
+					var l = busyList.length;
+
+					for(var i = 0 ; i<l ; i++){
+
+						if(busyList[i].start.day() == start.day()){
+
+							var toSplit = busyList[i];
+
+							if(toSplit.start >= start && toSplit.end > end){
+
+								//move begining to the end of end
+
+								toSplit.start.hour(end.hour());
+
+							}else if(toSplit.end <= end && toSplit.start < start){
+
+								//move the end to the begining of start
+
+								toSplit.end.hour(start.hour());
+
+							}else if(toSplit.start < start && toSplit.end > end){
+
+								//split in two
+
+								busyList.push({id:busyList.length,
+
+									title:"No disponible",
+
+									color:"#000",
+
+									start: new moment(end),
+
+									end: new moment(toSplit.end),
+
+									editable:false
+
+									})
+
+								toSplit.end.hour(start.hour());
+
+							}else{
+
+								busyList.splice(i,1);
+
+							}
+
+							break;
+
+						}
+
+					}
+
+				}
+
+				for(var i = 0 ; i < freeList.length ;i++){
+
+					var sday = freeList[i].start_day == 0 ? 7: freeList[i].start_day;
+
+					var eday = freeList[i].end_day == 0 ? 7: freeList[i].end_day;
+
+					freeList[i].id = i;
+
+					freeList[i].title = "Disponible";
+
+					freeList[i].start = new moment(week).add(sday-1,"d").add(freeList[i].start_time,"h");
+
+					freeList[i].end = new moment(week).add(eday-1,"d").add(freeList[i].end_time,"h");
+
+					splitBusy(sday,freeList[i].start,freeList[i].end);
+
+				}
+
+
+				for(var i = 0 ; i < classList.length ;i++){
+
+					busyList.push({
+
+						id:busyList.length,
+
+						title:"Agendado",
+
+						editable:false,
+
+						start:new moment(classList[i].start),
+
+						end:new moment(classList[i].end)
+
+					});
+
+				}
+
+				var e = {id:-2,	start:date,end:new moment(date).add(2,'h'),title:"clase",editable:true,color:"#009966"}; // class event object
+				
+				var overE = false;
+				
+				for(var i = 0 ; i< busyList.length ; i++){
+					if(!(busyList[i].start.format() >= e.end.format() || busyList[i].end.format() <= e.start.format() )){
+						overE = true;
+					}
+				}
+				
+				if(overE == false)
+				{
+					//busyList.push(e);
+					//request.start = date;
+					//request.end = new moment(date).add(2,"h");
+				}
+				
+				$('#calendar').fullCalendar("removeEvents");
+				
+				$('#calendar').fullCalendar({
+					header:{
+						left:"",
+						center:"",
+						right:""
+					},
+					firstDay:1,
+					lang:"es",
+					slotDuration:"01:00:00",
+					axisFormat:'h(:mm)a',
+					minTime:"07:00:00",
+					maxTime:"21:00:00",
+					height:"auto",
+					defaultView: 'agendaWeek',
+					defaultDate: week,
+					allDayText: "Todo el día",
+					allDaySlot: false,
+					eventColor:"#003333",
+					selectable: false,
+					selectHelper: true,
+					editable: false,
+				});
+				
+				for(var i in busyList){
+
+					$('#calendar').fullCalendar("renderEvent",busyList[i]);
+
+				}
 		});
+			  
 	});
 	$("#btn-save-schedule").click(function(){
 		var i,j;

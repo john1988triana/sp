@@ -227,9 +227,10 @@ class Perfil extends CI_Controller {
 		
 			if($id != $user){
 				$role = $this->model_superprofe->adminRole($this->session->userdata("sIdUser"));
+				$user = $id;
 				if($role!=1){
-					echo "FORBIDEN";
-					return;
+					//echo "FORBIDEN";
+					//return;
 				}else{
 					$user = $id;
 				}

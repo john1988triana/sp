@@ -51,9 +51,7 @@ class Clase extends CI_Controller {
 	}
 	
 	public function calificar_estudiante() {
-		$this->load->view("header");
-		$this->load->view("clase/calificar_estudiante");
-		$this->load->view("footer");
+		echo json_encode($this->aulasamigas->getAreasByContent('768'));
 	}
 	
 	public function confirmar($reqid){	
