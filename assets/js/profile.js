@@ -87,6 +87,7 @@ function deleteCompetition(element){
 }
 
 $(document).ready(function() {
+	
 	$.get(base_url+"perfil/disponibilidad/"+id_user,function(resp){
 		eventList = JSON.parse(resp);
 		for(var i = 0 ; i < eventList.length ;i++){

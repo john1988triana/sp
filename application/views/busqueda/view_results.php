@@ -431,8 +431,14 @@ $(document).ready(function(){
 	}
 
 	function requestClass(){
+		
 		var base_url = "<?php echo base_url(); ?>";
-		$("#pleaseWaitDialog").modal();
+		
+		var _start_date = new moment("<?php echo $this->input->get("date"); ?>","DD-MM-YYYY").hour(<?php echo $this->input->get("time"); ?>);
+		
+		var _end_date = new moment(_start_date).add(2,'h')
+		
+		//$("#pleaseWaitDialog").modal();
 		var data = {
 			"id":"<?php echo $req_id; ?>",
 			"address":request.address,
@@ -442,8 +448,11 @@ $(document).ready(function(){
 			"price":"25000",
 			"topic":request.topic,
 			"phone":request.phone,
-			"status":2
+			"status":2,
+			"end":_end_date.format("YYYY-MM-DD, HH:mm:ss"),
+			"start":_start_date.format("YYYY-MM-DD, HH:mm:ss"),
 		};
+		
 		$.post(base_url+"busqueda/guardar",data,function(resp){
 			var info = JSON.parse(resp);
 			if(!info){
@@ -454,6 +463,7 @@ $(document).ready(function(){
 			}
 
 		});
+		
 
 	}
 

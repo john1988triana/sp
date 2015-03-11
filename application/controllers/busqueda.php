@@ -220,9 +220,9 @@ class Busqueda extends CI_Controller {
 		
 			$data["price_public"] = $this->model_superprofe->getPrice($this->input->post("id_professor"),"public")*$hours;
 			$data["price_sp"] = $this->model_superprofe->getPrice($this->input->post("id_professor"),"sp")*$hours;
-			$data["status"] = 2;
-		}else{
 			$data["status"] = 3;
+		}else{
+			$data["status"] = 2;
 		}
 		if($this->session->userdata("sIdUser")){
 			$data["id_student"] = $this->session->userdata("sIdUser");
@@ -231,6 +231,25 @@ class Busqueda extends CI_Controller {
 			$this->session->set_userdata("redirect_on_login",true);
 		}
 		$this->model_superprofe->updateRequest($reqid,$data);
+		
+		//email send
+		$template = file_get_contents(base_url("application/views/mail/successful_solicitud.html"));
+		$template = str_replace("{{STUDENT NAME}}", $this->session->userdata("sFirstName"),$template);
+		
+		$config['mailtype'] = "html";
+		$this->load->library('email');
+		$this->email->initialize($config);
+		
+		$this->email->from('hola@superprofe.co', 'Superprofe');
+		$this->email->to($this->session->userdata("sEmail")); 
+		$this->email->cc('hola@superprofe.co'); 
+		$this->email->subject('Superprofe.co - Tu solicitud fue recibida.');
+		$this->email->message($template);  
+		
+		$this->email->send();
+		
+		
+		
 		echo json_encode($result);
 	}
 }

@@ -302,6 +302,9 @@ class Registro extends CI_Controller {
 					}else if($this->input->post('txtEmailNew')){
 						$email_temp = $this->input->post('txtEmailNew');
 					}
+					
+					$this->sendEmailNewAccound($this->input->post('txtName'), $this->input->post('txtLast'), $email_temp, $this->input->post('txtPassword'));
+					
 					//INICIO DE SESSION DEL USUARIO
 					$aSessionUser = array(
 						'bLoginIn' => TRUE,
@@ -420,6 +423,10 @@ class Registro extends CI_Controller {
 					}else if($this->input->post('txtEmailNew')){
 						$email_temp = $this->input->post('txtEmailNew');
 					}
+					
+					$this->sendEmailNewAccound($this->input->post('txtName'), $this->input->post('txtLast'), $email_temp, $this->input->post('txtPassword'));
+					
+					
 					//INICIO DE SESSION DEL USUARIO
 					$aSessionUser = array(
 						'bLoginIn' => TRUE,
@@ -654,6 +661,27 @@ class Registro extends CI_Controller {
 		$this->load->library('aulasamigas');
 		$this->aulasamigas->cHistoryByPlataform($this->session->userdata('sIdUser'), $_SERVER['REMOTE_ADDR'], $this->session->userdata('id_content'));
 	}
+	
+	
+	public function sendEmailNewAccound($FirstName, $LastName, $email, $password) {
+		$template = file_get_contents(base_url("application/views/mail/new_account.html"));
+		$template = str_replace("{{STUDENT_NAME}}",$FirstName." ".$LastName,$template);
+		$template = str_replace("{{EMAIL}}",$email,$template);
+		$template = str_replace("{{PASSWORD}}",$password,$template);
+		
+		$config['mailtype'] = "html";
+		$this->load->library('email');
+		$this->email->initialize($config);
+		
+		$this->email->from('hola@superprofe.co', 'Superprofe');
+		$this->email->to($email); 
+		$this->email->cc('hola@superprofe.co'); 
+		$this->email->subject('Superprofe.co - Bienvenido a Superprofe.');
+		$this->email->message($template);  
+		
+		$this->email->send();
+	}
+	
 }
 
 /* End of file login.php */
