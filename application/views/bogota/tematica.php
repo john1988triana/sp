@@ -227,7 +227,7 @@ Ordena por:   <select name="order_select" id="order_select">
                 
                 
                 
-				<div class="btn btn-lg landing-btn-form" onClick="submit();">Registrarme</div>
+				<div id="register_bt" class="btn btn-lg landing-btn-form">Registrarme</div>
 				<br>
 				<br>
 				<p>ó registrate con tu cuenta de</p>
@@ -243,10 +243,9 @@ Ordena por:   <select name="order_select" id="order_select">
 <script>
 $(document).ready(function(){
 
-
-	function test_fcn() {
-		alert("hehehehe");
-	}
+	$("#register_bt").click(function(){
+		$("#formRegUser").submit();
+	});
 
 	$("input").bind("change paste keyup", function(){
 		//alert("funciona");
@@ -427,7 +426,7 @@ $(document).ready(function(){
 							break;
 				}
 				
-				var html = '<div class="col-md-3"><div class="panel-default panel-perfil panel-perfil center-block"><h3 class="text-center tt-txt-panel-perfil" style="color:#009966;">' + value.firstName + ' ' + value.lastName + '</h3><div class="panel-body text-center"><img class="img-profile" style="margin: 0px auto; border-color:' + _color +'" src="/' + value.picture + '"><div class="estrellas">' + _stars + '</div><div class="medallas-profesor">' + _medal + '</div><h3 class="medalla-tag">' + _level + '</h3><h4 class="par txt-panel-perfil">Bogotá</h4><h4 class="par txt-panel-perfil perfil-titulo">' + value.title + '</h4><h4 class="par txt-panel-perfil">' + topic + '</h4><h4 class="par txt-panel-perfil">precio: <span style="color: rgb(0, 184, 92);"> $ ' + (Number(value.price) + Number(value.fee_sp)).toString() + ' </span></h4></div><div class="cta-perfil-profesor"><h3>ver perfil</h3></div></div></div>';
+				var html = '<div class="col-md-3"><div class="panel-default panel-perfil panel-perfil center-block"><h3 class="text-center tt-txt-panel-perfil" style="color:#009966;">' + value.firstName + ' ' + value.lastName + '</h3><div class="panel-body text-center"><img class="img-profile" style="margin: 0px auto; border-color:' + _color +'" src="/' + value.picture + '"><div class="estrellas">' + _stars + '</div><div class="medallas-profesor">' + _medal + '</div><h3 class="medalla-tag">' + _level + '</h3><h4 class="par txt-panel-perfil">Bogotá</h4><h4 class="par txt-panel-perfil perfil-titulo">' + value.title + '</h4><h4 class="par txt-panel-perfil">' + topic + '</h4><h4 class="par txt-panel-perfil">precio: <span style="color: rgb(0, 184, 92);"> $ ' + (Number(value.price) + Number(value.fee_sp)).toString() + ' </span></h4></div><div class="cta-perfil-profesor" onclick="gotoProfile(\'' + value.userprofile + '\');"><h3>ver perfil</h3></div></div></div>';
 				
 				
 				if(pre_counter == 0) {
@@ -479,6 +478,11 @@ $(document).ready(function(){
 	loadData("nombre");
 	
 });
+
+function gotoProfile(userprofile){
+	window.open("/" + userprofile, "_self");
+}
+
 
 </script>
 	

@@ -168,7 +168,7 @@ class Clase extends CI_Controller {
 					$data["level"] = $level["name"];
 				}
 			}
-			$template = file_get_contents(base_url("application/views/mail/solicitar.html"));
+			$template = file_get_contents(base_url("application/views/mail/solicitar_sin_profe.html"));
 			$template = str_replace("{{HOST}}",base_url(),$template);
 			$template = str_replace("{{AREA}}",$data["area"],$template);
 			$template = str_replace("{{STUDENT NAME}}",$data["sFName"]." ".$data["sLName"],$template);
@@ -179,6 +179,8 @@ class Clase extends CI_Controller {
 			$template = str_replace("{{DATE}}",date("l,d F Y",strtotime($data["start"])),$template);
 			$template = str_replace("{{TIME}}",date("h:i a",strtotime($data["start"])),$template);
 			$template = str_replace("{{ID_CLASS}}",$reqid,$template);
+			$template = str_replace("{{TEL}}",$data["phone"],$template);
+			$template = str_replace("{{EMAIL}}",$this->session->userdata("sEmail"),$template);
 			
 			$config['mailtype'] = "html";
 			$this->load->library('email');
@@ -227,6 +229,8 @@ class Clase extends CI_Controller {
 			$template = str_replace("{{DATE}}",date("l,d F Y",strtotime($data["start"])),$template);
 			$template = str_replace("{{TIME}}",date("h:i a",strtotime($data["start"])),$template);
 			$template = str_replace("{{ID_CLASS}}",$reqid,$template);
+			$template = str_replace("{{TEL}}",$data["phone"],$template);
+			$template = str_replace("{{EMAIL}}",$this->session->userdata("sEmail"),$template);
 			
 			$config['mailtype'] = "html";
 			$this->load->library('email');
