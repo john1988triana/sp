@@ -338,6 +338,72 @@ class Perfil extends CI_Controller {
 	}
 	
 	public function createbatchUserNames() {
+		$data = $this->model_superprofe->loadBatchTeachers();
+		
+		foreach ($data as $teacher) {
+			//echo json_encode($teacher["id"]);
+			$userProfileName = $this->createUserProfileName($teacher);
+		}
+		
+		//echo json_encode($data);
+	}
+	
+	
+	protected function createUserProfileName($teacher, $number = 0) {
+		
+		echo "try: " .$number;
+		$fname = str_replace("ñ", "n", $teacher["firstName"]);
+		$fname = str_replace("Ñ", "n", $fname);
+		$fname = str_replace("á", "a", $fname);
+		$fname = str_replace("Á", "a", $fname);
+		$fname = str_replace("é", "e", $fname);
+		$fname = str_replace("í", "i", $fname);
+		$fname = str_replace("Í", "i", $fname);
+		$fname = str_replace("ó", "o", $fname);
+		$fname = str_replace("Ó", "o", $fname);
+		$fname = str_replace("ú", "u", $fname);
+		$fname = str_replace("Ú", "u", $fname);
+		$fname = str_replace(" ", ".", $fname);
+		
+		$lname = str_replace("ñ", "n", $teacher["lastName"]);
+		$lname = str_replace("Ñ", "n", $lname);
+		$lname = str_replace("á", "a", $lname);
+		$lname = str_replace("Á", "a", $lname);
+		$lname = str_replace("é", "e", $lname);
+		$lname = str_replace("í", "i", $lname);
+		$lname = str_replace("Í", "i", $lname);
+		$lname = str_replace("ó", "o", $lname);
+		$lname = str_replace("Ó", "o", $lname);
+		$lname = str_replace("ú", "u", $lname);
+		$lname = str_replace("Ú", "u", $lname);
+		$lname = str_replace(" ", ".", $lname);
+		
+		
+		
+		if($number > 0){
+			$userProfilename = strtolower($fname) . "." . strtolower($lname) . $number;
+			
+		}
+		else {
+			$userProfilename = strtolower($fname) . "." . strtolower($lname);
+		}
+		
+		$data = $this->model_superprofe->checkUserProfileName($userProfilename);
+		
+		
+		
+		if($data == true){
+			$teacher["userprofile"] = $userProfilename;
+			$id_user = $teacher["id_user"];
+			$this->model_superprofe->update($id_user,$teacher,1);
+			echo "ready!";
+			return $userProfilename;
+		}
+		else {
+			$number++;
+			$this->createUserProfileName($teacher, $number);
+		}
 		
 	}
+	
 }

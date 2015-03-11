@@ -238,7 +238,7 @@
 		<h3 class="title-profesor">AGENDA</h3>
 		<div class="col-md-12 agenda-profesor">
 			<div class="col-md-offset-1" id="calendar"></div>
-			<button type="submit" class="btn-schedule btn" onclick="" style="margin-top: 45px;">Programar mi clase</button>
+			<button type="submit" class="btn-schedule btn" onclick="" style="margin-top: 45px; display:none;">Programar mi clase</button>
 		</div>
 	</div>
 
@@ -247,7 +247,7 @@
 									
 
 
-	<div class="container testimonials-ctrl heroes-ctrl ">
+	<div class="container testimonials-ctrl heroes-ctrl " style="display:none;">
 		
 
 		<div class="row" style="margin-top:30px;">

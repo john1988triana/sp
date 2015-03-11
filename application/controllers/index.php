@@ -30,7 +30,6 @@ class Index extends CI_Controller {
      */
 
 	public function index() {
-		//echo $this->input->get();
 		
 		$this->_load_index();
 	}

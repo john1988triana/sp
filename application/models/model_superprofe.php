@@ -249,10 +249,33 @@ class Model_superprofe extends CI_Model
 		{
 			return array();
 		}
-		
-		
 	}
 	
+	public function loadBatchTeachers() {
+		$this->db_super_pro->select("*");
+		$this->db_super_pro->from("professor");
+		$this->db_super_pro->where("userprofile is null",NULL);
+		$query = $this->db_super_pro->get();
+		$data = $query->result_array();
+		
+		return $data;
+	}
+	
+	public function checkUserProfileName($userProfileName) {
+		$this->db_super_pro->select("userprofile");
+		$this->db_super_pro->from("professor");
+		$this->db_super_pro->where("userprofile",$userProfileName);
+		$query = $this->db_super_pro->get();
+		$data = $query->result_array();
+		
+		if(count($data) > 0) {
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
 	
 	
 	public function loadUser($user_id){

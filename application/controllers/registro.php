@@ -24,6 +24,10 @@ class Registro extends CI_Controller {
 	}
 	//Registro Alumnos
 	public function alumno(){
+		
+		$isTeacher = array('isTeacher' => 0);
+		$this->session->set_userdata($isTeacher);
+		
 		$sUrlGoogle = $this->aulasamigas->urlGoogle(base_url() . 'login/login_google', FALSE, $this->input->ip_address(), FALSE);
 		$urlFacebook = $this->login_fb();
 		$arr_send_data = array('sLoginGoogle' => json_decode($sUrlGoogle),
@@ -292,6 +296,7 @@ class Registro extends CI_Controller {
 													$this->input->post('txtLast'),
 													$this->input->post('txtPhoneTutor'),
 													1);
+													
 					if($this->input->post('txtEmail')){
 						$email_temp = $this->input->post('txtEmail');
 					}else if($this->input->post('txtEmailNew')){
@@ -405,6 +410,11 @@ class Registro extends CI_Controller {
 													$this->input->post('txtLast'),
 													$result->id_user,
 													$aInfoUser[0]["isTeacher"]);
+													
+					if($this->session->userdata('isTeacher') == 1) {
+						$this->createUserProfileName($user);
+					}
+					
 					if($this->input->post('txtEmail')){
 						$email_temp = $this->input->post('txtEmail');
 					}else if($this->input->post('txtEmailNew')){
@@ -486,7 +496,18 @@ class Registro extends CI_Controller {
 		
 		
 		$this->load->view('header');
-		$this->load->view('registro/register', $arr_send_data);
+		
+		if($this->session->userdata('isTeacher') == 1){
+			$this->load->view('registro/register_teacher', $arr_send_data);
+		}
+		else {
+			$this->load->view('registro/register', $arr_send_data);
+		}
+		
+		
+		
+		
+		
 		$this->load->view('footer');
 	}
 	
@@ -498,6 +519,65 @@ class Registro extends CI_Controller {
 			redirect('registro/crea_pagina?error=terms');
 		}
 	}
+	
+	
+	protected function createUserProfileName($teacher, $number = 0) {
+		
+		//echo "try: " .$number;
+		$fname = str_replace("ñ", "n", $teacher["firstName"]);
+		$fname = str_replace("Ñ", "n", $fname);
+		$fname = str_replace("á", "a", $fname);
+		$fname = str_replace("Á", "a", $fname);
+		$fname = str_replace("é", "e", $fname);
+		$fname = str_replace("í", "i", $fname);
+		$fname = str_replace("Í", "i", $fname);
+		$fname = str_replace("ó", "o", $fname);
+		$fname = str_replace("Ó", "o", $fname);
+		$fname = str_replace("ú", "u", $fname);
+		$fname = str_replace("Ú", "u", $fname);
+		$fname = str_replace(" ", ".", $fname);
+		
+		$lname = str_replace("ñ", "n", $teacher["lastName"]);
+		$lname = str_replace("Ñ", "n", $lname);
+		$lname = str_replace("á", "a", $lname);
+		$lname = str_replace("Á", "a", $lname);
+		$lname = str_replace("é", "e", $lname);
+		$lname = str_replace("í", "i", $lname);
+		$lname = str_replace("Í", "i", $lname);
+		$lname = str_replace("ó", "o", $lname);
+		$lname = str_replace("Ó", "o", $lname);
+		$lname = str_replace("ú", "u", $lname);
+		$lname = str_replace("Ú", "u", $lname);
+		$lname = str_replace(" ", ".", $lname);
+		
+		
+		
+		if($number > 0){
+			$userProfilename = strtolower($fname) . "." . strtolower($lname) . $number;
+			
+		}
+		else {
+			$userProfilename = strtolower($fname) . "." . strtolower($lname);
+		}
+		
+		$data = $this->model_superprofe->checkUserProfileName($userProfilename);
+		
+		
+		
+		if($data == true){
+			$teacher["userprofile"] = $userProfilename;
+			$id_user = $teacher["id_user"];
+			$this->model_superprofe->update($id_user,$teacher,1);
+			//echo "ready!";
+			return $userProfilename;
+		}
+		else {
+			$number++;
+			$this->createUserProfileName($teacher, $number);
+		}
+		
+	}
+	
 	/************************************************** OLD IMPLEMENTAION ***************************************************************/
 	public function validateCompleteProfile(){
 		if ($this->input->post('btnCompleteProfile')){
