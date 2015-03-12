@@ -209,7 +209,6 @@
 
 	<div class="row videos-profesor perfil-profesor">
 		<h3 class="title-profesor">VIDEOS</h3>
-		<button type="button" class="btn suscribir-btn">Suscribirse</button>
 		<div class="col-md-12">	
 			<div class="col-md-offset-1">
 				<div class="row col-md-12 youtube-form">

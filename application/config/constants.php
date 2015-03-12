@@ -41,7 +41,7 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 |--------------------------------------------------------------------------
 |
 */
-if($_SERVER['HTTP_HOST'] == 'amigaslive.net' || 'localhost'){
+if($_SERVER['HTTP_HOST'] == 'amigaslive.net' || 'localhost' || '192.168.0.10'){
     define('URL_API_AMIGAS','http://amigaslive.net/aulasamigas/class/AjaxConection.php');
 }else if($_SERVER['HTTP_HOST'] == 'superprofe.co' || $_SERVER['HTTP_HOST'] == 'www.superprofe.co'){
     define('URL_API_AMIGAS','http://app.aulasamigas.com/class/AjaxConection.php');

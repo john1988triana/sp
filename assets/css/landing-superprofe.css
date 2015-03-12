@@ -1243,10 +1243,10 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 
 .borrar-competencia,.valor-competencia, .numero-competencia {
 
-	font-size: 25px;
+	font-size: 20px;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	line-height: 55px;
+	line-height: 45px;
 }
 
 .borrar-competencia {
@@ -1580,7 +1580,7 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 	
 	margin-top: 65px;
 	width: 40%;
-	min-width: 350px;
+	min-width: 260px;
 
 }
 
@@ -2196,107 +2196,6 @@ button.popup-ingresar {
 /* ---------------------------- Media Queries ------------------------- */
 
 
-@media screen and (max-width: 739px) {
-    
-    .registro-col {
-
-		width: 375px;
-
-	}
-
-	.panel_busqueda {
-
-		display: block;
-		margin-right: auto;
-		margin-left: auto;
-	}
-
-	.jumbotron.fondo_busqueda {
-
-		padding: 0;
-	}
-}
-
-@media screen and (max-width: 400px) {
-    
-    .registro-col {
-
-		width: auto;
-
-	}
-
-
-	.rating {
-	  font-size: 20pt;
-	}
-	
-	.rating > span:hover:before,
-	.rating > span:hover ~ span:before {
-	   font-size: 20pt;
-	}
-
-	
-	.comment-pack p {
-
-		font-size: 10pt;
-	
-	}
-	
-}
-
-
-@media screen and (max-width: 480px) {
-    
-   
-
-	.landing-check {
-
-	padding: 5%;
-	padding-top: 70px;
-	color: white;
-	padding-bottom: 70px;
-
-	}
-
-	.img-land {
-
-		padding-left: 20px;
-		padding-right: 20px;
-	}
-
-	.img-land h1 {
-
-		font-size: 28pt;
-		text-align: center;
-	}
-
-	.landing-check h2 {
-
-		font-size: 24px;
-		text-align: center;
-
-	}
-
-	.landing-check h3 {
-
-		font-size: 18px;
-
-	}
-	.landing-check h3 img {
-
-		width: 25px;
-
-	}
-
-	.circle-mask  {
-
-		width:  200px;
-		height: auto;	
-	}
-
-	
-}
-
 @media screen and (max-width: 992px) {
     
     .col-md-6.columna-reg-1 {
@@ -2361,28 +2260,51 @@ button.popup-ingresar {
 	.delete-group.exp {
 	
 	
-	left: 50%;
-	top: -108px;
+		left: 50%;
+		top: -108px;
 	
 	
 	}
 
 	.row.container-videos .col-md-4 .delete-group.exp {
-		left: 93%;
-		top: -108px;
-	}
+
+	  left: 93%;
+	  top: 13px;
+	}	
 
 	.test-pack  {
 
-	text-align: center;
+		text-align: center;
 
 	}
 
+	.perfil-profesor-iz {
 
+  		border-right: none;
+	}
 }
 
 
+@media screen and (max-width: 739px) {
+    
+    .registro-col {
 
+		width: 375px;
+
+	}
+
+	.panel_busqueda {
+
+		display: block;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	.jumbotron.fondo_busqueda {
+
+		padding: 0;
+	}
+}
 
 @media screen and (max-width: 600px) {
     
@@ -2412,13 +2334,171 @@ button.popup-ingresar {
 	min-height: 300px;
 	min-width: 300px;
 
+	}
+
+
+	.borrar-competencia,.valor-competencia, .numero-competencia {
+
+	font-size: 14px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	line-height: 35px;
+}
+
+	.valor-competencia {
+
+		width: 300px;
+	}
+
+
+
+	.experticia-input {
+	  width: 100%;
+	  margin-right: 0; 
+	  margin-left: 0; 
+	  font-size: 12pt;
+	  padding-left: 0;
+	  text-align: center;
+	}
+
+}
+
+@media screen and (max-width: 480px) {
+    
+   
+
+	.landing-check {
+
+	padding: 5%;
+	padding-top: 70px;
+	color: white;
+	padding-bottom: 70px;
+
+	}
+
+	.img-land {
+
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	.img-land h1 {
+
+		font-size: 28pt;
+		text-align: center;
+	}
+
+	.landing-check h2 {
+
+		font-size: 24px;
+		text-align: center;
+
+	}
+
+	.landing-check h3 {
+
+		font-size: 18px;
+
+	}
+	.landing-check h3 img {
+
+		width: 25px;
+
+	}
+
+	.circle-mask  {
+
+		width:  200px;
+		height: auto;	
+	}
+
+	
+}
+
+@media screen and (max-width: 400px) {
+    
+    .registro-col {
+
+		width: auto;
+
+	}
+
+
+	.rating {
+	  font-size: 20pt;
+	}
+	
+	.rating > span:hover:before,
+	.rating > span:hover ~ span:before {
+	   font-size: 20pt;
+	}
+
+	
+	.comment-pack p {
+
+		font-size: 10pt;
+	
+	}
+
+	.borrar-competencia,.valor-competencia, .numero-competencia {
+
+		font-size: 12px;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		line-height: 30px;
+	}
+
+	.btn-ingresa-aqui{
+	
+		width: 100%;
+	}
+
+	.btn-ingresa-aqui div {
+
+	  padding: 25px 10% 26px 10%;
+	  width: initial;
+	  margin-left: -1px;
+	}
+
+	.titulo-index {
+
+	  font-size: 39px;
+	  text-align: center;
+	  letter-spacing: -2.5px;
+	  margin-bottom: 0;
+	}
+
+	.youtube-form .navbar-form .form-group {
+
+	  margin-bottom: 5px;
+	  text-align: center;
+	}
+
+	.youtube-form input {
+
+	  min-width: 70vw;
+	}
+	.youtube-form form {
+	  width: 100%;
+	}
+
+	.youtube-form button {
+	  margin-top: 10px;
+	}
+
+	.row.container-videos .col-md-4 .delete-group.exp {
+	  
+	  left: 86%;
+	  top: 5px;
+	}
+	
 }
 
 
-}
 
 .perfil-titulo {
-	height:30px;
+	height: 34px;
+  	overflow: hidden;
 }
 
 .ver_mas_bt {

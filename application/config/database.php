@@ -45,7 +45,7 @@
 | the active record class
 */
 
-if($_SERVER['HTTP_HOST'] == 'amigaslive.net' || $_SERVER['HTTP_HOST'] == 'localhost'){
+if($_SERVER['HTTP_HOST'] == 'amigaslive.net' || $_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == '192.168.0.10'){
 
 	$BD_HOSTNAME = '74.50.122.81';
 	$BD_USERNAME = 'amigas_superpro';
