@@ -309,7 +309,8 @@
 			</div>
 		</div>
 
-	</div>	
+	</div>
+</div>	
 
 <div class="amigas-separator"></div>
 <div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
@@ -331,6 +332,246 @@
 </div>
 
 
+
+<!-- inico login modal -->
+
+
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="true">
+
+  <div class="modal-dialog">
+
+    <div class="modal-content popup-iniciar">
+
+      <div class="modal-header">
+
+		INICIAR SESIIÓN
+
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+      </div>
+
+      <div class="modal-body">
+
+		<form action="<?php echo base_url('login/log_in'); ?>" method="post" role="form" class="form-horizontal" id="form3">
+
+			<fieldset>
+
+				<div class="form-group">
+
+					<div class="col-lg-12">
+
+						<label for="txtEmail">Correo electrónico</label>
+
+						<input id="txtEmail" name="txtEmail" type="email" class="form-control" id="" placeholder="Correo electrónico" required>
+
+					</div>
+
+				</div>
+
+
+
+				<div class="form-group">
+					<div class="col-lg-12">
+						<label for="">Contraseña</label>
+						<input id="txtPassword" name="txtPassword" type="password" class="form-control" id="" placeholder="Contraseña" required>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-lg-12">
+
+						<button type="submit"  class="btn-profe btn-login btn col-lg-12 popup-ingresar">Ingresar</button>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-lg-12">
+
+						<a href="<?php echo base_url('login/resetPassword'); ?>" class="text-center" target="_blank">Olvidaste tu contraseña?</a>
+					</div>
+				</div>
+
+				<div class="form-group">
+
+					<div class="col-lg-12">
+
+						<a href="<?php echo base_url('registro'); ?>" class="btn-estu btn-login btn col-lg-12">Regístrarme</a>
+
+					</div>
+
+				</div>
+
+				<div class="form-group">     
+
+					<div class="text-center"><label for="">ó inicia con tu cuenta de</label></div>
+
+					<div class="col-lg-12">
+
+						<a href="<?php echo $sLoginGoogle ?>"class="btn btn-google btn-login col-md-12">Google</a>
+
+					</div>
+
+				</div>
+
+				<div class="form-group">
+
+					<div class="col-lg-12">
+
+						<a href="<?php echo $sLoginFacebook; ?>"class="btn btn-facebook btn-login col-md-12">facebook</a>
+
+					</div>
+
+				</div>
+
+			</fieldset>
+
+		</form>
+
+      </div>
+
+      <div class="modal-footer">
+
+        
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
+
+	<div class="modal-dialog">
+
+		<div class="modal-content">
+
+			<div class="modal-header">
+
+				<h1>Programando tu clase...</h1>
+
+			</div>
+
+			<div class="modal-body">
+
+				<div class="progress">
+
+					<div class="progress-bar progress-bar-striped active" style="width: 100%;"></div>
+
+				</div>
+
+			</div>
+
+			<div class="modal-footer">
+
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- fin login modal -->
+
+
+
+<!--  fin datos modal -->
+
+<div class="modal fade" id="agendar" tabindex="-1" role="dialog" aria-labelledby="agendar" aria-hidden="true">
+
+	<div class="modal-dialog">
+
+	    <div class="modal-content popup-iniciar">
+
+			<div class="modal-header">
+				AGENDAR PROFESOR
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+			</div>
+
+			<div class="modal-body">
+
+		      	<form action="" method="">
+					
+					<!--Tema especifico-->
+					<div class="row">
+						<div class="col-md-12 txt-busqueda">
+							<label for="tema">Escribe la Tem&aacute;tica que Requieres:</label>
+							<input type="text" name="topic" id="topic" class="form-control col-md-9" placeholder="Ej: Factorización" value="">
+						</div>
+							<div class="error">
+					</div>
+					
+					<!--Nivel especifico-->
+					<div class="row">
+						<div class="col-md-12 txt-busqueda">
+							<label for="tema">Escoge el nivel de la clase:</label>
+							<select name="level" id="level" class="form-control col-md-9">
+								<option value="">Nivel</option>
+								
+									<option value=""></option> 
+								      
+							</select>
+						</div>
+							<div class="error"></div>
+					</div>
+
+					<!--Ciudad: este campo se trae desde la base de amigas-->
+					<div class="row">
+						<div class="col-md-12 txt-busqueda">
+							<label for="ciudad">En qu&eacute; Ciudad Quieres Tomar la Clase?:</label>
+							<select name="city" id="city" class="form-control col-md-9">
+								<option value="">Ciudad</option>
+								
+							</select>
+						</div>
+							<div class="error"></div>
+					</div>
+
+					<!--Tema especifico-->
+					<div class="row">
+						<div class="col-md-12 txt-busqueda">
+							<label for="tema">Escribe la Direcci&oacute;n Donde vas a Tomar la Clase:</label>
+							<input type="text" name="address" id="address" class="form-control col-md-9" value="">						
+						</div>
+							<div class="error"></div>
+					</div>
+					
+					<!--Teléfono-->
+					<div class="row">
+						<div class="col-md-12 txt-busqueda">
+							<label for="tema">Escribe tu tel&eacute;fono:</label>
+							<input type="text" name="phone" id="phone" class="form-control col-md-9" value="">						
+							
+						</div>
+						<div class="error"></div>
+					</div>
+					
+					<!--Boton buscar que ejecuta la consulta-->
+					<div class="row">
+						<div class="col-md-12">
+							<label for=""></label>
+							<input type="submit" class="btn-busqueda-profe btn-profe btn col-lg-12 busqueda_b" value="Agendar Profesor">
+						</div>
+					</div>
+				</form>
+	      	</div>
+	    	<div class="modal-footer"></div>
+	    </div>
+  	</div>
+</div>
+
+
+<!--  fin datos modal -->
+
+
+
+
+
+
 <?php echo "<script>
 		base_url = '".base_url()."';
 		id_user = '".$id_user."';
@@ -346,6 +587,13 @@
 <script src="<?php echo base_url("assets/js/calendar/lang/es.js");?>"></script>
 <script src="<?php echo base_url("assets/js/profile_public.js");?>"></script>
 <script>
+
+$(document).ready(function(){
+	$("#agendar").modal();
+
+});
+
+
 $(".redondo").css("border-radius","10px")
 $("span#terminos a").css("cursor","pointer");
 $("span#terminos a").mousedown(function(event) {
