@@ -8,8 +8,8 @@ class Robot extends CI_Controller {
 		$this->load->library('email');
 		$config['mailtype'] = "html";
 		$this->email->initialize($config);						
-		$class=$this->model_superprofe->getClassByStatus(array(4));
-		foreach($class as $class){
+		$classes=$this->model_superprofe->getClassByStatus(array(4));
+		foreach($classes as $class){
 			$end = new DateTime($class["end"]);
 			$now = new DateTime();
 			if(empty($class["id_student"])){continue;}
@@ -22,6 +22,7 @@ class Robot extends CI_Controller {
 				$template = str_replace("{{HOST}}",base_url(),$template);
 				$template = str_replace("{{STUDENT NAME}}",$class["sFName"]." ".$class["sLName"],$template);
 				$template = str_replace("{{TEACHER NAME}}",$class["pFName"]." ".$class["pLName"],$template);
+				$template = str_replace("{{ID_CLASS}}",$class["hash"],$template);
 				$student = json_decode($this->aulasamigas->getUsersInfo(array($class["id_student"])));
 				$student = $student[0];
 				

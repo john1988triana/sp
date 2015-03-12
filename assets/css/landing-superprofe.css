@@ -2132,6 +2132,12 @@ img#icon-price {
   -ms-transition: 0.5s;
 
 }
+
+.rating_up {
+	color: #ffcc00;
+}
+
+/*
 .rating > span:hover:before,
 .rating > span:hover ~ span:before {
    content: "\2605";
@@ -2144,7 +2150,7 @@ img#icon-price {
   -ms-transition: 0.5s;
 }
 
-
+*/
 
 .comment-pack {
 
