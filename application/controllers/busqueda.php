@@ -252,5 +252,57 @@ class Busqueda extends CI_Controller {
 		
 		echo json_encode($result);
 	}
+	
+	public function guardar_from_public_profile(){
+		$result = false;
+		//$reqid = $this->input->post("id");
+		$data["start"] = $this->input->post("start");
+		$data["end"] = $this->input->post("end");
+		$data["id_professor"] = $this->input->post("id_professor");
+		$data["address"] = $this->input->post("address");
+		$data["city"] = $this->input->post("city");
+		$data["id_area"] = $this->input->post("id_area");
+		$data["topic"] = $this->input->post("topic");
+		$data["phone"] = $this->input->post("phone");
+		$data["id_level"] = $this->input->post("id_level");
+		
+		if($data["id_professor"]!="-1"){
+			$datetime1 = new DateTime($data["start"]);
+			$datetime2 = new DateTime($data["end"]);
+			$interval = $datetime1->diff($datetime2);
+			$hours = $interval->format("%h");
+		
+			$data["price_public"] = $this->model_superprofe->getPrice($this->input->post("id_professor"),"public")*$hours;
+			$data["price_sp"] = $this->model_superprofe->getPrice($this->input->post("id_professor"),"sp")*$hours;
+			$data["status"] = 3;
+		}else{
+			$data["status"] = 2;
+		}
+		if($this->session->userdata("sIdUser")){
+			$data["id_student"] = $this->session->userdata("sIdUser");
+			$result = true;
+		}else{
+			$this->session->set_userdata("redirect_on_login",true);
+		}
+		$req_id = $this->model_superprofe->createRequest($data);
+		
+		//email send
+		$template = file_get_contents(base_url("application/views/mail/successful_solicitud.html"));
+		$template = str_replace("{{STUDENT NAME}}", $this->session->userdata("sFirstName"),$template);
+		
+		$config['mailtype'] = "html";
+		$this->load->library('email');
+		$this->email->initialize($config);
+		
+		$this->email->from('hola@superprofe.co', 'Superprofe');
+		$this->email->to($this->session->userdata("sEmail")); 
+		$this->email->cc('hola@superprofe.co'); 
+		$this->email->subject('Superprofe.co - Tu solicitud fue recibida.');
+		$this->email->message($template);  
+		
+		$this->email->send();
+		
+		echo json_encode($req_id);
+	}
 }
 /* Location: ./application/controllers/busqueda.php */

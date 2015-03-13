@@ -50,6 +50,7 @@ function deleteitem(obj){
 	}
 }
 
+
 function deleteCompetition(element){
 	
 	var element = $(element);
@@ -87,6 +88,117 @@ function deleteCompetition(element){
 }
 
 $(document).ready(function() {
+	
+	var _schedule_state = 0;
+	var _class_element = 0;
+	
+	var _endDate;
+	var _startDate;
+	
+	
+	
+	$("#btn-schedule").click(function(){
+		
+		if(_schedule_state == 0){
+			$.get(base_url+"profile/checkUserLogged",function(resp){
+				if(resp == 1) {
+					swal({
+						title: "Ya puedes programar tu clase!",
+						text: "En la agenda selecciona el horario que se ajuste a tu necesidad, luego da click en Agendar Clase.",
+						type: "success",
+						confirmButtonText: "Aceptar" },
+						function(){
+							$("#btn-schedule").text("Agendar clase");
+							_schedule_state = 1;
+							
+							$("#cover_calendar").hide();
+							
+					});
+				}
+				else {
+					$("#login").modal();	
+				}
+			});
+		}
+		else {
+			$("#agendar").modal();	
+		}
+		
+		
+	});
+	
+	$("#btAgendar").click(function(){
+		$("#topic_form_error").html("");
+		$("#level_form_error").html("");
+		$("#city_form_error").html("");
+		$("#address_form_error").html("");
+		$("#phone_form_error").html("");
+		
+		if($("#topic_form").val() == ""){
+			$("#topic_form_error").html("Este campo es obligatorio");
+		}
+		else if($("#level_form").val() == 0){
+			$("#level_form_error").html("Se debe escoger un nivel");
+		}
+		else if($("#city_form").val() == 0){
+			$("#city_form_error").html("Se debe escoger una ciudad");
+		}
+		else if($("#address_form").val() == ""){
+			$("#address_form_error").html("Este campo es obligatorio");
+		}
+		else if(($("#phone_form").val() ) == "" || ( $("#phone_form").val().length < 7) ){
+			$("#phone_form_error").html("Este campo es obligatorio y debe tener mínimo 7 dígitos");
+		}
+		else{
+			
+			var data = {
+	
+				"address":$("#address_form").val(),
+	
+				"city":$("#city_form").val(),
+	
+				"end":_endDate.format("YYYY-MM-DD HH:mm:ss"),
+	
+				"start":_startDate.format("YYYY-MM-DD HH:mm:ss"),
+	
+				"id_area":id_area,
+				
+				"id_level":$("#level_form").val(),
+	
+				"id_professor":id_user,
+	
+				"topic":$("#topic_form").val(),
+	
+				"phone":$("#phone_form").val()
+	
+			};
+			
+			$("#agendar").modal("hide");
+			$(".modal-header h1").html("Programando tu clase");
+			$("#pleaseWaitDialog").modal();
+			
+			$.post(base_url+"busqueda/guardar_from_public_profile",data,function(resp){
+
+				var info = JSON.parse(resp);
+	
+				if(!info){
+	
+					//$("#login").modal();
+	
+				}else{
+	
+					window.location.href=base_url+"clase/solicitar/" + info;
+	
+				}
+	
+			});
+			
+		}
+		
+	});
+	
+	
+	
 	
 	var request ={};
 	
@@ -248,9 +360,160 @@ $(document).ready(function() {
 					allDayText: "Todo el día",
 					allDaySlot: false,
 					eventColor:"#003333",
-					selectable: false,
+					selectable: true,
 					selectHelper: true,
-					editable: false,
+					editable: true,
+					eventOverlap: false,
+					timezone: 'local',
+					eventResize: function(event, delta, revertFunc) {
+						
+						var start_time = moment(event.start.format("HH:mm:ss"), "HH:mm:ss");
+						var end_time = moment(event.end.format("HH:mm:ss"), "HH:mm:ss");
+						
+						if(end_time.subtract(start_time).hours() <= 1)
+						{
+							swal({
+								title: "Error!",
+								text: "La clase debe ser de mínimo dos (2) horas.",
+								type: "error",
+								confirmButtonText: "Aceptar" });
+							revertFunc();
+						}
+						else{
+							_startDate = moment(event.start);
+							_endDate = moment(event.end);
+						}
+					},
+					eventDrop: function( event, delta, revertFunc, jsEvent, ui, view ) {
+						
+						var today = moment();
+   						var tomorrow = today.add('days', 1);
+						tomorrow.startOf('day');
+						
+						var start_date = moment(event.start.format("DD:MM:YYYY"), "DD:MM:YYYY");
+						
+						var start_time = moment(event.start.format("HH:mm:ss"), "HH:mm:ss");
+						var end_time = moment(event.end.format("HH:mm:ss"), "HH:mm:ss");
+						
+						var min_time = moment("07:00:00", "HH:mm:ss");
+						var max_time = moment("21:00:00", "HH:mm:ss");
+						
+						if(start_date < tomorrow)
+						{
+							swal({
+								title: "Error!",
+								text: "El día de la clase no puede ser pasada, ni ser hoy.",
+								type: "error",
+								confirmButtonText: "Aceptar" });
+							revertFunc();
+						}
+						if((start_time < min_time) || (start_time > end_time)) {
+							swal({
+								title: "Error!",
+								text: "La clase debe iniciar mínimo a las 7:00 am.",
+								type: "error",
+								confirmButtonText: "Aceptar" });
+							revertFunc();
+						}
+						else if((end_time > max_time) || (start_time > end_time)) {
+							swal({
+								title: "Error!",
+								text: "La clase debe terminar máximo a las 9:00 pm.",
+								type: "error",
+								confirmButtonText: "Aceptar" });
+							revertFunc();
+						}
+						else {
+							_startDate = moment(event.start);
+							_endDate = moment(event.end);
+						}
+					},
+					select: function(start, end) {
+						
+						if(_class_element == 0)
+						{
+							var start_time = moment(start.format("HH:mm:ss"), "HH:mm:ss");
+							var end_time = moment(end.format("HH:mm:ss"), "HH:mm:ss");
+							
+							var today = moment();
+							var tomorrow = today.add('days', 1);
+							tomorrow.startOf('day');
+							
+							var start_date = moment(start.format("DD:MM:YYYY"), "DD:MM:YYYY");
+							
+							var min_time = moment("07:00:00", "HH:mm:ss");
+							var max_time = moment("21:00:00", "HH:mm:ss");
+							
+							if(end_time.subtract(start_time).hours() <= 1)
+							{
+								swal({
+									title: "Error!",
+									text: "La clase debe ser de mínimo dos (2) horas.",
+									type: "error",
+									confirmButtonText: "Aceptar" });
+								$('#calendar').fullCalendar('unselect');
+							}
+							else if(start_date < tomorrow)
+							{
+								swal({
+									title: "Error!",
+									text: "El día de la clase no puede ser pasada, ni ser hoy.",
+									type: "error",
+									confirmButtonText: "Aceptar" });
+								$('#calendar').fullCalendar('unselect');
+							}
+							else if((start.hours() < min_time.hours()) || (start.hours() > end.hours())) {
+								
+								swal({
+									title: "Error!",
+									text: "La clase debe iniciar mínimo a las 7:00 am.",
+									type: "error",
+									confirmButtonText: "Aceptar" });
+								$('#calendar').fullCalendar('unselect');
+							}
+							else if((end.hours() > max_time.hours()) || (start.hours() > end.hours())) {
+								swal({
+									title: "Error!",
+									text: "La clase debe terminar máximo a las 9:00 pm.",
+									type: "error",
+									confirmButtonText: "Aceptar" });
+								$('#calendar').fullCalendar('unselect');
+							}
+							else{
+								var title = "Espacio para reservar clase";
+								var eventData;
+								if (title) {
+									eventData = {
+										id:(busyList.length + 1),
+										title: title,
+										start: start,
+										end: end
+									};
+									busyList.push(eventData);
+									$('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+									$('#calendar').fullCalendar({selectable:false});
+								}
+								$('#calendar').fullCalendar('unselect');
+								
+								_startDate = moment(start);
+								_endDate = moment(end);
+								
+								_class_element = 1;	
+							}
+							
+						}
+						else {
+							swal({
+								title: "Error!",
+								text: "Solo es posible agendar una clase a la vez.",
+								type: "error",
+								confirmButtonText: "Aceptar" },
+								function(){
+									$('#calendar').fullCalendar('unselect');
+							});
+						}
+						
+					}
 				});
 				
 				for(var i in busyList){

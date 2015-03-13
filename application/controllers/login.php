@@ -268,10 +268,21 @@ class Login extends CI_Controller {
 								$this->model_superprofe->updateRequest($reqid,$data);
 								redirect(base_url("clase/solicitar/".$reqid));
 							}else{
-								$this->validate_view();
+								
+								if($this->input->post('userprofile')){
+									redirect(base_url("/" . $this->input->post('userprofile') ."?div=div_agenda" ));
+								}
+								else{
+									$this->validate_view();
+								}
 							}
 						}else{
-							$this->validate_view();
+							if($this->input->post('userprofile')){
+								redirect(base_url("/" . $this->input->post('userprofile') ."?div=div_agenda" ));
+							}
+							else{
+								$this->validate_view();
+							}
 						}
 					}else{
 						$this->load_view_login(TRUE);

@@ -30,11 +30,25 @@ class Registro extends CI_Controller {
 		
 		$sUrlGoogle = $this->aulasamigas->urlGoogle(base_url() . 'login/login_google', FALSE, $this->input->ip_address(), FALSE);
 		$urlFacebook = $this->login_fb();
-		$arr_send_data = array('sLoginGoogle' => json_decode($sUrlGoogle),
+		
+		if($this->input->get("userprofile")){
+			$arr_send_data = array('sLoginGoogle' => json_decode($sUrlGoogle),
        						'sLoginFacebook' => $urlFacebook,
        						'circles' => $this->circles,
        						'message' => $this->message,
-							'user_type'=> '');    
+							'user_type'=> '',
+							'userprofile'=> $this->input->get("userprofile")); 
+		}
+		else {
+			$arr_send_data = array('sLoginGoogle' => json_decode($sUrlGoogle),
+       						'sLoginFacebook' => $urlFacebook,
+       						'circles' => $this->circles,
+       						'message' => $this->message,
+							'user_type'=> '',
+							'userprofile'=>''); 
+		}
+		
+		   
 		$this->load->view('header');   											            				
 		$this->load->view('registro/register', $arr_send_data);
 		$this->load->view('footer');
@@ -330,10 +344,22 @@ class Registro extends CI_Controller {
 							$this->model_superprofe->updateRequest($reqid,$data);
 							redirect(base_url("clase/solicitar/".$reqid));
 						}else{
-							redirect('login/validate_view');
+							if($this->input->post('userprofile') != ""){
+								redirect(base_url("/" . $this->input->post('userprofile') ."?div=div_agenda" ));
+							}
+							else{
+								redirect('login/validate_view');
+							}
+							
+							
 						}
 					}else{
-						redirect('login/validate_view');
+						if($this->input->post('userprofile') != ""){
+							redirect(base_url("/" . $this->input->post('userprofile') ."?div=div_agenda" ));
+						}
+						else{
+							redirect('login/validate_view');
+						}
 					}
 				}else if($result->mySQL == 5){
 					if($ajax){
@@ -452,10 +478,20 @@ class Registro extends CI_Controller {
 							$this->model_superprofe->updateRequest($reqid,$data);
 							redirect(base_url("clase/solicitar/".$reqid));
 						}else{
-							redirect('login/validate_view');
+							if($this->input->post('userprofile') != ""){
+								redirect(base_url("/" . $this->input->post('userprofile') ."?div=div_agenda" ));
+							}
+							else{
+								redirect('login/validate_view');
+							}
 						}
 					}else{
-						redirect('login/validate_view');
+						if($this->input->post('userprofile') != ""){
+							redirect(base_url("/" . $this->input->post('userprofile') ."?div=div_agenda" ));
+						}
+						else{
+							redirect('login/validate_view');
+						}
 					}
 				}else if($result->mySQL == 5){
 					if($ajax){

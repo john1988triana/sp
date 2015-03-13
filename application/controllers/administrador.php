@@ -381,7 +381,7 @@ class Administrador extends CI_Controller {
 													$result->id_user,$aInfoUser[0]["isTeacher"]);
 					$template = file_get_contents(base_url("application/views/mail/new_account.html"));
 					$template = str_replace("{{HOST}}",base_url(),$template);
-					$template = str_replace("{{STUDENT NAME}}",$this->input->post('name')." ".$this->input->post('fname'),$template);
+					$template = str_replace("{{STUDENT_NAME}}",$this->input->post('name')." ".$this->input->post('fname'),$template);
 					$template = str_replace("{{EMAIL}}",$this->input->post("email"),$template);
 					$template = str_replace("{{PASSWORD}}",$pass,$template);
 					$config['mailtype'] = "html";
