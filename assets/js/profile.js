@@ -329,6 +329,31 @@ $(document).ready(function() {
 			});
 			
 		}
+		else if($(this).hasClass("vid")) {
+			var element = $(this);
+			
+			swal({
+				title: "¿Está seguro?",
+				text: "Se eliminará el video seleccionado",
+				type: "warning",
+				showCancelButton: true,
+				cancelButtonText: "No",
+				confirmButtonText: "Si. elimínalo!" ,
+				closeOnConfirm: false,   
+				closeOnCancel: true
+				},
+				function(isConfirm){
+					if (isConfirm) {
+						$.ajax({
+						url:base_url+"perfil/deleteVideo/"+element.attr("data-id"),
+						type:"DELETE"});
+						element.parent().remove();
+				
+						swal("Eliminado!", "El video seleccionado fue eliminado.", "success");
+					}
+			});
+			
+		}
 	});
 	$(".btn_agregar_experticia").click(function(e) {
 		if(e.which==1){

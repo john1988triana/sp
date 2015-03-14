@@ -111,6 +111,11 @@ class Perfil extends CI_Controller {
 		echo $this->model_superprofe->insertvideo($id,$_POST);
 	}
 	
+	public function deleteVideo($id=NULL) {
+		//$user = $this->session->userdata('sIdUser');
+		echo $this->model_superprofe->deletevideo($id);
+	}
+	
 	public function obtenerVideosPorId($id=NULL) {
 		echo $this->model_superprofe->getVideosByUser($id); //id superprofe database
 	}

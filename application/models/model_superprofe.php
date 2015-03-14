@@ -422,6 +422,15 @@ class Model_superprofe extends CI_Model
 	}
 	
 	/**
+	* Delete user video
+	*/
+	
+	public function deletevideo($id){
+		$this->db_super_pro->delete("videos_by_professor",array("id"=>$id));
+	}
+	
+	
+	/**
 	* Adds a experience to a professor
 	*/
 	public function addExperience($id_user,$data){

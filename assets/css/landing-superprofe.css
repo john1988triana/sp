@@ -1699,7 +1699,7 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 	margin-bottom: 30px;
 }
 
-.row.container-videos .col-md-4 .delete-group.exp {
+.row.container-videos .col-md-4 .delete-group.vid {
 	position: absolute;
 	right: 25px;
 	left: initial;
@@ -1713,7 +1713,7 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 	z-index: 99;
 }
 
-.row.container-videos .col-md-4 .delete-group.exp:hover{
+.row.container-videos .col-md-4 .delete-group.vid:hover{
 	
 	-webkit-transition: 0.5s;
 	-moz-transition: 0.5s;
