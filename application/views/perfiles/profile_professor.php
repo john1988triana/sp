@@ -98,35 +98,35 @@
 			<div class="medallas-profesor">
             	<?php
 					switch($level){
-						case 1:	echo '<img src="assets/img/medallas_old/1_color.png" alt="" >
-										<img src="assets/img/medallas_old/2_bn.png" alt="" class="no-medalla">
-										<img src="assets/img/medallas_old/3_bn.png" alt="" class="no-medalla">
-										<img src="assets/img/medallas_old/4_bn.png" alt="" class="no-medalla">
-										<img src="assets/img/medallas_old/5_bn.png" alt="" class="no-medalla">';
+						case 1:	echo '<img src="'.base_url("assets/img/medallas_old/1_color.png").'" alt="" >
+										<img src="'.base_url("assets/img/medallas_old/2_bn.png").'" alt="" class="no-medalla">
+										<img src="'.base_url("assets/img/medallas_old/3_bn.png").'" alt="" class="no-medalla">
+										<img src="'.base_url("assets/img/medallas_old/4_bn.png").'" alt="" class="no-medalla">
+										<img src="'.base_url("assets/img/medallas_old/5_bn.png").'" alt="" class="no-medalla">';
 								break;
-						case 2:	echo '<img src="assets/img/medallas_old/1_color.png" alt="">
-										<img src="assets/img/medallas_old/2_color.png" alt="">
-										<img src="assets/img/medallas_old/3_bn.png" alt="" class="no-medalla">
-										<img src="assets/img/medallas_old/4_bn.png" alt="" class="no-medalla">
-										<img src="assets/img/medallas_old/5_bn.png" alt="" class="no-medalla">';
+						case 2:	echo '<img src="'.base_url("assets/img/medallas_old/1_color.png").'" alt="">
+										<img src="'.base_url("assets/img/medallas_old/2_color.png").'" alt="">
+										<img src="'.base_url("assets/img/medallas_old/3_bn.png").'" alt="" class="no-medalla">
+										<img src="'.base_url("assets/img/medallas_old/4_bn.png").'" alt="" class="no-medalla">
+										<img src="'.base_url("assets/img/medallas_old/5_bn.png").'" alt="" class="no-medalla">';
 								break;
-						case 3: echo '<img src="assets/img/medallas_old/1_color.png" alt="">
-										<img src="assets/img/medallas_old/2_color.png" alt="">
-										<img src="assets/img/medallas_old/3_color.png" alt="">
-										<img src="assets/img/medallas_old/4_bn.png" alt="" class="no-medalla">
-										<img src="assets/img/medallas_old/5_bn.png" alt="" class="no-medalla">';
+						case 3: echo '<img src="'.base_url("assets/img/medallas_old/1_color.png").'" alt="">
+										<img src="'.base_url("assets/img/medallas_old/2_color.png").'" alt="">
+										<img src="'.base_url("assets/img/medallas_old/3_color.png").'" alt="">
+										<img src="'.base_url("assets/img/medallas_old/4_bn.png").'" alt="" class="no-medalla">
+										<img src="'.base_url("assets/img/medallas_old/5_bn.png").'" alt="" class="no-medalla">';
 								break;
-						case 4:	'<img src="assets/img/medallas_old/1_color.png" alt="">
-										<img src="assets/img/medallas_old/2_color.png" alt="">
-										<img src="assets/img/medallas_old/3_color.png" alt="">
-										<img src="assets/img/medallas_old/4_color.png" alt="">
-										<img src="assets/img/medallas_old/5_bn.png" alt="" class="no-medalla">';
+						case 4:	'<img src="'.base_url("assets/img/medallas_old/1_color.png").'" alt="">
+										<img src="'.base_url("assets/img/medallas_old/2_color.png").'" alt="">
+										<img src="'.base_url("assets/img/medallas_old/3_color.png").'" alt="">
+										<img src="'.base_url("assets/img/medallas_old/4_color.png").'" alt="">
+										<img src="'.base_url("assets/img/medallas_old/5_bn.png").'" alt="" class="no-medalla">';
 								break;
-						case 5:	'<img src="assets/img/medallas_old/1_color.png" alt="">
-										<img src="assets/img/medallas_old/2_color.png" alt="">
-										<img src="assets/img/medallas_old/3_color.png" alt="">
-										<img src="assets/img/medallas_old/4_color.png" alt="">
-										<img src="assets/img/medallas_old/5_color.png" alt="">';
+						case 5:	'<img src="'.base_url("assets/img/medallas_old/1_color.png").'" alt="">
+										<img src="'.base_url("assets/img/medallas_old/2_color.png").'" alt="">
+										<img src="'.base_url("assets/img/medallas_old/3_color.png").'" alt="">
+										<img src="'.base_url("assets/img/medallas_old/4_color.png").'" alt="">
+										<img src="'.base_url("assets/img/medallas_old/5_color.png").'" alt="">';
 								break;
 							
 					}
@@ -136,7 +136,7 @@
 			</div>
 			<div class="btn-subir-foto btn" id="texto_foto" onclick="getFile()">
 				<p>Subir foto</p>
-				<img src="assets/img/upload-icon.png">
+				<img src="<?php echo base_url("assets/img/upload-icon.png");?>">
 			</div>
 			<div style='height: 0px;width: 0px; overflow:hidden;'><input id="upfile" name="userfile" type="file" value="upload" onchange="sub(this)"/></div>
 		</div>

@@ -12,6 +12,8 @@ class Perfil extends CI_Controller {
 		parent::__construct();
 		$this->load->library('aulasamigas');
 		$this->load->model('model_superprofe');
+		
+		$this->load->library('iCalWriter');
 	}
 	public function index(){
 		$data = $this->model_superprofe->loadUser($this->session->userdata('sIdUser'));
@@ -118,6 +120,32 @@ class Perfil extends CI_Controller {
 	
 	public function obtenerVideosPorId($id=NULL) {
 		echo $this->model_superprofe->getVideosByUser($id); //id superprofe database
+	}
+	
+	public function test(){
+		
+		$iCal = new iCalWriter;
+		$iCal->setFileOutput();
+		$iCal->setFileName("assets/cal/test.ics");
+		//Now we can start with our output:
+		$iCal->start();
+		//To add event-data you need an iCalEvent-object:
+		$iEvent = new iCalEvent;
+		//A lot of stuff to set here. So here are just a few examples:
+		$iEvent->setStart("2012", "02", "10", 0, 1, "", 1, "14", "12");
+		$iEvent->setEnd("2012", "02", "12", 1, 0, "", 1, "12");
+		$iEvent->setShortDescription("testing");
+		$iEvent->setLongDescription("...");
+		$iEvent->setLocation("");
+		$iEvent->setContact("");
+		//Lets add the event to the iCalWriter-object:
+		$iCal->add($iEvent);
+		//We could add more events here.
+		//Finally we want to end the output by:
+		$iCal->end();
+		
+		echo getcwd();
+			
 	}
 	
 	//public function actualizar($id){
