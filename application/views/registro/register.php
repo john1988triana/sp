@@ -13,7 +13,8 @@
 				<div class="login-panel panel-registro panel panel-default">
                 
                 <form action="<?php echo base_url('registro/register'); ?>" role="form" class="form-horizontal" id="formRegUser" method="post">
-                
+                	<input type="hidden" name="userprofile" id="userprofile" value="<?php echo $userprofile;?>">
+                    
 					<h3 class="text-center asi-funciona" style="color:#003333">¿Es tu primera vez en la plataforma?</h3>
                     <div class="text-center" style="height:80px; padding-top:30px;">
                       <p>

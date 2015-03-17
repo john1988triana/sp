@@ -66,6 +66,7 @@ class Clase extends CI_Controller {
 		$user = $user[0];
 		//$teacher = json_decode($this->aulasamigas->getUsersInfo(array($data["id_professor"])))[0];
 		$teacher = $this->model_superprofe->loadUser($data["id_professor"]);
+		
 		foreach($areas as $area){
 			if($area->IdArea== $data["id_area"]){
 				$data["area"] = $area->Name;
@@ -73,6 +74,35 @@ class Clase extends CI_Controller {
 			}
 		}
 		
+		$this->load->library('iCalWriter');
+		
+		$iCal = new iCalWriter;
+		$iCal->setFileOutput();
+		$iCal->setFileName("assets/cal/" . $data["id"] . ".ics");
+		//Now we can start with our output:
+		$iCal->start();
+		//To add event-data you need an iCalEvent-object:
+		$iEvent = new iCalEvent;
+		
+		list($year_start,$month_start,$day_start,$hour_start,$minute_start,$second_start)=explode('-',date('Y-m-d-h-i-s',strtotime($data["start"])));
+		list($year_end,$month_end,$day_end,$hour_end,$minute_end,$second_end)=explode('-',date('Y-m-d-h-i-s',strtotime($data["end"])));
+		
+		//A lot of stuff to set here. So here are just a few examples:
+		$iEvent->setStart($year_start, $month_start, $day_start, 0, 1, "America/Bogota", 1, $hour_start, $minute_start);
+		$iEvent->setEnd($year_end, $month_end, $day_end, 0, 1, "America/Bogota", 1, $hour_end, $minute_end);
+		$iEvent->setShortDescription("Clase Superprofe");
+		$iEvent->setLongDescription("Clase Superprofe. Los datos del profesor son: Telefono: " . $teacher["Phone"] . ", Email: " .  $teacher["Email"]);
+		$iEvent->setLocation($data["address"]);
+		$iEvent->setContact($teacher["Email"]);
+		//Lets add the event to the iCalWriter-object:
+		$iCal->add($iEvent);
+		//We could add more events here.
+		//Finally we want to end the output by:
+		$iCal->end();
+		
+		$url_calendar =  getcwd() . "/assets/cal/" . $data["id"] . ".ics";
+		
+		//student confirmation
 		$template = file_get_contents(base_url("application/views/mail/confirmation.html"));
 		$template = str_replace("{{HOST}}",base_url(),$template);
 		$template = str_replace("{{AREA}}",$data["area"],$template);
@@ -95,16 +125,52 @@ class Clase extends CI_Controller {
 		*/
 		$config['mailtype'] = "html";
 		$this->load->library('email');
+		
 		$this->email->initialize($config);
 		
+		$this->email->clear();
 		
 		$this->email->from('hola@superprofe.co', 'Superprofe');
 		$this->email->to($user->Email); 
 		$this->email->cc('hola@superprofe.co'); 
 		$this->email->subject('Superprofe.co - Confirmacion de clase no '.$data["id"]);
-		$this->email->message($template);  
+		$this->email->message($template);
+		$this->email->attach($url_calendar);
 		
 		$this->email->send();
+		
+		// confirmation of teacher
+		$template = file_get_contents(base_url("application/views/mail/confirmation_teacher.html"));
+		$template = str_replace("{{HOST}}",base_url(),$template);
+		$template = str_replace("{{AREA}}",$data["area"],$template);
+		$template = str_replace("{{STUDENT NAME}}",$data["sFName"]." ".$data["sLName"],$template);
+		$template = str_replace("{{TEACHER NAME}}",$data["pFName"]." ".$data["pLName"],$template);
+		$template = str_replace("{{ADDRESS}}",$data["address"],$template);
+		$template = str_replace("{{DATE}}",date("l,d F Y",strtotime($data["start"])),$template);
+		$template = str_replace("{{TIME}}",date("h:i a",strtotime($data["start"])),$template);
+		$template = str_replace("{{TEACHER EMAIL}}",$teacher["Email"],$template);
+		$template = str_replace("{{TEACHER PHONE}}",$teacher["Phone"],$template);
+		$template = str_replace("{{PRICE}}",($data["price_public"]+$data["price_sp"]),$template);
+		
+		/*
+		$cal = file_get_contents(base_url("assets/cal/clase.ics"));
+		$cal = str_replace("{{NAME}}","Clase de ".$data["area"],$cal);
+		$cal = str_replace("{{START}}",date("YmdTHis",strtotime($data["start"])),$cal);
+		$cal = str_replace("{{END}}",date("YmdTHis",strtotime($data["end"])),$cal);
+		$cal = str_replace("{{SUMMARY}}","Clase de ".$data["area"],$cal);
+		$cal = str_replace("{{ADDRESS}}","Clase de ".$data["address"],$cal);
+		*/
+		
+		//$this->email->clear();
+		
+		$this->email->from('hola@superprofe.co', 'Superprofe');
+		$this->email->to($teacher["Email"]); 
+		$this->email->cc('hola@superprofe.co'); 
+		$this->email->subject('Superprofe.co - Confirmacion de clase no '.$data["id"]);
+		$this->email->message($template);  
+		//$this->email->attach($url_calendar);
+		$this->email->send();
+		
 		$d["teacher"] = $teacher;
 		$d["request"] = $data;
 		$this->load->view("header");

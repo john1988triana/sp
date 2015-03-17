@@ -152,6 +152,7 @@
 		<h3 class="title-profesor">EXPERTICIA</h3>
 		<div class="amigas-separator"></div>
 		<div id="areas-wrapper">
+        
 			<?php 
 				for( $i = 0; $i < count($selected_areas) ; $i++){
 					echo "<div class=\"numero-competencia\">"."&nbsp;" . ($i+1) . ".&nbsp;"."</div><div class=\"valor-competencia\">".$selected_areas[$i]->Name." - ".$selected_areas[$i]->level."</div><div class=\"public-competencia numero-competencia\"'>&nbsp;&nbsp;</div><br>";
@@ -233,11 +234,14 @@
 			
 			<div class="amigas-separator"></div>
 	</div>
-	<div class="row perfil-profesor experticia">
+	<div id="div_agenda" class="row perfil-profesor experticia">
 		<h3 class="title-profesor">AGENDA</h3>
 		<div class="col-md-12 agenda-profesor">
+        	<div>
+            <div id="cover_calendar" style="background-color:rgba(0,0,0,0); position: absolute; width: 100%; height: 83%; z-index: 1000;"></div>
 			<div class="col-md-offset-1" id="calendar"></div>
-			<button type="submit" class="btn-schedule btn" onclick="" style="margin-top: 45px; display:none;">Programar mi clase</button>
+            </div>
+			<button id="btn-schedule" type="submit" class="btn-schedule btn" onclick="" style="margin-top: 45px; ">Quiero programar mi clase</button>
 		</div>
 	</div>
 
@@ -344,7 +348,7 @@
 
       <div class="modal-header">
 
-		INICIAR SESIIÓN
+		INICIA SESIÓN PARA PROGRAMAR TU CLASE
 
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
@@ -353,7 +357,7 @@
       <div class="modal-body">
 
 		<form action="<?php echo base_url('login/log_in'); ?>" method="post" role="form" class="form-horizontal" id="form3">
-
+			<input id="userprofile" name="userprofile" type="hidden" value="<?php echo $userprofile;?>">
 			<fieldset>
 
 				<div class="form-group">
@@ -395,7 +399,7 @@
 
 					<div class="col-lg-12">
 
-						<a href="<?php echo base_url('registro'); ?>" class="btn-estu btn-login btn col-lg-12">Regístrarme</a>
+						<a href="<?php echo base_url('registro/alumno/') . "?userprofile=" . $userprofile ; ?>" class="btn-estu btn-login btn col-lg-12">Regístrarme</a>
 
 					</div>
 
@@ -494,67 +498,84 @@
 
 			<div class="modal-body">
 
-		      	<form action="" method="">
+		      	<form action="" method="GET">
 					
 					<!--Tema especifico-->
 					<div class="row">
 						<div class="col-md-12 txt-busqueda">
-							<label for="tema">Escribe la Tem&aacute;tica que Requieres:</label>
-							<input type="text" name="topic" id="topic" class="form-control col-md-9" placeholder="Ej: Factorización" value="">
+							<label for="topic_form">Escribe la Tem&aacute;tica que Requieres:</label>
+							<input type="text" name="topic_form" id="topic_form" class="form-control col-md-9" placeholder="Ej: Factorización" value="">
 						</div>
-							<div class="error">
+							<div id="topic_form_error" class="error">
 					</div>
 					
 					<!--Nivel especifico-->
 					<div class="row">
 						<div class="col-md-12 txt-busqueda">
-							<label for="tema">Escoge el nivel de la clase:</label>
-							<select name="level" id="level" class="form-control col-md-9">
-								<option value="">Nivel</option>
-								
-									<option value=""></option> 
-								      
+							<label for="level_form">Escoge el nivel de la clase:</label>
+							<select name="level_form" id="level_form" class="form-control col-md-9">
+								<option value="0">Nivel</option>
+								<?php 
+									foreach ($levels as $key => $value) {
+								?> 
+									<option value="<?php echo $value['id'];?>" <?php if($value['id']==$level){echo "selected";}?>>
+										<?php echo utf8_decode($value['name']); ?>
+									</option> 
+								<?php
+									}
+								?>      
 							</select>
 						</div>
-							<div class="error"></div>
+							<div id="level_form_error" class="error"></div>
 					</div>
 
 					<!--Ciudad: este campo se trae desde la base de amigas-->
 					<div class="row">
+                    
 						<div class="col-md-12 txt-busqueda">
-							<label for="ciudad">En qu&eacute; Ciudad Quieres Tomar la Clase?:</label>
-							<select name="city" id="city" class="form-control col-md-9">
-								<option value="">Ciudad</option>
-								
+							<label for="city_form">En qu&eacute; Ciudad Quieres Tomar la Clase?:</label>
+							<select name="city_form" id="city_form" class="form-control col-md-9">
+								<option value="0">Ciudad</option>
+								<?php 
+									$cities = json_decode($cities, true);
+									$cities = json_decode($cities['cities'], true);
+									foreach ($cities as $key => $value_cities) {
+								?> 
+									<option value="<?php echo $value_cities['ID'];?>">
+										<?php echo utf8_decode($value_cities['Name']); ?>
+									</option> 
+								<?php
+									}
+								?>      
 							</select>
 						</div>
-							<div class="error"></div>
+							<div id="city_form_error" class="error"></div>
 					</div>
 
 					<!--Tema especifico-->
 					<div class="row">
 						<div class="col-md-12 txt-busqueda">
-							<label for="tema">Escribe la Direcci&oacute;n Donde vas a Tomar la Clase:</label>
-							<input type="text" name="address" id="address" class="form-control col-md-9" value="">						
+							<label for="address_form">Escribe la Direcci&oacute;n Donde vas a Tomar la Clase:</label>
+							<input type="text" name="address_form" id="address_form" class="form-control col-md-9" value="">						
 						</div>
-							<div class="error"></div>
+							<div id="address_form_error" class="error"></div>
 					</div>
 					
 					<!--Teléfono-->
 					<div class="row">
 						<div class="col-md-12 txt-busqueda">
-							<label for="tema">Escribe tu tel&eacute;fono:</label>
-							<input type="text" name="phone" id="phone" class="form-control col-md-9" value="">						
+							<label for="phone_form">Escribe tu tel&eacute;fono:</label>
+							<input type="text" name="phone_form" id="phone_form" class="form-control col-md-9" value="">						
 							
 						</div>
-						<div class="error"></div>
+						<div id="phone_form_error" class="error"></div>
 					</div>
 					
 					<!--Boton buscar que ejecuta la consulta-->
 					<div class="row">
 						<div class="col-md-12">
 							<label for=""></label>
-							<input type="submit" class="btn-busqueda-profe btn-profe btn col-lg-12 busqueda_b" value="Agendar Profesor">
+							<input id="btAgendar" type="button" class="btn-busqueda-profe btn-profe btn col-lg-12 busqueda_b" value="Agendar Profesor">
 						</div>
 					</div>
 				</form>
@@ -574,7 +595,8 @@
 
 <?php echo "<script>
 		base_url = '".base_url()."';
-		id_user = '".$id_user."';
+		var id_user = '".$id_user."';
+		var id_area = ". $selected_areas[0]->id_area . ";
 		$(document).ready(function(){
 			//$(\"iframe#video_profe\").attr('src','".$youtube."')
 		})</script>";
@@ -588,9 +610,25 @@
 <script src="<?php echo base_url("assets/js/profile_public.js");?>"></script>
 <script>
 
-$(document).ready(function(){
-	$("#agendar").modal();
+function getUrlVars()
+{
+	var vars = {};
+	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value){
+		vars[key] = value;});
+	return vars;
+}
 
+$(document).ready(function(){
+	
+ 	var to_div = getUrlVars()["div"];	
+	
+	
+	if(to_div) {
+		$('html,body').animate({
+		   scrollTop: $("#" + to_div).offset().top
+		});
+	}
+	
 });
 
 

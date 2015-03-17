@@ -816,39 +816,23 @@ $(document).ready(function(){
 				$('#calendar').fullCalendar("removeEvents");
 
 				$('#calendar').fullCalendar({
-
 					header:{left:"",center:"",right:""},
-
 					firstDay:1,
-
 					lang:"es",
-
 					allDaySlot:false,
-
 					slotDuration:"01:00:00",
-
 					axisFormat:'h(:mm)a',
-
 					minTime:"07:00:00",
-
 					maxTime:"21:00:00",
-
 					height:"auto",
-
 					defaultView: 'agendaWeek',
-
 					defaultDate: week,
-
 					eventColor:"#003333",
-
 					selectable: true,
-
 					editable: true,
-
 					selectOverlap: false,
-
+					eventOverlap: false,
 					slotEventOverlap : false,
-					
 					eventDrop: function( event, delta, revertFunc, jsEvent, ui, view ) {
 						
 						var today = moment();
