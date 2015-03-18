@@ -26,7 +26,7 @@
 </div>
 
 <!-- ROW PERFIL -->
-<div class="container" <?php if(isset($unique)){ echo 'style="margin-top:120px;"';}?>>
+<div class="container profile-redux" <?php if(isset($unique)){ echo 'style="margin-top:120px;"';}?>>
 	<div class="row perfil-profesor">
 		<div class="col-md-6 perfil-profesor-iz">
 			<h3 style="color:#009966;" class="title-profesor">PERFIL</h3>

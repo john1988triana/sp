@@ -2223,6 +2223,23 @@ img.img-ranking {
 
 
 
+
+.pasos-profe .row h1 {
+
+	margin: 0;
+}
+
+.pasos-profe .row {
+
+	padding: 30px;
+} 
+
+.pasos.row:nth-child(even) {
+
+	background-color: whitesmoke;
+} 
+
+
 /* ---------------------------- Media Queries ------------------------- */
 
 
@@ -2458,7 +2475,16 @@ img.img-ranking {
 		height: 30px;
 		border: 1px;
 	}
-	
+
+	h1.title-pasos {
+
+		font-size: 20pt;
+	}
+
+	h3.title-pasos {
+
+		font-size: 12pt;
+	}
 }
 
 @media screen and (max-width: 400px) {
