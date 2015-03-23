@@ -154,8 +154,26 @@
 		<div id="areas-wrapper">
         
 			<?php 
+			
+				//echo json_encode($selected_areas);
+				
+				//echo json_encode($liked_areas);
+			
 				for( $i = 0; $i < count($selected_areas) ; $i++){
-					echo "<div class=\"numero-competencia\">"."&nbsp;" . ($i+1) . ".&nbsp;"."</div><div class=\"valor-competencia\">".$selected_areas[$i]->Name." - ".$selected_areas[$i]->level."</div><div class=\"public-competencia numero-competencia\"'>&nbsp;&nbsp;</div><br>";
+					
+					if($selected_areas[$i]->Count == 0){
+						$count_ele = "";
+					}
+					else {
+						$count_ele = $selected_areas[$i]->Count;
+					}
+					
+					if($selected_areas[$i]->Pressed == 0){
+						echo "<div class=\"numero-competencia\">"."&nbsp;" . ($i+1) . ".&nbsp;"."</div><div class=\"valor-competencia\">".$selected_areas[$i]->Name." - ".$selected_areas[$i]->level."</div><div id='div_" . $selected_areas[$i]->id_area . $selected_areas[$i]->id_level. "' class=\"public-competencia numero-competencia\"' style='cursor:pointer !important;' onclick='addValidation(" . $selected_areas[$i]->id_professor . ", " . $selected_areas[$i]->id_area. ", " . $selected_areas[$i]->id_level . ")'>&nbsp;<span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span>&nbsp;<span id='val_" . $selected_areas[$i]->id_area . $selected_areas[$i]->id_level. "'>" . $count_ele . "</span>&nbsp;</div><br>";
+					} 
+					else {
+						echo "<div class=\"numero-competencia\">"."&nbsp;" . ($i+1) . ".&nbsp;"."</div><div class=\"valor-competencia\">".$selected_areas[$i]->Name." - ".$selected_areas[$i]->level."</div><div class=\"public-competencia numero-competencia\"'>&nbsp;<span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span>&nbsp;<span id='val_" . $selected_areas[$i]->id_area . $selected_areas[$i]->id_level. "'>" . $count_ele . "</span>&nbsp;</div><br>";
+					}
 				}
 			?>
 		</div>

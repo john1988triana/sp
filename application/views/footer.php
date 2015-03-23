@@ -91,8 +91,8 @@ twttr.conversion.trackPid('l5hds');</script>
                     <h5>Comunidad</h5>
                     <ul class="list-unstyled lista-abajo">
                         <li><a target="_blank" href="https://www.facebook.com/superprofe.latam" >Facebook</a></li>
-                        <li><a target="_blank" href="https://twitter.com/superprofecol">Twitter</a></li>
-                        <li><a target="_blank" href="http://instagram.com/superprofe_la/">Instagram</a></li>
+                        <li><a target="_blank" href="https://twitter.com/superprofeLa">Twitter</a></li>
+                        <li><a target="_blank" href="http://instagram.com/superprofela/">Instagram</a></li>
                         <li><a href="https://plus.google.com/105392669931142074350" rel="publisher">Google+</a></li>
                     </ul>
                 </div>

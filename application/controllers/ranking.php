@@ -27,8 +27,15 @@ class Ranking extends CI_Controller {
      */
 
 	public function index() {
+		
+		$this->load->model('model_superprofe');
+		$data["ranking"] = $this->model_superprofe->getRanking();
+		
+		//echo json_encode($data);
+		//return;
+		
 		$this->load->view("header");
-		$this->load->view("ranking/index");
+		$this->load->view("ranking/index", $data);
 		$this->load->view("footer");
 	}
 }

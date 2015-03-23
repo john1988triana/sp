@@ -1,4 +1,17 @@
 var eventList = []
+
+function addValidation(id_professor, id_area, id_level){
+	
+	$("#div_" + id_area + "" + id_level).removeAttr("onclick");
+	$("#div_" + id_area + "" + id_level).removeAttr("style");
+	
+	$.get(base_url+"profile/addValidation?id_professor=" + id_professor + "&id_area=" + id_area + "&id_level=" + id_level,function(resp){
+		//alert(resp);
+		$("#val_" + id_area + "" + id_level).text(resp.replace("\"","").replace("\"",""));
+		
+	});
+}
+
 function deleteitem(obj){
 	
 	if($(obj).hasClass("exp")){

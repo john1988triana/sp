@@ -239,18 +239,30 @@ function updateClass(){
 	var row = $(this).parents("tr");
 	var start = row.find(".start").val() +" "+ row.find(".start-time").val();
 	start = new moment(start,"DD-MM-YYYY HH:mm");
-	data = {
-		cls:{
-			hash : row.find(".row-id .hash").val(),
-			address : row.find(".address").val(),
-			start : start.format("YYYY-MM-DD HH:mm:ss"),
-			end : new moment(start).add(row.find(".duration").val(),'h').format("YYYY-MM-DD HH:mm:ss"),
-			price_public : row.find(".price-pub").val(),
-			price_sp : row.find(".price-sp").val(),
-			status : row.find(".state option:selected").val(),
-			notes : row.find(".notes").val()
+	if(row.find(".state option:selected").val() == 7){
+		data = {
+			cls:{
+				hash : row.find(".row-id .hash").val(),
+				status : row.find(".state option:selected").val()
+			}
+		}	
+	}
+	else{
+		data = {
+			cls:{
+				hash : row.find(".row-id .hash").val(),
+				address : row.find(".address").val(),
+				start : start.format("YYYY-MM-DD HH:mm:ss"),
+				end : new moment(start).add(row.find(".duration").val(),'h').format("YYYY-MM-DD HH:mm:ss"),
+				price_public : row.find(".price-pub").val(),
+				price_sp : row.find(".price-sp").val(),
+				status : row.find(".state option:selected").val(),
+				notes : row.find(".notes").val()
+			}
 		}
 	}
+	
+	
 	
 	if(row.find(".state option:selected").val() == 5)
 	{

@@ -24,8 +24,12 @@ class Profile extends CI_Controller {
 			
 			$data = $this->model_superprofe->loadUserbyUserProfile($userprofile);
 			
-			//echo json_encode($data);
+			//$test = $this->model_superprofe->getValidationByUser(12,4,2);
+			
+			//echo json_encode($test);
 			//return;
+			
+			
 			
 			if(count($data) > 0)
 			{
@@ -70,6 +74,15 @@ class Profile extends CI_Controller {
 		echo $result;
 	}
 	
+	public function addValidation(){
+		
+		$id_professor = $this->input->get("id_professor");
+		$id_area = $this->input->get("id_area");
+		$id_level = $this->input->get("id_level");
+		
+		$data = $this->model_superprofe->setValidation($id_professor, $id_area, $id_level);
+		echo json_encode($data);
+	}
 	
 	public function login_fb() {
 		$this->load->library('facebook'); // Automatically picks appId and secret from config

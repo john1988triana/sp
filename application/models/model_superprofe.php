@@ -213,11 +213,22 @@ class Model_superprofe extends CI_Model
 					foreach($this->areas as $areaAmigas){
 						if($id->id_area == $areaAmigas->IdArea){
 							$id->Name = $areaAmigas->Name;
+							$id->Count = $this->getValidation($id->id_professor,$id->id_area, $id->id_level);
+							$id->Pressed = $this->getValidationByUser($id->id_professor,$id->id_area, $id->id_level);
 						}
 					}
 				}
 				$user["selected_areas"] = $ids;
 				$user["areas"] = $this->areas;
+				
+				//selected Data
+				$this->db_super_pro->select("*");
+				$this->db_super_pro->from("professor_area_validate");
+				$this->db_super_pro->where("id_user",$this->session->userdata('sIdUser'));
+				
+				$query = $this->db_super_pro->get();
+				$user["liked_areas"] = $query->result_array();
+				
 				//references
 				$this->db_super_pro->select("*");
 				$this->db_super_pro->from("reference");
@@ -1110,4 +1121,78 @@ class Model_superprofe extends CI_Model
 		return $query->result_array();
 	}
 	
+	/** 
+	* get validation
+	*/
+	function getValidation($id_professor, $id_area, $id_level){
+		//$id_user = $this->session->userdata('sIdUser');
+		
+		$this->db_super_pro->select("count(*) count");
+		$this->db_super_pro->from("professor_area_validate");
+		$this->db_super_pro->where("id_professor",$id_professor);
+		$this->db_super_pro->where("id_area",$id_area);
+		$this->db_super_pro->where("id_level",$id_level);
+		//$this->db_super_pro->where("id_user",$id_user);
+		
+		$query = $this->db_super_pro->get();
+		$query = $query->result_array();
+		return $query[0]["count"];
+	}
+	
+	function getValidationByUser($id_professor, $id_area, $id_level){
+		$id_user = $this->session->userdata('sIdUser');
+		
+		$this->db_super_pro->select("count(*) count");
+		$this->db_super_pro->from("professor_area_validate");
+		$this->db_super_pro->where("id_professor",$id_professor);
+		$this->db_super_pro->where("id_area",$id_area);
+		$this->db_super_pro->where("id_level",$id_level);
+		$this->db_super_pro->where("id_user",$id_user);
+		
+		$query = $this->db_super_pro->get();
+		$query = $query->result_array();
+		return $query[0]["count"];
+	}
+	
+	
+	/**
+	* Insert validation
+	*/
+	
+	function setValidation($id_professor, $id_area, $id_level) {
+		
+		$id_user = $this->session->userdata('sIdUser');
+		
+		$this->db_super_pro->insert('professor_area_validate',array("id_professor"=>$id_professor,"id_area"=>$id_area,"id_level"=>$id_level, "id_user"=>$id_user));
+	
+		$this->db_super_pro->select("count(*) count");
+		$this->db_super_pro->from("professor_area_validate");
+		$this->db_super_pro->where("id_professor",$id_professor);
+		$this->db_super_pro->where("id_area",$id_area);
+		$this->db_super_pro->where("id_level",$id_level);
+		//$this->db_super_pro->where("id_user",$id_user);
+		
+		$query =  $this->db_super_pro->get();
+		$query = $query->result_array();
+		return $query[0]["count"];
+	}
+	
+	function getRanking() {
+		
+		$this->db_super_pro->select("r.id_professor, SUM(TIMESTAMPDIFF(HOUR, r.start, r.end )) ranking, MONTH(r.end) month, YEAR(r.end) year, p.picture, p.firstName, p.lastName, p.rate, p.level");
+		$this->db_super_pro->from("request r");
+		$this->db_super_pro->join("professor p", "p.id = r.id_professor");
+		$this->db_super_pro->where("r.status in (6,7) AND (TIMESTAMPDIFF(HOUR, r.start, r.end )) is not null",NULL, FALSE);
+		
+		$this->db_super_pro->group_by("r.id_professor");
+		$this->db_super_pro->group_by("month(r.end)");
+		$this->db_super_pro->group_by("year(r.end)");
+		
+		$this->db_super_pro->order_by("year(r.end)","desc");
+		$this->db_super_pro->order_by("month(r.end)","desc");
+		$this->db_super_pro->order_by("ranking","desc");
+		
+		$query =  $this->db_super_pro->get();
+		return $query->result_array();
+	}
 }
