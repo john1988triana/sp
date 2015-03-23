@@ -45,6 +45,8 @@ class Profile extends CI_Controller {
 					$data["videos"] = $this->model_superprofe->getVideosByUser($data["IdUser"]);
 					$datos["levels"][] = array("id"=>"-1","name"=>"Todos (Primaria,Bachillerato,Universidad,Otros)");
 					$data["unique"]="";
+					$data["comments"] = $this->model_superprofe->getCommentsByTeacher($data["id"]);
+					
 					$this->load->view("perfiles/profile_professor_public",$data);
 				}else{
 					 $this->displayPageNotFound();

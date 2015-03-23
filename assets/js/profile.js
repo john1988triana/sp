@@ -527,7 +527,9 @@ function sub(obj){
 	
 	var fd = new FormData();
 	fd.append("userfile", obj.files[0]);
+	fd.append("id", id_user);
 	var xhr = new XMLHttpRequest();
+	
 	xhr.open('POST', base_url + "perfil/savePicture", true);
 	xhr.onload = function() {
 		document.getElementById("texto_foto").innerHTML = "Subir foto";

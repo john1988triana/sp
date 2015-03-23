@@ -838,7 +838,7 @@ class Model_superprofe extends CI_Model
 		$id = $query->row_array();
 		$id = $id["id"];
 		
-		$q = " r.*,s.firstName sFName,s.lastName sLName, p.firstName pFName, p.lastName pLName from request r join student s on s.id = r.id_student join professor p on p.id = r.id_professor where ";
+		$q = " r.*,s.firstName sFName,s.lastName sLName, p.firstName pFName, p.lastName pLName, s.picture sPicture, p.picture pPicture from request r join student s on s.id = r.id_student join professor p on p.id = r.id_professor where ";
 		if($type== 1){
 			$q.="r.id_professor = '$id' ";
 		}else{
@@ -1069,6 +1069,17 @@ class Model_superprofe extends CI_Model
 		
 	}
 	
+	function getCommentsByTeacher($id_professor){
+		$this->db_super_pro->select("r.comment, s.firstName, s.lastName, s.picture");
+		$this->db_super_pro->from("request r");
+		$this->db_super_pro->join("student s", "s.id = r.id_student");
+		$this->db_super_pro->where("r.id_professor", $id_professor);
+		$this->db_super_pro->where("r.status in (6,7)", NULL, FALSE);
+		$this->db_super_pro->where("r.comment is not null",NULL, FALSE);
+		$query = $this->db_super_pro->get();
+		return $query->result_array();
+	}
+	
 	/**
 	* Get Teachers
 	*/
@@ -1082,7 +1093,7 @@ class Model_superprofe extends CI_Model
 		$this->db_super_pro->where("ex.type",1);
 		$this->db_super_pro->where("pro.active",1);
 		$this->db_super_pro->where('pr_a.id_level = ( select max(area.id_level) from professor_area area where pro.id = area.id_professor group by area.id_professor)', NULL, FALSE);
-		$this->db_super_pro->where('ex.id = ( select max(est.id) from experience est where pro.id = est.id_professor group by est.id_professor)', NULL, FALSE);
+		$this->db_super_pro->where('ex.id = ( select max(est.id) from experience est where est.type = 1 and est.id_professor = pro.id group by est.id_professor)', NULL, FALSE);
 		if(intval($id_area) > 0) {
 			$this->db_super_pro->where('pr_a.id_area', $id_area);
 			

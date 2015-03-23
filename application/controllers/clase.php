@@ -50,6 +50,35 @@ class Clase extends CI_Controller {
 		$this->load->view("footer");
 	}
 	
+	public function calificar_clase() {
+		if (isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/bot|crawl|slurp|spider/i', $_SERVER['HTTP_USER_AGENT'])) {
+			return;
+		}
+		
+		$data = $this->model_superprofe->getRequest($this->input->get("id_request"));
+		$reqid = $this->input->get("id_request");
+		$isTeacher = $this->input->get("is_teacher");
+		$rate = $this->input->get("rate");
+		$comment = $this->input->get("comment");
+		
+		if($isTeacher == 0){
+			$d = array("rate"=>$rate,
+						"comment"=>$comment);
+			if(!empty($d["rate"])){
+				$this->model_superprofe->updateRequest($reqid,$d);
+			}
+		}else{
+			$d = array("student_rate"=>$rate,
+						"student_comment"=>$comment);
+			if(!empty($d["student_rate"])){
+				$this->model_superprofe->updateRequest($reqid,$d);
+			}
+		}
+		
+		echo "true";
+		
+	}
+	
 	public function calificar_estudiante() {
 		echo json_encode($this->aulasamigas->getAreasByContent('768'));
 	}
@@ -233,7 +262,7 @@ class Clase extends CI_Controller {
 		
 		$this->email->from('hola@superprofe.co', 'Superprofe');
 		$this->email->to('hola@superprofe.co'); 
-		$this->email->subject('Superprofe.co - Solicitud cancelada. Por asignar profe '.$data["id"]);
+		$this->email->subject('Superprofe.co - Solicitud '  .$data["id"] . ' cancelada. Por asignar profe');
 		$this->email->message($template);  
 
 		$this->email->send();
@@ -294,7 +323,7 @@ class Clase extends CI_Controller {
 			
 			$this->email->from('hola@superprofe.co', 'Superprofe');
 			$this->email->to('hola@superprofe.co'); 
-			$this->email->subject('Superprofe.co - Solicitud de clase. por asignar profe '.$data["id"]);
+			$this->email->subject('Superprofe.co - Solicitud de clase no ' .$data["id"]. '. por asignar profe');
 			$this->email->message($template);  
 
 			$this->email->send();

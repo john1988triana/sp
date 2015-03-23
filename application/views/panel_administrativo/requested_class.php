@@ -132,7 +132,17 @@
             		<td>
 					<?php if($editable): ?>
 						<input class="form-control price-sp" style="width:100px;" value="<?php echo $c["price_sp"] ?>"> </input>
-                        <script type="application/javascript"> $(".price-sp").autoNumeric('init', {mDec:'0', aSep: '.', aDec: ',', aSign: '$ '});</script>
+                        <script type="application/javascript"> $(".price-sp").autoNumeric('init', {mDec:'0', aSep: '.', aDec: ',', aSign: '$ '});
+                        
+                        
+                        
+                        </script>
+                        
+                        
+                        
+                        
+                        
+                        
 					<?php else: ?>
 						<?php echo $c["price_sp"]; ?>
 					<?php endif; ?>
@@ -258,6 +268,7 @@ function updateClass(){
 		}
 		else
 		{
+			//alert(JSON.stringify(data));
 			swal({	title: "Estás seguro?",
 					text: "Se cancelará la clase seleccionada!",   
 					type: "warning",
@@ -295,7 +306,7 @@ function updateClass(){
 	{
 		$("#pleaseWaitDialog").modal();
 		
-		$.post(base_url+"administrador/actualizar/clase/",data,function(resp){
+		$.post(base_url+"administrador/actualizar/clase/", data,function(resp){
 			var rta = JSON.parse(resp);
 			if(rta){
 				$("#pleaseWaitDialog").modal("hide");

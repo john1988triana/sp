@@ -43,6 +43,7 @@ class Perfil extends CI_Controller {
 		$this->load->view("perfiles/clases",$data);
 		$this->load->view("footer");
 	}
+	
 	public function facturacion(){
 		$id = $this->session->userdata('sIdUser');
 		$data["title"] = "Clases Finalizadas";
@@ -318,27 +319,42 @@ class Perfil extends CI_Controller {
 			$data = array('upload_data' => $this->upload->data());
 			$user["picture"] = "application/uploads/".$data["upload_data"]["file_name"];
 			$d = $this->session->userdata('sIdUser');
-			if($id!=NULL){
-				if($id != $d){
-					$role = $this->model_superprofe->adminRole($this->session->userdata("sIdUser"));
-					if($role!=1){
-						echo "FORBIDEN";
-						return;
+			
+			if($this->input->post("id")){
+				$amigas = json_decode($this->aulasamigas->getUsersInfo(array($this->input->post("id"))), true);
+				$amigas = $amigas[0];
+				$this->model_superprofe->update($this->input->post("id"), $user, $amigas["isTeacher"]);
+				
+				$this->session->set_userdata('sImageUrl', $user["picture"]);
+				
+				echo '{"success": "' . base_url($user["picture"]) . '"}';
+			}
+			else {
+				if($id!=NULL){
+					if($id != $d){
+						$role = $this->model_superprofe->adminRole($this->session->userdata("sIdUser"));
+						if($role!=1){
+							echo "FORBIDEN";
+							return;
+						}else{
+							$d = $id;
+						}
 					}else{
-						$d = $id;
+						$this->session->set_userdata('sImageUrl', $user["picture"]);
 					}
-				}else{
-					$this->session->set_userdata('sImageUrl', $user["picture"]);
 				}
+				else
+				{
+					$id = $d;
+				}
+				$amigas = json_decode($this->aulasamigas->getUsersInfo(array($id)), true);
+				$amigas = $amigas[0];
+				$this->model_superprofe->update($d,$user,$amigas["isTeacher"]);
+				
+				$this->session->set_userdata('sImageUrl', $user["picture"]);
+				
+				echo '{"success": "' . base_url($user["picture"]) . '"}';
 			}
-			else
-			{
-				$id = $d;
-			}
-			$amigas = json_decode($this->aulasamigas->getUsersInfo(array($id)), true);
-			$amigas = $amigas[0];
-			$this->model_superprofe->update($d,$user,$amigas["isTeacher"]);
-			echo '{"success": "' . base_url($user["picture"]) . '"}';
 		}
 		
 	}

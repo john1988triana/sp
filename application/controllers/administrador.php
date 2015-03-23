@@ -520,6 +520,66 @@ class Administrador extends CI_Controller {
 			case "clase":
 				$class = $this->input->post("cls");
 				$this->model_superprofe->updateRequest($class["hash"],$class);
+				if ($class["status"] == 5) {
+					
+					$data = $this->model_superprofe->getRequest($class["hash"]);
+					
+					$teacher = json_decode($this->aulasamigas->getUsersInfo(array($data["id_professor"])));
+					$teacher = $teacher[0];
+					
+					$student = json_decode($this->aulasamigas->getUsersInfo(array($data["id_student"])));
+					$student = $student[0];
+					
+					
+					/** notify teacher, and student
+					*/
+					$template = file_get_contents(base_url("application/views/mail/cancel_student.html"));
+					$template = str_replace("{{HOST}}",base_url(),$template);
+					$template = str_replace("{{STUDENT NAME}}",$data["sFName"]." ".$data["sLName"],$template);
+					$template = str_replace("{{TEACHER NAME}}",$data["pFName"]." ".$data["pLName"],$template);
+					$template = str_replace("{{ADDRESS}}",$data["address"],$template);
+					$template = str_replace("{{DATE}}",date("l,d F Y",strtotime($data["start"])),$template);
+					$template = str_replace("{{TIME}}",date("h:i a",strtotime($data["start"])),$template);
+					$template = str_replace("{{TEACHER EMAIL}}",$teacher->Email,$template);
+					$template = str_replace("{{TEACHER PHONE}}",$teacher->Phone,$template);
+					$template = str_replace("{{PRICE}}",($data["price_public"]+$data["price_sp"]),$template);
+					$template = str_replace("{{ID}}",$data["id"],$template);
+					$config['mailtype'] = "html";
+					$this->load->library('email');
+					$this->email->initialize($config);
+					
+					$this->email->from('hola@superprofe.co', 'Superprofe');
+					$this->email->to($student->Email); 
+					$this->email->cc('hola@superprofe.co'); 
+					$this->email->subject('Superprofe.co - Cancelación de clase no. ' . $data["id"]);
+					$this->email->message($template);  
+					$this->email->send();
+					
+					$template = file_get_contents(base_url("application/views/mail/cancel_teacher.html"));
+					$template = str_replace("{{HOST}}",base_url(),$template);
+					$template = str_replace("{{STUDENT NAME}}",$data["sFName"]." ".$data["sLName"],$template);
+					$template = str_replace("{{TEACHER NAME}}",$data["pFName"]." ".$data["pLName"],$template);
+					$template = str_replace("{{ADDRESS}}",$data["address"],$template);
+					$template = str_replace("{{DATE}}",date("l,d F Y",strtotime($data["start"])),$template);
+					$template = str_replace("{{TIME}}",date("h:i a",strtotime($data["start"])),$template);
+					$template = str_replace("{{TEACHER EMAIL}}",$teacher->Email,$template);
+					$template = str_replace("{{TEACHER PHONE}}",$teacher->Phone,$template);
+					$template = str_replace("{{PRICE}}",($data["price_public"]+$data["price_sp"]),$template);
+					$template = str_replace("{{ID}}",$data["id"],$template);
+					
+					$config['mailtype'] = "html";
+					$this->load->library('email');
+					$this->email->initialize($config);
+					
+					$this->email->from('hola@superprofe.co', 'Superprofe');
+					$this->email->to($teacher->Email); 
+					$this->email->cc('hola@superprofe.co'); 
+					$this->email->subject('Superprofe.co - Cancelación de clase no. ' . $data["id"]);
+					$this->email->message($template);  
+					$this->email->send();
+					
+				}
+				
 				echo json_encode(true);
 			break;
 			case "professor":
@@ -615,7 +675,7 @@ class Administrador extends CI_Controller {
 		$this->email->from('hola@superprofe.co', 'Superprofe');
 		$this->email->to($user->Email); 
 		$this->email->cc('hola@superprofe.co'); 
-		$this->email->subject('Superprofe.co - Confirmacion de clase.');
+		$this->email->subject('Superprofe.co - Confirmacion de clase no. ' . $data["id"]);
 		$this->email->message($template);  
 		$this->email->attach($url_calendar);
 		$this->email->send();
