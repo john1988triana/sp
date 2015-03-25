@@ -99,6 +99,17 @@
 			<div class="row well panel_busqueda classTable" style="width:auto;margin:auto;">
 			<!--Formulario para enviar los datos de consulta-->
 				<!--Area-->
+                	<div class="row">
+                    	<div class="col-md-12 txt-busqueda">
+							<label for="origin">Por qué medio te contactaste con superprofe?:</label>
+							<select name="origin" id="origin" class="form-control col-md-9" >
+								<option value="PLATAFORMA">PLATAFORMA</option>
+                                <option value="TELEFONO">TELÉFONO</option>
+								<option value="WHATSAPP">WHATSAPP</option>
+							</select>
+						</div>
+                    </div>
+                
 					<div class="row">
 						<div class="col-md-12 txt-busqueda">
 							<label for="area">En que &Aacute;rea Necesitas Profesor?:</label>
@@ -290,7 +301,8 @@ function saveClass(){
 		"student_email":$("#user-email").text(),
 		"price":request.price,
 		"topic":request.topic,
-		"phone":$("#phone").val() + " " + $("#mobile").val()
+		"phone":$("#phone").val() + " " + $("#mobile").val(),
+		"origin":request.origin
 	};
 	$.post(base_url+"administrador/agendar",data,function(resp){
 		$("#pleaseWaitDialog").modal("hide");
@@ -394,6 +406,7 @@ $(".btn-busqueda-profe").click(function(){
 			item = item.replace("{{IMAGE}}",rta[i].Image =="assets/img/default.png" ?base_url+"assets/img/logo_superprofe.svg" : base_url+rta[i].Image);
 			item = item.replace("{{ID_CITY}}",rta[i].City);
 			item = item.replace("{{ID_AREA}}",$("#area option:selected").val());
+			item = item.replace("{{ORIGIN}}",$("#origin option:selected").val());
 			item = item.replace("{{ADDRESS}}",$("#address").val());
 			item = item.replace("{{TOPIC}}",$("#topic").val());
 			item = item.replace("{{PRICE}}",parseFloat(rta[i].price)+parseFloat(rta[i].fee_sp));
@@ -402,13 +415,14 @@ $(".btn-busqueda-profe").click(function(){
 		}
 	});
 });
-function refreshTeacherDetail(id,firstName,lastName,image,rate,price,city,area,address,topic,date){
+function refreshTeacherDetail(id,firstName,lastName,image,rate,price,city,area,address,topic,date,origin){
 		request.id_professor = id;
 		request.price = price;
 		request.id_area = area;
 		request.city = city;
 		request.address = address;
 		request.topic = topic;
+		request.origin = origin;
 		var auto = false;
 		date = new moment(date,"DD-MM-YYYY H:mm");
 		var week = new moment(date).startOf('week');

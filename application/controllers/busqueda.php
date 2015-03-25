@@ -213,6 +213,7 @@ class Busqueda extends CI_Controller {
 		$data["end"] = $this->input->post("end");
 		$data["id_professor"] = $this->input->post("id_professor");
 		$data["neighbor"] = $this->input->post("neighbor");
+		$data["origin"] = $this->input->post("origin");
 		
 		if($data["id_professor"]!="-1"){
 			$datetime1 = new DateTime($data["start"]);

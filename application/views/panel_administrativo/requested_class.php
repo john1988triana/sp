@@ -29,6 +29,8 @@
             	<th>Profesor</th>
             	<th>Valor clase</th>
             	<th>Comisión SP</th>
+                <th>Fecha Programación</th>
+                <th>Origen</th>
             	<th>Estado</th>
                 <th>Observaciones</th>
 				<?php if($editable): ?>
@@ -140,20 +142,15 @@
             		<td>
 					<?php if($editable): ?>
 						<input class="form-control price-sp" style="width:100px;" value="<?php echo $c["price_sp"] ?>"> </input>
-                        <script type="application/javascript"> $(".price-sp").autoNumeric('init', {mDec:'0', aSep: '.', aDec: ',', aSign: '$ '});
-                        
-                        
-                        
-                        </script>
-                        
-                        
-                        
-                        
-                        
+                        <script type="application/javascript"> $(".price-sp").autoNumeric('init', {mDec:'0', aSep: '.', aDec: ',', aSign: '$ '}); </script>
                         
 					<?php else: ?>
 						<?php echo $c["price_sp"]; ?>
 					<?php endif; ?>
+                    
+                    <td><?php echo $c["program_date"]; ?></td>
+                    <td><?php echo $c["origin"]; ?></td>
+                    
             		<td>
 						<?php if($editable_status): ?>
 						<select class="state">
@@ -254,6 +251,22 @@ function updateClass(){
 				status : row.find(".state option:selected").val()
 			}
 		}	
+	}
+	else if(row.find(".state option:selected").val() == 4){
+		data = {
+			cls:{
+				hash : row.find(".row-id .hash").val(),
+				address : row.find(".address").val(),
+				start : start.format("YYYY-MM-DD HH:mm:ss"),
+				end : new moment(start).add(row.find(".duration").val(),'h').format("YYYY-MM-DD HH:mm:ss"),
+				price_public : row.find(".price-pub").val(),
+				price_sp : row.find(".price-sp").val(),
+				status : row.find(".state option:selected").val(),
+				notes : row.find(".notes").val(),
+				neighbor : row.find(".neighbor").val(),
+				program_date : new moment().format("YYYY-MM-DD HH:mm:ss")
+			}
+		}
 	}
 	else{
 		data = {

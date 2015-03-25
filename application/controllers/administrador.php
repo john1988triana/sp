@@ -610,6 +610,7 @@ class Administrador extends CI_Controller {
 		$data["id_area"] = $this->input->post("id_area");
 		$data["start"] = $this->input->post("start");
 		$data["end"] = $this->input->post("end");
+		$data["origin"] = $this->input->post("origin");
 		$datetime1 = new DateTime($data["start"]);
 		$datetime2 = new DateTime($data["end"]);
 		$interval = $datetime1->diff($datetime2);
@@ -617,7 +618,10 @@ class Administrador extends CI_Controller {
 		$data["price_public"] = $this->model_superprofe->getPrice($this->input->post("id_professor"),"public")*$hours;
 		$data["price_sp"] = $this->model_superprofe->getPrice($this->input->post("id_professor"),"sp")*$hours;
 		$data["id_professor"] = $this->input->post("id_professor");
+		
 		$data["status"] = 4;
+		
+		$data["program_date"] = date("Y-m-d H:i:s");
 		
 		$reqid = $this->model_superprofe->createRequest($data);
 		
@@ -645,9 +649,9 @@ class Administrador extends CI_Controller {
 		$iEvent->setStart($year_start, $month_start, $day_start, 0, 1, "America/Bogota", 1, $hour_start, $minute_start);
 		$iEvent->setEnd($year_end, $month_end, $day_end, 0, 1, "America/Bogota", 1, $hour_end, $minute_end);
 		$iEvent->setShortDescription("Clase Superprofe");
-		$iEvent->setLongDescription("Clase Superprofe. Los datos del profesor son: Telefono: " . $teacher["Phone"] . ", Email: " .  $teacher["Email"]);
+		$iEvent->setLongDescription("Clase Superprofe. Los datos del profesor son: Telefono: " . $teacher->Phone . ", Email: " .  $teacher->Email);
 		$iEvent->setLocation($data["address"]);
-		$iEvent->setContact($teacher["Email"]);
+		$iEvent->setContact($teacher->Email);
 		//Lets add the event to the iCalWriter-object:
 		$iCal->add($iEvent);
 		//We could add more events here.

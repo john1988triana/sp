@@ -88,6 +88,7 @@ class Clase extends CI_Controller {
 		    return;
 		  }	
 		$data["status"] = 4;
+		$data["program_date"] = date("Y-m-d H:i:s");
 		$this->model_superprofe->updateRequest($reqid,$data);
 		$data = $this->model_superprofe->getRequest($reqid);
 		$areas = json_decode($this->aulasamigas->getAreasByContent('768'));

@@ -545,7 +545,8 @@ $(document).ready(function(){
 			"status":2,
 			"end":_end_date.format("YYYY-MM-DD, HH:mm:ss"),
 			"start":_start_date.format("YYYY-MM-DD, HH:mm:ss"),
-			"neighbor": request.neighbor
+			"neighbor": request.neighbor,
+			"origin":'PLATAFORMA'
 		};
 		
 		$.post(base_url+"busqueda/guardar",data,function(resp){
@@ -965,7 +966,9 @@ $(document).ready(function(){
 
 			"phone":request.phone,
 			
-			"neighbor":request.neighbor
+			"neighbor":request.neighbor,
+			
+			"origin":'PLATAFORMA'
 
 		};
 
