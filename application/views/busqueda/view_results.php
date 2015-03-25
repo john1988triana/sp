@@ -545,6 +545,7 @@ $(document).ready(function(){
 			"status":2,
 			"end":_end_date.format("YYYY-MM-DD, HH:mm:ss"),
 			"start":_start_date.format("YYYY-MM-DD, HH:mm:ss"),
+			"neighbor": request.neighbor
 		};
 		
 		$.post(base_url+"busqueda/guardar",data,function(resp){
@@ -574,6 +575,8 @@ $(document).ready(function(){
 		request.address = "<?php echo $this->input->get("address") ?>";
 
 		request.topic = "<?php echo $this->input->get("topic") ?>";
+		
+		request.neighbor = "<?php echo $this->input->get("neighbor") ?>";
 
 		var auto = <?php echo $auto ?>;
 
@@ -960,7 +963,9 @@ $(document).ready(function(){
 
 			"topic":request.topic,
 
-			"phone":request.phone
+			"phone":request.phone,
+			
+			"neighbor":request.neighbor
 
 		};
 

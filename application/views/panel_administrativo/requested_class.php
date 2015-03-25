@@ -20,6 +20,7 @@
             	<th>Nivel</th>
             	<th>Ciudad</th>
             	<th>Dirección</th>
+                <th>Barrio</th>
             	<th>Fecha Clase</th>
 				<th>Hora</th>
             	<th>Cant.Horas</th>
@@ -56,6 +57,13 @@
 						<input class="form-control address" style="width:200px;" value="<?php echo $c["address"] ?>"></input>
 					<?php else: ?>
 						<?php echo $c["address"]; ?>
+					<?php endif; ?>
+					</td>
+                    <td>
+					<?php if($editable): ?>
+						<input class="form-control neighbor" style="width:120px;" value="<?php echo $c["neighbor"] ?>"></input>
+					<?php else: ?>
+						<?php echo $c["neighbor"]; ?>
 					<?php endif; ?>
 					</td>
             		<td>
@@ -257,7 +265,8 @@ function updateClass(){
 				price_public : row.find(".price-pub").val(),
 				price_sp : row.find(".price-sp").val(),
 				status : row.find(".state option:selected").val(),
-				notes : row.find(".notes").val()
+				notes : row.find(".notes").val(),
+				neighbor : row.find(".neighbor").val()
 			}
 		}
 	}

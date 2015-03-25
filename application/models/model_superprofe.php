@@ -1047,7 +1047,7 @@ class Model_superprofe extends CI_Model
 	}
 	function getClassByStatus($status=array(3)){
 		$this->db_super_pro->select("r.id,r.hash,r.date,r.id_area,r.rate,
-								r.comment,l.name level,r.city,r.address,r.start,
+								r.comment,l.name level,r.city,r.address, r.neighbor, r.start,
 								r.end,r.status,r.phone,r.price_public,r.price_sp,r.topic,r.notes,
 								s.firstName sFName,s.lastName sLName,p.firstName pFName,
 								p.lastName pLName,p.id_user id_professor,s.id_user id_student");

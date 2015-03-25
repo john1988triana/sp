@@ -358,11 +358,36 @@ $(".btn-busqueda-profe").click(function(){
 			item = item.replace("{{RATE}}",rta[i].rate);
 			for(var j = 1 ; j <= 5 ; j++){
 				if(j<= rta[i].rate){
-					item = item.replace("{{COLOR}}","#FFCC00");
+					item = item.replace("{{COLOR_STAR}}","#FFCC00");
 				}else{
-					item = item.replace("{{COLOR}}","#666");
+					item = item.replace("{{COLOR_STAR}}","#666");
 				}
 			}
+			
+			switch(rta[i].level){
+				case "1":	item = item.replace("{{LEVEL}}","Junior");
+							item = item.replace("{{COLOR}}","#4164B3");
+							item = item.replace("{{MEDALS}}",'<img src="/assets/img/medallas/1.svg" alt="" ><img src="/assets/img/medallas/2b.svg" alt="" class="no-medalla"><img src="/assets/img/medallas/3b.svg" alt="" class="no-medalla"><img src="/assets/img/medallas/4b.svg" alt="" class="no-medalla"><img src="/assets/img/medallas/5b.svg" alt="" class="no-medalla">');
+							break;
+				case "2":	item = item.replace("{{LEVEL}}","Profesional");
+							item = item.replace("{{COLOR}}","#38A5CE");
+							item = item.replace("{{MEDALS}}",'<img src="/assets/img/medallas/1.svg" alt="" ><img src="/assets/img/medallas/2.svg" alt=""><img src="/assets/img/medallas/3b.svg" alt="" class="no-medalla"><img src="/assets/img/medallas/4b.svg" alt="" class="no-medalla"><img src="/assets/img/medallas/5b.svg" alt="" class="no-medalla">');
+							break;
+				case "3":	item = item.replace("{{LEVEL}}","Master");
+							item = item.replace("{{COLOR}}","#FE544B");
+							item = item.replace("{{MEDALS}}",'<img src="/assets/img/medallas/1.svg" alt="" ><img src="/assets/img/medallas/2.svg" alt=""><img src="/assets/img/medallas/3.svg" alt=""><img src="/assets/img/medallas/4b.svg" alt="" class="no-medalla"><img src="/assets/img/medallas/5b.svg" alt="" class="no-medalla">');
+							break;
+				case "4":	item = item.replace("{{LEVEL}}","Experto");
+							item = item.replace("{{COLOR}}","#FD931B");
+							item = item.replace("{{MEDALS}}",'<img src="/assets/img/medallas/1.svg" alt="" ><img src="/assets/img/medallas/2.svg" alt=""><img src="/assets/img/medallas/3.svg" alt=""><img src="/assets/img/medallas/4.svg" alt=""><img src="/assets/img/medallas/5b.svg" alt="" class="no-medalla">');
+							break;
+				case "5":	item = item.replace("{{LEVEL}}","Elite");
+							item = item.replace("{{COLOR}}","#FFC136");
+							item = item.replace("{{MEDALS}}",'<img src="/assets/img/medallas/1.svg" alt="" ><img src="/assets/img/medallas/2.svg" alt=""><img src="/assets/img/medallas/3.svg" alt=""><img src="/assets/img/medallas/4.svg" alt=""><img src="/assets/img/medallas/5.svg" alt="">');
+							break;	
+			}
+			
+			
 			item = item.replace("{{ID_USER}}",rta[i].id_user);
 			item = item.replace("{{FIRST_NAME}}",rta[i].firstName);
 			item = item.replace("{{LAST_NAME}}",rta[i].lastName);

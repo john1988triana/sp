@@ -1,20 +1,25 @@
-<div class="col-md-4">
-	<div class="panel-default panel-perfil">                                            
-			<h3 class="text-center" style="color:#009966;">{{FIRST_NAME}} {{LAST_NAME}}</h3>
-		<div class="panel-body text-center">
-			<img class="img-profile" style="margin: 0px auto;" src="{{IMAGE}}">
-			<div class="estrellas">
-				<span class="glyphicon glyphicon-star" style="color:{{COLOR}}"></span>
-				<span class="glyphicon glyphicon-star" style="color:{{COLOR}}"></span> 
-				<span class="glyphicon glyphicon-star" style="color:{{COLOR}}"></span> 
-				<span class="glyphicon glyphicon-star" style="color:{{COLOR}}"></span> 
-				<span class="glyphicon glyphicon-star" style="color:{{COLOR}}"></span>    
-			</div> 			
-			<h4 class="par">Ciudad: {{CITY}}</h4>
-			<h4 class="par">Area: {{AREA}}</h4>
-			<h4 class="par">Precio: <span style="color:#00B85C;">{{PRICE}}</span></h4>
-			<div class="btn-estu btn col-lg-12 ver_perfil" id="ver_perfil" 
-			onclick="refreshTeacherDetail('{{ID_USER}}','{{FIRST_NAME}}','{{LAST_NAME}}','{{IMAGE}}','{{RATE}}','{{PRICE}}','{{ID_CITY}}','{{ID_AREA}}','{{ADDRESS}}','{{TOPIC}}','{{DATE}}')">Ver perfil</div>
-		</div>
-	</div>
+<div class="col-md-3">
+    <div class="panel-default panel-perfil panel-perfil center-block">                                            
+    <h3 class="text-center tt-txt-panel-perfil" style="color:#009966;">{{FIRST_NAME}} {{LAST_NAME}}</h3>
+        <div class="panel-body text-center">
+            <img class="img-profile" style="margin: 0px auto; border-color: {{COLOR}}" src="{{IMAGE}}">
+            <div class="estrellas">
+                <span class="glyphicon glyphicon-star" style="color: {{COLOR_STAR}}"></span>
+                <span class="glyphicon glyphicon-star" style="color: {{COLOR_STAR}}"></span> 
+                <span class="glyphicon glyphicon-star" style="color: {{COLOR_STAR}}"></span> 
+                <span class="glyphicon glyphicon-star" style="color: {{COLOR_STAR}}"></span> 
+                <span class="glyphicon glyphicon-star" style="color: {{COLOR_STAR}}"></span>    
+            </div>
+            <div class="medallas-profesor">
+                {{MEDALS}}
+            </div>
+            <h3 class="medalla-tag">{{LEVEL}}</h3>
+
+            <h4 class="par txt-panel-perfil">Ciudad: {{CITY}}</h4>  
+            <h4 class="par txt-panel-perfil">Area: {{AREA}}</h4>    
+            <h4 class="par txt-panel-perfil"></h4>
+            <h4 class="par txt-panel-perfil">Precio: <span style="color:#00B85C;">{{PRICE}}</span></h4>
+        </div>
+        <div onclick="refreshTeacherDetail('{{ID_USER}}','{{FIRST_NAME}}','{{LAST_NAME}}','{{IMAGE}}','{{RATE}}','{{PRICE}}','{{ID_CITY}}','{{ID_AREA}}','{{ADDRESS}}','{{TOPIC}}','{{DATE}}')" class="cta-perfil-profesor"><h3>Escojan por Mi</h3></div>
+    </div>
 </div>

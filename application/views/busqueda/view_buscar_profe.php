@@ -88,6 +88,12 @@
 							<div class="error"><?php echo $errors["address"]; ?></div>
 					</div>
 					
+                    <div class="row">
+                        <div class="col-md-12 txt-busqueda">
+                            <label for="neighbor">Barrio:</label>
+                            <input type="text" name="neighbor" id="neighbor" class="form-control col-md-9" value="<?php echo $address;?>">						
+                        </div>
+                    </div>
 					<!--Teléfono-->
 					<div class="row">
 						<div class="col-md-12 txt-busqueda">
