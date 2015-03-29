@@ -274,7 +274,7 @@
 					<div class="modal-body">
 						<!--<iframe width="100%" height="400" src="//www.youtube.com/embed/x97biL1lKBE" frameborder="0" allowfullscreen></iframe>-->
 
-						<iframe width="100%" height="400" src="assets/media/agendar_clase.mp4" frameborder="0" allowfullscreen></iframe>
+						<!--iframe width="100%" height="400" src="assets/media/agendar_clase.mp4" frameborder="0" allowfullscreen></iframe-->
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
@@ -304,7 +304,7 @@
 
 			<h4 style="text-align:center;">Si tienes un código promocional digítalo aquí:</h4>
 
-			<div style="width:330px;margin:auto;"><span class="glyphicon glyphicon-question-sign prf" data-toggle="tooltip" data-placement="right" title="Si no tienes codigo de Aulas Amigas deja este espacio en blanco"></span><input class="promo-code" type="text"></input></div>
+			<div style="width:330px;margin:auto;"><span class="glyphicon glyphicon-question-sign prf" data-toggle="tooltip" data-placement="right" title="Si no tienes codigo de Aulas Amigas deja este espacio en blanco"></span><input id="promo-code" class="promo-code" type="text"></input></div>
 
 			<div class="clearfix"></div>
 
@@ -546,7 +546,8 @@ $(document).ready(function(){
 			"end":_end_date.format("YYYY-MM-DD, HH:mm:ss"),
 			"start":_start_date.format("YYYY-MM-DD, HH:mm:ss"),
 			"neighbor": request.neighbor,
-			"origin":'PLATAFORMA'
+			"origin":'PLATAFORMA',
+			"promo_code": $("#promo-code").val()
 		};
 		
 		$.post(base_url+"busqueda/guardar",data,function(resp){
@@ -968,24 +969,47 @@ $(document).ready(function(){
 			
 			"neighbor":request.neighbor,
 			
-			"origin":'PLATAFORMA'
+			"origin":'PLATAFORMA',
+			
+			"promo_code": $("#promo-code").val()
 
 		};
 
 		$.post(base_url+"busqueda/guardar",data,function(resp){
 
-			var info = JSON.parse(resp);
-
-			if(!info){
-
-				$("#pleaseWaitDialog").modal("hide");
-
-				$("#login").modal();
-
-			}else{
-
-				window.location.href=base_url+"clase/solicitar/<?php echo $req_id; ?>";
-
+			//alert(resp);
+			if(resp != "true") {
+				var _data = JSON.parse(resp);
+				if(_data[0] == "Success") {
+					
+				}
+				else if(_data[0] == "Error") {
+					$("#pleaseWaitDialog").modal("hide");
+					swal({
+						title: "Error!",
+						text: _data[1],
+						type: "error",
+						confirmButtonText: "Aceptar" }
+					);
+				}
+				else {
+					
+				}
+			}
+			else {
+				var info = JSON.parse(resp);
+				if(!info){
+	
+					$("#pleaseWaitDialog").modal("hide");
+	
+					$("#login").modal();
+		
+				}
+				else{
+		
+					window.location.href=base_url+"clase/solicitar/<?php echo $req_id; ?>";
+		
+				}
 			}
 
 		});

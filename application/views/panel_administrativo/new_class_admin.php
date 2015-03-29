@@ -21,7 +21,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-offset-2">
+                                <div class="col-md-12">
                                     <input id="search" type="submit" href="" class="btn-profe btn-login btn col-lg-12 " value="Buscar Usuario"></input>
                                 </div>
                             </div>

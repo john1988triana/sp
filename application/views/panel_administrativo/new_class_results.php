@@ -240,7 +240,7 @@
 	<div class="col-md-7">
 		<div class="promo-section">
 			<h4 style="text-align:center;">Si tienes un código promocional digítalo aquí:</h4>
-			<input class="promo-code" type="text"></input>
+			<input id="promo_code" class="promo_code" type="text"></input>
 			<div class="clearfix"></div>
 			<button type="submit" class="btn-schedule btn" onclick="saveClass();">Programar mi clase</button>
 		</div>
@@ -302,18 +302,40 @@ function saveClass(){
 		"price":request.price,
 		"topic":request.topic,
 		"phone":$("#phone").val() + " " + $("#mobile").val(),
-		"origin":request.origin
+		"origin":request.origin,
+		"promo_code": $("#promo_code").val()
 	};
 	$.post(base_url+"administrador/agendar",data,function(resp){
 		$("#pleaseWaitDialog").modal("hide");
-		swal({
-			title: "Listo!",
-			text: "La clase fue agendada exitosamente",
-			type: "success",
-			confirmButtonText: "Aceptar" },
-			function(){
-				window.location.href = "/administrador/clases/nueva";
+		
+		if(resp != "true") {
+			var _data = JSON.parse(resp);
+			if(_data[0] == "Success") {
+				
+			}
+			else if(_data[0] == "Error") {
+				$("#pleaseWaitDialog").modal("hide");
+				swal({
+					title: "Error!",
+					text: _data[1],
+					type: "error",
+					confirmButtonText: "Aceptar" }
+				);
+			}
+			else {
+				
+			}
+		}
+		else {
+			swal({
+				title: "Listo!",
+				text: "La clase fue agendada exitosamente",
+				type: "success",
+				confirmButtonText: "Aceptar" },
+				function(){
+					window.location.href = "/administrador/clases/nueva";
 			});
+		}
 	});
 }
 $(".datepicker").datepicker({format: 'dd-mm-yyyy',

@@ -1062,6 +1062,8 @@ class Model_superprofe extends CI_Model
 		return $query->result_array();
 	}
 	
+	
+	
 	/**
 	* promo codes
 	*/
@@ -1074,11 +1076,94 @@ class Model_superprofe extends CI_Model
 		return $query->result_array();
 	}
 	
-	function deletePromoCodeById($id){
-		
-		$this->db_super_pro->delete("promo_codes",array("id"=>$id));
-		
+	function editPromoCodeById($id,$data) {
+		$this->db_super_pro->where('id', $id);
+		$this->db_super_pro->update('promo_codes', $data);
 	}
+	
+	function deletePromoCodeById($id){
+		$this->db_super_pro->delete("promo_codes",array("id"=>$id));
+	}
+	
+	function checkCode($code) {
+		$this->db_super_pro->select("count(*) count");
+		$this->db_super_pro->from("promo_codes");
+		$this->db_super_pro->where("code_number", $code);
+		$query = $this->db_super_pro->get();
+		$query = $query->result_array();
+		return $query[0]["count"];
+	}
+	
+	function checkValidCode($code) {
+		
+		$today = date("Y-m-d");
+		
+		$this->db_super_pro->select("count(*) count");
+		$this->db_super_pro->from("promo_codes");
+		$this->db_super_pro->where("code_number", $code);
+		$this->db_super_pro->where("vig_from <= ", $today);
+		$this->db_super_pro->where("vig_to >= ", $today);
+		$this->db_super_pro->where("uses < max_uses", NULL,false);
+		$query = $this->db_super_pro->get();
+		$query = $query->result_array();
+		return $query[0]["count"];
+	}
+	
+	function createCode($data) {
+		$this->db_super_pro->insert('promo_codes',$data);
+	}
+	
+	function getValueByCode($promo_code) {
+		$this->db_super_pro->select("value");
+		$this->db_super_pro->from("promo_codes");
+		$this->db_super_pro->where("code_number", $promo_code);
+		$query = $this->db_super_pro->get();
+		$query = $query->result_array();
+		return $query[0]["value"];
+	}
+	
+	function insertCodeUsed($user_id, $promo_code) {
+		$this->db_super_pro->select("*");
+		$this->db_super_pro->from("promo_codes");
+		$this->db_super_pro->where("code_number", $promo_code);
+		$query = $this->db_super_pro->get();
+		$query = $query->result_array();
+		
+		if((int)$query[0]["uses"] < (int)$query[0]["max_uses"]) {
+			$code_id = $query[0]["id"];
+		
+			$data["promo_code_id"] = $code_id;
+			$data["user_id"] = $user_id;
+			$data["date"] = date("Y-m-d H:i:s");
+			
+			$data_code["uses"] = (int)$query[0]["uses"] + 1;
+			
+			$this->editPromoCodeById($code_id, $data_code);
+			$this->db_super_pro->insert('promo_code_uses',$data);
+			
+			return array("Success", "Exito");
+		}
+		else {
+			return array("Error", "Ya se superó el uso máximo del código promocional");
+		}
+	}
+	
+	function getBitacoraList($id) {
+		
+		//return $id_user;
+		
+		$this->db_super_pro->select("*");
+		$this->db_super_pro->from("promo_code_uses pc");
+		$this->db_super_pro->join("student s","s.id_user = pc.user_id");
+		$this->db_super_pro->where("promo_code_id", $id);
+		$query = $this->db_super_pro->get();
+		$query = $query->result_array();
+		return $query;
+	}
+	/**
+	* Comments
+	*/
+	
 	
 	function getCommentsByTeacher($id_professor){
 		$this->db_super_pro->select("r.comment, s.firstName, s.lastName, s.picture");
@@ -1195,4 +1280,5 @@ class Model_superprofe extends CI_Model
 		$query =  $this->db_super_pro->get();
 		return $query->result_array();
 	}
+	
 }

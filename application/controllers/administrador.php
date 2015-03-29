@@ -494,8 +494,73 @@ class Administrador extends CI_Controller {
 	public function promociones($subsection = "nueva",$params=""){
 		$this->checkPermission();
 		switch($subsection){
-			case "nueva":	$this->load->view("panel_administrativo/header");
-							$this->load->view("panel_administrativo/promotional_code_new");
+			case "nueva":	if($this->input->post("create_action")){
+								$checking = $this->model_superprofe->checkCode($this->input->post("code"));
+								if($checking == "0"){
+									$data["vig_from"] = date("Y-m-d" , strtotime($this->input->post("from")));
+									$data["vig_to"] = date("Y-m-d" , strtotime($this->input->post("to")));
+									$data["value"] = $this->input->post("valor");
+									$data["value"] = str_replace("$ ","", $data["value"]);
+									$data["value"] = str_replace(".", "", $data["value"]);
+									$data["max_uses"] = $this->input->post("uses");
+									$data["code_number"] = $this->input->post("code");
+									$data["uses"] = 0;
+									
+									$this->model_superprofe->createCode($data);
+									
+									$this->load->view("panel_administrativo/header");
+									$this->load->view("panel_administrativo/promotional_code_result", $data);
+								}
+								else{
+									$data["error"] = "El código ya existe. Verifica e intenta con otro";
+									$data["type_code"] = $this->input->post("type_code");
+									$data["from"] = $this->input->post("from");
+									$data["to"] = $this->input->post("to");
+									$data["valor"] = $this->input->post("valor");
+									$data["uses"] = $this->input->post("uses");
+									$data["code"] = $this->input->post("code");
+									
+									$this->load->view("panel_administrativo/header");
+									$this->load->view("panel_administrativo/promotional_code_new", $data);
+								}
+							}
+							else if($this->input->post("generate_action")) {
+								
+								$isOnly = false;
+								$code = 0;
+								while ($isOnly <= false) {
+									$code = mt_rand(100000,9999999);
+									$checking = $this->model_superprofe->checkCode($code);
+									if($checking == "0"){
+										$isOnly = true;
+									}
+									else {
+										$isOnly = false;
+									}
+								}
+								
+								$data["vig_from"] = date("Y-m-d" , strtotime($this->input->post("from")));
+								$data["vig_to"] = date("Y-m-d" , strtotime($this->input->post("to")));
+								$data["value"] = $this->input->post("valor");
+								$data["value"] = str_replace("$ ","", $data["value"]);
+								$data["value"] = str_replace(".", "", $data["value"]);
+								$data["max_uses"] = $this->input->post("uses");
+								$data["code_number"] = $code;
+								$data["uses"] = 0;
+								
+								$this->model_superprofe->createCode($data);
+								
+								$this->load->view("panel_administrativo/header");
+								$this->load->view("panel_administrativo/promotional_code_result", $data);
+								
+							}
+							else {
+								$this->load->view("panel_administrativo/header");
+								$this->load->view("panel_administrativo/promotional_code_new");
+							}
+			
+			
+							
 							break;
 			case "lista":	$query = $this->model_superprofe->getAllPromoCodes();
 							$data["promo_list"] = $query;
@@ -503,16 +568,36 @@ class Administrador extends CI_Controller {
 							$this->load->view("panel_administrativo/header");
 							$this->load->view("panel_administrativo/promotional_code_list", $data);
 							break;
+			case "bitacora":	$data["list"] = $this->model_superprofe->getBitacoraList($params);
+							$this->load->view("panel_administrativo/header");
+							$this->load->view("panel_administrativo/bitacora", $data);
+							break;
+							
 		}
 	}
 	
-	public function eliminarPromoPorId($id){
+	public function editPromoById(){
+		
+		$id = $this->input->get("id");
+		$data["vig_from"] = $this->input->get("vig_from");
+		$data["vig_to"] = $this->input->get("vig_to");
+		$data["value"] = $this->input->get("value");
+		$data["max_uses"] = $this->input->get("max_uses");
+		
+		$this->model_superprofe->editPromoCodeById($id, $data);
+		echo "true";
+	}
+	
+	public function deletePromoById($id){
 		$this->checkPermission();
 		if($id) {
-			
+			$this->model_superprofe->deletePromoCodeById($id);
+			echo "true";
+		}
+		else {
+			echo "false";
 		}
 	}
-	
 	
 	public function actualizar($subsection){
 		$this->checkPermission();
@@ -601,6 +686,7 @@ class Administrador extends CI_Controller {
 		$email = $this->input->post("student_email");
 		$user = json_decode($this->aulasamigas->getUserByEmail($email));
 		$user = $user[0];
+		
 		$data["id_student"] = $user->IdUser;
 		$data["phone"] = $this->input->post("phone");
 		$data["address"] = $this->input->post("address");
@@ -611,6 +697,8 @@ class Administrador extends CI_Controller {
 		$data["start"] = $this->input->post("start");
 		$data["end"] = $this->input->post("end");
 		$data["origin"] = $this->input->post("origin");
+		$data["promo_code"] = $this->input->post("promo_code");
+		
 		$datetime1 = new DateTime($data["start"]);
 		$datetime2 = new DateTime($data["end"]);
 		$interval = $datetime1->diff($datetime2);
@@ -618,6 +706,30 @@ class Administrador extends CI_Controller {
 		$data["price_public"] = $this->model_superprofe->getPrice($this->input->post("id_professor"),"public")*$hours;
 		$data["price_sp"] = $this->model_superprofe->getPrice($this->input->post("id_professor"),"sp")*$hours;
 		$data["id_professor"] = $this->input->post("id_professor");
+		
+		if($data["promo_code"] != "") {
+				
+			$code_count = $this->model_superprofe->checkValidCode($data["promo_code"]);
+			if((int)$code_count > 0) {
+				$value_code = $this->model_superprofe->getValueByCode($data["promo_code"]);
+				$data["price_public"]  = $data["price_public"] - (float)$value_code;
+			}
+			else {
+				$msg = array("Error", "El código promocional no es válido.");
+				echo json_encode($msg);
+				return;
+			}
+			
+		}
+		
+		if($data["promo_code"] != "") {
+			$resultCode = $this->model_superprofe->insertCodeUsed($data["id_student"], $data["promo_code"]);
+		
+			if($resultCode[0] == "Error") {
+				echo json_encode( $resultCode );
+				return;
+			}	
+		}
 		
 		$data["status"] = 4;
 		
@@ -630,6 +742,16 @@ class Administrador extends CI_Controller {
 		$teacher = json_decode($this->aulasamigas->getUsersInfo(array($data["id_professor"])));
 		$teacher = $teacher[0];
 		
+		$user = json_decode($this->aulasamigas->getUsersInfo(array($user->IdUser)));
+		$user = $user[0];
+		
+		$areas = json_decode($this->aulasamigas->getAreasByContent('768'));
+		foreach($areas as $area){
+			if($area->IdArea == $data["id_area"]){
+				$data["area"] = $area->Name;
+				break;
+			}
+		}
 		
 		///////////////////////
 		$this->load->library('iCalWriter');
@@ -697,8 +819,8 @@ class Administrador extends CI_Controller {
 		$template = str_replace("{{ADDRESS}}",$data["address"],$template);
 		$template = str_replace("{{DATE}}",date("l,d F Y",strtotime($data["start"])),$template);
 		$template = str_replace("{{TIME}}",date("h:i a",strtotime($data["start"])),$template);
-		$template = str_replace("{{TEACHER EMAIL}}",$teacher["Email"],$template);
-		$template = str_replace("{{TEACHER PHONE}}",$teacher["Phone"],$template);
+		$template = str_replace("{{TEACHER EMAIL}}",$teacher->Email,$template);
+		$template = str_replace("{{TEACHER PHONE}}",$teacher->Phone,$template);
 		$template = str_replace("{{PRICE}}",($data["price_public"]+$data["price_sp"]),$template);
 		
 		/*

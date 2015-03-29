@@ -244,6 +244,15 @@ function updateClass(){
 	var row = $(this).parents("tr");
 	var start = row.find(".start").val() +" "+ row.find(".start-time").val();
 	start = new moment(start,"DD-MM-YYYY HH:mm");
+	
+	_price = row.find(".price-pub").val();
+	_price = _price.replace("$ ", "");
+	_price = _price.replace(".", "");
+	
+	_price_sp = row.find(".price-sp").val();
+	_price_sp = _price_sp.replace("$ ", "");
+	_price_sp = _price_sp.replace(".", "");
+	
 	if(row.find(".state option:selected").val() == 7){
 		data = {
 			cls:{
@@ -259,8 +268,8 @@ function updateClass(){
 				address : row.find(".address").val(),
 				start : start.format("YYYY-MM-DD HH:mm:ss"),
 				end : new moment(start).add(row.find(".duration").val(),'h').format("YYYY-MM-DD HH:mm:ss"),
-				price_public : row.find(".price-pub").val(),
-				price_sp : row.find(".price-sp").val(),
+				price_public : _price,
+				price_sp : _price_sp,
 				status : row.find(".state option:selected").val(),
 				notes : row.find(".notes").val(),
 				neighbor : row.find(".neighbor").val(),
@@ -275,8 +284,8 @@ function updateClass(){
 				address : row.find(".address").val(),
 				start : start.format("YYYY-MM-DD HH:mm:ss"),
 				end : new moment(start).add(row.find(".duration").val(),'h').format("YYYY-MM-DD HH:mm:ss"),
-				price_public : row.find(".price-pub").val(),
-				price_sp : row.find(".price-sp").val(),
+				price_public : _price,
+				price_sp : _price_sp,
 				status : row.find(".state option:selected").val(),
 				notes : row.find(".notes").val(),
 				neighbor : row.find(".neighbor").val()

@@ -214,6 +214,7 @@ class Busqueda extends CI_Controller {
 		$data["id_professor"] = $this->input->post("id_professor");
 		$data["neighbor"] = $this->input->post("neighbor");
 		$data["origin"] = $this->input->post("origin");
+		$data["promo_code"] = $this->input->post("promo_code");
 		
 		if($data["id_professor"]!="-1"){
 			$datetime1 = new DateTime($data["start"]);
@@ -223,6 +224,22 @@ class Busqueda extends CI_Controller {
 		
 			$data["price_public"] = $this->model_superprofe->getPrice($this->input->post("id_professor"),"public")*$hours;
 			$data["price_sp"] = $this->model_superprofe->getPrice($this->input->post("id_professor"),"sp")*$hours;
+			
+			if($data["promo_code"] != "") {
+				
+				$code_count = $this->model_superprofe->checkValidCode($data["promo_code"]);
+				if((int)$code_count > 0) {
+					$value_code = $this->model_superprofe->getValueByCode($data["promo_code"]);
+					$data["price_public"]  = $data["price_public"] - (float)$value_code;
+				}
+				else {
+					$msg = array("Error", "El código promocional no es válido.");
+					echo json_encode($msg);
+					return;
+				}
+				
+			}
+			
 			$data["status"] = 3;
 		}else{
 			$data["status"] = 2;
@@ -233,6 +250,16 @@ class Busqueda extends CI_Controller {
 		}else{
 			$this->session->set_userdata("redirect_on_login",true);
 		}
+		
+		if($data["promo_code"] != "") {
+			$resultCode = $this->model_superprofe->insertCodeUsed($data["id_student"], $data["promo_code"]);
+		
+			if($resultCode[0] == "Error") {
+				echo json_encode( $resultCode );
+				return;
+			}	
+		}
+		
 		$this->model_superprofe->updateRequest($reqid,$data);
 		
 		//email send
@@ -246,13 +273,11 @@ class Busqueda extends CI_Controller {
 		$this->email->from('hola@superprofe.co', 'Superprofe');
 		$this->email->to($this->session->userdata("sEmail")); 
 		$this->email->cc('hola@superprofe.co'); 
-		$this->email->subject('Superprofe.co - Tu solicitud fue recibida.');
+		$this->email->subject('Superprofe.co - Tu solicitud ' .$reqid . ' fue recibida.');
 		$this->email->message($template);  
 		
 		$this->email->send();
-		
-		
-		
+
 		echo json_encode($result);
 	}
 	
