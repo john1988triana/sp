@@ -1281,4 +1281,57 @@ class Model_superprofe extends CI_Model
 		return $query->result_array();
 	}
 	
+	/* 
+	^* payments methods
+	*/
+	
+	function doUploadPayment($value, $url, $array){
+		$data["date"] = date("Y-m-d H:i:s");
+		$data["value"] = $value;
+		$data["type"] = "UPLOAD";
+		$data["state"] = "VERIFICACION";
+		$data["url"] = $url;
+		
+		$this->db_super_pro->insert('payments',$data);
+		$id = $this->db_super_pro->insert_id();
+		
+		foreach ($array as &$value) {
+			$data1["id_payment"] = $id;
+			$data1["id_request"] = $value;
+			$this->db_super_pro->insert('payments_request',$data1);
+		}
+	}
+	
+	function getDetailsPayments($id) {
+		
+		$this->db_super_pro->select("p.*");
+		$this->db_super_pro->from("payments p");
+		$this->db_super_pro->join("payments_request pr", "p.id = pr.id_payment");
+		$this->db_super_pro->join("request r", "r.id = pr.id_request");
+		$this->db_super_pro->where("p.state", "VERIFICACION");
+		$this->db_super_pro->where("r.id_professor", $id);
+		$this->db_super_pro->distinct();
+		$query =  $this->db_super_pro->get();
+		return $query->result_array();
+	}
+	
+	function updatePayment($id, $data) {
+		$this->db_super_pro->where('id', $id);
+		$this->db_super_pro->update('payments', $data);
+		if($data["state"] == "ACEPTADO") {
+			$this->db_super_pro->select("*");
+			$this->db_super_pro->from("payments_request");
+			$this->db_super_pro->where("id_payment", $id);
+			$query = $this->db_super_pro->get();
+			$query = $query->result_array();
+			
+			foreach ($query as &$value) {
+				$data1["status"] = 7;
+				$this->db_super_pro->where('id', $value["id_request"]);
+				$this->db_super_pro->update('request', $data1);
+			}
+			
+		}
+	}
+	
 }

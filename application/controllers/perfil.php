@@ -44,8 +44,13 @@ class Perfil extends CI_Controller {
 		$this->load->view("footer");
 	}
 	
-	public function facturacion(){
+	public function facturacion($error = NULL){
 		$id = $this->session->userdata('sIdUser');
+		
+		if($error != NULL) {
+			$data["error"] = $error;
+		}
+		
 		$data["title"] = "Clases Finalizadas";
 		$data["editable"] = false;
 		$data["editable_status"] = false;
@@ -64,6 +69,44 @@ class Perfil extends CI_Controller {
 		$this->load->view("perfiles/profile_payable",$data);
 		$this->load->view("footer");
 	}
+	
+	public function subirPago() {
+		
+		if($_SERVER['HTTP_HOST'] == 'superprofe.co' || $_SERVER['HTTP_HOST'] == 'www.superprofe.co')  {
+			$config['upload_path'] = '/home/buscop/public_html/application/uploads/';  
+		}
+		else if($_SERVER['HTTP_HOST']=='amigaslive.net'){
+			$config['upload_path'] = '/home/amigas/public_html/superprofe/application/uploads/';
+		}
+		else {
+			$config['upload_path'] = "application/uploads/";
+		}
+
+		$config['allowed_types'] = 'gif|jpg|png|pdf';
+		$config['max_size']	= '20000';
+		
+		$config['file_name'] = md5(time());
+		
+		$this->load->library('upload', $config);
+		$this->upload->do_upload();
+		//echo $this->upload->do_upload();
+		if ( ! $this->upload->do_upload())
+		{
+			$error = array('error' => $this->upload->display_errors());
+			$this->facturacion($error);
+		}
+		else
+		{
+			$data = array('upload_data' => $this->upload->data());
+			$element["url"] = "application/uploads/".$data["upload_data"]["file_name"];
+			$this->model_superprofe->doUploadPayment($this->input->post("form_value"), $element["url"], json_decode($this->input->post("form_array")));
+			
+		}
+		
+		$this->load->view("header");
+		$this->load->view("perfiles/upload_result");
+	}
+	
 	public function ajaxClases($id,$date,$range="week",$type=1){
 		if($range == "week"){
 			$start = date("w",$date) != 1 ? date('Y-m-d', strtotime('last monday',$date))." 00:00:00":date("Y-m-d",$date)." 00:00:00";
@@ -306,7 +349,7 @@ class Perfil extends CI_Controller {
 		$config['max_width'] = '1024';
 		$config['max_height'] = '768';
 		$this->load->library('upload', $config);
-		$this->upload->do_upload();
+		//$this->upload->do_upload();
 		//echo $this->upload->do_upload();
 		if ( ! $this->upload->do_upload())
 		{

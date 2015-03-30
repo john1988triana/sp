@@ -2,6 +2,20 @@
 	<h3 ><?php echo $title ?></h3>
 	<div class="amigas-separator"></div>
 		<div>
+        
+        	<?php 
+			if(isset($error)) {
+			?>
+            <div class="alert alert-danger" role="alert">
+              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+              <span class="sr-only">Error:</span>
+              <?php 
+			  echo $error['error'];
+			  ?>
+            </div>
+            <?php }
+			?>
+        
 			<div class="col-md-12" style="margin-bottom:20px;">
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
@@ -9,9 +23,12 @@
 				<div class="col-md-4">
 				</div>
 			</div>
-            <table class="class table table-striped table-bordered" style="font-size:12px;">
+            <table id="list_table" class="class table table-striped table-bordered" style="font-size:12px;">
   			<thead>
         		<tr>
+                <?php if($this->session->userdata('isTeacher')==1):?>
+				<th><input type="checkbox" id="title_checkbox"></th>
+				<?php endif;?>
             	<th>#</th>
             	<th>Fecha Solicitud</th>
             	<th>Área</th>
@@ -35,8 +52,13 @@
     		<tbody>
     			<?php 
     			foreach($class as $c){ ?>
-        		<tr>
-            		<td class="row-id"><?php echo $c["id"]; ?><input type="hidden" class="hash" value="<?php echo $c["hash"];?>"></input></td>
+        		<tr class="tbody_table">
+                	<?php if($this->session->userdata('isTeacher')==1 && $c["status"] == 6):?>
+                    <td><input class="checkbox_ele" type="checkbox"></td>
+                    <?php else:?>
+                    <td></td>
+                    <?php endif;?>
+            		<td class="row-id"><span class="ele_id"><?php echo $c["id"]; ?></span><input type="hidden" class="hash" value="<?php echo $c["hash"];?>"></input></td>
             		<td><?php echo $c["date"]; ?></td>
 					<td><?php foreach($areas as $area){if($area->IdArea== $c["id_area"]){echo $area->Name;break;}} ?></td>
             		<td><?php echo $c["topic"]; ?></td>
@@ -70,18 +92,50 @@
 						<?php if($this->session->userdata('isTeacher')==1){echo $c["price_public"];}else{echo $c["price_public"] + $c["price_sp"];} ?>
 					</td>
 					<?php if($this->session->userdata('isTeacher')==1):?>
-					<td>
+					<td class="sp_price">
 						<?php echo $c["price_sp"]?>
 					</td>
 					<?php endif;?>
             		<td><?php foreach ($states as $value) { ?> <?php if($value['id']==$c["status"]){echo $value["name"];}?><?php } ?></td>
         		</tr>
         		<?php } ?>
+                
+                <?php if($this->session->userdata('isTeacher')==1):?>
+                <tr>
+                	<td align="right" colspan="14">
+                    	Acumulado: 
+                    </td>
+                    <td id="total_value" colspan="2">0</td>
+                </tr>
+                <tr>
+                	<td align="right" colspan="14">
+                    	Acciones: 
+                    </td>
+                    <td align="center" id="total_value" colspan="2">
+                    	<div class="btn btn-default btn-sm" style="margin-bottom:5px;">Pagar ON-LINE</div>  
+                        <div class="btn btn-default btn-sm" onClick="uploadData()">Subir consignación</div>
+                    </td>
+                </tr>
+				<?php endif;?>
+                
+                <tr id="upload_tr">
+                	<td align="center" colspan="16">
+                    <?php echo form_open_multipart('perfil/subirPago', array('id'=>'upload_data'));?>
+                    <!--form method="post" id="upload_data" action="<?php echo base_url("perfil/subirPago");?>"-->
+                    <label for="uploadData">Carga copia del comprobante de consignación: </label>
+                    <input type="file"  name="userfile" size="20" />
+                    <input type="hidden" name="form_value" id="form_value" value=""/>
+                    <input type="hidden" name="form_array" id="form_array" value=""/>
+                    <input type="submit" id="" />
+                    </form>
+                    </td>
+                </tr>
     		</tbody>
 			</table>
 		</div>
+        
 	</div>
-</div>
+
 <div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -105,60 +159,48 @@
 <script src="<?php echo base_url("assets/js/calendar/lib/moment.min.js");?>"></script>
 <script>
 var base_url = "<?php echo base_url("");?>";
-$('#pleaseWaitDialog').on('hidden.bs.modal', function () {
-  window.location.reload();
-});
-$(".datepicker").datepicker({format: 'dd-mm-yyyy',
-	onRender: function(date) {
-		var now = new Date();
-		return date.valueOf() < now.valueOf() ? 'disabled' : '';
-	}});
-$(".spinner").TouchSpin({verticalbuttons: true,max: 5,min:1});
-function updateClass(){
-$("#pleaseWaitDialog").modal();
-	var row = $(this).parents("tr");
-	var start = row.find(".start").val() +" "+ row.find(".start-time").val();
-	start = new moment(start,"DD-MM-YYYY HH:mm");
-	data = {
-		cls:{
-			hash : row.find(".row-id .hash").val(),
-			address : row.find(".address").val(),
-			start : start.format("YYYY-MM-DD HH:mm:ss"),
-			end : new moment(start).add(row.find(".duration").val(),'h').format("YYYY-MM-DD HH:mm:ss"),
-			price_public : row.find(".price-pub").val(),
-			price_sp : row.find(".price-sp").val(),
-			status : row.find(".state option:selected").val()
-		}
-	}
+$("#upload_tr").hide();
+
+$("#title_checkbox").click(function(){
+	var $checkboxes = $(".tbody_table").find('input[type=checkbox]');
+    $checkboxes.prop('checked', $(this).is(':checked'));
 	
-	$.post(base_url+"administrador/actualizar/clase/",data,function(resp){
-		var rta = JSON.parse(resp);
-		if(rta){
-			$(".modal-header h1").html("Actualización Completa");
+	listTotal();
+});
+
+$(".checkbox_ele").click(function(){
+	listTotal();
+});
+
+function listTotal() {
+	var IdsArray = new Array();
+	var total = 0;
+	
+	$('#list_table > tbody  > tr').each(function() {
+		
+		if($(this).find(".checkbox_ele").is(':checked')){
+			total = total + Number($(this).find(".sp_price").html());
+			IdsArray.push(Number($(this).find(".ele_id").html()));
 		}
 	});
+	$("#total_value").html(String(total));
+	
+	$("#form_value").val(String(total));
+	$("#form_array").val(JSON.stringify(IdsArray));
 }
-$(".class .saveRow").click(updateClass);
-$(".class input").change(updateClass);
-$(".class select").change(updateClass);
-$(".class .saveComment").click(function(){
-	$("#pleaseWaitDialog").modal();
-	var row = $(this).parents("tr");
-	var start = row.find(".start").val() +" "+ row.find(".start-time").val();
-	start = new moment(start,"DD-MM-YYYY HH:mm");
-	data = {
-		cls:{
-			hash : row.find(".row-id .hash").val(),
-			rate : row.find(".rate").val(),
-			comment: row.find(".comment").val()
-		}
+
+
+function uploadData(){
+	if($("#total_value").html() != "0"){
+		$("#upload_tr").show(500);
+	}else {
+		swal({
+			title: "Error!",
+			text: "Es necesario tener al menos un elemento seleccionado",
+			type: "error",
+			confirmButtonText: "Aceptar" 
+		});
 	}
-	
-	$.post(base_url+"administrador/actualizar/clase/",data,function(resp){
-		var rta = JSON.parse(resp);
-		if(rta){
-			$(".modal-header h1").html("Actualización Completa");
-		}
-	});
-});
+}
+
 </script>

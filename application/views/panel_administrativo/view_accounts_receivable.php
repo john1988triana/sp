@@ -22,6 +22,7 @@
 				<th>Clases</th>
 				<th>Valor Pofesor</th>
 				<th>Comisión</th>
+                <th>Acciones</th>
             	</tr>
     		</thead>
     		
@@ -36,6 +37,7 @@
 					<td><?php echo $c["classes"]; ?></td>
 					<td><?php echo $c["price"]; ?></td>
 					<td><?php echo $c["fee"]; ?></td>
+                    <td><div onClick="gotoDetails(<?php echo $c["id"]; ?>)" class="btn btn-default btn-sm">Ver detalles</div></td>
         		</tr>
         		<?php } ?>
     		</tbody>
@@ -66,6 +68,11 @@ Number.prototype.format = function(n, x) {
     return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&.');
 };
 var base_url = "<?php echo base_url("");?>";
+
+function gotoDetails(id) {
+	window.location.href = base_url + "administrador/facturacion/detalle?id=" + id;
+}
+
 function updateProfessor(){
 	$("#pleaseWaitDialog").modal();
 	var row = $(this).parents("tr");

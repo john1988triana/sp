@@ -412,6 +412,17 @@ class Administrador extends CI_Controller {
 				$this->load->view("panel_administrativo/header");
 				$this->load->view("panel_administrativo/view_accounts_receivable",$data);
 			break;
+			case "detalle":
+				$data["details"] = $this->model_superprofe->getDetailsPayments($this->input->get("id"));
+				$this->load->view("panel_administrativo/header");
+				//echo json_encode($data["details"]);
+				$this->load->view("panel_administrativo/view_accounts_detail",$data);
+			break;
+			case "savedetail":
+				$data["state"] = $this->input->post("state");
+				$this->model_superprofe->updatePayment($this->input->post("id"), $data);
+				echo "true";
+			break;
 		}
 	}
 	public function estadisticas($subsection = ""){}
