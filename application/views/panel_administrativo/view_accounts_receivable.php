@@ -22,7 +22,7 @@
 				<th>Clases</th>
 				<th>Valor Pofesor</th>
 				<th>Comisión</th>
-                <th>Acciones</th>
+                <th style="text-align:center;">Acciones</th>
             	</tr>
     		</thead>
     		
@@ -37,7 +37,8 @@
 					<td><?php echo $c["classes"]; ?></td>
 					<td><?php echo $c["price"]; ?></td>
 					<td><?php echo $c["fee"]; ?></td>
-                    <td><div onClick="gotoDetails(<?php echo $c["id"]; ?>)" class="btn btn-default btn-sm">Ver detalles</div></td>
+                    <td align="center"><div onClick="gotoDetails(<?php echo $c["id"]; ?>)" class="btn btn-default btn-sm">Ver detalles</div>
+                    	<div onClick="gotoUpload(<?php echo $c["id"]; ?>)" class="btn btn-default btn-sm">Cargar Pago</div></td>
         		</tr>
         		<?php } ?>
     		</tbody>
@@ -71,6 +72,10 @@ var base_url = "<?php echo base_url("");?>";
 
 function gotoDetails(id) {
 	window.location.href = base_url + "administrador/facturacion/detalle?id=" + id;
+}
+
+function gotoUpload(id) {
+	window.location.href = base_url + "administrador/facturacion/pago_detalle?id=" + id;
 }
 
 function updateProfessor(){

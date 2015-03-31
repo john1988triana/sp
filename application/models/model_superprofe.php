@@ -837,17 +837,23 @@ class Model_superprofe extends CI_Model
 			$this->db_super_pro->update('student', $p);  
 		}
 	}
-	function getRangeClasses($id_user,$start,$end,$type,$states = array(4)){
-		$this->db_super_pro->select("id");
-		if($type == 1){
-			$this->db_super_pro->from("professor");
-		}else{
-			$this->db_super_pro->from("student");
+	function getRangeClasses($id_user,$start,$end,$type,$states = array(4), $isId = 0){
+		if($isId == 0) {
+			$this->db_super_pro->select("id");
+			if($type == 1){
+				$this->db_super_pro->from("professor");
+			}else{
+				$this->db_super_pro->from("student");
+			}
+			$this->db_super_pro->where("id_user = ",$id_user);
+			$query = $this->db_super_pro->get();
+			$id = $query->row_array();
+			$id = $id["id"];
 		}
-		$this->db_super_pro->where("id_user = ",$id_user);
-		$query = $this->db_super_pro->get();
-		$id = $query->row_array();
-		$id = $id["id"];
+		else {
+			$id = $id_user;
+		}
+		
 		
 		$q = " r.*,s.firstName sFName,s.lastName sLName, p.firstName pFName, p.lastName pLName, s.picture sPicture, p.picture pPicture from request r join student s on s.id = r.id_student join professor p on p.id = r.id_professor where ";
 		if($type== 1){
@@ -1285,11 +1291,17 @@ class Model_superprofe extends CI_Model
 	^* payments methods
 	*/
 	
-	function doUploadPayment($value, $url, $array){
+	function doUploadPayment($value, $url, $array, $admin = 0){
 		$data["date"] = date("Y-m-d H:i:s");
 		$data["value"] = $value;
 		$data["type"] = "UPLOAD";
-		$data["state"] = "VERIFICACION";
+		if($admin == 1) {
+			$data["state"] = "ACEPTADO";
+		}
+		else {
+			$data["state"] = "VERIFICACION";
+		}
+		
 		$data["url"] = $url;
 		
 		$this->db_super_pro->insert('payments',$data);
@@ -1299,6 +1311,12 @@ class Model_superprofe extends CI_Model
 			$data1["id_payment"] = $id;
 			$data1["id_request"] = $value;
 			$this->db_super_pro->insert('payments_request',$data1);
+			
+			if($admin == 1) {
+				$data2["status"] = 7;
+				$this->db_super_pro->where('id', $data1["id_request"]);
+				$this->db_super_pro->update('request', $data2);
+			}
 		}
 	}
 	
@@ -1308,7 +1326,7 @@ class Model_superprofe extends CI_Model
 		$this->db_super_pro->from("payments p");
 		$this->db_super_pro->join("payments_request pr", "p.id = pr.id_payment");
 		$this->db_super_pro->join("request r", "r.id = pr.id_request");
-		$this->db_super_pro->where("p.state", "VERIFICACION");
+		//$this->db_super_pro->where("p.state", "VERIFICACION");
 		$this->db_super_pro->where("r.id_professor", $id);
 		$this->db_super_pro->distinct();
 		$query =  $this->db_super_pro->get();

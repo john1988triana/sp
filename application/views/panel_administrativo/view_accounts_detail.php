@@ -40,8 +40,16 @@
                     		<?php echo $d["state"]; ?></td>
                     <?php } ?>
 					
-					
-                    <td align="center"><div onClick="doChanges('<?php echo $d["id"]; ?>')" class="btn btn-default btn-sm">Guardar</div></td>
+                    <td align="center">
+					<?php
+						if($d["state"] == "VERIFICACION"){
+					?>
+                    <div onClick="doChanges('<?php echo $d["id"]; ?>')" class="btn btn-default btn-sm">Guardar</div>
+                    
+                    <?php } ?>
+                    
+                    </td>
+                    
         		</tr>
         		<?php } ?>
     		</tbody>

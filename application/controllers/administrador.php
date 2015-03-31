@@ -50,14 +50,14 @@ class Administrador extends CI_Controller {
 			$this->load->library('aulasamigas');
            	
            	if($_SERVER['HTTP_HOST']=='superprofe.co')         
-                    $config['upload_path'] = '/home/buscop/public_html/sp/assets/img/uploads/';
+            	$config['upload_path'] = '/home/buscop/public_html/sp/assets/img/uploads/';
             else if($_SERVER['HTTP_HOST']=='amigaslive.net')
-            		$config['upload_path'] = '/home/amigas/public_html/superprofe/application/uploads/';
-
-            $config['allowed_types'] = 'gif|jpg|png';
+            	$config['upload_path'] = '/home/amigas/public_html/superprofe/application/uploads/';
+			else {
+				$config['upload_path'] = "application/uploads/";
+			}
+            $config['allowed_types'] = 'gif|jpg|png|pdf';
             $config['max_size']	= '20000';
-            $config['max_width'] = '1024';
-            $config['max_height'] = '768';
             
             $this->load->library('upload', $config);
 		}
@@ -403,7 +403,7 @@ class Administrador extends CI_Controller {
 			break;
 		}
 	}
-	public function facturacion($subsection ="cobrar"){
+	public function facturacion($subsection ="cobrar", $error = NULL){
 		$this->checkPermission();
 		switch($subsection){
 			case "cobrar":
@@ -423,8 +423,66 @@ class Administrador extends CI_Controller {
 				$this->model_superprofe->updatePayment($this->input->post("id"), $data);
 				echo "true";
 			break;
+			case "pago_detalle":
+				if($error != NULL) {
+					$data["error"] = $error;
+				}
+				$data["title"] = "Clases Finalizadas";
+				$data["editable"] = false;
+				$data["editable_status"] = false;
+				$data["areas"] = json_decode($this->aulasamigas->getAreasByContent('768'));
+				$data["cities"] = json_decode(json_decode($this->aulasamigas->getCitiesByCountry('COL'))->cities);
+				$data["levels"] = $this->model_superprofe->getLevels();
+				$data["states"] = array(
+					array("id"=>"6","name"=>"Finalizada"),
+					array("id"=>"7","name"=>"Pagada")
+				);//$data["states"] = $this->model_superprofe->getStatus();
+				$data["class"] = $this->model_superprofe->getRangeClasses($this->input->get("id"),"1970-01-01 00:00:00","3000-01-01 23:59:59",1,array(6),1);
+				//echo json_encode($data);
+				//return;
+				$this->load->view("panel_administrativo/header");
+				$this->load->view("panel_administrativo/view_profile_payable",$data);
+			break;
 		}
 	}
+	
+	public function uploadClassPay($error = NULL) {
+		if($_SERVER['HTTP_HOST'] == 'superprofe.co' || $_SERVER['HTTP_HOST'] == 'www.superprofe.co')  {
+			$config['upload_path'] = '/home/buscop/public_html/application/uploads/';  
+		}
+		else if($_SERVER['HTTP_HOST']=='amigaslive.net'){
+			$config['upload_path'] = '/home/amigas/public_html/superprofe/application/uploads/';
+		}
+		else {
+			$config['upload_path'] = "application/uploads/";
+		}
+
+		$config['allowed_types'] = 'gif|jpg|png|pdf';
+		$config['max_size']	= '20000';
+		
+		$config['file_name'] = md5(time());
+		
+		$this->load->library('upload', $config);
+		$this->upload->do_upload();
+		//echo $this->upload->do_upload();
+		if ( ! $this->upload->do_upload())
+		{
+			$error = array('error' => $this->upload->display_errors());
+			$this->facturacion("pago_detalle", $error);
+			return;
+		}
+		else
+		{
+			$data = array('upload_data' => $this->upload->data());
+			$element["url"] = "application/uploads/".$data["upload_data"]["file_name"];
+			$this->model_superprofe->doUploadPayment($this->input->post("form_value"), $element["url"], json_decode($this->input->post("form_array")), 1);
+		}
+		
+		//$this->load->view("header");
+		//$this->load->view("perfiles/upload_result");
+		redirect(base_url('administrador/facturacion/cobrar'));
+	}
+	
 	public function estadisticas($subsection = ""){}
 	public function csv($section){
 		$this->checkPermission();
