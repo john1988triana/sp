@@ -126,7 +126,7 @@
                     <input type="file"  name="userfile" size="20" />
                     <input type="hidden" name="form_value" id="form_value" value=""/>
                     <input type="hidden" name="form_array" id="form_array" value=""/>
-                    <input type="submit" id="" />
+                    <input type="submit" id="" class="btn btn-success"/>
                     </form>
                     </td>
                 </tr>
