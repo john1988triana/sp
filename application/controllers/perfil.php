@@ -70,6 +70,112 @@ class Perfil extends CI_Controller {
 		$this->load->view("footer");
 	}
 	
+	public function crearPagoOnline() {
+		$id = $this->model_superprofe->doOnlinePayment($this->input->post("form_value"), json_decode($this->input->post("form_array")));
+		echo $id;
+	}
+	
+	public function respuestapago() {
+		$ApiKey = "7qgolh8ge8s0m3tpa6b1l5g3rv";
+		$merchant_id = $this->input->get('merchantId');
+		$referenceCode = $this->input->get('referenceCode');
+		$TX_VALUE = $this->input->get('TX_VALUE');
+		$New_value = number_format($TX_VALUE, 1, '.', '');
+		$currency = $this->input->get('currency');
+		$transactionState = $this->input->get('transactionState');
+		$firma_cadena = "$ApiKey~$merchant_id~$referenceCode~$New_value~$currency~$transactionState";
+		$firmacreada = md5($firma_cadena);
+		$firma = $this->input->get('signature');
+		$reference_pol = $this->input->get('reference_pol');
+		$cus = $this->input->get('cus');
+		$extra1 = $this->input->get('description');
+		$pseBank = $this->input->get('pseBank');
+		$lapPaymentMethod = $this->input->get('lapPaymentMethod');
+		$transactionId = $this->input->get('transactionId');
+		
+		$polTransactionState = $this->input->get('polTransactionState');
+		$polTransactionCode = $this->input->get('polResponseCode');
+		
+		if ($polTransactionState == 6 && $polTransactionCode == 5) {
+			$estadoTx = "Transacción fallida";
+			$data["state"] = "RECHAZADO";
+			$this->model_superprofe->updatePayment($referenceCode, $data);
+		}
+		else if ($polTransactionState == 6 && $polTransactionCode == 4) {
+			$estadoTx = "Transacción rechazada";
+			$data["state"] = "RECHAZADO";
+			$this->model_superprofe->updatePayment($referenceCode, $data);
+		}
+		else if ($polTransactionState == 12 && $polTransactionCode == 9994) {
+			$estadoTx = "Pendiente, Por favor revisar si el débito fue realizado en el Banco";
+			$data["state"] = "PENDIENTE";
+			$this->model_superprofe->updatePayment($referenceCode, $data);
+		}
+		else if ($polTransactionState == 4 && $polTransactionCode == 1) {
+			$estadoTx = "Transacción aprobada";
+			$data["state"] = "ACEPTADO";
+			$this->model_superprofe->updatePayment($referenceCode, $data);
+		}
+		else {
+			$estadoTx=$_REQUEST['mensaje'];
+		}
+		
+		$data["firma"] = $firma;
+		$data["firmacreada"] = $firmacreada;
+		$data["estadoTx"] = $estadoTx;
+		$data["transactionId"] = $transactionId; 
+		$data["reference_pol"] = $reference_pol;
+		$data["referenceCode"] = $referenceCode;
+		$data["cus"] = $cus;
+		$data["pseBank"] = $pseBank;
+		$data["TX_VALUE"] = $TX_VALUE;
+		$data["currency"] = $currency;
+		$data["extra1"] = $extra1;
+		$data["lapPaymentMethod"] = $lapPaymentMethod;
+		
+		$this->load->view("header");
+		$this->load->view("perfiles/pay_result",$data);
+		$this->load->view("footer");
+		
+	}
+	
+	public function confirmacion_pago() {
+		$ApiKey = "7qgolh8ge8s0m3tpa6b1l5g3rv";
+		$merchant_id = $this->input->post('merchant_id');
+		$referenceCode = $this->input->post('reference_sale');
+		$TX_VALUE = $this->input->post('value');
+		$New_value = number_format($TX_VALUE, 1, '.', '');
+		$currency = $this->input->post('currency');
+		$transactionState = $this->input->post('state_pol');
+		$firma_cadena = "$ApiKey~$merchant_id~$referenceCode~$New_value~$currency~$transactionState";
+		$firmacreada = md5($firma_cadena);
+		$firma = $this->input->post('sign');
+		$reference_pol = $this->input->post('reference_pol');
+		$cus = $this->input->post('cus');
+		$extra1 = $this->input->post('description');
+		$pseBank = $this->input->post('pse_bank');
+		$lapPaymentMethod = $this->input->post('payment_method_id');
+		$transactionId = $this->input->post('transaction_id');
+		
+		$polTransactionState = $this->input->post('state_pol');
+		$polTransactionCode = $this->input->post('response_code_pol');
+		
+		if ($polTransactionState == 4 && $polTransactionCode == 1) {
+			$data["state"] = "ACEPTADO";
+			$this->model_superprofe->updatePayment($referenceCode, $data);
+		}
+		else if($polTransactionState == 6){
+			$data["state"] = "DECLINADO";
+			$this->model_superprofe->updatePayment($referenceCode, $data);
+		}
+		else {
+			$data["state"] = "RECHAZADO";
+			$this->model_superprofe->updatePayment($referenceCode, $data);
+		}
+		
+		echo "true";
+	}
+	
 	public function subirPago() {
 		
 		if($_SERVER['HTTP_HOST'] == 'superprofe.co' || $_SERVER['HTTP_HOST'] == 'www.superprofe.co')  {

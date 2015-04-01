@@ -1320,6 +1320,25 @@ class Model_superprofe extends CI_Model
 		}
 	}
 	
+	function doOnlinePayment($value, $array, $admin = 0){
+		$data["date"] = date("Y-m-d H:i:s");
+		$data["value"] = $value;
+		$data["type"] = "ONLINE";
+		
+		$data["state"] = "EN PROCESO";
+		
+		$this->db_super_pro->insert('payments',$data);
+		$id = $this->db_super_pro->insert_id();
+		
+		foreach ($array as &$value) {
+			$data1["id_payment"] = $id;
+			$data1["id_request"] = $value;
+			$this->db_super_pro->insert('payments_request',$data1);
+		}
+		
+		return $id;
+	}
+	
 	function getDetailsPayments($id) {
 		
 		$this->db_super_pro->select("p.*");

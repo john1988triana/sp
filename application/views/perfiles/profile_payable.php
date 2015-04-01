@@ -112,7 +112,25 @@
                     	Acciones: 
                     </td>
                     <td align="center" id="total_value" colspan="2">
-                    	<div class="btn btn-default btn-sm" style="margin-bottom:5px;">Pagar ON-LINE</div>  
+                    	
+                      <form id="payForm" method="post" action="https://gateway.payulatam.com/ppp-web-gateway/">
+                          <input name="merchantId"    type="hidden"  value="524569"   >
+                          <input name="accountId"     type="hidden"  value="526267" >
+                          <input name="description"   type="hidden"  value="Pago comision SuperProfe"  >
+                          <input id="referenceCode" name="referenceCode" type="hidden"  value="" >
+                          <input id="form_amount" name="amount"        type="hidden"  value=""   >
+                          <input name="tax"           type="hidden"  value="0"  >
+                          <input name="taxReturnBase" type="hidden"  value="0" >
+                          <input name="currency"      type="hidden"  value="COP" >
+                          <input id="signature" name="signature"     type="hidden"  value=""  >
+                          <input name="buyerEmail"    type="hidden"  value="<?php echo $this->session->userdata('sEmail'); ?>" >
+                          <input name="responseUrl"    type="hidden"  value="<?php echo base_url("perfil/respuestapago");?>" >
+                          <input name="confirmationUrl"    type="hidden"  value="<?php echo base_url("perfil/confirmacion_pago");?>" >
+                          <!--input name="Submit"        type="submit" disabled="disabled" class="btn btn-default btn-sm" id="sub_bt"  value="Pagar ON-LINE"-->
+                        </form>
+                        
+                        <div class="btn btn-default btn-sm" onClick="onlinePayment()" style="margin-bottom:5px;">Pagar En línea</div>
+                        
                         <div class="btn btn-default btn-sm" onClick="uploadData()">Subir consignación</div>
                     </td>
                 </tr>
@@ -126,7 +144,7 @@
                     <input type="file"  name="userfile" size="20" />
                     <input type="hidden" name="form_value" id="form_value" value=""/>
                     <input type="hidden" name="form_array" id="form_array" value=""/>
-                    <input type="submit" id="" class="btn btn-success"/>
+                    <input type="submit" class="btn btn-success" id=""/>
                     </form>
                     </td>
                 </tr>
@@ -153,10 +171,14 @@
 		</div>
 	</div>
 </div>
+
 <script src="<?php echo (base_url('assets/js/datepicker/js/bootstrap-datepicker.js')); ?>"></script>
 <link  rel="stylesheet" href="<?php echo (base_url('assets/css/jquery.bootstrap-touchspin.min.css')); ?>"></link>
 <script src="<?php echo (base_url('assets/js/jquery.bootstrap-touchspin.min.js')); ?>"></script>
 <script src="<?php echo base_url("assets/js/calendar/lib/moment.min.js");?>"></script>
+
+<script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/md5.js"></script>
+
 <script>
 var base_url = "<?php echo base_url("");?>";
 $("#upload_tr").hide();
@@ -187,12 +209,42 @@ function listTotal() {
 	
 	$("#form_value").val(String(total));
 	$("#form_array").val(JSON.stringify(IdsArray));
+	$("#form_amount").val(total);
+	
+	if(total > 0) {
+		 $("#sub_bt").removeAttr('disabled');
+	}
+	else {
+		 $("#sub_bt").attr('disabled','disabled');
+	}
 }
-
 
 function uploadData(){
 	if($("#total_value").html() != "0"){
 		$("#upload_tr").show(500);
+	}else {
+		swal({
+			title: "Error!",
+			text: "Es necesario tener al menos un elemento seleccionado",
+			type: "error",
+			confirmButtonText: "Aceptar" 
+		});
+	}
+}
+
+function onlinePayment() {
+	if($("#total_value").html() != "0"){
+		
+		$.post( base_url + "perfil/crearPagoOnline", { form_value: $("#form_value").val() , form_array: $("#form_array").val() })
+		  .done(function( data ) {
+				var _reference = data;
+				$("#referenceCode").val(_reference);
+				var hash = "7qgolh8ge8s0m3tpa6b1l5g3rv~524569~" + _reference + "~" + $("#form_value").val() + "~COP";
+				var signature_hash = CryptoJS.MD5(hash);
+				$("#signature").val(signature_hash);
+				$("#payForm").submit();
+		 	});
+		
 	}else {
 		swal({
 			title: "Error!",
