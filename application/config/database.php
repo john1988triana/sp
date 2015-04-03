@@ -45,20 +45,20 @@
 | the active record class
 */
 
-if($_SERVER['HTTP_HOST'] == 'amigaslive.net' || $_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == '192.168.0.10'){
+if($_SERVER['HTTP_HOST'] == 'amigaslive.net' || $_SERVER['HTTP_HOST'] == 'localhost'){
 
 	$BD_HOSTNAME = '74.50.122.81';
 	$BD_USERNAME = 'amigas_superpro';
 	$BD_PASS = 'hUu9?KfFv21m';
 	$BD_DATABASE = 'amigas_superprofe';
 
-}else if($_SERVER['HTTP_HOST'] == 'superprofe.co' || $_SERVER['HTTP_HOST'] == 'www.superprofe.co'){
+}else if($_SERVER['HTTP_HOST'] == 'superprofe.co' || $_SERVER['HTTP_HOST'] == 'www.superprofe.co' || $_SERVER['HTTP_HOST'] == 'www.superprofe.com.co' || $_SERVER['HTTP_HOST'] == 'superprofe.com.co' || $_SERVER['HTTP_HOST'] == '166.62.39.7'){
 
-	$BD_HOSTNAME = 'joel';
+	$BD_HOSTNAME = 'localhost';
 	
-	$BD_USERNAME = 'buscop_bd';
-	$BD_PASS = 'hUu9?KfFv21m';
-	$BD_DATABASE = 'buscop_bd_f';
+	$BD_USERNAME = 'superpro_root';
+	$BD_PASS = 'en^W92_h2({z';
+	$BD_DATABASE = 'superpro_DB';
 	
 }
 

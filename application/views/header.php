@@ -82,7 +82,7 @@
 				</li>
 				
 				<li><a href="<?php echo base_url('contactenos'); ?>">Contácto</a></li>
-				<li><a href="http://superprofe.co/blog/">Blog</a></li>
+				<li><a href="/blog/">Blog</a></li>
 				<li><a href="tel:+573014705463"><span class="glyphicon glyphicon-earphone"></span> 3014705463</a></li>
 				<li><a href="<?php echo base_url('login'); ?>">Iniciar Sesión</a></li>
 				<li><a href="<?php echo base_url('registro'); ?>">Registrate</a></li>

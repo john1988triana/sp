@@ -1,6 +1,6 @@
 
 RewriteOptions inherit
-#<IfModule mod_rewrite.c>
+<IfModule mod_rewrite.c>
         RewriteEngine On
 
         # Block out any script trying to base64_encode crap to send via URL
@@ -16,19 +16,23 @@ RewriteOptions inherit
         RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
 
         # Send all blocked request to homepage with 403 Forbidden error!
-        RewriteRule ^(.*)$ index.php [F,L]
+        #RewriteRule ^(.*)$ index.php [F,L]
 
         #RewriteCond %{HTTP_HOST} ^www\.(.*)$
-        #RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+        RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 
         RewriteCond %{REQUEST_FILENAME} !-f
         RewriteCond %{REQUEST_FILENAME} !-d
         RewriteRule ^(.*)$ index.php?/$1 [L]
-#</IfModule>
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    ErrorDocument 404 /index.php
+</IfModule>
 
 RewriteCond %{HTTP_HOST} ^buscoprofe\.co$ [OR]
 RewriteCond %{HTTP_HOST} ^www\.buscoprofe\.co$
-RewriteRule ^/?$ "http\:\/\/superprofe\.co\/" [R=301,L]
+RewriteRule ^/?$ "http\:\/\/superprofe\.co\/“ [R=301,L]
 
 RewriteCond %{HTTP_HOST} ^www\.superprofe\.co$
 RewriteRule ^/?$ "http\:\/\/superprofe\.co\/" [R=301,L]
