@@ -40,6 +40,8 @@
 
 
 </head>
+<body id="test_body">
+
 <div class="navbar navbar-default navbar-fixed-top"  role="navigation">
 	<div class="container">
 		<div class="navbar-header">
