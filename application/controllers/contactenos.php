@@ -50,7 +50,7 @@ class Contactenos extends CI_Controller {
 			
 			
 			$this->email->from('hola@superprofe.co', 'Superprofe');
-			$this->email->to('hola@superprofe.co'); 
+			$this->email->to('estudiantesuperprofe@gmail.com'); 
 			$this->email->subject('Superprofe.co - Contacto desde la página');
 			$this->email->message($template);  
 			

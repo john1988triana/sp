@@ -179,7 +179,7 @@ class Perfil extends CI_Controller {
 	public function subirPago() {
 		
 		if($_SERVER['HTTP_HOST'] == 'superprofe.co' || $_SERVER['HTTP_HOST'] == 'www.superprofe.co')  {
-			$config['upload_path'] = '/home/buscop/public_html/application/uploads/';  
+			$config['upload_path'] = '/home/superprofecom/public_html/application/uploads/';  
 		}
 		else if($_SERVER['HTTP_HOST']=='amigaslive.net'){
 			$config['upload_path'] = '/home/amigas/public_html/superprofe/application/uploads/';
@@ -441,7 +441,7 @@ class Perfil extends CI_Controller {
 	public function savePicture($id = NULL){
 		
 		if($_SERVER['HTTP_HOST'] == 'superprofe.co' || $_SERVER['HTTP_HOST'] == 'www.superprofe.co')  {
-			$config['upload_path'] = '/home/buscop/public_html/application/uploads/';  
+			$config['upload_path'] = '/home/superprofecom/public_html/application/uploads/';  
 		}
 		else if($_SERVER['HTTP_HOST']=='amigaslive.net'){
 			$config['upload_path'] = '/home/amigas/public_html/superprofe/application/uploads/';

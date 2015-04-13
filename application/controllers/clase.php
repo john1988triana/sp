@@ -162,7 +162,7 @@ class Clase extends CI_Controller {
 		
 		$this->email->from('hola@superprofe.co', 'Superprofe');
 		$this->email->to($user->Email); 
-		$this->email->cc('hola@superprofe.co'); 
+		$this->email->cc('estudiantesuperprofe@gmail.com'); 
 		$this->email->subject('Superprofe.co - Confirmacion de clase no '.$data["id"]);
 		$this->email->message($template);
 		$this->email->attach($url_calendar);
@@ -195,7 +195,7 @@ class Clase extends CI_Controller {
 		
 		$this->email->from('hola@superprofe.co', 'Superprofe');
 		$this->email->to($teacher["Email"]); 
-		$this->email->cc('hola@superprofe.co'); 
+		$this->email->cc('estudiantesuperprofe@gmail.com'); 
 		$this->email->subject('Superprofe.co - Confirmacion de clase no '.$data["id"]);
 		$this->email->message($template);  
 		//$this->email->attach($url_calendar);
@@ -262,7 +262,7 @@ class Clase extends CI_Controller {
 		$this->email->initialize($config);
 		
 		$this->email->from('hola@superprofe.co', 'Superprofe');
-		$this->email->to('hola@superprofe.co'); 
+		$this->email->to('estudiantesuperprofe@gmail.com'); 
 		$this->email->subject('Superprofe.co - Solicitud '  .$data["id"] . ' cancelada. Por asignar profe');
 		$this->email->message($template);  
 
@@ -323,7 +323,7 @@ class Clase extends CI_Controller {
 			$this->email->initialize($config);
 			
 			$this->email->from('hola@superprofe.co', 'Superprofe');
-			$this->email->to('hola@superprofe.co'); 
+			$this->email->to('estudiantesuperprofe@gmail.com'); 
 			$this->email->subject('Superprofe.co - Solicitud de clase no ' .$data["id"]. '. por asignar profe');
 			$this->email->message($template);  
 
@@ -374,7 +374,7 @@ class Clase extends CI_Controller {
 			
 			$this->email->from('hola@superprofe.co', 'Superprofe');
 			$this->email->to($user["Email"]); 
-			$this->email->cc('hola@superprofe.co'); 
+			$this->email->cc('estudiantesuperprofe@gmail.com'); 
 			$this->email->subject('Superprofe.co - Solicitud de confirmación de clase no '.$data["id"]);
 			$this->email->message($template);  
 

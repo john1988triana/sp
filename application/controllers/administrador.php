@@ -50,7 +50,7 @@ class Administrador extends CI_Controller {
 			$this->load->library('aulasamigas');
            	
            	if($_SERVER['HTTP_HOST']=='superprofe.co')         
-            	$config['upload_path'] = '/home/buscop/public_html/sp/assets/img/uploads/';
+            	$config['upload_path'] = '/home/superprofecom/public_html/assets/img/uploads/';
             else if($_SERVER['HTTP_HOST']=='amigaslive.net')
             	$config['upload_path'] = '/home/amigas/public_html/superprofe/application/uploads/';
 			else {
@@ -77,9 +77,23 @@ class Administrador extends CI_Controller {
 	}
 	
 	public function test(){
-		$email = "diego.castellanos@jci.com";
-		$data = json_decode($this->aulasamigas->getUserByEmail($email));
-		echo json_encode($data);
+		//$email = "diego.castellanos@jci.com";
+		//$data = json_decode($this->aulasamigas->getUserByEmail($email));
+		//echo json_encode($data);
+        $template = "Testing email system!!!";
+        $config['mailtype'] = "html";
+        $this->load->library('email');
+        $this->email->initialize($config);
+
+        $this->email->from('hola@superprofe.co', 'Superprofe');
+        $this->email->to('edgar@toro-labs.com'); 
+        $this->email->cc('estudiantesuperprofe@gmail.com'); 
+        $this->email->subject('Superprofe.co - Bienvenido a SuperProfe ');
+        $this->email->message($template);  
+
+        $this->email->send();
+        
+        echo "testing email...";
 	}
 	
 	public function clases($subsection = "nueva",$params=""){
@@ -394,7 +408,7 @@ class Administrador extends CI_Controller {
 					
 					$this->email->from('hola@superprofe.co', 'Superprofe');
 					$this->email->to($this->input->post("email")); 
-					$this->email->cc('hola@superprofe.co'); 
+					$this->email->cc('estudiantesuperprofe@gmail.com'); 
 					$this->email->subject('Superprofe.co - Bienvenido a SuperProfe ');
 					$this->email->message($template);  
 					
@@ -700,7 +714,7 @@ class Administrador extends CI_Controller {
 						
 						$this->email->from('hola@superprofe.co', 'Superprofe');
 						$this->email->to($teacher->Email); 
-						$this->email->cc('hola@superprofe.co'); 
+						$this->email->cc('estudiantesuperprofe@gmail.com'); 
 						$this->email->subject('Superprofe.co - Cancelación de clase no. ' . $data["id"]);
 						$this->email->message($template);  
 						$this->email->send();
@@ -729,7 +743,7 @@ class Administrador extends CI_Controller {
 						
 						$this->email->from('hola@superprofe.co', 'Superprofe');
 						$this->email->to($student->Email); 
-						$this->email->cc('hola@superprofe.co'); 
+						$this->email->cc('estudiantesuperprofe@gmail.com'); 
 						$this->email->subject('Superprofe.co - Cancelación de clase no. ' . $data["id"]);
 						$this->email->message($template);  
 						$this->email->send();
@@ -872,7 +886,7 @@ class Administrador extends CI_Controller {
 		
 		$this->email->from('hola@superprofe.co', 'Superprofe');
 		$this->email->to($user->Email); 
-		$this->email->cc('hola@superprofe.co'); 
+		$this->email->cc('estudiantesuperprofe@gmail.com'); 
 		$this->email->subject('Superprofe.co - Confirmacion de clase no. ' . $data["id"]);
 		$this->email->message($template);  
 		$this->email->attach($url_calendar);
@@ -905,7 +919,7 @@ class Administrador extends CI_Controller {
 		
 		$this->email->from('hola@superprofe.co', 'Superprofe');
 		$this->email->to($teacher->Email); 
-		$this->email->cc('hola@superprofe.co'); 
+		$this->email->cc('estudiantesuperprofe@gmail.com'); 
 		$this->email->subject('Superprofe.co - Confirmacion de clase no '.$data["id"]);
 		$this->email->message($template);  
 		//$this->email->attach($url_calendar);

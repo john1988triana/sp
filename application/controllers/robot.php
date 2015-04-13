@@ -28,7 +28,7 @@ class Robot extends CI_Controller {
 				
 				$this->email->from('hola@superprofe.co', 'Superprofe');
 				$this->email->to($student->Email); 
-				$this->email->cc('hola@superprofe.co'); 
+				$this->email->cc('estudiantesuperprofe@gmail.com'); 
 				$this->email->subject('Superprofe.co - ¿Cómo estuvo tu clase?');
 				$this->email->message($template);  
 				
@@ -45,7 +45,7 @@ class Robot extends CI_Controller {
 				$professor = $professor[0];
 				$this->email->from('hola@superprofe.co', 'Superprofe');
 				$this->email->to($professor->Email); 
-				$this->email->cc('hola@superprofe.co'); 
+				$this->email->cc('estudiantesuperprofe@gmail.com'); 
 				$this->email->subject('Superprofe.co - ¿Cómo estuvo tu clase?');
 				$this->email->message($template);  
 				

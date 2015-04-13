@@ -32,7 +32,7 @@ class Login extends CI_Controller {
 			$this->load->library('aulasamigas');
            	
            	if($_SERVER['HTTP_HOST'] == 'superprofe.co' || $_SERVER['HTTP_HOST'] == 'www.superprofe.co')        
-                    $config['upload_path'] = '/home/buscop/public_html/sp/assets/img/uploads/';
+                    $config['upload_path'] = '/home/superprofecom/public_html/assets/img/uploads/';
             else if($_SERVER['HTTP_HOST']=='amigaslive.net')
             		$config['upload_path'] = '/home/amigas/public_html/superprofe/application/uploads/';
 

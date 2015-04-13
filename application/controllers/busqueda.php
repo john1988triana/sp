@@ -272,7 +272,7 @@ class Busqueda extends CI_Controller {
 		
 		$this->email->from('hola@superprofe.co', 'Superprofe');
 		$this->email->to($this->session->userdata("sEmail")); 
-		$this->email->cc('hola@superprofe.co'); 
+		$this->email->cc('estudiantesuperprofe@gmail.com'); 
 		$this->email->subject('Superprofe.co - Tu solicitud ' .$reqid . ' fue recibida.');
 		$this->email->message($template);  
 		
@@ -324,7 +324,7 @@ class Busqueda extends CI_Controller {
 		
 		$this->email->from('hola@superprofe.co', 'Superprofe');
 		$this->email->to($this->session->userdata("sEmail")); 
-		$this->email->cc('hola@superprofe.co'); 
+		$this->email->cc('estudiantesuperprofe@gmail.com'); 
 		$this->email->subject('Superprofe.co - Tu solicitud fue recibida.');
 		$this->email->message($template);  
 		

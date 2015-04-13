@@ -199,7 +199,7 @@ class Registro extends CI_Controller {
 					
 			$this->email->from('hola@superprofe.co', 'Superprofe');
 			$this->email->to($datos["Email"]); 
-			$this->email->cc('nadezda@superprofe.co'); 
+			$this->email->cc('profesorsuperprofe@gmail.com'); 
 			$this->email->subject('Superprofe.co - Agenda tu entrevista para convertirte en SuperProfe.');
 			$this->email->message('<div><div>Hola</div><div><br></div><div>Recibe un cordial saludo!</div><div><br></div><div>Mi nombre es Nadezda Vera, soy Directora de <a href="http://superprofe.co" target="_blank">superprofe.co</a> y estoy muy entusiasmada por entrevistarte lo más pronto posible.</div><div><br></div><div>Te pido que por favor ingreses a la siguiente enlace: <a href="https://calendly.com/nadezda" target="_blank">https://calendly.com/nadezda</a> &nbsp;y des clic en "Entrevista para ser un SúperProfe", selecciona el día y luego la hora para agendar tu entrevista.</div><div><br></div><div>En el siguiente enlace encontrarás como es el procedimiento para convertirte en un SúperProfe <a href="http://bit.ly/1yctyNQ" target="_blank">http://bit.ly/1yctyNQ</a></div><div><br></div><div>Adicionalmente te envío este video para que conozcas un poco más de nosotros</div><div><a href="https://www.youtube.com/watch?v=x97biL1lKBE" target="_blank">https://www.youtube.com/watch?<wbr>v=x97biL1lKBE</a>&nbsp;</div><div><br></div><div>La entrevista la realizaremos en la sede de SuperProfe ubicada en la Calle 69 No. 11 A - 33 es una casa con el nombre de Aulas Amigas, solo si estás en otra ciudad que no es Bogotá la realizaremos por skype a través de la cuenta nadezda.vera</div><div><br></div><div>Si tienes alguna inquietud no dudes en escribirme a <a href="mailto:nadezda@superprofe.co" target="_blank">nadezda@superprofe.co</a></div><div><br></div><div><br></div><div>Nadezda Vera</div><div>Directora Latam</div><div><br></div><div>¡Nuestros profesores son súper héroes del conocimiento!</div><div><br></div><div>Tel.:<a href="tel:%2B57%20%281%293105513" value="+5713105513" target="_blank">+57 (1)3105513</a> &nbsp; Cel. &nbsp;(+57) 301 470 5463&nbsp;</div><div>Dir.: Calle 69 11 A - 33 Bogotá , Colombia.</div><div>E-mail: &nbsp;<a href="mailto:hola@superprofe.co" target="_blank">hola@superprofe.co</a>&nbsp;</div><div>Visite nuestra web: <a href="http://www.superprofe.co" target="_blank">www.superprofe.co</a></div><div>Skype: super-profe</div><div>Twitter: @superprofecol</div></div>');  
 			
@@ -711,7 +711,7 @@ class Registro extends CI_Controller {
 		
 		$this->email->from('hola@superprofe.co', 'Superprofe');
 		$this->email->to($email); 
-		$this->email->cc('hola@superprofe.co'); 
+		$this->email->cc('estudiantesuperprofe@gmail.com'); 
 		$this->email->subject('Superprofe.co - Bienvenido a Superprofe.');
 		$this->email->message($template);  
 		

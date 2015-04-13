@@ -60,6 +60,12 @@ if($_SERVER['HTTP_HOST'] == 'amigaslive.net' || $_SERVER['HTTP_HOST'] == 'localh
 	$BD_PASS = 'en^W92_h2({z';
 	$BD_DATABASE = 'superpro_DB';
 	
+}else {
+    $BD_HOSTNAME = 'localhost';
+	
+	$BD_USERNAME = 'superpro_root';
+	$BD_PASS = 'en^W92_h2({z';
+	$BD_DATABASE = 'superpro_DB';
 }
 
 $active_group = 'superpro';
