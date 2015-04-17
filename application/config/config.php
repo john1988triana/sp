@@ -370,3 +370,7 @@ $config['proxy_ips'] = '';
 $config['javascript_location'] = 'assets/js/';
 /* End of file config.php */
 /* Location: ./application/config/config.php */
+
+// Fecha global de hora!!! vamos aver si funciona 
+
+$config['date_default_timezone_set'] = 'America/Bogota';

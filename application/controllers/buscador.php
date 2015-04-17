@@ -14,7 +14,8 @@ class Buscador extends CI_Controller {
 		parent::__construct();
 		$this->load->database('superpro', TRUE);
 		$this->load->model('model_superprofe');
-		$this->load->library('aulasamigas');		
+		$this->load->library('aulasamigas');	
+		date_default_timezone_set("America/Bogota");	
 	}
 	public function index(){
 		$area = $this->input->get("area");

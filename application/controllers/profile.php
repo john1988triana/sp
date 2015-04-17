@@ -12,6 +12,7 @@ class Profile extends CI_Controller {
 		parent::__construct();
 		$this->load->library('aulasamigas');
 		$this->load->model('model_superprofe');
+		date_default_timezone_set("America/Bogota");
 	}
 	public function index(){
 		
@@ -41,7 +42,7 @@ class Profile extends CI_Controller {
 				$this->sUrlGoogle = $this->aulasamigas->urlGoogle(
 					base_url('login/login_google/'), FALSE, $this->input->ip_address(), FALSE
 				);
-				///Peticion de la url para uniciar con facebook
+				///Peticion de la url para iniciar con facebook
 				$data['sLoginFacebook'] = $this->login_fb();
 				$data['sLoginGoogle'] = json_decode($this->sUrlGoogle);
 				
@@ -140,7 +141,10 @@ class Profile extends CI_Controller {
 	
 	protected function displayPageNotFound() {
         $this->output->set_status_header('404');
-        $this->load->view('page_not_found');
+        $data["title"] = "Página No Encontrada";
+        $data["code"] = "404";
+        $data["content"] = "La página solicitada... No se encuentra disponible";
+        $this->load->view('page_not_found',$data);
     }
 	
 }

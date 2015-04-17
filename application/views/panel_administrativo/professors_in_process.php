@@ -15,12 +15,15 @@
   			<thead>
         		<tr>
             	<th><a href="<?php echo base_url("administrador/profesores/proceso"); ?>">#</a></th>
+            	<th>Fecha</th>
             	<th>Nombre</th>
             	<th>Apellido</th>
 				<th><a href="<?php echo base_url("administrador/profesores/proceso/cc"); ?>">Documento</a></th>
 				<th>Email</th>
             	<th>Calificación</th>
             	<th>Perfil</th>
+            	<th>Ciudad</th>
+            	<th>Área</th>
             	<th>Antecedentes</th>
             	<th>Referencias Profesionales</th>
 				<th>Referencias Personales</th>
@@ -34,16 +37,31 @@
     		</thead>
     		
     		<tbody>
+    			<?php var_dump($professors); ?>
     			<?php 
     			foreach($professors as $c){ ?>
+    				
         		<tr>
             		<td class="row-id"><?php echo $c["id"];?></td>
+            		<td><?php echo $c["registro"]; ?></td>
             		<td><a href="<?php echo base_url("administrador/profesores/detalles/".$c["id_user"]); ?>" ><?php echo $c["firstName"]; ?></a></td>
             		<td><?php echo $c["lastName"]; ?></td>
             		<td class="doc"><?php echo $c["doc_number"]; ?></td>
 					<td><?php echo $c["email"]; ?></td>
 					<td><?php echo $c["rate"]; ?></td>
             		<td><?php echo $c["profile"]; ?></td>
+            		<td class="city"><?php foreach($cities as $city){if($city->ID == $c["id_city"])echo utf8_decode($city->Name);break;}?></td>
+            		<?php $d = $professorsf->getProfessorarea($c["id"]); ?>
+            		<td class="areas"><?php foreach ($d as $ar) {
+            				foreach($areas as $area){
+								if($area->IdArea == $ar['id_area']){
+									echo $area->Name."-";
+									foreach($levels as $l){if($l["id"] == $ar["id_level"]){echo $l["name"].", ";break;}};
+								}
+							}
+            		}?>
+
+					</td>
             		<td>
 						<?php if($editable): ?>
 						<select class="validation_background">

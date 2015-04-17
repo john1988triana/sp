@@ -33,35 +33,26 @@
 		</div>  
 	</div>
 	<div class="jumbotron fondo_busqueda">
-	<div class="container">
-
-		<div class="row steps-center">
-			<div class="col-md-12"></div>
-		</div>
-		
-		<div class="row steps-center panel_busqueda">
-
-			<div class="col-md-12">
-					
+		<div class="container">
+		<div class="col-md-5">
+			<div class="row steps-center pa_login">
+				<div class="col-md-12">	
 					<h3 class="text-center sub-titulos">INICIAR SESION</h3> 
 
 						<form action="<?php echo base_url('login/log_in'); ?>" method="post" role="form" class="form-horizontal" id="form3">
 							<fieldset>
-							
 								<div class="form-group">
 									<div class="col-lg-12">
 										<label for="txtEmail">Correo electrónico</label>
 										<input id="txtEmail" name="txtEmail" type="email" class="form-control" id="" placeholder="Correo electrónico" required>
 									</div>
 								</div>
-
 								<div class="form-group">
 									<div class="col-lg-12">
 										<label for="">Contraseña</label>
 										<input id="txtPassword" name="txtPassword" type="password" class="form-control" id="" placeholder="Contraseña" required>
 									</div>
-								</div>
-								
+								</div>								
 								<?php echo($message); ?>
 								
 								<div class="form-group">
@@ -93,12 +84,11 @@
 								</div>
 							</fieldset>
 						</form>
+				</div>
 			</div>
-			<div class="col-md-3"></div>
-			<div class="col-md-2"></div>
+		</div>
 		</div>
 	</div>
-</div>
 
 <div class="row steps-center">
 	<div class="col-md-12"></div>

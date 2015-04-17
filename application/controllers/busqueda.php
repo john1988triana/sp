@@ -16,6 +16,7 @@ class Busqueda extends CI_Controller {
 		$this->load->model('model_superprofe');
 		$this->load->library('form_validation');
 		$this->load->library('aulasamigas');
+		date_default_timezone_set("America/Bogota");
 	}
 	public function index(){
 		$area = $this->input->get("area");
@@ -152,6 +153,7 @@ class Busqueda extends CI_Controller {
 			$datos["cities"] = json_decode(json_decode($this->aulasamigas->getCitiesByCountry('COL'))->cities);
 			$this->load->view('busqueda/view_results', $datos);
 		}
+		$this->load->view('busqueda/view_details_buscar');
 		$this->load->view('footer');
 	}
 	public function login_fb() {

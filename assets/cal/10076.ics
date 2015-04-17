@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+VERSION:2.0
+PRODID:-//iCalWriter OpenSource Project//iCalWriter 0.8.1//EN
+BEGIN:VEVENT
+DTSTAMP:20150325T133517Z
+UID:14272905173Kvl@amigaslive.net
+DTSTART;TZID=America/Bogota:20150327T010000
+DTEND;TZID=America/Bogota:20150327T030000
+SUMMARY:Clase Superprofe
+DESCRIPTION:Clase Superprofe. Los datos del profesor son: Telefono: 3013583343, Email: edgar@toro-labs.com
+LOCATION:23412341
+CONTACT:edgar@toro-labs.com
+END:VEVENT
+END:VCALENDAR

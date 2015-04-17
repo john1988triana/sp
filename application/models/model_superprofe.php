@@ -32,6 +32,15 @@ class Model_superprofe extends CI_Model
 		$query = $this->db_super_pro->get();
 		return $query->result_array();
 	}
+
+	public function getUnitLevel($id){
+		$this->db_super_pro->select("name");
+		$this->db_super_pro->from("level");
+		$this->db_super_pro->where("id",$id);
+		$query = $this->db_super_pro->get();
+		$level = $query->result();
+		return $level;
+	}
 	/**
 	* Add a new user to the platform to Add a User to the DataBase it should be checked first
 	*/
@@ -900,6 +909,8 @@ class Model_superprofe extends CI_Model
 					$t["id_city"] = $a->City;
 					$t["email"] = $a->Email;
 					$t["doc_number"] = $a->DocNumber;
+					$t["registro"] = $a->f_register;
+
 				}
 			}
 		}
@@ -958,11 +969,30 @@ class Model_superprofe extends CI_Model
 					$t["id_city"] = $a->City;
 					$t["email"] = $a->Email;
 					$t["doc_number"] = $a->DocNumber;
+					$t["registro"] = $a->f_register;
 				}
 			}
 		}
 		return $teachers;
 	}
+	function getProfessorarea($id){
+		$this->db_super_pro->select(" * ");
+		$this->db_super_pro->from("professor_area");
+		$this->db_super_pro->where("id_professor",$id);
+		$query = $this->db_super_pro->get();
+		$areas = $query->result_array();
+		return $areas;
+	}
+
+	function getProfessorlevel($id){
+		$this->db_super_pro->select(" * ");
+		$this->db_super_pro->from("level");
+		$this->db_super_pro->where("id",$id);
+		$query = $this->db_super_pro->get();
+		$level = $query->result_array();
+		return $level;
+	}
+
 	function getPendingProfessors(){
 		$this->db_super_pro->select("*");
 		$this->db_super_pro->from("professor p");
@@ -983,8 +1013,10 @@ class Model_superprofe extends CI_Model
 		foreach($aulas as &$a){
 			foreach($teachers as &$t){
 				if($a->IdUser == $t["id_user"]){
+					$t["id_city"] = $a->City;
 					$t["email"] = $a->Email;
 					$t["doc_number"] = $a->DocNumber;
+					$t["registro"] = $a->f_register;
 				}
 			}
 		}

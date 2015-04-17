@@ -18,7 +18,7 @@
     <script src="<?php echo (base_url('assets/js/login/login.js')); ?>"></script>
 </head>
 
-<body>
+<body class="fondo_admin">
         <div class="navbar navbar-default" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -45,11 +45,13 @@
             </ol>
             </div>  
         </div>
-        <div class="jumbotron fondo_busqueda">
+        <div>
         <div class="container">
             <div class="row steps-center">
                 <div class="col-md-12"></div>
             </div>
+            <div class="col-md-6">
+                
             <div class="row steps-center panel_busqueda">
                 <div class="col-md-12">
                         <h3 class="text-center sub-titulos">INICIAR SESION</h3> 
@@ -83,6 +85,7 @@
                 </div>
                 <div class="col-md-3"></div>
                 <div class="col-md-2"></div>
+            </div>
             </div>
         </div>
     </div>

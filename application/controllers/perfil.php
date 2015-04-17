@@ -14,6 +14,7 @@ class Perfil extends CI_Controller {
 		$this->load->model('model_superprofe');
 		
 		$this->load->library('iCalWriter');
+		date_default_timezone_set("America/Bogota");
 	}
 	public function index(){
 		$data = $this->model_superprofe->loadUser($this->session->userdata('sIdUser'));

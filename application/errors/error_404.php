@@ -57,6 +57,9 @@ p {
 	<div id="container">
 		<h1><?php echo $heading; ?></h1>
 		<?php echo $message; ?>
+
+
+		<?php  "Erase una vez en Mexico!!!" ?>
 	</div>
 </body>
 </html>

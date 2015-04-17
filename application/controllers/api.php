@@ -10,7 +10,8 @@ class Api extends CI_Controller {
 		$this->load->database('superpro', TRUE);
 		$this->load->model('model_superprofe');
 		$this->load->library('form_validation');
-		$this->load->library('aulasamigas');		
+		$this->load->library('aulasamigas');	
+        date_default_timezone_set("America/Bogota");	
 	}
 
 	public function index(){

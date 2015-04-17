@@ -25,12 +25,6 @@
     <script src="<?php echo (base_url('assets/js/autoNumeric.js')); ?>"></script>
 	
 </head>
-
-
-
-
-
-
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container">
 		<div class="navbar-header">
@@ -101,7 +95,6 @@
 		</div><!--/.nav-collapse -->
 	</div>
 </div>
-
 
 <script> $('.dropdown-toggle').dropdownHover(); </script>
 

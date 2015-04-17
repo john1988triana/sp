@@ -16,6 +16,7 @@
   			<thead>
         		<tr>
             	<th><a href="<?php echo base_url("administrador/profesores/proceso"); ?>">#</a></th>
+            	<th>Fecha</th>
             	<th>Nombre</th>
             	<th>Apellido</th>
 				<th><a href="<?php echo base_url("administrador/profesores/proceso/cc"); ?>">Documento</a></th>
@@ -36,6 +37,7 @@
     			foreach($professors as $c){ ?>
         		<tr>
             		<td class="row-id"><?php echo $c["id"]; ?></td>
+            		<td><?php echo $c["registro"]; ?></td>
             		<td><a href="<?php echo base_url("administrador/profesores/detalles/".$c["id_user"]); ?>" ><?php echo $c["firstName"]; ?></a></td>
             		<td><?php echo $c["lastName"]; ?></td>
 					<td class="doc"><?php echo $c["doc_number"]; ?></td>

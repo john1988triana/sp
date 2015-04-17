@@ -12,6 +12,7 @@ class Clase extends CI_Controller {
 		$this->load->model('model_superprofe');
 		$this->load->library('form_validation');
 		$this->load->library('aulasamigas');
+		date_default_timezone_set("America/Bogota");
 		if (isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/bot|crawl|slurp|spider/i', $_SERVER['HTTP_USER_AGENT'])) {
 		    return;
 		  }

@@ -61,6 +61,7 @@ class Administrador extends CI_Controller {
             
             $this->load->library('upload', $config);
 		}
+		date_default_timezone_set("America/Bogota");
 	}
 	public function index($id = null){$this->checkPermission();redirect(base_url("administrador/clases/nueva"));}
 	public function checkPermission($area = ""){
@@ -277,7 +278,11 @@ class Administrador extends CI_Controller {
 			case "proceso":
 				$data["title"] = "Profesores en Proceso";
 				$data["editable"] = true;
+				$data["cities"] = json_decode(json_decode($this->aulasamigas->getCitiesByCountry('COL'))->cities);
+				$data["areas"] = json_decode($this->aulasamigas->getAreasByContent('768'));
+				$data["levels"] = $this->model_superprofe->getLevels();
 				$professors=$this->model_superprofe->getPendingProfessors();
+				$professorsf=$this->model_superprofe;
 				if($sort != "id"){
 					if($sort == "cc"){
 						uasort($professors,'profccSort');
@@ -287,7 +292,8 @@ class Administrador extends CI_Controller {
 					}
 				}
 				$data["professors"] = $professors;
-				$this->load->view("panel_administrativo/header");
+				$data["professorsf"] = $professorsf;
+				$this->load->view("panel_administrativo/header",$data);
 				$this->load->view("panel_administrativo/professors_in_process",$data);
 			break;
 			case "agendados":

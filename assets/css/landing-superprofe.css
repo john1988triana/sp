@@ -1,4 +1,4 @@
-	/*@import url(//fonts.googleapis.com/css?family=Lato:900); @import url(../fonts/HelveticaNeueLTPro-LtCn.otf);*/
+/*@import url(//fonts.googleapis.com/css?family=Lato:900); @import url(../fonts/HelveticaNeueLTPro-LtCn.otf);*/
 
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500);
 @import url(http://fonts.googleapis.com/css?family=Quicksand:400);
@@ -20,14 +20,11 @@ font-family: 'KlinicSlabBold';
 src:url('../fonts/KlinicSlabBold.otf');
 }
 
-
-
 body{
     /*background-color: #f3f3f3;*/
     /*font-family:'HelveticaNeueLTPro';
     font-family:Segoe, "Segoe UI", "Dejavu Sans","Trebuchet MS", Verdana, sans-serif;*/
     font-family:'Quicksand', sans-serif;
-    
 }
 section{
 	overflow-x:visible;
@@ -39,6 +36,7 @@ h1{
     font-size: 50px;
     color: #000000;
 }
+
 .datepicker td.day.disabled {
   color: #eeeeee;
 }
@@ -122,6 +120,10 @@ iframe.google-form
 	
 	font-size: 20px;
 }
+.tama_img {
+	width: 100%;
+	height: 50px;
+}
 
 .jumbotron.home-banner
 {
@@ -138,6 +140,20 @@ iframe.google-form
 .panel-areas-inicio{
 	margin-left:1px;
 }
+
+.fondo_error{
+	background: url('../img/fondo-imagen4.png') no-repeat center;
+	background-size: cover;
+	background-attachment: fixed;
+	color: white;
+	height: 100%;
+	width: 100%;
+}
+.cod_title{
+	font-size: 10em;
+	margin-top: 70px;
+}
+
 .bloque1{
 display:inline-block;
 width:20px;
@@ -446,6 +462,14 @@ background: #F6F6EC
 .fondo_busqueda{
 	background: url('../img/buscar1.jpg') no-repeat center;
 	background-size: cover;
+	background-attachment: fixed;
+}
+.fondo_admin{
+	background: url('../img/buscar1.jpg') no-repeat center;
+	background-size: cover;
+	background-attachment: fixed;
+	height: 100%;
+	width: 100%;
 }
 .error{
 	padding-left:5%;
@@ -458,12 +482,12 @@ background: #F6F6EC
 	padding: 19px;
 }
 .panel_busqueda{
-	width: 36%;
 	margin-top: 3.5%;
 	margin-left: 5%;
 	background-color: #F6F6EC;
 	border: 0px;
 	border-radius: 20px;
+	width: 95%;
 }
 .columna-reg-1,.columna-reg-2{
 	height: 865px;
@@ -472,6 +496,14 @@ background: #F6F6EC
 	border-right: 2px dashed #003333;
 }
 
+.pa_login{
+	margin-top: 3.5%;
+	margin-left: 5%;
+	background-color: #F6F6EC;
+	border: 0px;
+	border-radius: 20px;
+	width: 95%;
+}
 
 .jumbotron .phone-wrapper{
 	color:#143D29;
@@ -876,7 +908,6 @@ textarea{
 	.col-md-6.columna-reg-2 {
 
 		height: auto;
-		margin-top: 25px;
 	}
 
 	.reg-texto.col-md-7.col-md-offset-3 {
@@ -1585,11 +1616,14 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 
 
 .panel_busqueda {
-	
 	margin-top: 65px;
-	width: 40%;
 	min-width: 260px;
+}
 
+.text-es{
+	color: white;
+	margin-top: 120px;
+	min-width: 260px;	
 }
 
 
@@ -1825,7 +1859,6 @@ button.btn.btn-agregar.btn_agregar_estudios.btn-radius {
 	padding-top: 70px;
 	padding-bottom: 70px;
 	color: white;
-
 }
 
 .landing-check li {
@@ -2298,11 +2331,11 @@ img.img-ranking {
 	}
 
 
-	.panel_busqueda {
-
+	.panel_busqueda, .pa_login {
 		margin-top: 120px;
 		margin-bottom: 50px;
 	}
+
 
 	.delete-group.exp {
 	
@@ -2340,7 +2373,7 @@ img.img-ranking {
 
 	}
 
-	.panel_busqueda {
+	.panel_busqueda, .pa_login {
 
 		display: block;
 		margin-right: auto;
@@ -2417,9 +2450,7 @@ img.img-ranking {
 
 @media screen and (max-width: 480px) {
     
-   
-
-	.landing-check {
+  	.landing-check {
 
 	padding: 5%;
 	padding-top: 70px;
@@ -2565,8 +2596,6 @@ img.img-ranking {
 	}
 	
 }
-
-
 
 .perfil-titulo {
 	height: 34px;

@@ -6,6 +6,7 @@ class Robot_test extends CI_Controller {
 		$this->load->model('model_superprofe');
 		$this->load->library('aulasamigas');
 		$this->load->library('email');
+		date_default_timezone_set("America/Bogota");
 		$config['mailtype'] = "html";
 		$this->email->initialize($config);						
 		$class=$this->model_superprofe->getClassByStatus(array(4));

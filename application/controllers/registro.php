@@ -11,6 +11,7 @@ class Registro extends CI_Controller {
 		$this->load->library('aulasamigas');
 		$this->load->model('model_superprofe');
 		$this->load->library('form_validation');
+		date_default_timezone_set("America/Bogota");
 	}
 
 	/**
