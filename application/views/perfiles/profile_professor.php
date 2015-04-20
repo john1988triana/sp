@@ -445,11 +445,6 @@
 		</div>
 	</div>
 
-
-			
-			
-
-				
 				
 	<div class="row experticia perfil-profesor">
 		<div class="col-md-4 datos-porfesor">
@@ -459,7 +454,8 @@
 						Ciudad:
 					</div>
 					<div class=" col-md-8 col-xs-8">
-						Bogotá - Colombia
+				    		<span> <?php foreach($cities as $cit){if($cit->ID == $City{echo utf8_decode($cit->Name)." - ";}}; 
+					foreach($countries as $coun){if($coun["Code"] == $Country){echo utf8_decode($coun["Name"]);}};?></span>
 					</div>
 				</div>
 				<div class="row col-md-12 texto-1-profe" style="margin-top:2px;">

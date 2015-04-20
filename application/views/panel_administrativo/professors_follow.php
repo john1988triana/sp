@@ -44,7 +44,7 @@
 					<td><?php echo $c["phone"]; ?></td>
 					<td><?php echo $c["address"]; ?></td>
 					<td><?php echo $c["birthday"]; ?></td>
-					<td class="city"><?php foreach($cities as $city){if($city->ID == $c["id_city"])echo utf8_decode($city->Name);break;}?></td>
+					<td class="city"><?php foreach($cities as $city){if($city->ID == $c["id_city"])echo utf8_decode($city->Name);}?></td>
             		<td class="areas"><?php $as = explode(",",$c["areas"]);
 							foreach($areas as $area){
 								foreach($as as $a){
@@ -112,7 +112,7 @@ function updateProfessor(){
 	$.post(base_url+"administrador/actualizar/professor/",data,function(resp){
 		var rta = JSON.parse(resp);
 		if(rta){
-			$(".modal-header h1").html("Actualización Completa");
+			$(".modal-header h1").html("Actualizaci? Completa");
 		}
 	});
 	row.find(".price").val(parseInt(data.pfs.price).format());

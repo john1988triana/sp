@@ -117,7 +117,14 @@ class Administrador extends CI_Controller {
 						//echo json_encode($data);
 						if($data["isTeacher"]){
 							echo "es profe";
-						
+							$data["areas"] = $this->aulasamigas->getAreasByContent('768');
+							$data["cities"] = $this->aulasamigas->getCitiesByCountry('COL');
+							$data['countries'] = $this->aulasamigas->getCountriesInfo();
+							$data["levels"] = $this->model_superprofe->getLevels();
+							$data['document_type'] = json_decode($this->aulasamigas->getDocumentTypes(), true);
+							$data["errors"] = array("area"=>"","city"=>"","topic"=>"","address"=>"","date"=>"","level"=>"","time"=>"","phone"=>"","error"=>false);
+							//echo json_encode($data);
+							$this->load->view("panel_administrativo/new_class_results",$data);
 						}else{
 							$data["areas"] = $this->aulasamigas->getAreasByContent('768');
 							$data["cities"] = $this->aulasamigas->getCitiesByCountry('COL');
@@ -354,6 +361,8 @@ class Administrador extends CI_Controller {
 			//$id = $this->input->get("id");
 			$data = $this->model_superprofe->loadUser($sort);
 			$data["levels"] = $this->model_superprofe->getLevels();
+			$data["cities"] = json_decode(json_decode($this->aulasamigas->getCitiesByCountry('COL'))->cities);
+			$data['countries'] = $this->aulasamigas->getCountriesInfo();
 			$this->load->view("header");
 			$data["unique"]="";
 			if($data["isTeacher"]==1){
@@ -503,7 +512,27 @@ class Administrador extends CI_Controller {
 		redirect(base_url('administrador/facturacion/cobrar'));
 	}
 	
-	public function estadisticas($subsection = ""){}
+	public function estadisticas($subsection = ""){
+		$this->checkPermission();
+		switch ($subsection){
+			case 'clases':
+				$data["Todos"] = $this->model_superprofe->getclassprogram(4);
+				$this->load->view("panel_administrativo/header");
+				$this->load->view("panel_administrativo/statistics_class",$data);
+						
+			break;
+			
+			default:
+				
+			break;
+		}
+	}
+	public function statisticClass(){
+			$start = date('Y-m-d', strtotime('first day of this year',$date))." 00:00:00";
+			$end = date('Y-m-d', strtotime('last day of this year',$date))." 23:59:59";			
+			echo json_encode($this->model_superprofe->getclassprogram(1)); //id amigas
+	}
+
 	public function csv($section){
 		$this->checkPermission();
 		if($section == "estudiantes"){

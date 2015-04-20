@@ -158,6 +158,8 @@ class Registro extends CI_Controller {
 			redirect(base_url());
 		}
 		$datos = $this->model_superprofe->loadUser($this->session->userdata('sIdUser'));
+		$datos["cities"] = json_decode(json_decode($this->aulasamigas->getCitiesByCountry('COL'))->cities);
+		$datos['countries'] = $this->aulasamigas->getCountriesInfo();
 		$datos["levels"] = $this->model_superprofe->getLevels();
 		$datos["levels"][] = array("id"=>"-1","name"=>"Todos (Primaria,Bachillerato,Universidad,Otros)");
 		if($this->input->get("error") == "terms"){

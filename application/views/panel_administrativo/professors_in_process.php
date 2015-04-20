@@ -37,7 +37,7 @@
     		</thead>
     		
     		<tbody>
-    			<?php var_dump($professors); ?>
+    			<?php var_dump($cities); ?>
     			<?php 
     			foreach($professors as $c){ ?>
     				
@@ -50,7 +50,11 @@
 					<td><?php echo $c["email"]; ?></td>
 					<td><?php echo $c["rate"]; ?></td>
             		<td><?php echo $c["profile"]; ?></td>
-            		<td class="city"><?php foreach($cities as $city){if($city->ID == $c["id_city"])echo utf8_decode($city->Name);break;}?></td>
+            		<td class="city"><?php foreach($cities as $city){
+            								if($city->ID == $c["id_city"]){
+            									echo utf8_decode($city->Name);
+            								}}?>
+            		</td>
             		<?php $d = $professorsf->getProfessorarea($c["id"]); ?>
             		<td class="areas"><?php foreach ($d as $ar) {
             				foreach($areas as $area){

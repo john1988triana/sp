@@ -22,6 +22,7 @@
 				<th><a href="<?php echo base_url("administrador/profesores/proceso/cc"); ?>">Documento</a></th>
 				<th>Email</th>
 				<th>Clases</th>
+				<th>Horas</th>
 				<th>Celular</th>
 				<th>Dirección</th>
 				<th>Fecha Nacimiento</th>
@@ -40,6 +41,7 @@
 					<td class="doc"><?php echo $c["doc_number"]; ?></td>
 					<td><?php echo $c["email"]; ?></td>
 					<td><?php echo $c["classes"]; ?></td>
+					<td><?php echo $c["ranking"]; ?></td>
 					<td><?php echo $c["phone"]; ?></td>
 					<td><?php echo $c["address"]; ?></td>
 					<td><?php echo $c["birthday"]; ?></td>

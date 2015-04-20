@@ -45,7 +45,7 @@
 					<td><?php echo $c["phone"]; ?></td>
 					<td><?php echo $c["address"]; ?></td>
 					<td><?php echo $c["birthday"]; ?></td>
-					<td class="city"><?php foreach($cities as $city){if($city->ID == $c["id_city"])echo utf8_decode($city->Name);break;}?></td>
+					<td class="city"><?php foreach($cities as $city){if($city->ID == $c["id_city"])echo utf8_decode($city->Name);}?></td>
             		<td class="areas"><?php $as = explode(",",$c["areas"]);
 							foreach($areas as $area){
 								foreach($as as $a){

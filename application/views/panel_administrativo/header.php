@@ -76,7 +76,7 @@
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Estadisticas<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="<?php echo base_url('login/logout'); ?>">Solicitadas</a></li>
+						<li><a href="<?php echo base_url('administrador/estadisticas/clases'); ?>">Solicitadas</a></li>
 						<li><a href="<?php echo base_url('login/logout'); ?>">Programadas</a></li>
 						<li><a href="<?php echo base_url('login/logout'); ?>">Finalizadas</a></li>
 						<li><a href="<?php echo base_url('login/logout'); ?>">Seguimiento</a></li>

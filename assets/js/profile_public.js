@@ -881,7 +881,7 @@ function sub(obj){
 		else if(response.error)
 		{
 			switch(response.error){
-				case "<p>The filetype you are attempting to upload is not allowed.</p><p>The filetype you are attempting to upload is not allowed.</p>":
+				case "<p>The filetype you are attempting to upload is not allowed.</p>":
 						swal({
 							title: "Error!",
 							text: "El tipo de archivo que intentas cargar no es permitido. Las extensiones permitidas son gif, jpg y png.",
@@ -891,7 +891,7 @@ function sub(obj){
 								
 						});
 						break;
-				case "<p>The image you are attempting to upload exceedes the maximum height or width.</p><p>The image you are attempting to upload exceedes the maximum height or width.</p>":
+				case "<p>The image you are attempting to upload exceedes the maximum height or width.</p>":
 						swal({
 							title: "Error!",
 							text: "Las dimensiones de la imagen supera los límites permitidos, Las dimensiones máximas son 1024 x 768 px.",
@@ -901,7 +901,7 @@ function sub(obj){
 								
 						});
 						break;
-				case "<p>The file you are attempting to upload is larger than the permitted size.</p><p>The file you are attempting to upload is larger than the permitted size.</p>":
+				case "<p>The file you are attempting to upload is larger than the permitted size.</p>":
 						swal({
 							title: "Error!",
 							text: "El tamaño del archivo que intentas cargar supera los límites permitidos. El tamaño máximo son 20 MB.",
@@ -913,7 +913,7 @@ function sub(obj){
 						break;
 				default:
 						swal({
-							title: "Error!",
+							title: "Error!!!",
 							text: response.error,
 							type: "error",
 							confirmButtonText: "Aceptar" },

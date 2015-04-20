@@ -846,6 +846,35 @@ class Model_superprofe extends CI_Model
 			$this->db_super_pro->update('student', $p);  
 		}
 	}
+
+	function getclassprogram($id){
+		if ($id == 1) {
+			$this->db_super_pro->select(" * ");
+
+			$this->db_super_pro->from("request");
+
+			$this->db_super_pro->where("status",4);
+
+			$query = $this->db_super_pro->get();
+
+			return $query->row_array();
+		}
+		else
+		{
+			$this->db_super_pro->select(" * ");
+
+			$this->db_super_pro->from("request");
+
+			$this->db_super_pro->where("status",1);
+			$this->db_super_pro->where("status",2);
+			$this->db_super_pro->where("status",3);
+
+			$query = $this->db_super_pro->get();
+
+			return $query->row_array();
+		}
+	}
+
 	function getRangeClasses($id_user,$start,$end,$type,$states = array(4), $isId = 0){
 		if($isId == 0) {
 			$this->db_super_pro->select("id");
@@ -889,7 +918,7 @@ class Model_superprofe extends CI_Model
 		return $query->result_array();
 	}
 	function getFullStudentList(){
-		$this->db_super_pro->select("s.*,count(r.id) classes");
+		$this->db_super_pro->select("s.*,count(r.id) classes, SUM(TIMESTAMPDIFF(HOUR, r.start, r.end )) ranking");
 		$this->db_super_pro->from("student s");
 		$this->db_super_pro->join("request r","r.id_student = s.id","left");
 		$this->db_super_pro->group_by("s.id","asc");
@@ -1038,8 +1067,11 @@ class Model_superprofe extends CI_Model
 			foreach($aulas as &$a){
 				foreach($teachers as &$t){
 					if($a->IdUser == $t["id_user"]){
+						$t["id_city"] = $a->City;
+						$t["birthday"] = $a->DayBorn ."-". $a->MonthBorn. "-".$a->YearBorn;
 						$t["email"] = $a->Email;
 						$t["doc_number"] = $a->DocNumber;
+						$t["registro"] = $a->f_register;
 					}
 				}
 			}
