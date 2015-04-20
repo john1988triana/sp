@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-1"></div>
-			<h2 class="titulo-index texto-contactos">Encuentra el Profesor<br>que Necesitas</h2><?php echo date('d-m-Y H:i:s');?>
+			<h2 class="titulo-index texto-contactos">Encuentra el Profesor<br>que Necesitas</h2>
 			<!--<h1 class="titulo-index"></h1>-->
 			<div class="col-md-4">
 				<form class="form-horizontal" role="form">
