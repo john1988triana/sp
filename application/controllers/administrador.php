@@ -519,6 +519,7 @@ class Administrador extends CI_Controller {
 				$data["title"] = "Estadistica";	
 				$data["sol"] = $this->model_superprofe->getclassreq();
 				$data["prog"] = $this->model_superprofe->getclassprog();
+				$data["hor"] = $this->model_superprofe->gethorasst();
 				$this->load->view("panel_administrativo/header");
 				$this->load->view("panel_administrativo/statistics_class",$data);
 						

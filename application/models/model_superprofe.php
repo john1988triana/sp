@@ -856,9 +856,18 @@ class Model_superprofe extends CI_Model
 	}
 
 	function getclassprog(){
-		$this->db_super_pro->select("DATE(`program_date`) fecha,COUNT(*) rpro");
+		$this->db_super_pro->select("DATE(program_date) fecha,COUNT(*) rpro");
 		$this->db_super_pro->from("request");
-		$this->db_super_pro->group_by(" year(`program_date`), month(`program_date`) DESC, day(`program_date`) DESC");
+		$this->db_super_pro->group_by(" year(program_date), month(program_date) DESC, day(program_date) DESC");
+		$query = $this->db_super_pro->get();
+		return $query->result_array();
+	}
+
+	function gethorasst(){
+		$this->db_super_pro->select("DATE(start) fecha, SUM(TIMESTAMPDIFF(HOUR , start , end )) horas");
+		$this->db_super_pro->from("request");
+		$this->db_super_pro->where("status = 6 or status = 7 or status = 8");
+		$this->db_super_pro->group_by(" year(start) DESC, month(start) DESC, day(start) DESC");
 		$query = $this->db_super_pro->get();
 		return $query->result_array();
 	}
