@@ -847,32 +847,21 @@ class Model_superprofe extends CI_Model
 		}
 	}
 
-	function getclassprogram($id){
-		if ($id == 1) {
-			$this->db_super_pro->select(" * ");
+	function getclassreq(){
+		$this->db_super_pro->select(" DATE(date) fecha ,COUNT(*) rsol ");
+		$this->db_super_pro->from("request");
+		$this->db_super_pro->group_by("year(date), month(date) DESC, day(date) DESC");
+		$query = $this->db_super_pro->get();
+		return $query->result_array();
+	}
 
-			$this->db_super_pro->from("request");
-
-			$this->db_super_pro->where("status",4);
-
-			$query = $this->db_super_pro->get();
-
-			return $query->row_array();
-		}
-		else
-		{
-			$this->db_super_pro->select(" * ");
-
-			$this->db_super_pro->from("request");
-
-			$this->db_super_pro->where("status",1);
-			$this->db_super_pro->where("status",2);
-			$this->db_super_pro->where("status",3);
-
-			$query = $this->db_super_pro->get();
-
-			return $query->row_array();
-		}
+	function getclassprog(){
+		$this->db_super_pro->select("COUNT(*) rpro ");
+		$this->db_super_pro->from("request");
+		$this->db_super_pro->where('program_date IS NULL');
+		$this->db_super_pro->group_by("year(date), month(date) ASC, day(date)");
+		$query = $this->db_super_pro->get();
+		return $query->result_array();
 	}
 
 	function getRangeClasses($id_user,$start,$end,$type,$states = array(4), $isId = 0){

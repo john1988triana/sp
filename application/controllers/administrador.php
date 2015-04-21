@@ -515,8 +515,10 @@ class Administrador extends CI_Controller {
 	public function estadisticas($subsection = ""){
 		$this->checkPermission();
 		switch ($subsection){
-			case 'clases':
-				$data["Todos"] = $this->model_superprofe->getclassprogram(4);
+			case 'clases':	
+				$data["title"] = "Estadistica";	
+				$data["sol"] = $this->model_superprofe->getclassreq();
+				$data["prog"] = $this->model_superprofe->getclassprog();
 				$this->load->view("panel_administrativo/header");
 				$this->load->view("panel_administrativo/statistics_class",$data);
 						
@@ -526,11 +528,6 @@ class Administrador extends CI_Controller {
 				
 			break;
 		}
-	}
-	public function statisticClass(){
-			$start = date('Y-m-d', strtotime('first day of this year',$date))." 00:00:00";
-			$end = date('Y-m-d', strtotime('last day of this year',$date))." 23:59:59";			
-			echo json_encode($this->model_superprofe->getclassprogram(1)); //id amigas
 	}
 
 	public function csv($section){
