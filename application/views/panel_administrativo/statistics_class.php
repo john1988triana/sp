@@ -15,6 +15,7 @@
 	            		<th>Fecha</th>
 	            		<th>Creadas</th>
 	            		<th>Programadas</th>
+	            		<th>Horas</th>
 	        		</tr>
 	    		</thead>	
 	    		<tbody>
@@ -22,13 +23,24 @@
 	    			<tr>
 	    				<td><?php echo $s["fecha"]; ?></td>
 	    				<td><?php echo $s["rsol"]; ?></td>
-	    				<?php foreach($prog as $p){ ?>
-						 <?php if ($s["fecha"] == $p["fecha"]){ ?>
-						 		<td class="hola"><?php echo $p["rpro"]; ?></td>
-						 		<?php break; ?>
-						<?php }else{ ?>
-
-						<?php }} ?>
+						<?php $found = false; foreach($prog as $p): 
+							if ($s["fecha"] == $p["fecha"]): ?>
+								<td><?= $p["rpro"]; ?></td><?php $found = true; break; ?>
+							<?php endif; ?>
+						<?php endforeach;
+							if($found == false): ?>
+								<td>0</td>
+							<?php endif;
+						?>
+						<?php foreach($hor as $h): 
+							if ($s["fecha"] == $h["fecha"]): ?>
+								<td><?= $h["horas"]; ?></td><?php $found = true; break; ?>
+							<?php endif; ?>
+							<?php endforeach;
+							if($found == false): ?>
+								<td>0</td>
+							<?php endif;
+						?>
 	    			</tr>
 	    			<?php } ?>
 	    		</tbody>
@@ -45,10 +57,10 @@
 	    		</thead>	
 	    		<tbody>
 	    			<?php 
-	    			foreach($hor as $p){ ?>
+	    			foreach($hor as $h){ ?>
 	    			<tr>
-	    				<td><?php echo $p["fecha"]; ?></td>
-	    				<td><?php echo $p["horas"]; ?></td>
+	    				<td><?php echo $h["fecha"]; ?></td>
+	    				<td><?php echo $h["horas"]; ?></td>
 	    			</tr>
 	    			<?php }
 	    			?>
